@@ -1,0 +1,21 @@
+# freshshell.com
+#
+# Examples:
+#
+#   fresh twe4ked/dotfiles shell/functions/\*
+#   fresh jasoncodes/dotfiles shell/aliases/rails.sh
+#   fresh jasoncodes/dotfiles config/tmux.conf --file
+#
+# See http://freshshell.com/readme for documentation.
+
+fresh freshshell/fresh bin/fresh --bin
+
+# tmux
+fresh gpakosz/.tmux .tmux.conf --file
+fresh gpakosz/.tmux .tmux.conf.local --file
+fresh .tmux.conf.local --file
+
+# TODO: solarized colors
+# fresh seebi/dircolors-solarized
+
+fresh .zshrc --file

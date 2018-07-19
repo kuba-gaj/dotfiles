@@ -1,0 +1,68 @@
+# Check if zplug is installed
+if [[ ! -d ~/.zplug  ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    # source ~/.zplug/init.zsh && zplug update
+fi
+
+# Essential
+source ~/.zplug/init.zsh
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# Prezto
+zplug "modules/directory", from:prezto
+zplug "modules/environment", from:prezto
+zplug "modules/editor", from:prezto
+zplug "modules/completion", from:prezto
+zplug "modules/utility", from:prezto
+# zplug "modules/git", from:prezto
+zplug "modules/node", from:prezto
+zplug "modules/pacman", from:prezto
+zplug "modules/tmux", from:prezto
+zplug "modules/rsync", from:prezto
+zplug "modules/ssh", from:prezto
+zplug "modules/docker", from:prezto
+zplug "modules/history", from:prezto
+zplug "modules/history-substring-search", from:prezto
+zplug "modules/syntax-highlighting", from:prezto
+zplug "modules/autosuggestions", from:prezto
+zplug "modules/prompt", from:prezto
+
+# Commands
+# zplug "creationix/nvm", use:nvm.sh
+zplug "rupa/z", use:z.sh
+
+# Other
+zplug "seebi/dircolors-solarized"
+zplug "djui/alias-tips", use:alias-tips.plugin.zsh
+zplug "valentinocossar/vscode"
+
+export NVM_AUTO_USE=true
+zplug "lukechilds/zsh-nvm"
+
+# oh-my-zsh
+# zplug "plugins/common-aliases", from:oh-my-zsh
+# zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh
+# zplug "plugins/tmux", from:oh-my-zsh
+# zplug "plugins/yarn", from:oh-my-zsh
+# zplug "plugins/node", from:oh-my-zsh
+
+
+# Themes
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+# zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+# Using pure from prezto
+# zplug "mafredri/zsh-async", from:github
+# zplug "sindresorhus/pure", use:pure.zsh
+
+if ! zplug check --verbose; then
+    zplug install
+fi
+
+zplug load 
+
+if zplug check "creationix/nvm" && [[ $(command -v nvm) ]] && [[ $(nvm current) == "system" ]]; then
+    echo "Installing nvm latest node.js version"
+    nvm install node
+    nvm alias default node
+fi
