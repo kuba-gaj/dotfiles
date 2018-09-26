@@ -26,8 +26,13 @@ al() { alias | grep "$1" }
 # Tools
 alias ag='ag --ignore .git'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # FZF respect version control ignore files excluding hidden files
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # TMUXP
 export TMUXP_CONFIGDIR=~/.dotfiles/tmuxp
+
+# Undistract-me
+source /usr/share/undistract-me/long-running.bash
+notify_when_long_running_commands_finish_install
