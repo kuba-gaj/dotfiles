@@ -5,8 +5,11 @@ export TERM=xterm-256color
 export KEYTIMEOUT=1
 export EDITOR=vim
 
-# prepend pip user path
+# PATH (can't be done in env because it's overriden later in /etc/profile)
 path=('/home/kuba/.local/bin' $path)
+path=("/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin", $path)
+path+="$HOME/.yarn/bin"
+path+="/Users/kuba/Library/Python/2.7/bin"
 
 source ~/.dotfiles/.zpreztorc
 source ~/.dotfiles/.zplugrc
@@ -15,24 +18,27 @@ source ~/.fresh/build/shell.sh
 # Visual indication of NORMAL mode in PURE theme using prezto/editor module
 PROMPT='%(?.%F{magenta}.%F{red})${editor_info[keymap]} '
 
-# ssh-add ~/.ssh/id_rsa
-
 # dircolors
 eval `dircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
 
 # Aliases
 al() { alias | grep "$1" }
 
+# docked mode
+alias lap='_ systemctl start udevmon'
+alias desk='_ systemctl stop udevmon'
+
 # Tools
+alias git=hub
 alias ag='ag --ignore .git'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# FZF respect version control ignore files excluding hidden files
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
-# TMUXP
-export TMUXP_CONFIGDIR=~/.dotfiles/tmuxp
+# Cni
+alias terra='aws-okta exec okta-developer-staging -- terraform'
+alias _terra-eu='aws-okta exec okta-developer-prod -- terraform'
+alias _terra-ap='aws-okta exec prod-ap-dev -- terraform'
 
 # Undistract-me
 source /usr/share/undistract-me/long-running.bash
 notify_when_long_running_commands_finish_install
+
