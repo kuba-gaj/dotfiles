@@ -22,9 +22,6 @@ if "test ! -d ~/.tmux/plugins/tpm" \
 
 setenv -g TMUX_PLUGIN_MANAGER_PATH '$HOME/.tmux/plugins/'
 
-set -g @resurrect-strategy-vim 'session'
-set -g @resurrect-strategy-nvim 'session'
-set -g @continuum-restore 'on'
 
 # List of plugins
 # set -g @plugin 'tmux-plugins/tpm'
@@ -34,10 +31,16 @@ set -g @continuum-restore 'on'
 # Alternative syntax to above to work in local config file
 set -g @tpm_plugins ' \
 	tmux-plugins/tpm \
-	christoomey/vim-tmux-navigator \
+	tmux-plugins/tmux-sensible \
+	tmux-plugins/tmux-yank \
 	tmux-plugins/tmux-resurrect \
 	tmux-plugins/tmux-continuum \
+	christoomey/vim-tmux-navigator \
 '
+
+set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session'
+set -g @continuum-restore 'on'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
