@@ -1,5 +1,4 @@
-alias virtualenv2='/Users/kuba/Library/Python/2.7/bin/virtualenv'
-alias virtualenv3='/Users/kuba/Library/Python/3.6/bin/virtualenv'
+export FRESH_RCFILE="$HOME/.dotfiles/.freshrc"
 
 export NPM_TOKEN=$(cat ~/.npmrc | grep _authToken | sed 's/.*=//')
 
