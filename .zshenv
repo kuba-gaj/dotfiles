@@ -2,9 +2,6 @@ export FRESH_RCFILE="$HOME/.dotfiles/.freshrc"
 
 export NPM_TOKEN=$(cat ~/.npmrc | grep _authToken | sed 's/.*=//')
 
-# FZF respect version control ignore files excluding hidden files
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
 # TMUXP
 export TMUXP_CONFIGDIR=~/.dotfiles/tmuxp
 
