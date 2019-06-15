@@ -17,5 +17,6 @@ fresh .tmux.conf.local --file
 
 fresh .zshenv --file
 fresh .zshenv.priv --file ~/.zshrc
-
 fresh .zshrc --file
+
+fresh .vimrc --file
