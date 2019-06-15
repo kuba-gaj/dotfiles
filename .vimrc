@@ -1,8 +1,29 @@
-syntax enable
+" Auto install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-colorscheme desert
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
 
-set backspace=indent,eol,start				"Make backspace behave like every other editor
+" Declare the list of plugins.
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/seoul256.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
-"--------------Mappings---------------"
-nmap ,ev :tabedit $MYVIMRC
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+" ### seoul 256 color scheme
+" Unified color scheme (default: dark)
+color seoul256
+
+" Light color scheme
+" colo seoul256-light
+
+" Switch
+set background=dark
+" set background=light
+" ###
