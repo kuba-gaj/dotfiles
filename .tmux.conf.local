@@ -43,7 +43,6 @@ tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_stat
 tmux_conf_battery_status_charging='🔌 '    # U+1F50C
 tmux_conf_battery_status_discharging='🔋 ' # U+1F50B
 
-tmux_conf_copy_to_os_clipboard=true
 tmux_conf_new_session_prompt=true
 
 # List of plugins
