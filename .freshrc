@@ -15,7 +15,7 @@ fresh gpakosz/.tmux .tmux.conf --file
 fresh gpakosz/.tmux .tmux.conf.local --file
 fresh .tmux.conf.local --file
 
-# TODO: solarized colors
-# fresh seebi/dircolors-solarized
+fresh .zshenv --file
+fresh .zshenv.priv --file ~/.zshrc
 
 fresh .zshrc --file

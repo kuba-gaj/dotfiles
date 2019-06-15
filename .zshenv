@@ -21,5 +21,3 @@ export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
 # CNI
 export AWS_OKTA_BACKEND=secret-service
-
-source .zshenvpriv
