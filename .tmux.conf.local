@@ -45,6 +45,7 @@ tmux_conf_battery_status_discharging='🔋 ' # U+1F50B
 
 tmux_conf_new_session_prompt=true
 
+<<<<<<< HEAD
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
@@ -57,6 +58,8 @@ run '~/.tmux/plugins/tpm/tpm'
 
 # start with mouse mode enabled
 set -g mouse on
+=======
+>>>>>>> 295a970b5b75a6503b6fb9330c3ab1868403adcf
 
 # List of plugins
 # set -g @plugin 'tmux-plugins/tpm'
@@ -67,9 +70,10 @@ set -g mouse on
 # Alternative syntax to above to work in local config file
 set -g @tpm_plugins ' \
 	tmux-plugins/tpm \
+	tmux-plugins/tmux-sensible \
+	tmux-plugins/tmux-yank \
 	tmux-plugins/tmux-resurrect \
 	tmux-plugins/tmux-continuum \
-	tmux-plugins/tmux-yank \
 	christoomey/vim-tmux-navigator \
 '
 

@@ -16,4 +16,10 @@ export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
 # CNI
+<<<<<<< HEAD
 export AWS_OKTA_BACKEND=secret-service
+=======
+export AWS_OKTA_BACKEND=secret-service
+
+source .zshenvpriv
+>>>>>>> 295a970b5b75a6503b6fb9330c3ab1868403adcf
