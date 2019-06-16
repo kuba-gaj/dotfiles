@@ -31,11 +31,7 @@ alias desk='_ systemctl stop udevmon'
 # Tools
 alias git=hub
 alias ag='ag --ignore .git'
-<<<<<<< HEAD
 [ -f ~/.dotfiles/.fzf.zsh ] && source ~/.dotfiles/.fzf.zsh
-=======
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
->>>>>>> 295a970b5b75a6503b6fb9330c3ab1868403adcf
 
 # Cni
 alias terra='aws-okta exec okta-developer-staging -- terraform'
