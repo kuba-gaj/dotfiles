@@ -25,6 +25,7 @@ zplug "modules/ssh", from:prezto
 zplug "modules/syntax-highlighting", from:prezto, defer:1
 zplug "modules/tmux", from:prezto
 zplug "modules/utility", from:prezto
+zplug "modules/fasd", from:prezto
 
 # Commands
 # zplug "creationix/nvm", use:nvm.sh
