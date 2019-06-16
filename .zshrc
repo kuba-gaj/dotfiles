@@ -47,7 +47,8 @@ source /usr/share/undistract-me/long-running.bash
 notify_when_long_running_commands_finish_install
 
 # fasd https://github.com/clvv/fasd
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
+
 # defaults
 # alias a='fasd -a'        # any
 # alias s='fasd -si'       # show / search / select

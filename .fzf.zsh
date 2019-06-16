@@ -4,4 +4,4 @@ export FZF_CTRL_T COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--ansi'
 
 source /usr/share/fzf/key-bindings.zsh
-# source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/completion.zsh
