@@ -27,15 +27,15 @@ zplug "modules/tmux", from:prezto
 zplug "modules/utility", from:prezto
 zplug "modules/fasd", from:prezto
 
+source ~/.dotfiles/.zpreztorc
+
 # Commands
 # zplug "creationix/nvm", use:nvm.sh
-# zplug "rupa/z", use:z.sh
-# zplug x0054/hyperjump
 
 # Other
 zplug "seebi/dircolors-solarized"
 zplug "djui/alias-tips", use:alias-tips.plugin.zsh
-zplug "andrewferrier/fzf-z"
+zplug "andrewferrier/fzf-z", use:fzf-z.plugin.zsh, defer:3
 zplug "valentinocossar/vscode"
 
 export NVM_AUTO_USE=true
@@ -59,8 +59,6 @@ if ! zplug check --verbose; then
     zplug install
 fi
 
-zplug load 
-
 if zplug check "creationix/nvm" && [[ $(command -v nvm) ]] && [[ $(nvm current) == "system" ]]; then
     echo "Installing nvm latest node.js version"
     nvm install node
@@ -76,3 +74,5 @@ if zplug check zsh-users/zsh-history-substring-search; then
     bindkey '\eOA' history-substring-search-up
     bindkey '\eOB' history-substring-search-down
 fi
+
+zplug load

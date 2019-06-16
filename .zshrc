@@ -11,9 +11,9 @@ path=("/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin", $path)
 path+="$HOME/.yarn/bin"
 path+="/Users/kuba/Library/Python/2.7/bin"
 
-source ~/.dotfiles/.zpreztorc
-source ~/.dotfiles/.zplugrc
 source ~/.fresh/build/shell.sh
+# source ~/.dotfiles/.zpreztorc
+source ~/.dotfiles/.zplugrc
 
 # Visual indication of NORMAL mode in PURE theme using prezto/editor module
 PROMPT='%(?.%F{magenta}.%F{red})${editor_info[keymap]} '
