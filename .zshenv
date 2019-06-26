@@ -1,5 +1,6 @@
 export FRESH_RCFILE="$HOME/.dotfiles/.freshrc"
 
+export npm_config_prefix=~/.node_modules
 export NPM_TOKEN=$(cat ~/.npmrc | grep _authToken | sed 's/.*=//')
 
 # TMUXP
@@ -17,5 +18,4 @@ export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
 # CNI
 export AWS_OKTA_BACKEND=secret-service
-
-export FZFZ_RECENT_DIRS_TOOL='fasd'
+[ -f ~/.dotfiles/.zshenv.priv ] && source ~/.dotfiles/.zshenv.priv

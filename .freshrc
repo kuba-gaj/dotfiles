@@ -16,7 +16,10 @@ fresh gpakosz/.tmux .tmux.conf.local --file
 fresh .tmux.conf.local --file
 
 fresh .zshenv --file
-fresh .zshenv.priv --file ~/.zshrc
+# fresh .zshenv.priv --file ~/.zshrc
 fresh .zshrc --file
 
-fresh .vimrc --file
+# fresh .vimrc --file
+# ln -sf ~/.dotfiles/.vimrc ~/.vimrc
+
+ln -sf ~/.dotfiles/vim/coc-settings.json ~/.config/nvim/coc-settings.json
