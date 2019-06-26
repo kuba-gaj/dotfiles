@@ -13,13 +13,10 @@ fresh freshshell/fresh bin/fresh --bin
 # tmux
 fresh gpakosz/.tmux .tmux.conf --file
 fresh gpakosz/.tmux .tmux.conf.local --file
-fresh .tmux.conf.local --file
+fresh tmux.conf.local --file=.tmux.conf.local
 
-fresh .zshenv --file
-# fresh .zshenv.priv --file ~/.zshrc
-fresh .zshrc --file
+ln -sf .dotfiles/zshenv ~/.zshenv
+ln -sf .dotfiles/zshrc ~/.zshrc
 
-# fresh .vimrc --file
 # ln -sf ~/.dotfiles/.vimrc ~/.vimrc
-
 ln -sf ~/.dotfiles/vim/coc-settings.json ~/.config/nvim/coc-settings.json

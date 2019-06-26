@@ -1,4 +1,4 @@
-export FRESH_RCFILE="$HOME/.dotfiles/.freshrc"
+export FRESH_RCFILE="$HOME/.dotfiles/freshrc"
 
 export npm_config_prefix=~/.node_modules
 export NPM_TOKEN=$(cat ~/.npmrc | grep _authToken | sed 's/.*=//')

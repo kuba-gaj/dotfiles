@@ -27,7 +27,8 @@ zplug "modules/tmux", from:prezto
 zplug "modules/utility", from:prezto
 zplug "modules/fasd", from:prezto
 
-source ~/.dotfiles/.zpreztorc
+# Configure preztorc
+source ~/.dotfiles/zpreztorc
 
 # Commands
 # zplug "creationix/nvm", use:nvm.sh

@@ -14,8 +14,7 @@ path+="$HOME/.yarn/bin"
 path+="/Users/kuba/Library/Python/2.7/bin"
 
 source ~/.fresh/build/shell.sh
-# source ~/.dotfiles/.zpreztorc
-source ~/.dotfiles/.zplugrc
+source ~/.dotfiles/zplugrc
 
 # Visual indication of NORMAL mode in PURE theme using prezto/editor module
 PROMPT='%(?.%F{magenta}.%F{red})${editor_info[keymap]} '
@@ -36,8 +35,8 @@ alias desk='_ systemctl stop udevmon'
 
 # Tools
 alias git=hub
-[ -f ~/.dotfiles/.fzf.zsh ] && source ~/.dotfiles/.fzf.zsh
-source ~/.dotfiles/.fasd.zsh
+[ -f ~/.dotfiles/fzf.zsh ] && source ~/.dotfiles/fzf.zsh
+source ~/.dotfiles/fasd.zsh
 
 # Cni
 alias terra='aws-okta exec okta-developer-staging -- terraform'
