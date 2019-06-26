@@ -1,0 +1,19 @@
+" vim:ft=vim
+
+source ~/.dotfiles/vim/plugins.vim
+source ~/.dotfiles/vim/settings.vim
+source ~/.dotfiles/vim/mappings.vim
+source ~/.dotfiles/vim/functions.vim
+
+" load all files in directory
+" let vimsettings = '~/.vim/settings'
+" let uname = system("uname -s")
+" for fpath in split(globpath(vimsettings, '\*.vim'), '\n')
+"   exe 'source' fpath
+" endfor
+
+" colo seoul256
+" colo seoul256-light
+
+set background=light
+colorscheme solarized
