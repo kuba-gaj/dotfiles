@@ -1,4 +1,4 @@
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
   " let g:solarized_termcolors=256
 Plug 'lifepillar/vim-solarized8'
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

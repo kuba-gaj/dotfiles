@@ -1,0 +1,3 @@
+#!/bin/sh
+sudo systemctl start udevmon
+notify-send "udevmon started"

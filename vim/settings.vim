@@ -24,6 +24,7 @@ set colorcolumn=81,82 " max line length=80
 set conceallevel=0 " no hiding of characters
 set complete=.,w,b
 set completeopt=menu,menuone,noselect,noinsert
+set cursorline "highlight current line, style with :highlight CursorLine guibg=lightblue ctermbg=lightgrey
 set dictionary=/usr/share/dict/words
 set expandtab         " Convert tab to space
 set foldlevelstart=20

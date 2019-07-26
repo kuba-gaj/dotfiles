@@ -68,8 +68,8 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 zstyle ':prezto:module:editor' ps-context 'yes'
 
 # Show current mode when using vi keybindins
-zstyle ':prezto:module:editor:info:keymap:primary'   format "❯%f"
-zstyle ':prezto:module:editor:info:keymap:alternate' format "❮%f"
+# zstyle ':prezto:module:editor:info:keymap:primary'   format "❯%f"
+# zstyle ':prezto:module:editor:info:keymap:alternate' format "❮%f"
 
 # Git
 #
@@ -78,31 +78,17 @@ zstyle ':prezto:module:editor:info:keymap:alternate' format "❮%f"
 # zstyle ':prezto:module:git:status:ignore' submodules 'all'
 
 #
-# GNU Utility
-#
-
-# Set the command prefix on non-GNU systems.
-# zstyle ':prezto:module:gnu-utility' prefix 'g'
-
-#
 # History Substring Search
 #
 
 # Set the query found color.
-zstyle ':prezto:module:history-substring-search:color' found 'fg=011'
+# zstyle ':prezto:module:history-substring-search:color' found 'fg=011'
 
 # Set the query not found color.
 # zstyle ':prezto:module:history-substring-search:color' not-found ''
 
 # Set the search globbing flags.
 # zstyle ':prezto:module:history-substring-search' globbing-flags ''
-
-#
-# OS X
-#
-
-# Set the keyword used by `mand` to open man pages in Dash.app
-# zstyle ':prezto:module:osx:man' dash-keyword 'manpages'
 
 #
 # Pacman
@@ -118,23 +104,16 @@ zstyle ':prezto:module:pacman' frontend 'yay'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'pure'
+ # zstyle ':prezto:module:prompt' theme 'pure'
+zstyle ':prezto:module:prompt' theme 'garrett'
 
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
 # for longer or 'full' (with '~' expansion) for even longer prompt display.
 # zstyle ':prezto:module:prompt' pwd-length 'short'
 
-# Set the prompt to display the return code along with an indicator for non-zero
-# return codes. This is not supported by all prompts.
-# zstyle ':prezto:module:prompt' show-return-val 'yes'
-
-#
-# Ruby
-#
-
-# Auto switch the Ruby version on directory change.
-# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+# Set the prompt to display the return code along with an indicator for non-zero return codes. This is not supported by all prompts.
+zstyle ':prezto:module:prompt' show-return-val 'yes'
 
 #
 # Python
@@ -145,16 +124,6 @@ zstyle ':prezto:module:prompt' theme 'pure'
 
 # Automatically initialize virtualenvwrapper if pre-requisites are met.
 # zstyle ':prezto:module:python:virtualenv' initialize 'yes'
-
-#
-# Screen
-#
-
-# Auto start a session when Zsh is launched in a local terminal.
-# zstyle ':prezto:module:screen:auto-start' local 'yes'
-
-# Auto start a session when Zsh is launched in a SSH connection.
-# zstyle ':prezto:module:screen:auto-start' remote 'yes'
 
 #
 # SSH

@@ -15,6 +15,17 @@ let mapleader = ","
 " original ";" and "," with Alt
 nnoremap <A-;> ;
 nnoremap <A-,> ,
+
+" Temporary workaround for: https://github.com/neovim/neovim/issues/1716
+if has("nvim")
+  command! W w !sudo -n tee % > /dev/null || echo "Press <leader>w to authenticate and try again"
+  map <leader>w :new<cr>:term sudo true<cr>
+else
+  command! W w !sudo tee % > /dev/null
+endif
+
+" cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 " Enter command mode via ';'
 nnoremap ; :
 " Make dot work on visual line selections.

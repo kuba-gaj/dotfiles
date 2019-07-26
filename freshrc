@@ -17,6 +17,20 @@ fresh tmux.conf.local --file=.tmux.conf.local
 
 ln -sf .dotfiles/zshenv ~/.zshenv
 ln -sf .dotfiles/zshrc ~/.zshrc
+ln -sf ~/.dotfiles/Xresources ~/.Xresources
+ln -sf ~/.dotfiles/xprofile ~/.xprofile
+ln -sf ~/.dotfiles/screenlayout ~/.screenlayout
 
 # ln -sf ~/.dotfiles/.vimrc ~/.vimrc
+ln -sf ~/.dotfiles/i3.conf ~/.config/i3/config
+ln -sf ~/.dotfiles/i3-quickterm.json ~/.config/i3/i3-quickterm.json
+ln -sf ~/.dotfiles/compton.conf ~/.config/compton.conf
+ln -sf ~/.dotfiles/rofi ~/.config/rofi
+ln -sf ~/.dotfiles/polybar ~/.config/polybar
+ln -sf ~/.dotfiles/neofetch ~/.config/neofetch
+ln -sf ~/.dotfiles/kitty ~/.config/kitty
+ln -sf ~/.dotfiles/autorandr ~/.config/autorandr
 ln -sf ~/.dotfiles/vim/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -sf ~/.dotfiles/qutebrowser ~/.config/qutebrowser
+ln -sf ~/.dotfiles/mimeapps.list ~/.config/mimeapps.list
+ln -sf ~/.dotfiles/mpv.conf ~/.config/mpv/mpv.conf

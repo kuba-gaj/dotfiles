@@ -1,0 +1,3 @@
+#!/bin/sh
+i3-msg reload
+notify-send "autorandr: i3-reloaded"
