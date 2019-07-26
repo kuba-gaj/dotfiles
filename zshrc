@@ -14,9 +14,9 @@ path+=("$HOME/go/bin")
 # dotfiles manager
 source ~/.fresh/build/shell.sh
 # fast node manager
-source ~/.dotfiles/fnm.zsh
+source ~/.dotfiles/zsh/fnm.zsh
 # zsh plugin manager
-source ~/.dotfiles/zplugrc
+source ~/.dotfiles/zsh/zplugrc
 
 # Visual indication of NORMAL mode in PURE theme using prezto/editor module
 # PROMPT='%(?.%F{magenta}.%F{red})${editor_info[keymap]} '
@@ -36,8 +36,8 @@ alias desk='_ systemctl stop udevmon'
 
 # Tools
 alias git=hub
-[ -f ~/.dotfiles/fzf.zsh ] && source ~/.dotfiles/fzf.zsh
-source ~/.dotfiles/fasd.zsh
+[ -f ~/.dotfiles/zsh/fzf.zsh ] && source ~/.dotfiles/zsh/fzf.zsh
+source ~/.dotfiles/zsh/fasd.zsh
 
 # Cni
 alias terra='aws-okta exec okta-developer-staging -- terraform'

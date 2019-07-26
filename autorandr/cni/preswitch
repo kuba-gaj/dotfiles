@@ -1,5 +1,0 @@
-#!/bin/sh
-# xrandr --auto
-# notify-send "autorandr predetect: xrandr --auto"
-~/.screenlayout/cni-fix.sh
-notify-send "autorandr preswitch: cni-fix"

@@ -44,7 +44,7 @@ zplug "plugins/git", from:oh-my-zsh
 # zplug "plugins/kubectl", from:oh-my-zsh
 
 # Configure preztorc
-source ~/.dotfiles/zpreztorc
+source ~/.dotfiles/zsh/zpreztorc
 
 # Theme
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
@@ -67,6 +67,5 @@ fi
 
 zplug load
 
-# source ~/.dotfiles/spaceship.zsh
-source ~/.dotfiles/p10k-lean.zsh
+source ~/.dotfiles/zsh/p10k-lean.zsh
 
