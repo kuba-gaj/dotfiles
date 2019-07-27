@@ -10,11 +10,11 @@
 
 fresh freshshell/fresh bin/fresh --bin
 
-ln -sf .dotfiles/zshenv ~/.zshenv
-ln -sf .dotfiles/zshrc ~/.zshrc
-ln -sf ~/.dotfiles/Xresources ~/.Xresources
-ln -sf ~/.dotfiles/xprofile ~/.xprofile
-ln -sf ~/.dotfiles/screenlayout ~/.screenlayout
+ln -sf .dotfiles/.zshenv ~/.zshenv
+ln -sf .dotfiles/.zshrc ~/.zshrc
+ln -sf ~/.dotfiles/.Xresources ~/.Xresources
+ln -sf ~/.dotfiles/.xprofile ~/.xprofile
+ln -sf ~/.dotfiles/.screenlayout ~/.screenlayout
 
 ln -sf ~/.dotfiles/config/i3 ~/.config/i3
 ln -sf ~/.dotfiles/config/rofi ~/.config/rofi

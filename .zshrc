@@ -48,3 +48,5 @@ alias _terra-ap='aws-okta exec prod-ap-dev -- terraform'
 # source /usr/share/undistract-me/long-running.bash
 # notify_when_long_running_commands_finish_install
 
+
+eval $(thefuck --alias)
