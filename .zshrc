@@ -11,15 +11,10 @@ path+=("$HOME/.node_modules/bin")
 path+="$HOME/.yarn/bin"
 path+=("$HOME/go/bin")
 
-# dotfiles manager
-source ~/.fresh/build/shell.sh
 # fast node manager
 source ~/.dotfiles/zsh/fnm.zsh
 # zsh plugin manager
 source ~/.dotfiles/zsh/zplugrc
-
-# Visual indication of NORMAL mode in PURE theme using prezto/editor module
-# PROMPT='%(?.%F{magenta}.%F{red})${editor_info[keymap]} '
 
 # dircolors
 # eval `dircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
@@ -47,6 +42,5 @@ alias _terra-ap='aws-okta exec prod-ap-dev -- terraform'
 # Undistract-me (not working)
 # source /usr/share/undistract-me/long-running.bash
 # notify_when_long_running_commands_finish_install
-
 
 eval $(thefuck --alias)
