@@ -2,7 +2,7 @@
 
 # Kill the lag after <ESC> (https://dougblack.io/words/zsh-vi-mode.html)
 export KEYTIMEOUT=1
-export EDITOR=vim
+export VISUAL=vi
 # PATH (can't be done in env because it's overriden later in /etc/profile by arch)
 # prepand for tfenv
 path=("/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" $path)
@@ -22,8 +22,8 @@ source ~/.dotfiles/zsh/zplugrc
 # Aliases
 al() { alias | rg "$1" }
 
-alias vi='vim -u ~/.dotfiles/vim/vimrc_light'
-alias vim='nvim -u ~/.dotfiles/vim/vimrc_ide'
+alias vi='vim'
+alias vim='nvim'
 
 # docked mode
 alias lap='_ systemctl start udevmon'
