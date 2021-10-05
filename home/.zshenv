@@ -1,0 +1,1 @@
+../../../../Dropbox/qdots/.zshenv
