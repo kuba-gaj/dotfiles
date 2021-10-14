@@ -200,12 +200,12 @@ return packer.startup {
             config = function() require 'lt.plugins.package-info' end
         } -- shows latest version on package.json files
 
-        --[[ use {
+        use {
             'vhyrro/neorg',
             config = function() require 'lt.plugins.neorg' end,
-            requires = 'nvim-lua/plenary.nvim'
+            requires = {{'nvim-lua/plenary.nvim'}, {'nvim-neorg/neorg-telescope'}}
         }
- ]]
+
         use {
             'folke/twilight.nvim',
             config = function() require 'lt.plugins.twilight' end
