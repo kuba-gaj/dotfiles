@@ -60,7 +60,8 @@ local servers = {
     dockerls = {},
     omnisharp = {},
     vuels = {},
-    graphql = {}
+    graphql = {},
+    terraformls = {},
 }
 
 --[[ lsp_installer.on_server_ready(function(server)
