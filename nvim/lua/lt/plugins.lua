@@ -15,12 +15,6 @@ return packer.startup {
         -- icons
         use 'kyazdani42/nvim-web-devicons'
 
-        --[[ use {
-            'goolord/alpha-nvim',
-            event = 'BufWinEnter',
-            config = function() require 'lt.plugins.alpha' end
-        }
- ]]
         use {
             'tpope/vim-fugitive',
             config = function() require 'lt.plugins.fugitive' end
@@ -30,27 +24,27 @@ return packer.startup {
             config = function() require 'lt.plugins.gitsigns' end
         }
 
-        -- use 'airblade/vim-rooter'
         use {
             'ahmedkhalf/project.nvim',
             config = function() require 'lt.plugins.project' end
         }
 
-        --[[ use {
+        use {
           'rmagatti/auto-session',
           config = function() require 'auto-session'.setup({}) end
         }
- ]]
+
         use 'mbbill/undotree' -- undo tree
         use {
             'kevinhwang91/nvim-bqf',
             config = function() require 'lt.plugins.nvim-bqf' end
         }
 
-        use {
+        --[[ use {
             'jdhao/better-escape.vim',
             config = function() require 'lt.plugins.better-escape' end
         }
+ ]]
         use {
             'justinmk/vim-sneak',
             config = function() require 'lt.plugins.sneak' end
@@ -64,11 +58,12 @@ return packer.startup {
             'bkad/CamelCaseMotion',
             config = function() require 'lt.plugins.camelcasemotion' end
         } -- allows to move by camelCase with w e
-        use {
+
+        --[[ use {
             'lukas-reineke/indent-blankline.nvim',
             config = function() require 'lt.plugins.indent-blankline' end
         }
-
+ ]]
         use {
             'nvim-telescope/telescope.nvim',
             requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
@@ -87,7 +82,7 @@ return packer.startup {
 
         use 'rrethy/vim-illuminate' -- highlight matching words when cursor on it
 
-        use 'gennaro-tedesco/nvim-peekup' -- shows register preview
+        -- use 'gennaro-tedesco/nvim-peekup' -- shows register preview
         use 'numtostr/BufOnly.nvim' -- deletes all buffers except
         use {
             'karb94/neoscroll.nvim',
@@ -161,6 +156,11 @@ return packer.startup {
             'windwp/nvim-autopairs',
             after = 'nvim-cmp',
             config = function() require('lt.plugins.nvim-autopairs') end
+        })
+
+        use({
+          'windwp/nvim-ts-autotag',
+          config = function() require('nvim-ts-autotag').setup() end
         })
 
         -- Language packs
