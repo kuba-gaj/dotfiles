@@ -16,6 +16,7 @@ vim.o.smarttab = true
 vim.o.wrap = false
 
 vim.o.relativenumber = true
+vim.o.ignorecase = true -- needed for smartcase to work
 vim.o.smartcase = true
 vim.o.swapfile = false
 vim.o.backup = false
