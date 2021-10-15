@@ -10,11 +10,11 @@ require('neorg').setup {
                 neorg_leader = "<Leader>o" -- This is the default if unspecified
             }
         },
-        ["core.norg.completion"] = {
+        --[[ ["core.norg.completion"] = {
           config = {
             engine = "nvim-cmp"
           }
-        }, -- Allows for use of icons
+        }, ]]
         ["core.norg.dirman"] = { -- Manage your directories with Neorg
             config = {
                 workspaces = {
