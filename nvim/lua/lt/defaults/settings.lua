@@ -85,3 +85,6 @@ vim.o.mouse = 'a'
 -- wrap long lines
 vim.o.showbreak = '↳' -- Use this to wrap long lines
 
+-- more natural split opening
+vim.o.splitbelow = true
+vim.o.splitright = true
