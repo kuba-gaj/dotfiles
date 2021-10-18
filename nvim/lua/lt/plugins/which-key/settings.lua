@@ -4,8 +4,20 @@ require("which-key").setup{
 
 require("which-key").register({
   ["<leader>"] = {
-    p = { name = "+search" },
-    b = { name = "+buffer" },
-    g = { name = "+git" }
+    g = { name = '+git' },
+    t = { name = '+type' },
+    b = { name = '+buffer' },
+    p = { name = '+project' },
+    f = { name = '+fix' },
+    s = { name = '+session' },
+    m = { name = '+mark' },
+    w = { name = '+window' },
+    r = {
+      name = '+refactor',
+      -- l = { name  = 'line' },
+      -- p = { name  = 'parameter' }
+    },
+    h = { name = '+hunk' },
+    z = { name = '+zen' }
   }
 });
