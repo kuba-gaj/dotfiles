@@ -28,8 +28,8 @@ nnoremap('[q', ':cprev<CR>', 'remap', 'remap_previous_quickfix', 'Navigate to pr
 nnoremap('Y', 'y$', 'remap', 'remap_copy_end_line', 'Yank until end of the line');
 nnoremap('gy', '"+y', 'remap', 'remap_copy_system_clipboard', 'Copy to system clipboard');
 nnoremap('gY', '"+y$', 'remap', 'remap_copy_system_clipboard_eol', 'Copy to system clipboard until end of the line');
-nnoremap('gp', '"+p', 'remap', 'remap_paste_system_clipboard', 'Paste from system clipboard');
-nnoremap('gP', '"+P', 'remap', 'remap_paste_system_clipboard', 'Paste from system clipboard until end of the line');
+nnoremap('gp', '"+p', 'remap', 'remap_paste_system_clipboard_P', 'Paste from system clipboard');
+nnoremap('gP', '"+P', 'remap', 'remap_paste_system_clipboard_p', 'Paste from system clipboard until end of the line');
 
 -- maps c-n / c-t to navigate while searching with /
 vim.api.nvim_exec(
