@@ -127,6 +127,12 @@ return packer.startup {
         use 'nvim-lua/lsp-status.nvim'
         use 'tjdevries/lsp_extensions.nvim'
         use 'glepnir/lspsaga.nvim'
+        use {
+          'filipdutescu/renamer.nvim',
+          branch = 'master',
+          requires = { { 'nvim-lua/plenary.nvim' } },
+          config = function() require('lt.plugins.renamer') end
+        }
         use 'onsails/lspkind-nvim'
         use 'ray-x/lsp_signature.nvim'
         use 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -135,10 +141,8 @@ return packer.startup {
           config = function() require("nvim-lsp-installer").settings { log_level = vim.log.levels.DEBUG } end
         })
         use {
-          'filipdutescu/renamer.nvim',
-          branch = 'master',
-          requires = { { 'nvim-lua/plenary.nvim' } },
-          config = function() require('lt.plugins.renamer') end
+          'github/copilot.vim',
+          config = function() require('lt.plugins.copilot') end
         }
 
         -- Snippets
