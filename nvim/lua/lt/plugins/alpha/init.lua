@@ -1,1 +1,1 @@
--- require 'lt.plugins.alpha.settings'
+require 'lt.plugins.alpha.settings'

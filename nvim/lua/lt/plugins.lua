@@ -11,6 +11,14 @@ return packer.startup {
             config = function() require 'lt.plugins.fix-cursorhold' end
         } -- Fix CursorHold Performance
 
+        use 'nvim-lua/plenary.nvim'
+
+        use {
+            'lazytanuki/nvim-mapper',
+            config = function() require 'lt.plugins.nvim-mapper' end,
+            before = 'telescope.nvim'
+        }
+
         use 'MunifTanjim/nui.nvim' -- ui library
 
         use {
@@ -100,11 +108,6 @@ return packer.startup {
             config = function() require 'lt.plugins.neoscroll' end
         }
         use 'romainl/vim-cool' -- disabled search highlight until next search
-        use {
-            'lazytanuki/nvim-mapper',
-            config = function() require 'lt.plugins.nvim-mapper' end,
-            before = 'telescope.nvim'
-        }
 
         use {
           "folke/which-key.nvim",
@@ -130,8 +133,10 @@ return packer.startup {
         -- Autocomplete & Linters
         use 'neovim/nvim-lspconfig'
         use 'nvim-lua/lsp-status.nvim'
-        use 'tjdevries/lsp_extensions.nvim'
-        use 'glepnir/lspsaga.nvim'
+        use {
+          'tami5/lspsaga.nvim',
+          config = function() require 'lt.plugins.lspsaga' end
+        }
         use {
           'filipdutescu/renamer.nvim',
           branch = 'master',
@@ -150,10 +155,10 @@ return packer.startup {
           config = function() require('lt.plugins.copilot') end
         }
 
-        use {
-          'stevearc/aerial.nvim',
-          config = function() require('lt.plugins.aerial') end
-        }
+        -- use {
+        --   'stevearc/aerial.nvim',
+        --   config = function() require('lt.plugins.aerial') end
+        -- }
 
         -- Snippets
         use({
@@ -206,23 +211,15 @@ return packer.startup {
             config = function() require 'lt.plugins.treesitter' end,
             run = function() vim.cmd [[TSUpdate]] end
         }
+        use 'nvim-treesitter/playground';
 
         use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
-        use {
-            'SmiteshP/nvim-gps',
-            requires = 'nvim-treesitter/nvim-treesitter',
-            config = function() require 'lt.plugins.nvim-gps' end
-        }
 
+        use 'RRethy/nvim-treesitter-textsubjects'
+        use 'nvim-treesitter/nvim-treesitter-textobjects'
         use {
             'andymass/vim-matchup', -- enhances %
             config = function() require 'lt.plugins.vim-matchup' end
-        }
-        use {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-            config = function()
-                require 'lt.plugins.treesitter-textobjects'
-            end
         }
 
         use {
@@ -255,6 +252,12 @@ return packer.startup {
         use 'gruvbox-community/gruvbox'
 
         -- status line
+        use {
+            'SmiteshP/nvim-gps',
+            requires = 'nvim-treesitter/nvim-treesitter',
+            config = function() require 'lt.plugins.nvim-gps' end
+        }
+
         use {
             'NTBBloodbath/galaxyline.nvim',
             requires = 'SmiteshP/nvim-gps',

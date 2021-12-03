@@ -10,8 +10,8 @@ function M.set_default(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- gives definition & references
-  buf_set_keymap('n', '<leader>tt', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", 'lsp', 'lsp_definitions_references', 'Find definitions and references')
-    -- buf_set_keymap('n','<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  -- buf_set_keymap('n', '<leader>tt', "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", 'lsp', 'lsp_definitions_references', 'Find definitions and references')
+  -- buf_set_keymap('n', '<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   if cap.definitionProvider then
     buf_set_keymap('n', 'gD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
@@ -94,14 +94,14 @@ end
 
 function M.set_typescript(client, bufnr)
   local function buf_set_keymap(...) bufnoremap(bufnr, ...) end
-  local ts_utils = require("nvim-lsp-ts-utils")
+  local presentTsUtils, tsUtils = pcall(require, 'nvim-lsp-ts-utils')
 
-  -- defaults
-  ts_utils.setup {
-  }
-
-  -- required to fix code action ranges and filter diagnostics
-  ts_utils.setup_client(client)
+  if presentTsUtils then
+    tsUtils.setup {
+    }
+    -- required to fix code action ranges and filter diagnostics
+    tsUtils.setup_client(client)
+  end
 
   buf_set_keymap("n", "<leader>fo", ":TSLspOrganize<CR>", 'lsp', 'lsp_typescript_organize', 'Organize imports')
   buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", 'lsp', 'lsp_typescript_fix_current', 'Fix current')
