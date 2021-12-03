@@ -78,11 +78,11 @@ return packer.startup {
             config = function() require 'lt.plugins.camelcasemotion' end
         } -- allows to move by camelCase with w e
 
-        --[[ use {
+        use {
             'lukas-reineke/indent-blankline.nvim',
             config = function() require 'lt.plugins.indent-blankline' end
         }
- ]]
+ 
         use {
             'nvim-telescope/telescope.nvim',
             requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
