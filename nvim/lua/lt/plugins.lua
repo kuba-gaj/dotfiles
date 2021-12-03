@@ -150,6 +150,11 @@ return packer.startup {
           config = function() require('lt.plugins.copilot') end
         }
 
+        use {
+          'stevearc/aerial.nvim',
+          config = function() require('lt.plugins.aerial') end
+        }
+
         -- Snippets
         use({
             'L3MON4D3/LuaSnip',
