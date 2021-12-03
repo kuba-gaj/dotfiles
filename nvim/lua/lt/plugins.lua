@@ -13,6 +13,11 @@ return packer.startup {
 
         use 'MunifTanjim/nui.nvim' -- ui library
 
+        use {
+            'rcarriga/nvim-notify', -- notifications
+            config = function() require 'lt.plugins.notify' end
+        }
+
         -- icons
         use 'kyazdani42/nvim-web-devicons'
 
