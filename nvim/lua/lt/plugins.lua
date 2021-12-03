@@ -50,7 +50,11 @@ return packer.startup {
             config = function() require 'lt.plugins.sneak' end
         }
 
-        use 'b3nj5m1n/kommentary'
+        -- use 'b3nj5m1n/kommentary'
+        use {
+          'numToStr/Comment.nvim',
+          config = function() require('lt.plugins.comment') end
+        }
 
         use 'tpope/vim-surround' -- Change surrounding arks
         use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
