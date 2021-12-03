@@ -33,7 +33,8 @@ function M.set_default(client, bufnr)
 
   if cap.documentSymbolProvider then
     -- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-    buf_set_keymap('n','<leader>to', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
+    -- buf_set_keymap('n','<leader>to', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
+    buf_set_keymap('n','<leader>to', "<cmd>AerialToggle!<CR>", 'lsp', 'lsp_document_symbols', 'Document symbols')
   end
 
   buf_set_keymap('n', '<leader>ts', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", 'lsp', 'lsp_signature_help', 'Show signature')
