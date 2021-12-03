@@ -111,13 +111,13 @@ return packer.startup {
           config = function() require 'lt.plugins.which-key' end
         }
 
---        use {
---            'ThePrimeagen/refactoring.nvim',
---            config = function() require 'lt.plugins.refactoring' end,
---            requires = {
---                {'nvim-lua/plenary.nvim'}, {'nvim-treesitter/nvim-treesitter'}
---            }
---        }
+       use {
+           'ThePrimeagen/refactoring.nvim',
+           config = function() require 'lt.plugins.refactoring' end,
+           requires = {
+               {'nvim-lua/plenary.nvim'}, {'nvim-treesitter/nvim-treesitter'}
+           }
+       }
 
         use {
             'kyazdani42/nvim-tree.lua',
