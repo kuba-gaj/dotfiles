@@ -60,8 +60,8 @@ return packer.startup {
         }
  ]]
         use {
-            'justinmk/vim-sneak',
-            config = function() require 'lt.plugins.sneak' end
+            'ggandor/lightspeed.nvim',
+            config = function() require 'lt.plugins.lightspeed' end
         }
 
         -- use 'b3nj5m1n/kommentary'
