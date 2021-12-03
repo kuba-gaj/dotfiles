@@ -10,6 +10,7 @@ return packer.startup {
             'antoinemadec/FixCursorHold.nvim',
             config = function() require 'lt.plugins.fix-cursorhold' end
         } -- Fix CursorHold Performance
+
         use 'MunifTanjim/nui.nvim' -- ui library
 
         -- icons
@@ -133,6 +134,12 @@ return packer.startup {
           'williamboman/nvim-lsp-installer',
           config = function() require("nvim-lsp-installer").settings { log_level = vim.log.levels.DEBUG } end
         })
+        use {
+          'filipdutescu/renamer.nvim',
+          branch = 'master',
+          requires = { { 'nvim-lua/plenary.nvim' } },
+          config = function() require('lt.plugins.renamer') end
+        }
 
         -- Snippets
         use({

@@ -69,7 +69,8 @@ function M.set_default(client, bufnr)
 
   if cap.renameProvider then
     -- buf_set_keymap('n','<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n','<leader>rr', "<cmd>lua require('lspsaga.rename').rename()<CR>", 'lsp', 'lsp_rename', 'Rename')
+    -- buf_set_keymap('n','<leader>rr', "<cmd>lua require('lspsaga.rename').rename()<CR>", 'lsp', 'lsp_rename', 'Rename')
+    buf_set_keymap('n','<leader>rr', "<cmd>lua require('renamer').rename()<cr>", 'lsp', 'lsp_rename', 'Rename')
   end
 
   buf_set_keymap('n','<leader>flc', ':lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>', 'lsp', 'lsp_debug_clients', '[DEBUG] LSP clients')
