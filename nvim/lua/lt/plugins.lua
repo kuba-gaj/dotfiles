@@ -51,6 +51,7 @@ return packer.startup {
         }
 
         -- use 'b3nj5m1n/kommentary'
+        use 'JoosepAlviste/nvim-ts-context-commentstring'
         use {
           'numToStr/Comment.nvim',
           config = function() require('lt.plugins.comment') end
@@ -104,13 +105,13 @@ return packer.startup {
           config = function() require 'lt.plugins.which-key' end
         }
 
-        use {
-            'ThePrimeagen/refactoring.nvim',
-            config = function() require 'lt.plugins.refactoring' end,
-            requires = {
-                {'nvim-lua/plenary.nvim'}, {'nvim-treesitter/nvim-treesitter'}
-            }
-        }
+--        use {
+--            'ThePrimeagen/refactoring.nvim',
+--            config = function() require 'lt.plugins.refactoring' end,
+--            requires = {
+--                {'nvim-lua/plenary.nvim'}, {'nvim-treesitter/nvim-treesitter'}
+--            }
+--        }
 
         use {
             'kyazdani42/nvim-tree.lua',
@@ -169,6 +170,15 @@ return packer.startup {
 
         -- Language packs
         use 'hashivim/vim-terraform'
+        -- adds autodetection of some common jsonc files
+        use 'kevinoid/vim-jsonc'
+
+        use({
+          "iamcco/markdown-preview.nvim",
+          run = "cd app && yarn",
+          setup = function() vim.g.mkdp_filetypes = { "markdown" } end, 
+          ft = { "markdown" },
+        })
 
         use {
             'nvim-treesitter/nvim-treesitter',

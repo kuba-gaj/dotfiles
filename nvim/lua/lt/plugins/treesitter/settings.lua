@@ -10,6 +10,9 @@ parser_configs.norg = {
 }
 -- end neorgtreesitter
 
+-- enable jsonc
+parser_configs.jsonc.used_by = "json";
+
 local treesitter = require'nvim-treesitter.configs'
 
 treesitter.setup {
@@ -20,4 +23,5 @@ treesitter.setup {
   matchup = {
     enable = true
   },
+  context_commentstring = { enable = true }
 }
