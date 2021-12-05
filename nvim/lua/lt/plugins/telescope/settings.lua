@@ -46,6 +46,6 @@ end
 if (pcall(require, 'project_nvim')) then
   telescope.load_extension('projects')
 end
-if (pcall(require, 'session-manager')) then
+if (pcall(require, 'session_manager')) then
   telescope.load_extension('sessions')
 end
