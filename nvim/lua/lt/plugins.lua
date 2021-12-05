@@ -43,6 +43,11 @@ return packer.startup {
             config = function() require 'lt.plugins.project' end
         }
 
+        -- use {
+        --     'shatur/neovim-session-manager',
+        --     config = function() require 'lt.plugins.neovim-session-manager' end
+        -- }
+
         use {
           'rmagatti/auto-session',
           config = function() require 'auto-session'.setup({}) end
@@ -78,10 +83,10 @@ return packer.startup {
             config = function() require 'lt.plugins.camelcasemotion' end
         } -- allows to move by camelCase with w e
 
-        use {
-            'lukas-reineke/indent-blankline.nvim',
-            config = function() require 'lt.plugins.indent-blankline' end
-        }
+        -- use {
+        --     'lukas-reineke/indent-blankline.nvim',
+        --     config = function() require 'lt.plugins.indent-blankline' end
+        -- }
  
         use {
             'nvim-telescope/telescope.nvim',
