@@ -1,1 +1,1 @@
-require 'lt.lsp.lspsaga.settings'
+require 'lt.plugins.lspsaga.settings'
