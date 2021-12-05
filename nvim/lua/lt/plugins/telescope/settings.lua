@@ -4,17 +4,21 @@ local functions = require 'lt.utils.functions'
 
 telescope.setup {
   defaults = {
-    -- vimgrep_arguments = {
-    --     'rg', '--color=never', '--no-heading', '--with-filename',
-    --     '--line-number', '--column', '--smart-case'
-    -- },
+    -- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    vimgrep_arguments = {
+        'rg', '--color=never', '--no-heading', '--with-filename',
+        '--line-number', '--column', '--smart-case', '--trim'
+    },
     sorting_strategy = 'descending',
     layout_strategy = 'horizontal',
     layout_config = {prompt_position = 'bottom'}
   },
   pickers = {
     buffers = {sort_lastused = true, previewer = false, theme = 'dropdown'},
-    find_files = {previewer = false, theme = 'dropdown', hidden = true},
+    find_files = {
+      find_command = {'fd', '--type', 'f', '--strip-cwd-prefix'},
+      hidden = true
+    },
     git_files = {previewer = false, theme = 'dropdown'},
     registers = {theme = 'dropdown'},
     lsp_references = {previewer = false},
