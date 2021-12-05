@@ -83,10 +83,10 @@ return packer.startup {
             config = function() require 'lt.plugins.camelcasemotion' end
         } -- allows to move by camelCase with w e
 
-        -- use {
-        --     'lukas-reineke/indent-blankline.nvim',
-        --     config = function() require 'lt.plugins.indent-blankline' end
-        -- }
+        use {
+            'lukas-reineke/indent-blankline.nvim',
+            config = function() require 'lt.plugins.indent-blankline' end
+        }
  
         use {
             'nvim-telescope/telescope.nvim',
@@ -160,10 +160,10 @@ return packer.startup {
           config = function() require('lt.plugins.copilot') end
         }
 
-        -- use {
-        --   'stevearc/aerial.nvim',
-        --   config = function() require('lt.plugins.aerial') end
-        -- }
+        use {
+          'stevearc/aerial.nvim',
+          config = function() require('lt.plugins.aerial') end
+        }
 
         -- Snippets
         use({
