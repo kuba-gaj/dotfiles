@@ -1,6 +1,5 @@
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require('lt.lsp.remaps')
-local presentLspKind, lspKind = pcall(require, 'lspkind')
 local presentLspStatus, lspStatus = pcall(require, 'lsp-status')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 local presentAerial, aerial = pcall(require, 'aerial')
@@ -12,29 +11,17 @@ local presentLspSignature, lspSignature = pcall(require, 'lsp_signature')
 vim.lsp.set_log_level('error')
 
 local function on_attach(client, bufnr)
-    -- print(client.name)
-    remaps.set_default(client, bufnr)
+  -- print(client.name)
+  remaps.set_default(client, bufnr)
 
-    if presentLspStatus then
-      lspStatus.on_attach(client, bufnr)
-    end
+  if presentLspStatus then lspStatus.on_attach(client, bufnr) end
 
-    if presentAerial then
-      aerial.on_attach(client, bufnr);
-    end
+  if presentAerial then aerial.on_attach(client, bufnr); end
 
-    -- adds beatiful icon to completion
-    if presentLspKind then
-      lspKind.init()
-    end
-
-    -- add signature autocompletion while typing
-    if presentLspSignature then
-      lspSignature.on_attach({
-          floating_window = false,
-          timer_interval = 500
-      })
-    end
+  -- add signature autocompletion while typing
+  if presentLspSignature then
+    lspSignature.on_attach({floating_window = false, timer_interval = 500})
+  end
 
 end
 
@@ -47,44 +34,42 @@ vim.diagnostic.config({
 local capabilities = {};
 
 if presentLspStatus then
-    lspStatus.register_progress()
-    capabilities = vim.tbl_extend('keep', capabilities, lspStatus.capabilities)
+  lspStatus.register_progress()
+  capabilities = vim.tbl_extend('keep', capabilities, lspStatus.capabilities)
 end
 
 if presentCmpNvimLsp then
-    capabilities = vim.tbl_extend('keep', capabilities,
-                                  cmpNvimLsp.update_capabilities(
-                                      vim.lsp.protocol
-                                          .make_client_capabilities()))
+  capabilities = vim.tbl_extend('keep', capabilities,
+                                cmpNvimLsp.update_capabilities(
+                                    vim.lsp.protocol.make_client_capabilities()))
 end
 
 local default_lsp_config = {on_attach = on_attach, capabilities}
 
 local servers = {
-    efm = require('lt.lsp.servers.efm')(),
-    bashls = {},
-    yamlls = {},
-    jsonls = {},
-    tsserver = require('lt.lsp.servers.tsserver')(on_attach),
-    html = {},
-    cssls = {},
-    sumneko_lua = require('lt.lsp.servers.sumneko_lua')(),
-    dockerls = {},
-    omnisharp = {},
-    vuels = {},
-    graphql = {},
-    terraformls = {},
+  efm = require('lt.lsp.servers.efm')(),
+  bashls = {},
+  yamlls = {},
+  jsonls = {},
+  tsserver = require('lt.lsp.servers.tsserver')(on_attach),
+  html = {},
+  cssls = {},
+  sumneko_lua = require('lt.lsp.servers.sumneko_lua')(),
+  dockerls = {},
+  -- vuels = {},
+  graphql = {},
+  terraformls = {}
 }
 
 for serverName, config in pairs(servers) do
-    local ok, server = lsp_installer_servers.get_server(serverName)
-    if ok then
-        if not server:is_installed() then
-            print('installing ' .. serverName)
-            server:install()
-        end
+  local ok, server = lsp_installer_servers.get_server(serverName)
+  if ok then
+    if not server:is_installed() then
+      print('installing ' .. serverName)
+      server:install()
     end
+  end
 
-    server:setup(vim.tbl_deep_extend('force', default_lsp_config, config))
-    vim.cmd [[ do User LspAttachBuffers ]]
+  server:setup(vim.tbl_deep_extend('force', default_lsp_config, config))
+  vim.cmd [[ do User LspAttachBuffers ]]
 end

@@ -244,11 +244,6 @@ return packer.startup {
         }
 
         use {
-            'folke/twilight.nvim',
-            config = function() require 'lt.plugins.twilight' end
-        }
-
-        use {
             'Pocco81/TrueZen.nvim',
             config = function() require 'lt.plugins.truezen' end
         }
