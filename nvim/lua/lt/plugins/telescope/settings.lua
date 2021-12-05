@@ -14,7 +14,7 @@ telescope.setup {
     },
     pickers = {
         buffers = {sort_lastused = true, previewer = false, theme = 'dropdown'},
-        find_files = {previewer = true, theme = 'dropdown', hidden = true},
+        find_files = {previewer = false, theme = 'dropdown', hidden = true},
         git_files = {previewer = false, theme = 'dropdown'},
         registers = {theme = 'dropdown'},
         lsp_references = {previewer = false},
