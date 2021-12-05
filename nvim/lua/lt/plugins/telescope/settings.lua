@@ -4,40 +4,20 @@ local functions = require 'lt.utils.functions'
 
 telescope.setup {
     defaults = {
-        timeoutlen = 2000,
-        mappings = {i = {['<esc>'] = actions.close}},
-        vimgrep_arguments = {
-            'rg', '--color=never', '--no-heading', '--with-filename',
-            '--line-number', '--column', '--smart-case'
-        },
-        prompt_prefix = '>',
-        initial_mode = 'insert',
-        selection_strategy = 'reset',
+        -- vimgrep_arguments = {
+        --     'rg', '--color=never', '--no-heading', '--with-filename',
+        --     '--line-number', '--column', '--smart-case'
+        -- },
         sorting_strategy = 'descending',
         layout_strategy = 'horizontal',
         layout_config = {prompt_position = 'bottom'},
-        file_sorter = require'telescope.sorters'.get_fuzzy_file,
-        file_ignore_patterns = {
-            '.backup', '.swap', '.langservers', '.session', '.undo', '*.git',
-            'node_modules', 'vendor', '.cache', '.vscode-server', '.Desktop',
-            '.Documents', 'classes'
-        },
-        generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
-        winblend = 0,
-        borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
-        color_devicons = true,
-        use_less = true,
-        path_display = {'shorten'},
-        set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
-        file_previewer = require'telescope.previewers'.cat.new,
-        grep_previewer = require'telescope.previewers'.vimgrep.new,
-        qflist_previewer = require'telescope.previewers'.qflist.new
     },
     pickers = {
         buffers = {sort_lastused = true, previewer = false, theme = 'dropdown'},
-        find_files = {previewer = false, theme = 'dropdown', hidden = true},
+        find_files = {previewer = true, theme = 'dropdown', hidden = true},
         git_files = {previewer = false, theme = 'dropdown'},
         registers = {theme = 'dropdown'},
+        lsp_references = {previewer = false},
         lsp_code_actions = {theme = 'cursor'},
         lsp_range_code_actions = {theme = 'cursor'},
         loclist = {previewer = false}
