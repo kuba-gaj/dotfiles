@@ -38,16 +38,11 @@ local function on_attach(client, bufnr)
 
 end
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {spacing = 0, prefix = '■'},
-
-        -- see: ":help vim.lsp.diagnostic.set_signs()"
-        signs = true,
-
-        update_in_insert = false
-    })
-
+vim.diagnostic.config({
+  virtual_text = {spacing = 0, prefix = '■'},
+  signs = true,
+  update_in_insert = false
+})
 
 local capabilities = {};
 
@@ -73,7 +68,7 @@ local servers = {
     tsserver = require('lt.lsp.servers.tsserver')(on_attach),
     html = {},
     cssls = {},
-    sumneko_lua = {},
+    sumneko_lua = require('lt.lsp.servers.sumneko_lua')(),
     dockerls = {},
     omnisharp = {},
     vuels = {},
