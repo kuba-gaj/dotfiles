@@ -6,8 +6,8 @@ telescope.setup {
   defaults = {
     -- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     vimgrep_arguments = {
-        'rg', '--color=never', '--no-heading', '--with-filename',
-        '--line-number', '--column', '--smart-case', '--trim'
+      'rg', '--color=never', '--no-heading', '--with-filename', '--line-number',
+      '--column', '--smart-case', '--trim'
     },
     sorting_strategy = 'descending',
     layout_strategy = 'horizontal',
