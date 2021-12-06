@@ -48,15 +48,15 @@ return packer.startup {
       config = function() require 'lt.plugins.project' end
     }
 
-    use {
-      'shatur/neovim-session-manager',
-      config = function() require 'lt.plugins.neovim-session-manager' end
-    }
-
     -- use {
-    --   'rmagatti/auto-session',
-    --   config = function() require 'auto-session'.setup({}) end
+    --   'shatur/neovim-session-manager',
+    --   config = function() require 'lt.plugins.neovim-session-manager' end
     -- }
+
+    use {
+      'rmagatti/auto-session',
+      config = function() require 'auto-session'.setup({}) end
+    }
 
     use 'mbbill/undotree' -- undo tree
     use {
