@@ -1,3 +1,8 @@
+vim.cmd [[
+  command -nargs=1 Browse silent exe '!xdg-open ' . "<args>"
+]]
+vim.g.fugitive_gitlab_domains = {'https://gitlab.trint.io'}
+
 nmap('<leader>gs', '<cmd>G<CR>', 'git', 'git_status', 'Git status')
 nmap('<leader>gf', '<cmd>diffget //2<CR>', 'git', 'git_diffget_2', 'TODO diffget 2')
 nmap('<leader>gj', '<cmd>diffget //3<CR>', 'git', 'git_diffget_3', 'TODO diffget 3')

@@ -34,6 +34,11 @@ return packer.startup {
       config = function() require 'lt.plugins.fugitive' end
     }
     use {
+      'tpope/fugitive-gitlab.vim',
+      requires = {'tpope/vim-fugitive'}
+    }
+
+    use {
       'lewis6991/gitsigns.nvim',
       config = function() require 'lt.plugins.gitsigns' end
     }
