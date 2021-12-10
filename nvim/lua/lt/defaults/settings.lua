@@ -15,7 +15,10 @@ vim.o.smartindent = true
 vim.o.smarttab = true
 vim.o.wrap = false
 
-vim.o.relativenumber = true
+-- absolute line number
+vim.o.number = true
+vim.o.relativenumber = false
+
 vim.o.ignorecase = true -- needed for smartcase to work
 vim.o.smartcase = true
 vim.o.swapfile = false
@@ -84,6 +87,8 @@ vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,resize,wi
 vim.o.mouse = 'a'
 
 -- wrap long lines
+vim.o.wrap = true
+vim.o.linebreak = true
 vim.o.showbreak = '↳' -- Use this to wrap long lines
 
 -- more natural split opening
