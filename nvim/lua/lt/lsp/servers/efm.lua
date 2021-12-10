@@ -58,6 +58,5 @@ return function()
           lintDebounce = 500,
           languages = languages
         },
-        flags = {debounce_text_changes = 200}
     }
 end

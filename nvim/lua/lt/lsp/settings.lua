@@ -44,7 +44,11 @@ if presentCmpNvimLsp then
                                     vim.lsp.protocol.make_client_capabilities()))
 end
 
-local default_lsp_config = {on_attach = on_attach, capabilities}
+local default_lsp_config = {
+  on_attach = on_attach, 
+  capabilities,
+  flags = {debounce_text_changes = 200}
+}
 
 local servers = {
   efm = require('lt.lsp.servers.efm')(),
