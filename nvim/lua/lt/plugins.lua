@@ -180,7 +180,7 @@ return packer.startup {
 
     use({
       'hrsh7th/nvim-cmp',
-      config = function() require 'lt.plugins.nvim-cmp' end,
+      config = function() require 'lt.plugins.cmp' end,
       event = 'InsertEnter'
     })
 
