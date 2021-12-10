@@ -74,7 +74,6 @@ return packer.startup {
       config = function() require 'lt.plugins.lightspeed' end
     }
 
-    -- use 'b3nj5m1n/kommentary'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use {
       'numToStr/Comment.nvim',
@@ -108,7 +107,6 @@ return packer.startup {
 
     use 'rrethy/vim-illuminate' -- highlight matching words when cursor on it
 
-    -- use 'gennaro-tedesco/nvim-peekup' -- shows register preview
     use 'numtostr/BufOnly.nvim' -- deletes all buffers except
     use {
       'karb94/neoscroll.nvim',
@@ -139,6 +137,15 @@ return packer.startup {
 
     -- Autocomplete & Linters
     use 'neovim/nvim-lspconfig'
+    use({
+      'williamboman/nvim-lsp-installer',
+      config = function()
+        require('nvim-lsp-installer').settings {
+          log_level = vim.log.levels.DEBUG
+        }
+      end
+    })
+
     use 'nvim-lua/lsp-status.nvim'
     use {
       'tami5/lspsaga.nvim',
@@ -153,24 +160,15 @@ return packer.startup {
     use 'onsails/lspkind-nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
-    use({
-      'williamboman/nvim-lsp-installer',
-      config = function()
-        require('nvim-lsp-installer').settings {
-          log_level = vim.log.levels.DEBUG
-        }
-      end
-    })
+    -- use {
+    --   'stevearc/aerial.nvim',
+    --   config = function() require('lt.plugins.aerial') end
+    -- }
     use {
       'github/copilot.vim',
       config = function() require('lt.plugins.copilot') end
     }
-
-    use {
-      'stevearc/aerial.nvim',
-      config = function() require('lt.plugins.aerial') end
-    }
-
+    --
     -- Snippets
     use({
       'L3MON4D3/LuaSnip',
