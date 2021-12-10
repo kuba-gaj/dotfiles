@@ -49,3 +49,5 @@ if (pcall(require, 'nvim-mapper')) then telescope.load_extension('mapper') end
 if (pcall(require, 'project_nvim')) then telescope.load_extension('projects') end
 
 if (pcall(require, 'session_manager')) then telescope.load_extension('sessions') end
+
+if (pcall(require, 'harpoon')) then telescope.load_extension('harpoon') end
