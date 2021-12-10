@@ -4,6 +4,7 @@ vim.g.nvim_tree_quit_on_open = 1
 -- vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_group_empty = 1
+vim.g.nvim_tree_root_folder_modifier = ':~'
 vim.g.nvim_tree_show_icons = {
   git = 0,
   folders = 1,
@@ -51,10 +52,6 @@ require'nvim-tree'.setup {
   diagnostics = {enable = false},
   -- project integration
   -- update_cwd = true,
-  -- update_focused_file = {
-  -- enable = true,
-  -- update_cwd = true
-  -- },
   update_focused_file = {enable = true, update_cwd = false},
   view = {width = '30%', auto_resize = true, mappings = {list = list}}
 }
