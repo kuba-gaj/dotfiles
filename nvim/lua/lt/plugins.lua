@@ -160,10 +160,10 @@ return packer.startup {
     use 'onsails/lspkind-nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
-    -- use {
-    --   'stevearc/aerial.nvim',
-    --   config = function() require('lt.plugins.aerial') end
-    -- }
+    use {
+      'stevearc/aerial.nvim',
+      config = function() require('lt.plugins.aerial') end
+    }
     use {
       'github/copilot.vim',
       config = function() require('lt.plugins.copilot') end
