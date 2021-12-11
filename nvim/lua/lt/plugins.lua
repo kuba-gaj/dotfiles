@@ -33,10 +33,7 @@ return packer.startup {
       'tpope/vim-fugitive',
       config = function() require 'lt.plugins.fugitive' end
     }
-    use {
-      'tpope/fugitive-gitlab.vim',
-      requires = {'tpope/vim-fugitive'}
-    }
+    use {'tpope/fugitive-gitlab.vim', requires = {'tpope/vim-fugitive'}}
 
     use {
       'lewis6991/gitsigns.nvim',
@@ -58,7 +55,8 @@ return packer.startup {
       config = function() require 'auto-session'.setup({}) end
     }
 
-    use 'mbbill/undotree' -- undo tree
+    use 'mbbill/undotree'
+
     use {
       'kevinhwang91/nvim-bqf',
       config = function() require 'lt.plugins.nvim-bqf' end
@@ -91,7 +89,6 @@ return packer.startup {
       'lukas-reineke/indent-blankline.nvim',
       config = function() require 'lt.plugins.indent-blankline' end
     }
-
     use {
       'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
@@ -179,18 +176,20 @@ return packer.startup {
     use({
       'hrsh7th/nvim-cmp',
       config = function() require 'lt.plugins.cmp' end,
-      event = 'InsertEnter'
+      -- event = 'InsertEnter',
+      requires = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-nvim-lua',
+        'saadparwaiz1/cmp_luasnip',
+        'hrsh7th/cmp-emoji',
+        'ray-x/cmp-treesitter',
+        'hrsh7th/cmp-calc',
+        'hrsh7th/cmp-cmdline',
+        'hrsh7th/cmp-nvim-lsp-document-symbol',
+      }
     })
-
-    use({'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'})
-
-    use({'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp'})
-
-    use({'hrsh7th/cmp-buffer', after = 'nvim-cmp'})
-
-    use({'hrsh7th/cmp-path', after = 'nvim-cmp'})
-
-    use({'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'})
 
     use({
       'windwp/nvim-autopairs',

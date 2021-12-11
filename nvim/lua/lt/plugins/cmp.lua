@@ -65,8 +65,15 @@ cmp.setup({
   sources = {
     {name = 'luasnip', max_item_count = 10},
     {name = 'nvim_lsp', max_item_count = 10}, {name = 'nvim_lua'},
-    {name = 'path'}, {name = 'buffer', keyword_length = 3}
+    {name = 'path'}, {name = 'buffer', keyword_length = 3},
+    {name = 'treesitter'}, {name = 'calc'}, {name = 'emoji'}
   }
+})
+
+cmp.setup.cmdline(':', {sources = {{name = 'cmdline'}}})
+cmp.setup.cmdline('/', {
+  sources = cmp.config.sources({{name = 'nvim_lsp_document_symbol'}},
+                               {{name = 'buffer'}})
 })
 
 vim.cmd(

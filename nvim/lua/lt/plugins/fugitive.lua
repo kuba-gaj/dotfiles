@@ -1,5 +1,5 @@
 vim.cmd [[
-  command -nargs=1 Browse silent exe '!xdg-open ' . "<args>"
+  command! -nargs=1 Browse silent exe '!xdg-open ' . "<args>"
 ]]
 vim.g.fugitive_gitlab_domains = {'https://gitlab.trint.io'}
 
