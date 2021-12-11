@@ -36,6 +36,10 @@ nnoremap('gy', '"+y', 'remap', 'remap_copy_system_clipboard', 'Copy to system cl
 nnoremap('gY', '"+Y', 'remap', 'remap_copy_system_clipboard_eol', 'Copy to system clipboard until end of the line');
 nnoremap('gp', '"+p', 'remap', 'remap_paste_system_clipboard_P', 'Paste from system clipboard');
 nnoremap('gP', '"+P', 'remap', 'remap_paste_system_clipboard_p', 'Paste from system clipboard until end of the line');
+vnoremap('gy', '"+y', 'remap', 'remap_copy_system_clipboard_vis', 'Copy to system clipboard');
+vnoremap('gY', '"+Y', 'remap', 'remap_copy_system_clipboard_eol_vis', 'Copy to system clipboard until end of the line');
+vnoremap('gp', '"+p', 'remap', 'remap_paste_system_clipboard_P_vis', 'Paste from system clipboard');
+vnoremap('gP', '"+P', 'remap', 'remap_paste_system_clipboard_p_vis', 'Paste from system clipboard until end of the line');
 
 -- maps c-n / c-t to navigate while searching with /
 vim.api.nvim_exec(
