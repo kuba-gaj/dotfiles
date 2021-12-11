@@ -81,7 +81,7 @@ vim.o.list = true
 vim.o.listchars= 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
 
 -- session options
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,resize,winpos,terminal"
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 -- mouse support
 vim.o.mouse = 'a'
