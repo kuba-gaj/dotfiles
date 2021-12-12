@@ -16,7 +16,8 @@ return packer.startup {
     use 'gruvbox-community/gruvbox'
 
     -- UI
-    use 'MunifTanjim/nui.nvim' -- ui library
+    use 'MunifTanjim/nui.nvim'
+    use 'stevearc/dressing.nvim'
     use {'rcarriga/nvim-notify', config = "require 'lt.plugins.notify'"}
 
     -- Treesitter

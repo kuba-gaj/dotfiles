@@ -1,3 +1,4 @@
+require 'impatient'
 require 'lt.plugins'
 require 'lt.utils'
 require 'lt.theme'
