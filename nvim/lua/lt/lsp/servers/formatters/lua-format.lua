@@ -1,5 +1,5 @@
 local luaformat  = {
-  formatCommand = 'lua-format -i --double-quote-to-single-quote --indent-width=2 --tab-width=2',
+  formatCommand = 'lua-format -i --indent-width=2 --tab-width=2',
   formatStdin = true
 }
 
