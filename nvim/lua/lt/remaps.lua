@@ -48,3 +48,29 @@ cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
 cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 ]], false)
 
+-- windows
+-- Split navigation
+nnoremap('<C-h>', '<C-w>h', 'remap', 'remap_<C-h>', 'Remaps <C-h> to handle windows')
+nnoremap('<C-j>', '<C-w>j', 'remap', 'remap_<C-j>', 'Remaps <C-j> to handle windows')
+nnoremap('<C-k>', '<C-w>k', 'remap', 'remap_<C-k>', 'Remaps <C-k> to handle windows')
+nnoremap('<C-l>', '<C-w>l', 'remap', 'remap_<C-l>', 'Remaps <C-l> to handle windows')
+
+-- Resizing
+nnoremap('<leader>w+', '<cmd>vertical resize +5<CR>', 'window',
+         'window_increase_size', 'Increase window size')
+nnoremap('<leader>w-', '<cmd>vertical resize -5<CR>', 'window',
+         'window_decrease_size', 'Decrease window size')
+-- buffers
+nnoremap('<leader>bd', '<cmd>bd<CR>', 'buffer', 'buffer_delete',
+         'Deletes buffer')
+nnoremap('<leader>bD', '<cmd>bd!<CR>', 'buffer', 'buffer_delete_force',
+         'Force delete buffer')
+nnoremap('<leader>bo', '<cmd>BufOnly<CR>', 'buffer', 'buffer_delete_others',
+         'Deletes all other buffers except yours')
+nnoremap('<leader>bad', '<cmd>%bd<CR>', 'buffer', 'buffer_delete_all',
+         'Deletes all buffers')
+nnoremap('<leader>bw', '<cmd>update<CR>', 'buffer', 'buffer_update',
+         'Saves/writes/updates buffer')
+nnoremap('<leader>bW', '<cmd>update!<CR>', 'buffer', 'buffer_update_force',
+         'Force save/write/update buffer')
+
