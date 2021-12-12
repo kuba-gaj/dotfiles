@@ -13,6 +13,10 @@ nnoremap('<leader>u', '<cmd>UndotreeToggle<CR>', 'undo', 'undo', 'Toggle undo hi
 vnoremap('K', '<cmd>m "<-2<CR>gv=gv"', 'remap', 'remap_move_upper_on_visual', 'Move upper on visual')
 vnoremap('J', '<cmd>m ">+1<CR>gv=gv"', 'remap', 'remap_move_down_on_visual', 'Move down on visual')
 
+-- Keep visual mode indenting
+vnoremap("<", "<gv", 'remap', 'remap_keep_visual_indent_1', 'Keep visual mode indenting')
+vnoremap("<", "<gv", 'remap', 'remap_keep_visual_indent_2', 'Keep visual mode indenting')
+
 -- move vertically by visual line unless preceded by a count. If a movement is greater than 5 then automatically add to the jumplist.
 vim.api.nvim_exec(
 [[
@@ -20,8 +24,11 @@ vim.api.nvim_exec(
   nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 ]], false);
 
--- deletes in visual
-vnoremap('X', '"_d', 'remap', 'remap_deletes_on_visual', 'Deletes on visual')
+-- Don't yank on delete char
+-- nnoremap('x', '"_d', 'remap', 'remap_deletes_no_yank_normal_x', 'Don\'t yank on delete char')
+-- nnoremap('X', '"_d', 'remap', 'remap_deletes_no_yank_normal_X', 'Don\'t yank on delete char')
+vnoremap('x', '"_d', 'remap', 'remap_deletes_no_yank_visual_x', 'Don\'t yank on delete char')
+vnoremap('X', '"_d', 'remap', 'remap_deletes_no_yank_visual_X', 'Don\'t yank on delete char')
 
 -- when going to next search, we center screen
 nnoremap('n', 'nzzzv', 'remap', 'remap_go_next_search', 'When going to next search, we center screen')
