@@ -6,3 +6,9 @@ if not (present) then
 end
 
 vim.notify = notify
+
+notify.setup({
+  stages = "static",
+  render = "minimal",
+  timeout = 300
+})

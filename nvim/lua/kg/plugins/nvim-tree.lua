@@ -56,3 +56,4 @@ require'nvim-tree'.setup {
   view = {width = '30%', auto_resize = true, mappings = {list = list}}
 }
 
+nnoremap('-', "<cmd>NvimTreeToggle<CR>", 'explorer', 'explorer_toggle', 'Toggle explorer')

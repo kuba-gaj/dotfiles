@@ -113,7 +113,12 @@ treesitter.setup {
           [';'] = 'textsubjects-container-outer',
       }
   },
-  context_commentstring = { enable = true }
+  context_commentstring = { enable = true },
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+  }
 }
 
 nnoremap('<leader>tp', '<cmd>TSPlaygroundToggle<CR>', 'Treesitter', 'treesitter-playground',

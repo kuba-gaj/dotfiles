@@ -30,7 +30,8 @@ return packer.startup {
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'RRethy/nvim-treesitter-textsubjects'
     use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
-    use({'windwp/nvim-ts-autotag', config = "require('nvim-ts-autotag').setup()"})
+    use {'p00f/nvim-ts-rainbow', after = {'nvim-treesitter'}}
+    use {'windwp/nvim-ts-autotag', config = "require('nvim-ts-autotag').setup()"}
 
     -- Telescope
     use {
@@ -41,7 +42,7 @@ return packer.startup {
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
     use {
       'lazytanuki/nvim-mapper',
-      config = "require 'kg.plugins.nvim-mapper'",
+      config = "require 'kg.plugins.mapper'",
       before = 'telescope.nvim'
     }
 
@@ -80,6 +81,8 @@ return packer.startup {
         'hrsh7th/cmp-nvim-lsp-document-symbol', 'David-Kunz/cmp-npm',
       }
     })
+    use {'David-Kunz/cmp-npm', requires = 'nvim-lua/plenary.nvim'}
+
     -- Snippets
     use({
       'L3MON4D3/LuaSnip',
@@ -96,6 +99,7 @@ return packer.startup {
       setup = function() vim.g.mkdp_filetypes = {'markdown'} end,
       ft = {'markdown'}
     })
+    use {'ellisonleao/glow.nvim', config = function() vim.g.glow_border = "rounded" end}
     use {'vuki656/package-info.nvim', config = "require 'kg.plugins.package-info'"}
     use {
       'vhyrro/neorg',
@@ -122,7 +126,7 @@ return packer.startup {
     use({
       'windwp/nvim-autopairs',
       after = 'nvim-cmp',
-      config = "require 'kg.plugins.nvim-autopairs'"
+      config = "require 'kg.plugins.autopairs'"
     })
 
     -- Improvements
@@ -132,14 +136,14 @@ return packer.startup {
     use 'tpope/vim-abolish' -- :S to replace with smartcase
     use {'antoinemadec/FixCursorHold.nvim', config = "require 'kg.plugins.fix-cursorhold'"}
     use {'lukas-reineke/indent-blankline.nvim', config = "require 'kg.plugins.indent-blankline'"}
-    use {'norcalli/nvim-colorizer.lua', config = "require 'kg.plugins.nvim-colorizer'"}
+    use {'norcalli/nvim-colorizer.lua', config = "require 'kg.plugins.colorizer'"}
     use {'karb94/neoscroll.nvim', config = "require 'kg.plugins.neoscroll'"}
 
     -- General
     use 'mbbill/undotree'
     use {'ahmedkhalf/project.nvim', config = "require 'kg.plugins.project'"}
     use {'rmagatti/auto-session', config = "require('auto-session').setup({})"}
-    use {'kevinhwang91/nvim-bqf', config = "require 'kg.plugins.nvim-bqf'"}
+    use {'kevinhwang91/nvim-bqf', config = "require 'kg.plugins.bqf'"}
     use {'dyng/ctrlsf.vim', config = "require 'kg.plugins.ctrlsf'"}
     use {'andymass/vim-matchup', config = "require 'kg.plugins.vim-matchup'"}
     use {'Pocco81/TrueZen.nvim', config = "require 'kg.plugins.truezen'"}
@@ -159,7 +163,7 @@ return packer.startup {
     use {
       'SmiteshP/nvim-gps',
       requires = 'nvim-treesitter/nvim-treesitter',
-      config = "require 'kg.plugins.nvim-gps'"
+      config = "require 'kg.plugins.gps'"
     }
     use {
       'NTBBloodbath/galaxyline.nvim',
