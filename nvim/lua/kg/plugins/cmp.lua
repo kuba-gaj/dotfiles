@@ -4,6 +4,8 @@ local presentLspKind, lspKind = pcall(require, 'lspkind')
 if not present then return end
 if presentLspKind then lspKind.init() end
 
+require('cmp-npm').setup({});
+
 cmp.setup({
   snippet = {
     expand = function(args) require('luasnip').lsp_expand(args.body) end
@@ -63,7 +65,7 @@ cmp.setup({
     end
   },
   sources = {
-    {name = 'luasnip', max_item_count = 10},
+    {name = 'luasnip', max_item_count = 10}, {name = 'npm', keyword_length = 4},
     {name = 'nvim_lsp', max_item_count = 10}, {name = 'nvim_lua'},
     {name = 'path'}, {name = 'buffer', keyword_length = 3},
     {name = 'treesitter'}, {name = 'calc'}, {name = 'emoji'}

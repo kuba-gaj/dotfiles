@@ -77,7 +77,7 @@ return packer.startup {
         'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',
         'hrsh7th/cmp-nvim-lua', 'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-emoji',
         'ray-x/cmp-treesitter', 'hrsh7th/cmp-calc', 'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-nvim-lsp-document-symbol'
+        'hrsh7th/cmp-nvim-lsp-document-symbol', 'David-Kunz/cmp-npm',
       }
     })
     -- Snippets
@@ -107,6 +107,7 @@ return packer.startup {
     use {'tpope/vim-fugitive', config = "require 'kg.plugins.fugitive'"}
     use {'tpope/fugitive-gitlab.vim', requires = {'tpope/vim-fugitive'}}
     use {'lewis6991/gitsigns.nvim', config = "require 'kg.plugins.gitsigns'"}
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- Motions
     use 'tpope/vim-surround'
