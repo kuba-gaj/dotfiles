@@ -50,6 +50,7 @@ return packer.startup {
     -- LSP
     use({'neovim/nvim-lspconfig'})
     use 'williamboman/nvim-lsp-installer'
+    use 'b0o/schemastore.nvim'
     use {'tami5/lspsaga.nvim', config = "require 'kg.plugins.lspsaga'"}
     use 'onsails/lspkind-nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'

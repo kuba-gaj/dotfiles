@@ -67,7 +67,7 @@ cmp.setup({
   sources = {
     {name = 'luasnip', max_item_count = 10}, {name = 'npm', keyword_length = 4},
     {name = 'nvim_lsp', max_item_count = 10}, {name = 'nvim_lua'},
-    {name = 'path'}, {name = 'buffer', keyword_length = 3},
+    {name = 'path'}, {name = 'buffer', keyword_length = 3, max_item_count = 10},
     {name = 'treesitter'}, {name = 'calc'}, {name = 'emoji'}
   }
 })
@@ -94,5 +94,4 @@ local presentAutopairs, cmp_autopairs = pcall(require,
 if not presentAutopairs then return end
 
 cmp.event:on('confirm_done',
-
              cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
