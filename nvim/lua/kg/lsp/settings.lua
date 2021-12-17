@@ -1,5 +1,6 @@
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require 'kg.lsp.remaps'
+local functions = require 'kg.utils.functions'
 local presentLspStatus, lspStatus = pcall(require, 'lsp-status')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 local presentAerial, aerial = pcall(require, 'aerial')
@@ -8,7 +9,7 @@ local presentLspSignature, lspSignature = pcall(require, 'lsp_signature')
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 
-vim.lsp.set_log_level('info')
+vim.lsp.set_log_level('error')
 
 local function on_attach(client, bufnr)
   -- print(client.name)
@@ -32,7 +33,6 @@ vim.diagnostic.config({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities();
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 if presentLspStatus then
   lspStatus.register_progress()
@@ -44,17 +44,11 @@ if presentCmpNvimLsp then
                                 cmpNvimLsp.update_capabilities(capabilities))
 end
 
-local default_lsp_config = {
-  on_attach = on_attach,
-  capabilities,
-  flags = {debounce_text_changes = 200}
-}
-
 local servers = {
   efm = require('kg.lsp.servers.efm')(),
   bashls = {},
   yamlls = {},
-  jsonls = require('kg.lsp.servers.jsonls')(),
+  jsonls = require('kg.lsp.servers.jsonls')(capabilities),
   tsserver = require('kg.lsp.servers.tsserver')(on_attach),
   html = {},
   cssls = {},
@@ -63,6 +57,12 @@ local servers = {
   -- vuels = {},
   graphql = {},
   terraformls = {}
+}
+
+local default_lsp_config = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {debounce_text_changes = 200}
 }
 
 for serverName, config in pairs(servers) do
@@ -74,6 +74,7 @@ for serverName, config in pairs(servers) do
     end
   end
 
-  server:setup(vim.tbl_deep_extend('force', default_lsp_config, config))
+  local merged_config = vim.tbl_deep_extend('force', default_lsp_config, config);
+  server:setup(merged_config);
   vim.cmd [[ do User LspAttachBuffers ]]
 end
