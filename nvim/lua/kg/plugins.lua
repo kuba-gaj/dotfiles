@@ -30,6 +30,7 @@ return packer.startup {
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'RRethy/nvim-treesitter-textsubjects'
     use 'haringsrob/nvim_context_vt' -- shows treesitter context in end of parenthesis
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
     use {'p00f/nvim-ts-rainbow', after = {'nvim-treesitter'}}
     use {'windwp/nvim-ts-autotag', config = "require('nvim-ts-autotag').setup()"}
 
@@ -120,7 +121,6 @@ return packer.startup {
     use {'bkad/CamelCaseMotion', config = "require 'kg.plugins.camelcasemotion'"}
 
     -- Editing
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
     use {'numToStr/Comment.nvim', config = "require 'kg.plugins.comment'"}
     use {'folke/todo-comments.nvim', config = "require 'kg.plugins.todo-comments'"}
     use({
