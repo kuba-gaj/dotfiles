@@ -1,5 +1,3 @@
-local r = require("kg.utils.remaps")
-
 vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_quit_on_open = 1
@@ -55,11 +53,12 @@ local list = {
 require("nvim-tree").setup({
 	auto_close = false,
 	auto_open = true,
-	diagnostics = { enable = false },
+	diagnostics = { enable = true },
 	-- project integration
 	-- update_cwd = true,
 	update_focused_file = { enable = true, update_cwd = false },
 	view = { width = "30%", auto_resize = true, mappings = { list = list } },
 })
 
+local r = require("kg.utils.remaps")
 r.nnoremap("-", "<cmd>NvimTreeToggle<CR>", "explorer", "explorer_toggle", "Toggle explorer")
