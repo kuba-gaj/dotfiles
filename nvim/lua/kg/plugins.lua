@@ -75,6 +75,13 @@ return packer.startup {
       'folke/trouble.nvim',
       config = function() require('kg.plugins.trouble') end
     }
+
+    use {
+      'creativenull/efmls-configs-nvim',
+      -- tag = 'v0.1.1', -- tag is optional
+      requires = { 'neovim/nvim-lspconfig' },
+    }
+
     -- Completion
     use({
       'hrsh7th/nvim-cmp',
