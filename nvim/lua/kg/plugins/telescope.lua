@@ -147,6 +147,13 @@ r.nnoremap(
 	"Search git commits"
 )
 r.nnoremap(
+  "<leader>/M",
+  "<cmd>Telescope mapper<CR>",
+  "telescope",
+  "telescope_mapper",
+  "Search mappings"
+)
+r.nnoremap(
 	"<leader>bl",
 	"<cmd>lua require('telescope.builtin').buffers()<CR>",
 	"telescope",
