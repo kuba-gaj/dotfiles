@@ -1,8 +1,8 @@
-require 'impatient'
-require 'kg.plugins'
-require 'kg.utils'
-require 'kg.theme'
-require 'kg.settings'
-require 'kg.remaps'
-require 'kg.events'
-require 'kg.lsp'
+require("impatient")
+require("kg.plugins")
+require("kg.utils")
+require("kg.theme")
+require("kg.settings")
+require("kg.remaps")
+require("kg.events")
+require("kg.lsp")

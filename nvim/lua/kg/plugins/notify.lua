@@ -1,4 +1,3 @@
-
 local present, notify = pcall(require, 'notify')
 
 if not (present) then

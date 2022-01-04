@@ -113,11 +113,6 @@ return packer.startup {
     })
     use {'ellisonleao/glow.nvim', config = function() vim.g.glow_border = "rounded" end}
     use {'vuki656/package-info.nvim', config = "require 'kg.plugins.package-info'"}
-    use {
-      'vhyrro/neorg',
-      config = "require 'kg.plugins.neorg'",
-      requires = {{'nvim-lua/plenary.nvim'}, {'nvim-neorg/neorg-telescope'}}
-    }
 
     -- Git
     use {'tpope/vim-fugitive', config = "require 'kg.plugins.fugitive'"}
