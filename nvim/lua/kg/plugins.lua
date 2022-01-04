@@ -61,7 +61,7 @@ return packer.startup({
 		use("kyazdani42/nvim-web-devicons")
 
 		-- Theming
-		use("gruvbox-community/gruvbox")
+		use({ "gruvbox-community/gruvbox", config = "require 'kg.plugins.gruvbox'" })
 
 		-- UI
 		use("MunifTanjim/nui.nvim")
