@@ -1,23 +1,25 @@
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require 'kg.lsp.remaps'
 local functions = require 'kg.utils.functions'
+
 local presentLspStatus, lspStatus = pcall(require, 'lsp-status')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 local presentAerial, aerial = pcall(require, 'aerial')
 local presentLspSignature, lspSignature = pcall(require, 'lsp_signature')
 
--- for debugging lsp
--- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
-
-vim.lsp.set_log_level('error')
+vim.lsp.set_log_level('error') -- 'trace', 'debug', 'info', 'warn', 'error'
 
 local function on_attach(client, bufnr)
   -- print(client.name)
-  remaps.set_default(client, bufnr)
+  remaps.set_default_on_buffer(client, bufnr)
 
-  if presentLspStatus then lspStatus.on_attach(client, bufnr) end
+  if presentLspStatus then 
+    lspStatus.on_attach(client, bufnr) 
+  end
 
-  if presentAerial then aerial.on_attach(client, bufnr); end
+  if presentAerial then 
+    aerial.on_attach(client, bufnr); 
+  end
 
   -- add signature autocompletion while typing
   if presentLspSignature then
@@ -32,7 +34,7 @@ vim.diagnostic.config({
   update_in_insert = false
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities();
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 if presentLspStatus then
   lspStatus.register_progress()
@@ -47,7 +49,7 @@ end
 local servers = {
   efm = require('kg.lsp.servers.efm')(),
   bashls = {},
-  yamlls = {},
+  yamlls = require('kg.lsp.servers.yamlls')(capabilities),
   jsonls = require('kg.lsp.servers.jsonls')(capabilities),
   tsserver = require('kg.lsp.servers.tsserver')(on_attach),
   html = {},
@@ -56,7 +58,8 @@ local servers = {
   dockerls = {},
   -- vuels = {},
   graphql = {},
-  terraformls = {}
+  terraformls = {},
+  eslint = {},
 }
 
 local default_lsp_config = {
@@ -67,14 +70,29 @@ local default_lsp_config = {
 
 for serverName, config in pairs(servers) do
   local ok, server = lsp_installer_servers.get_server(serverName)
-  if ok then
-    if not server:is_installed() then
-      print('installing ' .. serverName)
-      server:install()
-    end
-  end
+	if ok then
+		if not server:is_installed() then
+			print('installing ' .. serverName)
+			server:install()
+		end
+	end
 
-  local merged_config = vim.tbl_deep_extend('force', default_lsp_config, config);
-  server:setup(merged_config);
-  vim.cmd [[ do User LspAttachBuffers ]]
+	local merged_config = vim.tbl_deep_extend('force', default_lsp_config, config)
+
+	if server.name == 'rust_analyzer' then
+		local default_server_lsp_config = server:get_default_options()
+		merged_config = vim.tbl_deep_extend('force', default_server_lsp_config, merged_config)
+
+		local present, rust_tools = pcall(require, 'rust-tools')
+
+		if present then
+			rust_tools.setup({ server = merged_config })
+			server:attach_buffers()
+		else
+			print('normal setup')
+			server:setup(merged_config)
+		end
+	else
+		server:setup(merged_config)
+	end
 end

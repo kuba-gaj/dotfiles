@@ -69,9 +69,12 @@ return packer.startup {
       requires = {{'nvim-lua/plenary.nvim'}},
       config = "require 'kg.plugins.renamer'"
     }
-    use {'stevearc/aerial.nvim', config = "require 'kg.plugins.aerial'"}
+    -- use {'stevearc/aerial.nvim', config = "require 'kg.plugins.aerial'"}
     use {'github/copilot.vim', config = "require 'kg.plugins.copilot'"}
-
+    use {
+      'folke/trouble.nvim',
+      config = function() require('kg.plugins.trouble') end
+    }
     -- Completion
     use({
       'hrsh7th/nvim-cmp',

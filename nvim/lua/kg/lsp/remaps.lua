@@ -1,8 +1,8 @@
 local M = {}
-    -- defaults
+-- defaults
 
 
-function M.set_default(client, bufnr)
+function M.set_default_on_buffer(client, bufnr)
   local function buf_set_keymap(...) bufnoremap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   local cap = client.server_capabilities
@@ -14,22 +14,29 @@ function M.set_default(client, bufnr)
   -- buf_set_keymap('n', '<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   if cap.definitionProvider then
-    buf_set_keymap('n', 'gd', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition', 'Preview definition')
+    -- buf_set_keymap('n', 'gd', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", 'lsp', 'lsp_preview_definition_saga', 'Preview definition')
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition', 'Preview definition')
   end
   -- if cap.declarationProvider then
   -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   -- end
   if cap.implementationProvider then
-    buf_set_keymap('n','<leader>ti', '<cmd>lua vim.lsp.buf.implementation()<CR>', 'lsp', 'lsp_goto_implementation', 'Go to implementation')
+    buf_set_keymap('n','<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', 'lsp', 'lsp_goto_implementation', 'Go to implementation')
   end
   if cap.referencesProvider then
     -- buf_set_keymap('n','<leader>tr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n','<leader>tr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", 'lsp', 'lsp_references', 'Show references')
+    buf_set_keymap('n','<leader>gR', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", 'lsp', 'lsp_references', 'Show references')
   end
 
-  -- buf_set_keymap('n','<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>th', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", 'lsp', 'lsp_hover_docs', 'Hover documentation')
+  if cap.hoverProvider then
+    -- buf_set_keymap('n','<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', '<leader>th',
+                   '<cmd>lua require(\'lspsaga.hover\').render_hover_doc()<CR>',
+                   'lsp', 'lsp_hover_docs', 'Hover documentation')
+
+    buf_set_keymap('n', '<leader>tt', '<cmd>Trouble<cr>', 'lsp', 'lsp_trouble',
+                   'Trouble')
+  end
 
   if cap.documentSymbolProvider then
     -- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
@@ -54,7 +61,9 @@ function M.set_default(client, bufnr)
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   -- buf_set_keymap('n','<leader>fe', '<cmd>:LspDiagnostics 0<CR>', opts)
-   buf_set_keymap('n','<leader>fe', "<cmd>lua require('kg.lsp.functions').show_diagnostics()<CR>", 'lsp', 'lsp_show_diagnostics', 'Show diagnostics')
+   -- buf_set_keymap('n','<leader>fe', "<cmd>lua require('kg.lsp.functions').show_diagnostics()<CR>", 'lsp', 'lsp_show_diagnostics', 'Show diagnostics')
+  buf_set_keymap('n', '<leader>fe', '<cmd>Trouble document_diagnostics<cr>',
+                 'lsp', 'lsp_show_diagnostics', 'Show diagnostics')
   -- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n','<leader>fE', "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", 'lsp', 'lsp_show_line_diagnostics', 'Show line diagnostics')
   buf_set_keymap('n','[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'lsp', 'lsp_previous_diagnostic', 'Previous diagnostic')
@@ -97,8 +106,8 @@ function M.set_typescript(client, bufnr)
   local presentTsUtils, tsUtils = pcall(require, 'nvim-lsp-ts-utils')
 
   if presentTsUtils then
-    tsUtils.setup {
-    }
+    tsUtils.setup {}
+
     -- required to fix code action ranges and filter diagnostics
     tsUtils.setup_client(client)
   end

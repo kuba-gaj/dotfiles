@@ -16,6 +16,7 @@ M.lsp_install_servers = function()
     installLanguageServer('cssls')
     installLanguageServer('dockerls')
     installLanguageServer('graphql')
+    installLanguageServer('eslint')
 end
 
 return M
