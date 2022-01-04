@@ -86,18 +86,18 @@ if presentCmpNvimLsp then
 end
 
 local servers = {
-	efm = require("kg.lsp.servers.efm")(),
 	bashls = {},
-	yamlls = require("kg.lsp.servers.yamlls")(capabilities),
-	jsonls = require("kg.lsp.servers.jsonls")(capabilities),
-	tsserver = require("kg.lsp.servers.tsserver")(on_attach),
-	html = {},
 	cssls = {},
-	sumneko_lua = require("kg.lsp.servers.sumneko_lua")(),
 	dockerls = {},
-	graphql = {},
-	terraformls = {},
+	efm = require("kg.lsp.servers.efm")(),
 	eslint = {},
+	graphql = {},
+	html = {},
+	jsonls = require("kg.lsp.servers.jsonls")(capabilities),
+	sumneko_lua = require("kg.lsp.servers.sumneko_lua")(),
+	terraformls = {},
+	tsserver = require("kg.lsp.servers.tsserver")(on_attach),
+	yamlls = require("kg.lsp.servers.yamlls")(capabilities),
 }
 
 local default_lsp_config = {

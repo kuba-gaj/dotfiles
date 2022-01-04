@@ -1,3 +1,9 @@
+local present, nvim_tree = pcall(require, "nvim-tree")
+
+if not present then
+	return
+end
+
 vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_quit_on_open = 1
@@ -50,8 +56,8 @@ local list = {
 	{ key = "g?", cb = tree_cb("toggle_help") },
 }
 
-require("nvim-tree").setup({
-	auto_close = false,
+nvim_tree.setup({
+	auto_close = true,
 	auto_open = true,
 	diagnostics = { enable = true },
 	-- project integration
@@ -62,3 +68,7 @@ require("nvim-tree").setup({
 
 local r = require("kg.utils.remaps")
 r.nnoremap("-", "<cmd>NvimTreeToggle<CR>", "explorer", "explorer_toggle", "Toggle explorer")
+r.map_virtual("o", "<BS>", "", {}, "explorer", "explorer_close_directory", "Closes directory")
+r.map_virtual("o", "a", "", {}, "explorer", "explorer_create", "Create file/dir")
+r.map_virtual("o", "d", "", {}, "explorer", "explorer_remove", "Remove file/dir")
+r.map_virtual("o", "r", "", {}, "explorer", "explorer_rename", "Rename file/dir")

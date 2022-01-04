@@ -20,7 +20,13 @@ telescope.setup({
 		layout_config = { prompt_position = "bottom" },
 	},
 	pickers = {
-		buffers = { sort_lastused = true, previewer = false, theme = "dropdown" },
+		buffers = {
+			sort_lastused = true,
+			sort_mru = true,
+			previewer = false,
+			theme = "dropdown",
+			ignore_current_buffer = true,
+		},
 		find_files = {
 			find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
 			hidden = true,
@@ -84,7 +90,7 @@ r.nnoremap(
 	"<leader>pf",
 	"<cmd>lua require('telescope.builtin').find_files()<CR>",
 	"telescope",
-	"telescope_files",
+	"telescope_old_files",
 	"Find files"
 )
 r.nnoremap(
@@ -146,13 +152,7 @@ r.nnoremap(
 	"telescope_git_commits",
 	"Search git commits"
 )
-r.nnoremap(
-  "<leader>/M",
-  "<cmd>Telescope mapper<CR>",
-  "telescope",
-  "telescope_mapper",
-  "Search mappings"
-)
+r.nnoremap("<leader>/M", "<cmd>Telescope mapper<CR>", "telescope", "telescope_mapper", "Search mappings")
 r.nnoremap(
 	"<leader>bl",
 	"<cmd>lua require('telescope.builtin').buffers()<CR>",
