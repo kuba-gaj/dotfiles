@@ -16,7 +16,7 @@ r.vnoremap("J", '<cmd>m ">+1<CR>gv=gv"', "remap", "remap_move_down_on_visual", "
 
 -- Keep visual mode indenting
 r.vnoremap("<", "<gv", "remap", "remap_keep_visual_indent_1", "Keep visual mode indenting")
-r.vnoremap("<", "<gv", "remap", "remap_keep_visual_indent_2", "Keep visual mode indenting")
+r.vnoremap(">", ">gv", "remap", "remap_keep_visual_indent_2", "Keep visual mode indenting")
 
 -- move vertically by visual line unless preceded by a count. 
 -- If a movement is greater than 5 then automatically add to the jumplist.

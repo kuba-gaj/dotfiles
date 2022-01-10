@@ -31,7 +31,8 @@ local options = {
 
   -- live preview of substitutions
   inccommand = 'split',
-
+  -- global search as default
+  gdefault = true,
 
   -- Give more space for displaying messages.
   cmdheight = 1,

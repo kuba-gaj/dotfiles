@@ -57,7 +57,7 @@ local list = {
 }
 
 nvim_tree.setup({
-	auto_close = true,
+	auto_close = false,
 	auto_open = true,
 	diagnostics = { enable = true },
 	-- project integration
