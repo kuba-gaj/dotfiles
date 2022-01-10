@@ -1,7 +1,5 @@
 local fn = vim.fn
 
-vim.cmd([[packadd packer.nvim]])
-
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 
@@ -20,6 +18,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	})
 	print("Installing packer close and reopen Neovim...")
 end
+
+vim.cmd([[packadd packer.nvim]])
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
@@ -101,7 +101,6 @@ return packer.startup({
 		use({ "neovim/nvim-lspconfig" })
 		use("williamboman/nvim-lsp-installer")
 		use("b0o/schemastore.nvim")
-		use({ "tami5/lspsaga.nvim", config = "require 'kg.plugins.lspsaga'" })
 		use("onsails/lspkind-nvim")
 		use("jose-elias-alvarez/nvim-lsp-ts-utils")
 		use("nvim-lua/lsp-status.nvim")
@@ -200,6 +199,25 @@ return packer.startup({
 			"windwp/nvim-autopairs",
 			after = "nvim-cmp",
 			config = "require 'kg.plugins.autopairs'",
+		})
+
+    -- Debugging
+    use({ "mfussenegger/nvim-dap", config = "require 'kg.plugins.dap'" })
+		use({ "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } })
+		use({
+			"theHamsta/nvim-dap-virtual-text",
+			requires = { "mfussenegger/nvim-dap" },
+			config = "require('kg.plugins.dap-virtual-text')"
+		})
+		use({
+			"rcarriga/nvim-dap-ui",
+			requires = { "mfussenegger/nvim-dap" },
+			config = "require('kg.plugins.dap-ui')"
+		})
+		use({
+			"Pocco81/DAPInstall.nvim",
+			requires = { "mfussenegger/nvim-dap" },
+			config = "require('kg.plugins.dap-install')"
 		})
 
 		-- Improvements

@@ -78,6 +78,10 @@ if pcall(require, "nvim-notify") then
 	telescope.load_extension("notify")
 end
 
+if pcall(require, "dap") then
+	telescope.load_extension("dap")
+end
+
 r.nnoremap("<leader>pp", "<cmd>Telescope projects<CR>", "telescope", "telescope_projects", "Projects")
 r.nnoremap(
 	"<leader>ps",
@@ -152,7 +156,13 @@ r.nnoremap(
 	"telescope_git_commits",
 	"Search git commits"
 )
-r.nnoremap("<leader>/M", "<cmd>Telescope mapper<CR>", "telescope", "telescope_mapper", "Search mappings")
+r.nnoremap(
+  "<leader>/M",
+  "<cmd>Telescope mapper<CR>",
+  "telescope",
+  "telescope_mapper",
+  "Search mappings"
+)
 r.nnoremap(
 	"<leader>bl",
 	"<cmd>lua require('telescope.builtin').buffers()<CR>",

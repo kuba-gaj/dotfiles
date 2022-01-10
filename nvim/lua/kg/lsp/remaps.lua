@@ -15,25 +15,9 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- gives definition & references
-	-- buf_set_keymap(
-	-- 	"n",
-	-- 	"<leader>tt",
-	-- 	"<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>",
-	-- 	"lsp",
-	-- 	"lsp_definitions_references",
-	-- 	"Find definitions and references"
-	-- )
 	-- buf_set_keymap('n', '<leader>tt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
 	if cap.definitionProvider then
-		-- buf_set_keymap(
-		-- 	"n",
-		-- 	"gd",
-		-- 	"<cmd>lua require'lspsaga.provider'.preview_definition()<CR>",
-		-- 	"lsp",
-		-- 	"lsp_preview_definition_saga",
-		-- 	"Preview definition"
-		-- )
 		buf_set_keymap(
 			"n",
 			"gd",
@@ -69,16 +53,7 @@ function M.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.hoverProvider then
-		-- buf_set_keymap('n','K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-		buf_set_keymap(
-			"n",
-			"K",
-			"<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>",
-			"lsp",
-			"lsp_hover_docs",
-			"Hover documentation"
-		)
-
+		buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "lsp", "lsp_hover_docs", "Hover documentation")
 		buf_set_keymap("n", "<leader>tt", "<cmd>Trouble<cr>", "lsp", "lsp_trouble", "Trouble")
 	end
 
@@ -105,7 +80,7 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap(
 		"n",
 		"<leader>ts",
-		"<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>",
+    "<cmd>lua vim.lsp.buf.signature_help()<CR>",
 		"lsp",
 		"lsp_signature_help",
 		"Show signature"
@@ -116,8 +91,6 @@ function M.set_default_on_buffer(client, bufnr)
 	-- end
 
 	if cap.codeActionProvider then
-		-- buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', 'lsp', 'lsp_', '')
-		-- buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", 'lsp', 'lsp_', '')
 		buf_set_keymap(
 			"n",
 			"<leader>fa",
@@ -134,8 +107,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"lsp_code_actions_in_visual",
 			"Code actions (visual)"
 		)
-		--[[ buf_set_keymap('n', '<leader>fa', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
-    buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts) ]]
 	end
 
 	-- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -156,11 +127,10 @@ function M.set_default_on_buffer(client, bufnr)
 		"lsp_show_diagnostics",
 		"Show diagnostics"
 	)
-	-- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 	buf_set_keymap(
 		"n",
 		"<leader>fE",
-		"<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
+    "<cmd>lua vim.diagnostic.open_float()<CR>",
 		"lsp",
 		"lsp_show_line_diagnostics",
 		"Show line diagnostics"
@@ -181,22 +151,6 @@ function M.set_default_on_buffer(client, bufnr)
 		"lsp_next_diagnostic",
 		"Next diagnostic"
 	)
-	-- buf_set_keymap(
-	-- 	"n",
-	-- 	"[e",
-	-- 	"<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>",
-	-- 	"lsp",
-	-- 	"lsp_previous_diagnostic",
-	-- 	"Previous diagnostic"
-	-- )
-	-- buf_set_keymap(
-	-- 	"n",
-	-- 	"]e",
-	-- 	"<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>",
-	-- 	"lsp",
-	-- 	"lsp_next_diagnostic",
-	-- 	"Next diagnostic"
-	-- )
 
 	if cap.documentFormattingProvider then
 		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp", "lsp_format", "Format")
@@ -206,7 +160,6 @@ function M.set_default_on_buffer(client, bufnr)
 
 	if cap.renameProvider then
 		-- buf_set_keymap('n','<leader>tr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-		-- buf_set_keymap('n','<leader>tr', "<cmd>lua require('lspsaga.rename').rename()<CR>", 'lsp', 'lsp_rename', 'Rename')
 		buf_set_keymap(
 			"n",
 			"<leader>fr",
@@ -242,7 +195,6 @@ function M.set_default_on_buffer(client, bufnr)
 		"LSP show log path"
 	)
 	buf_set_keymap("n", "<leader>fsi", ":LspInfo()<CR>", "lsp", "lsp_info", "[DEBUG] LSP Info")
-
 end
 
 function M.set_typescript(client, bufnr)
@@ -252,8 +204,9 @@ function M.set_typescript(client, bufnr)
 	local presentTsUtils, tsUtils = pcall(require, "nvim-lsp-ts-utils")
 
 	if presentTsUtils then
-		tsUtils.setup({})
-
+		tsUtils.setup({
+      auto_inlay_hints = false,
+    })
 		-- required to fix code action ranges and filter diagnostics
 		tsUtils.setup_client(client)
 	end
@@ -263,7 +216,7 @@ function M.set_typescript(client, bufnr)
 	buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", "lsp", "lsp_typescript_import_all", "Import all")
 end
 
-r.which_key("<leader>ls", "servers");
+r.which_key("<leader>ls", "servers")
 
 r.nnoremap(
 	"<leader>lsu",
