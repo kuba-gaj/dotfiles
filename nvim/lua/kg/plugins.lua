@@ -91,11 +91,6 @@ return packer.startup({
 			config = "require 'kg.plugins.telescope'",
 		})
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-		use({
-			"lazytanuki/nvim-mapper",
-			config = "require 'kg.plugins.mapper'",
-			before = "telescope.nvim",
-		})
 
 		-- LSP
 		use({ "neovim/nvim-lspconfig" })
@@ -201,23 +196,23 @@ return packer.startup({
 			config = "require 'kg.plugins.autopairs'",
 		})
 
-    -- Debugging
-    use({ "mfussenegger/nvim-dap", config = "require 'kg.plugins.dap'" })
+		-- Debugging
+		use({ "mfussenegger/nvim-dap", config = "require 'kg.plugins.dap'" })
 		use({ "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } })
 		use({
 			"theHamsta/nvim-dap-virtual-text",
 			requires = { "mfussenegger/nvim-dap" },
-			config = "require('kg.plugins.dap-virtual-text')"
+			config = "require('kg.plugins.dap-virtual-text')",
 		})
 		use({
 			"rcarriga/nvim-dap-ui",
 			requires = { "mfussenegger/nvim-dap" },
-			config = "require('kg.plugins.dap-ui')"
+			config = "require('kg.plugins.dap-ui')",
 		})
 		use({
 			"Pocco81/DAPInstall.nvim",
 			requires = { "mfussenegger/nvim-dap" },
-			config = "require('kg.plugins.dap-install')"
+			config = "require('kg.plugins.dap-install')",
 		})
 
 		-- Improvements
@@ -238,7 +233,9 @@ return packer.startup({
 		use({ "dyng/ctrlsf.vim", config = "require 'kg.plugins.ctrlsf'" })
 		use({ "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" })
 		use({ "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" })
-		use({ "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" })
+		-- use({ "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" })
+		-- Use branch with fix until https://github.com/folke/which-key.nvim/issues/226 is fixed
+		use({ "zeertzjq/which-key.nvim", branch = "patch-1", config = "require 'kg.plugins.which-key'" })
 		use({
 			"ThePrimeagen/harpoon",
 			config = "require 'kg.plugins.harpoon'",
@@ -250,7 +247,6 @@ return packer.startup({
 			config = "require 'kg.plugins.nvim-tree'",
 		})
 
-
 		-- status line
 
 		use({
@@ -260,7 +256,6 @@ return packer.startup({
 			requires = "nvim-treesitter/nvim-treesitter",
 
 			config = "require 'kg.plugins.gps'",
-
 		})
 
 		use({
@@ -270,9 +265,6 @@ return packer.startup({
 			requires = "SmiteshP/nvim-gps",
 
 			config = "require 'kg.plugins.galaxyline'",
-
 		})
-
 	end,
-
 })
