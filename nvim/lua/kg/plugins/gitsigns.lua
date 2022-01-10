@@ -17,33 +17,31 @@ require("gitsigns").setup({
 
 r.which_key("<leader>gh", "hunks")
 
-r.nnoremap(
+r.noremap(
+	"n",
 	"]h",
 	"&diff ? ']h' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
-	"git",
 	"git_next_hunk",
 	"Go to next hunk"
 )
-r.nnoremap(
+r.noremap(
+	"n",
 	"[h",
 	"&diff ? '[h' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
-	"git",
 	"git_prev_hunk",
 	"Go to prev hunk"
 )
 
-r.nnoremap("<leader>hs", '<cmd>lua require"gitsigns".stage_hunk()<CR>', "git", "git_stage_hunk", "Stage hunk")
+r.noremap("n", "<leader>ghs", '<cmd>lua require"gitsigns".stage_hunk()<CR>', "git_stage_hunk", "Stage hunk")
 
-r.nnoremap(
-	"<leader>hu",
+r.noremap(
+	"n",
+	"<leader>ghu",
 	'<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-	"git",
 	"git_undo_stage_hunk",
 	"Undo stage hunk"
 )
 
-r.nnoremap("<leader>hr", '<cmd>lua require"gitsigns".reset_hunk()<CR>', "git", "git_reset_hunk", "Reset hunk")
-
-r.nnoremap("<leader>hp", '<cmd>lua require"gitsigns".preview_hunk()<CR>', "git", "git_preview_hunk", "Preview hunk")
-
-r.nnoremap("<leader>hb", '<cmd>lua require"gitsigns".blame_line()<CR>', "git", "git_blame_line", "Blame line")
+r.noremap("n", "<leader>ghr", '<cmd>lua require"gitsigns".reset_hunk()<CR>', "git_reset_hunk", "Reset hunk")
+r.noremap("n", "<leader>ghp", '<cmd>lua require"gitsigns".preview_hunk()<CR>', "git_preview_hunk", "Preview hunk")
+r.noremap("n", "<leader>ghb", '<cmd>lua require"gitsigns".blame_line()<CR>', "git_blame_line", "Blame line")

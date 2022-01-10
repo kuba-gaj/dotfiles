@@ -8,4 +8,4 @@ dap_ui.setup({})
 
 local r = require("kg.utils.remaps")
 
-r.nnoremap("<leader>du", '<cmd>lua require"dapui".toggle()<CR>', "dap", "dap_ui_toggle", "Toggle DAP UI")
+r.noremap("n", "<leader>du", '<cmd>lua require"dapui".toggle()<CR>', "dap_ui_toggle", "Toggle DAP UI")

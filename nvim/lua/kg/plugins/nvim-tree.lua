@@ -67,8 +67,4 @@ nvim_tree.setup({
 })
 
 local r = require("kg.utils.remaps")
-r.nnoremap("-", "<cmd>NvimTreeToggle<CR>", "explorer", "explorer_toggle", "Toggle explorer")
-r.map_virtual("o", "<BS>", "", {}, "explorer", "explorer_close_directory", "Closes directory")
-r.map_virtual("o", "a", "", {}, "explorer", "explorer_create", "Create file/dir")
-r.map_virtual("o", "d", "", {}, "explorer", "explorer_remove", "Remove file/dir")
-r.map_virtual("o", "r", "", {}, "explorer", "explorer_rename", "Rename file/dir")
+r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "explorer_toggle", "Toggle explorer")

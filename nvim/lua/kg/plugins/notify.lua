@@ -9,5 +9,5 @@ vim.notify = notify
 notify.setup({
   stages = "static",
   render = "minimal",
-  timeout = 500
+  timeout = 1000
 })

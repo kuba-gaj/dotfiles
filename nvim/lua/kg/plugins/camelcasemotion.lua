@@ -1,1 +1,1 @@
-vim.g.camelcasemotion_key = '<tab>'
+vim.g.camelcasemotion_key = "<tab>"

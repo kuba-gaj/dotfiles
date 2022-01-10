@@ -7,4 +7,4 @@ end
 trouble.setup({ use_diagnostic_signs = false })
 
 local r = require("kg.utils.remaps")
-r.nnoremap("<leader>tc", "<cmd>TroubleClose<cr>", "lsp", "lsp_trouble_close", "Closes Trouble")
+r.noremap("n", "<leader>tc", "<cmd>TroubleClose<cr>", "lsp_trouble_close", "Closes Trouble")

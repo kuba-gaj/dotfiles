@@ -10,16 +10,11 @@ dap_install.config("chrome", {})
 local r = require("kg.utils.remaps")
 
 r.which_key("<leader>ds", "servers")
+r.noremap("n", "<leader>dsi", function()
+	require("kg.plugins.dap-install.functions").dap_install_servers()
+end, "dap_install_server", "Install DAP servers")
 
-r.nnoremap(
-	"<leader>dsi",
-	'<cmd>lua require("lt.plugins.dap-install").dap_install_servers()<CR>',
-	"dap",
-	"dap_install_server",
-	"Install DAP servers"
-)
-
-r.nnoremap("<leader>dsl", "<cmd>DIList<CR>", "dap", "dap_install_server_info", "DAP servers install info")
+r.noremap("n", "<leader>dsl", "<cmd>DIList<CR>", "dap_install_server_info", "DAP servers install info")
 
 local M = {}
 M.dap_install_servers = function()

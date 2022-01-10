@@ -4,8 +4,8 @@ local M = {}
 -- defaults
 
 function M.set_default_on_buffer(client, bufnr)
-	local function buf_set_keymap(...)
-		r.bufnoremap(bufnr, ...)
+	local function buf_set_keymap(type, input, output, unique_identifier, description)
+		r.noremap(type, input, output, unique_identifier, description, { buffer = bufnr })
 	end
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
@@ -22,7 +22,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"gd",
 			"<cmd>lua vim.lsp.buf.definition()<CR>",
-			"lsp",
 			"lsp_preview_definition",
 			"Preview definition"
 		)
@@ -35,7 +34,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"<leader>gi",
 			"<cmd>lua vim.lsp.buf.implementation()<CR>",
-			"lsp",
 			"lsp_goto_implementation",
 			"Go to implementation"
 		)
@@ -46,15 +44,14 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"gr",
 			"<cmd>lua require('telescope.builtin').lsp_references()<CR>",
-			"lsp",
 			"lsp_references",
 			"Show references"
 		)
 	end
 
 	if cap.hoverProvider then
-		buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "lsp", "lsp_hover_docs", "Hover documentation")
-		buf_set_keymap("n", "<leader>tt", "<cmd>Trouble<cr>", "lsp", "lsp_trouble", "Trouble")
+		buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "lsp_hover_docs", "Hover documentation")
+		buf_set_keymap("n", "<leader>tt", "<cmd>Trouble<cr>", "lsp_trouble", "Trouble")
 	end
 
 	if cap.documentSymbolProvider then
@@ -63,7 +60,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"<leader>tO",
 			"<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
-			"lsp",
 			"lsp_document_symbols",
 			"Document symbols"
 		)
@@ -71,7 +67,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"<leader>to",
 			"<cmd>AerialToggle!<CR>",
-			"lsp",
 			"lsp_aerial_document_symbols",
 			"(Aerial) Document symbols"
 		)
@@ -80,8 +75,7 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap(
 		"n",
 		"<leader>ts",
-    "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-		"lsp",
+		"<cmd>lua vim.lsp.buf.signature_help()<CR>",
 		"lsp_signature_help",
 		"Show signature"
 	)
@@ -95,7 +89,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"<leader>fa",
 			"<cmd>lua require('telescope.builtin').lsp_code_actions({ timeout = 1000 })<CR>",
-			"lsp",
 			"lsp_code_actions",
 			"Code actions"
 		)
@@ -103,7 +96,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"v",
 			"<leader>fa",
 			"<cmd>lua require('telescope.builtin').lsp_range_code_actions({ timeout = 1000 })<CR>",
-			"lsp",
 			"lsp_code_actions_in_visual",
 			"Code actions (visual)"
 		)
@@ -115,7 +107,6 @@ function M.set_default_on_buffer(client, bufnr)
 	-- 	"n",
 	-- 	"<leader>fe",
 	-- 	"<cmd>lua require('kg.lsp.functions').show_diagnostics()<CR>",
-	-- 	"lsp",
 	-- 	"lsp_show_diagnostics",
 	-- 	"Show diagnostics"
 	-- )
@@ -123,15 +114,13 @@ function M.set_default_on_buffer(client, bufnr)
 		"n",
 		"<leader>fe",
 		"<cmd>Trouble document_diagnostics<cr>",
-		"lsp",
 		"lsp_show_diagnostics",
 		"Show diagnostics"
 	)
 	buf_set_keymap(
 		"n",
 		"<leader>fE",
-    "<cmd>lua vim.diagnostic.open_float()<CR>",
-		"lsp",
+		"<cmd>lua vim.diagnostic.open_float()<CR>",
 		"lsp_show_line_diagnostics",
 		"Show line diagnostics"
 	)
@@ -139,23 +128,15 @@ function M.set_default_on_buffer(client, bufnr)
 		"n",
 		"[e",
 		"<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
-		"lsp",
 		"lsp_previous_diagnostic",
 		"Previous diagnostic"
 	)
-	buf_set_keymap(
-		"n",
-		"]e",
-		"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-		"lsp",
-		"lsp_next_diagnostic",
-		"Next diagnostic"
-	)
+	buf_set_keymap("n", "]e", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "lsp_next_diagnostic", "Next diagnostic")
 
 	if cap.documentFormattingProvider then
-		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp", "lsp_format", "Format")
+		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp_format", "Format")
 	elseif cap.documentRangeFormattingProvider then
-		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp", "lsp_range_format", "Format")
+		buf_set_keymap("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", "lsp_range_format", "Format")
 	end
 
 	if cap.renameProvider then
@@ -164,7 +145,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"<leader>fr",
 			"<cmd>lua require('renamer').rename({ empty = true })<cr>",
-			"lsp",
 			"lsp_rename_empty",
 			"Rename"
 		)
@@ -172,7 +152,6 @@ function M.set_default_on_buffer(client, bufnr)
 			"n",
 			"<leader>rR",
 			"<cmd>lua require('renamer').rename({ empty = false })<cr>",
-			"lsp",
 			"lsp_rename",
 			"Rename with existing value"
 		)
@@ -182,50 +161,42 @@ function M.set_default_on_buffer(client, bufnr)
 		"n",
 		"<leader>lsc",
 		":lua print(vim.inspect(vim.lsp.get_active_clients()))<CR>",
-		"lsp",
 		"lsp_debug_clients",
 		"LSP clients"
 	)
-	buf_set_keymap(
-		"n",
-		"<leader>lsl",
-		":lua print(vim.lsp.get_log_path())<CR>",
-		"lsp",
-		"lsp_debug_logs",
-		"LSP show log path"
-	)
-	buf_set_keymap("n", "<leader>fsi", ":LspInfo()<CR>", "lsp", "lsp_info", "[DEBUG] LSP Info")
+	buf_set_keymap("n", "<leader>lsl", ":lua print(vim.lsp.get_log_path())<CR>", "lsp_debug_logs", "LSP show log path")
+	buf_set_keymap("n", "<leader>fsi", ":LspInfo()<CR>", "lsp_info", "[DEBUG] LSP Info")
 end
 
 function M.set_typescript(client, bufnr)
-	local function buf_set_keymap(...)
-		r.bufnoremap(bufnr, ...)
+	local function buf_set_keymap(type, input, output, unique_identifier, description)
+		r.noremap(type, input, output, unique_identifier, description, { buffer = bufnr })
 	end
 	local presentTsUtils, tsUtils = pcall(require, "nvim-lsp-ts-utils")
 
 	if presentTsUtils then
 		tsUtils.setup({
-      auto_inlay_hints = false,
-    })
+			auto_inlay_hints = false,
+		})
 		-- required to fix code action ranges and filter diagnostics
 		tsUtils.setup_client(client)
 	end
 
-	buf_set_keymap("n", "<leader>fo", ":TSLspOrganize<CR>", "lsp", "lsp_typescript_organize", "Organize imports")
-	buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", "lsp", "lsp_typescript_fix_current", "Fix current")
-	buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", "lsp", "lsp_typescript_import_all", "Import all")
+	buf_set_keymap("n", "<leader>fo", ":TSLspOrganize<CR>", "lsp_typescript_organize", "Organize imports")
+	buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", "lsp_typescript_fix_current", "Fix current")
+	buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", "lsp_typescript_import_all", "Import all")
 end
 
 r.which_key("<leader>ls", "servers")
 
-r.nnoremap(
+r.noremap(
+	"n",
 	"<leader>lsu",
 	'<cmd>lua require("kg.lsp.servers.functions").lsp_install_servers()<CR>',
-	"lsp",
 	"lsp_install_server",
 	"Installer LSP servers"
 )
 
-r.nnoremap("<leader>lsl", "<cmd>LspInstallInfo<CR>", "lsp", "lsp_install_server_info", "LSP servers install info")
+r.noremap("n", "<leader>lsl", "<cmd>LspInstallInfo<CR>", "lsp_install_server_info", "LSP servers install info")
 
 return M
