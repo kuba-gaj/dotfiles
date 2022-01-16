@@ -21,7 +21,7 @@ dashboard.section.buttons.val = {
     dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
     dashboard.button( "f", " Find file", ":cd $HOME | Telescope find_files<CR>"),
 
-    dashboard.button( "s", " Sessions", ":Telescope sessions<CR>"),
+    dashboard.button("s", " Sessions", ":SessionManager load_session<CR>"),
     dashboard.button( "p", " Projects", ":Telescope projects<CR>"),
     dashboard.button( "r", " Recent files"   , ":Telescope oldfiles<CR>"),
 

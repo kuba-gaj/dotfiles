@@ -1,9 +1,10 @@
 local r = require("kg.utils.remaps")
 
-vim.cmd [[
+vim.cmd([[
   command! -nargs=1 Browse silent exe '!xdg-open ' . "<args>"
-]]
-vim.g.fugitive_gitlab_domains = {'https://gitlab.trint.io'}
+]])
+vim.g.fugitive_pty = false -- fix color codes in the termianal
+vim.g.fugitive_gitlab_domains = { "https://gitlab.trint.io" }
 
 r.map("n", "<leader>gs", "<cmd>G<CR>", "git_status", "Git status")
 r.map("n", "<leader>gf", "<cmd>diffget //2<CR>", "git_diffget_2", "TODO diffget 2")

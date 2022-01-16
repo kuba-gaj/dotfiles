@@ -192,7 +192,7 @@ r.which_key("<leader>ls", "servers")
 r.noremap(
 	"n",
 	"<leader>lsu",
-	'<cmd>lua require("kg.lsp.servers.functions").lsp_install_servers()<CR>',
+  require("kg.lsp.functions").lsp_install_servers,
 	"lsp_install_server",
 	"Installer LSP servers"
 )

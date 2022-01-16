@@ -61,7 +61,11 @@ return packer.startup({
 		use("kyazdani42/nvim-web-devicons")
 
 		-- Theming
-		use({ "gruvbox-community/gruvbox", config = "require 'kg.plugins.gruvbox'" })
+		use({
+      "ellisonleao/gruvbox.nvim",
+      config = "require 'kg.plugins.gruvbox'",
+      requires = { "rktjmp/lush.nvim" },
+    })
 
 		-- UI
 		use("MunifTanjim/nui.nvim")
@@ -91,6 +95,7 @@ return packer.startup({
 			config = "require 'kg.plugins.telescope'",
 		})
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+    use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 		-- LSP
 		use({ "neovim/nvim-lspconfig" })
@@ -179,13 +184,20 @@ return packer.startup({
 		use({ "tpope/vim-fugitive", config = "require 'kg.plugins.fugitive'" })
 		use({ "tpope/fugitive-gitlab.vim", requires = { "tpope/vim-fugitive" } })
 		use({ "lewis6991/gitsigns.nvim", config = "require 'kg.plugins.gitsigns'" })
-		use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+		use({
+			"sindrets/diffview.nvim",
+			requires = "nvim-lua/plenary.nvim",
+			config = function()
+				require("kg.plugins.diffview")
+			end,
+		})
 
 		-- Motions
 		use("tpope/vim-surround")
 		use("tpope/vim-repeat")
 		use({ "ggandor/lightspeed.nvim", config = "require 'kg.plugins.lightspeed'" })
 		use({ "bkad/CamelCaseMotion", config = "require 'kg.plugins.camelcasemotion'" })
+		use({ "kevinhwang91/nvim-hlslens", config = "require 'kg.plugins.hlslens'" })
 
 		-- Editing
 		use({ "numToStr/Comment.nvim", config = "require 'kg.plugins.comment'" })
@@ -233,9 +245,11 @@ return packer.startup({
 		use({ "dyng/ctrlsf.vim", config = "require 'kg.plugins.ctrlsf'" })
 		use({ "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" })
 		use({ "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" })
+    -- causes problems?
+		-- use({ "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" })
+
+		use({ "lucax88x/which-key.nvim", config = "require 'kg.plugins.which-key'", branch = "patch-1" })
 		-- use({ "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" })
-		-- Use branch with fix until https://github.com/folke/which-key.nvim/issues/226 is fixed
-		use({ "zeertzjq/which-key.nvim", branch = "patch-1", config = "require 'kg.plugins.which-key'" })
 		use({
 			"ThePrimeagen/harpoon",
 			config = "require 'kg.plugins.harpoon'",
@@ -246,9 +260,14 @@ return packer.startup({
 			requires = { "kyazdani42/nvim-web-devicons" },
 			config = "require 'kg.plugins.nvim-tree'",
 		})
+		use({
+			"anuvyklack/pretty-fold.nvim",
+			config = function()
+				require("kg.plugins.pretty-fold")
+			end,
+		})
 
 		-- status line
-
 		use({
 
 			"SmiteshP/nvim-gps",
