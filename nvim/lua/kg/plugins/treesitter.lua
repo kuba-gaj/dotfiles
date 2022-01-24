@@ -126,13 +126,15 @@ treesitter.setup({
 })
 
 local r = require("kg.utils.remaps")
-r.noremap("n", "<leader>tp", "<cmd>TSPlaygroundToggle<CR>", "treesitter-playground", "Treesitter playground")
+r.which_key('<leader>dt', 'Treesitter');
+
+r.noremap("n", "<leader>dtp", "<cmd>TSPlaygroundToggle<CR>", "treesitter-playground", "Treesitter playground")
 r.noremap(
 	"n",
-	"<leader>tt",
+	"<leader>dtt",
 	"<cmd>TSHighlightCapturesUnderCursor<CR>",
 	"treesitter-highlight-under-cursor",
-	"Shows highlight colors under cursor (theme)"
+	"Shows highlight colors under cursor"
 )
 r.map_virtual("o", "af", "Function outer motion")
 r.map_virtual("o", "if", "Function inner motion")

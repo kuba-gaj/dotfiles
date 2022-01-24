@@ -197,6 +197,6 @@ r.noremap(
 	"Installer LSP servers"
 )
 
-r.noremap("n", "<leader>lsl", "<cmd>LspInstallInfo<CR>", "lsp_install_server_info", "LSP servers install info")
+r.noremap("n", "<leader>lsi", "<cmd>LspInstallInfo<CR>", "lsp_install_server_info", "LSP servers install info")
 
 return M
