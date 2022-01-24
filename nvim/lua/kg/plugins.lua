@@ -195,7 +195,7 @@ return packer.startup({
 		-- Motions
 		use("tpope/vim-surround")
 		use("tpope/vim-repeat")
-		use({ "ggandor/lightspeed.nvim", config = "require 'kg.plugins.lightspeed'" })
+		use({ "phaazon/hop.nvim", config = "require 'kg.plugins.hop'" })
 		use({ "bkad/CamelCaseMotion", config = "require 'kg.plugins.camelcasemotion'" })
 		use({ "kevinhwang91/nvim-hlslens", config = "require 'kg.plugins.hlslens'" })
 
