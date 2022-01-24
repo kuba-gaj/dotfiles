@@ -19,15 +19,11 @@ local hint = require("hop.hint")
 local r = require("kg.utils.remaps")
 
 r.map("n", "s", function()
-	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = false })
+	hop.hint_char2({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = false })
 end, "hop", "Search")
 
 r.map("n", "S", function()
-	hop.hint_char1({ direction = hint.HintDirection.BEFORE_CURSOR, current_line_only = false })
-end, "hop", "Search")
-
-r.map("n", "f", function()
-	hop.hint_char1({ direction = hint.HintDirection.AFTER_CURSOR, current_line_only = false })
+	hop.hint_char2({ direction = hint.HintDirection.BEFORE_CURSOR, current_line_only = false })
 end, "hop", "Search")
 
 r.map("n", "f", function()
