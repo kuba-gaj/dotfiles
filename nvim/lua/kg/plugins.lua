@@ -246,7 +246,7 @@ return packer.startup({
 		use({ "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" })
 		use({ "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" })
     -- causes problems?
-		-- use({ "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" })
+		use({ "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" })
 
 		use({ "lucax88x/which-key.nvim", config = "require 'kg.plugins.which-key'", branch = "patch-1" })
 		-- use({ "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" })
@@ -269,20 +269,14 @@ return packer.startup({
 
 		-- status line
 		use({
-
 			"SmiteshP/nvim-gps",
-
 			requires = "nvim-treesitter/nvim-treesitter",
-
 			config = "require 'kg.plugins.gps'",
 		})
 
 		use({
-
 			"NTBBloodbath/galaxyline.nvim",
-
 			requires = "SmiteshP/nvim-gps",
-
 			config = "require 'kg.plugins.galaxyline'",
 		})
 	end,
