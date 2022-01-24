@@ -96,6 +96,7 @@ local servers = {
 	html = {},
 	jsonls = require("kg.lsp.servers.jsonls")(capabilities),
 	sumneko_lua = require("kg.lsp.servers.sumneko_lua")(),
+  tailwindcss = {},
 	terraformls = {},
 	tsserver = require("kg.lsp.servers.tsserver")(on_attach),
 	yamlls = require("kg.lsp.servers.yamlls")(capabilities),
@@ -104,7 +105,10 @@ local servers = {
 local default_lsp_config = {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	flags = { debounce_text_changes = 200 },
+	flags = {
+    debounce_text_changes = 200,
+    allow_incremental_sync = true,
+  },
 }
 
 for server_name, server_config in pairs(servers) do
