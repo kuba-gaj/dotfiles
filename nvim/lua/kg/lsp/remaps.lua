@@ -140,21 +140,21 @@ function M.set_default_on_buffer(client, bufnr)
 	end
 
 	if cap.renameProvider then
-		-- buf_set_keymap('n','<leader>tr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-		buf_set_keymap(
-			"n",
-			"<leader>fr",
-			"<cmd>lua require('renamer').rename({ empty = true })<cr>",
-			"lsp_rename_empty",
-			"Rename"
-		)
-		buf_set_keymap(
-			"n",
-			"<leader>rR",
-			"<cmd>lua require('renamer').rename({ empty = false })<cr>",
-			"lsp_rename",
-			"Rename with existing value"
-		)
+		buf_set_keymap('n','<leader>fr','<cmd>lua vim.lsp.buf.rename()<CR>', "lsp_rename", "Rename");
+		-- buf_set_keymap(
+		-- 	"n",
+		-- 	"<leader>fr",
+		-- 	"<cmd>lua require('renamer').rename({ empty = true })<cr>",
+		-- 	"lsp_rename_empty",
+		-- 	"Rename"
+		-- )
+		-- buf_set_keymap(
+		-- 	"n",
+		-- 	"<leader>rR",
+		-- 	"<cmd>lua require('renamer').rename({ empty = false })<cr>",
+		-- 	"lsp_rename",
+		-- 	"Rename with existing value"
+		-- )
 	end
 
 	buf_set_keymap(

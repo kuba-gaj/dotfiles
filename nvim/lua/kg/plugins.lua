@@ -62,14 +62,14 @@ return packer.startup({
 
 		-- Theming
 		use({
-      "ellisonleao/gruvbox.nvim",
-      config = "require 'kg.plugins.gruvbox'",
-      requires = { "rktjmp/lush.nvim" },
-    })
+			"ellisonleao/gruvbox.nvim",
+			config = "require 'kg.plugins.gruvbox'",
+			requires = { "rktjmp/lush.nvim" },
+		})
 
 		-- UI
 		use("MunifTanjim/nui.nvim")
-		use("stevearc/dressing.nvim")
+		use({ "stevearc/dressing.nvim", config = "require 'kg.plugins.dressing'" })
 		use({ "rcarriga/nvim-notify", config = "require 'kg.plugins.notify'" })
 
 		-- Treesitter
@@ -95,7 +95,7 @@ return packer.startup({
 			config = "require 'kg.plugins.telescope'",
 		})
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-    use({ "nvim-telescope/telescope-ui-select.nvim" })
+		use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 		-- LSP
 		use({ "neovim/nvim-lspconfig" })
@@ -114,11 +114,14 @@ return packer.startup({
 				{ "nvim-treesitter/nvim-treesitter" },
 			},
 		})
+
 		use({
-			"filipdutescu/renamer.nvim",
-			requires = { { "nvim-lua/plenary.nvim" } },
-			config = "require 'kg.plugins.renamer'",
+			"j-hui/fidget.nvim",
+			config = function()
+				require("kg.plugins.fidget")
+			end,
 		})
+
 		-- use {'stevearc/aerial.nvim', config = "require 'kg.plugins.aerial'"}
 		use({ "github/copilot.vim", config = "require 'kg.plugins.copilot'" })
 		use({
@@ -178,7 +181,7 @@ return packer.startup({
 				vim.g.glow_border = "rounded"
 			end,
 		})
-		use({ "vuki656/package-info.nvim", config = "require 'kg.plugins.package-info'" })
+		-- use({ "vuki656/package-info.nvim", config = "require 'kg.plugins.package-info'" })
 
 		-- Git
 		use({ "tpope/vim-fugitive", config = "require 'kg.plugins.fugitive'" })
@@ -245,7 +248,7 @@ return packer.startup({
 		use({ "dyng/ctrlsf.vim", config = "require 'kg.plugins.ctrlsf'" })
 		use({ "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" })
 		use({ "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" })
-    -- causes problems?
+		-- causes problems?
 		use({ "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" })
 
 		use({ "lucax88x/which-key.nvim", config = "require 'kg.plugins.which-key'", branch = "patch-1" })
