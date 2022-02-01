@@ -1,6 +1,5 @@
 require("impatient")
 require("kg.plugins")
-require("kg.utils")
 require("kg.settings")
 require("kg.remaps")
 require("kg.events")
