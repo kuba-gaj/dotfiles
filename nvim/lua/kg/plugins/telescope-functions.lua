@@ -9,6 +9,8 @@ local os_sep = Path.path.sep
 local pickers = require("telescope.pickers")
 local scan = require("plenary.scandir")
 
+local M = {}
+
 M.live_grep_in_folder = function(opts)
 	opts = opts or {}
 	local data = {}
