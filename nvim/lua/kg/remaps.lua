@@ -2,7 +2,7 @@ local r = require("kg.utils.remaps")
 local functions = require("kg.utils.functions")
 -- quit
 r.noremap("n", "<C-q>q", ":confirm qall<CR>", "quit_config", "Quits all with confirm")
-r.noremap("n", "<leader>q", "<cmd>q<CR>", "quit", "Quits editor")
+r.noremap("n", "Q", "<cmd>q<CR>", "quit", "Quits editor")
 r.noremap("n", "<leader>Q", "<cmd>q!<CR>", "quit_force", "Force quits editor")
 
 -- reload

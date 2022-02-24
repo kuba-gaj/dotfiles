@@ -104,7 +104,12 @@ return packer.startup({
 		use("onsails/lspkind-nvim")
 		use("jose-elias-alvarez/nvim-lsp-ts-utils")
 		use("nvim-lua/lsp-status.nvim")
-		use("ray-x/lsp_signature.nvim")
+
+		use({
+			"danymat/neogen",
+			config = "require 'kg.plugins.neogen'",
+			requires = "nvim-treesitter/nvim-treesitter",
+		})
 
 		use({
 			"ThePrimeagen/refactoring.nvim",
@@ -122,14 +127,7 @@ return packer.startup({
 			end,
 		})
 
-		-- use {'stevearc/aerial.nvim', config = "require 'kg.plugins.aerial'"}
 		use({ "github/copilot.vim", config = "require 'kg.plugins.copilot'" })
-		use({
-			"folke/trouble.nvim",
-			config = function()
-				require("kg.plugins.trouble")
-			end,
-		})
 
 		use({
 			"creativenull/efmls-configs-nvim",
@@ -142,6 +140,7 @@ return packer.startup({
 			"hrsh7th/nvim-cmp",
 			config = "require 'kg.plugins.cmp'",
 			requires = {
+				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
@@ -248,11 +247,13 @@ return packer.startup({
 		use({ "dyng/ctrlsf.vim", config = "require 'kg.plugins.ctrlsf'" })
 		use({ "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" })
 		use({ "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" })
+
+		use({ "hoschi/yode-nvim", config = "require 'kg.plugins.yode'" })
+		use({	"Everduin94/nvim-quick-switcher", config = "require 'kg.plugins.quick-switcher'" })
 		-- causes problems?
 		use({ "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" })
 
-		use({ "lucax88x/which-key.nvim", config = "require 'kg.plugins.which-key'", branch = "patch-1" })
-		-- use({ "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" })
+		use({ "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" })
 		use({
 			"ThePrimeagen/harpoon",
 			config = "require 'kg.plugins.harpoon'",

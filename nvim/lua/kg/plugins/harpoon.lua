@@ -1,10 +1,12 @@
-local r = require("kg.utils.remaps")
 local present, harpoon = pcall(require, "harpoon")
 
 if not present then
 	return
 end
 
+local r = require("kg.utils.remaps")
+
+r.which_key("<leader>h", "harpoon")
 harpoon.setup({})
 
 r.noremap("n", "<leader>ha", function()

@@ -4,15 +4,12 @@ if not present then
 	return
 end
 
-vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_git_hl = 0
-vim.g.nvim_tree_quit_on_open = 1
--- vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_root_folder_modifier = ":~"
+-- vim.g.nvim_tree_root_folder_modifier = ":~" -- :h filename-modifiers
 vim.g.nvim_tree_show_icons = {
-	git = 0,
+	git = 1,
 	folders = 1,
 	files = 1,
 	folder_arrows = 0,
@@ -59,12 +56,20 @@ local list = {
 nvim_tree.setup({
 	auto_close = false,
 	auto_open = true,
-	diagnostics = { enable = true },
+	diagnostics = { enable = true }, -- todo: enable when it stops throwing errors
 	-- project integration
 	-- update_cwd = true,
 	update_focused_file = { enable = true, update_cwd = false },
 	view = { width = "30%", auto_resize = true, mappings = { list = list } },
+	actions = {
+		open_file = {
+			quit_on_open = true,
+      window_picker = {
+        enable = false,
+      }
+		},
+	},
 })
 
 local r = require("kg.utils.remaps")
-r.noremap("n", "-", "<cmd>NvimTreeToggle<CR>", "explorer_toggle", "Toggle explorer")
+r.noremap("n", "-", "<cmd>NvimTreeFindFileToggle<CR>", "explorer_toggle", "Toggle explorer")

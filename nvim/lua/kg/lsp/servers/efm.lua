@@ -8,6 +8,7 @@ local lsp = require("lspconfig")
 -- paci luacheck
 -- paci shfmt-bin
 -- paci shellcheck-bin
+-- paci yamllint
 --
 -- https://github.com/creativenull/efmls-configs-nvim/blob/main/supported-linters-and-formatters.md
 local alex = require("efmls-configs.linters.alex")

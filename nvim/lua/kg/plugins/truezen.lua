@@ -9,4 +9,5 @@ true_zen.setup({
 
 local r = require("kg.utils.remaps")
 
+r.which_key("<leader>z", "zen")
 r.noremap("n", "<leader>zz", "<cmd>:TZFocus<CR>", "zen_focus", "Zen Focus")
