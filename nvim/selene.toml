@@ -1,0 +1,8 @@
+std="lua51+vim"
+#
+# [selene]
+# base = "lua51"
+# name = "VimEnter"
+#
+# [vim]
+# any = true

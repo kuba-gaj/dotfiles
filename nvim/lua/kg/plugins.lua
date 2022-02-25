@@ -129,11 +129,12 @@ return packer.startup({
 
 		use({ "github/copilot.vim", config = "require 'kg.plugins.copilot'" })
 
-		use({
-			"creativenull/efmls-configs-nvim",
-			-- tag = 'v0.1.1', -- tag is optional
-			requires = { "neovim/nvim-lspconfig" },
-		})
+		-- use({
+		-- 	"creativenull/efmls-configs-nvim",
+		-- 	-- tag = 'v0.1.1', -- tag is optional
+		-- 	requires = { "neovim/nvim-lspconfig" },
+		-- })
+		use({ "jose-elias-alvarez/null-ls.nvim" })
 
 		-- Completion
 		use({
@@ -249,7 +250,7 @@ return packer.startup({
 		use({ "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" })
 
 		use({ "hoschi/yode-nvim", config = "require 'kg.plugins.yode'" })
-		use({	"Everduin94/nvim-quick-switcher", config = "require 'kg.plugins.quick-switcher'" })
+		use({ "Everduin94/nvim-quick-switcher", config = "require 'kg.plugins.quick-switcher'" })
 		-- causes problems?
 		use({ "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" })
 
