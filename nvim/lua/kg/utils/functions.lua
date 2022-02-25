@@ -8,12 +8,14 @@ function M.tprint(table)
 	print(vim.inspect(table))
 end
 
+local reload = require("plenary.reload")
+
 M.reload = function()
 	local counter = 0
 
 	for moduleName in pairs(package.loaded) do
 		if M.starts_with(moduleName, "kg.") then
-			require("plenary.reload").reload_module(moduleName)
+			reload.reload_module(moduleName)
 
 			counter = counter + 1
 		end
@@ -33,14 +35,13 @@ function M.link_highlight(from, to, override)
 	local hl_exists, _ = pcall(vim.api.nvim_get_hl_by_name, from, false)
 	if override or not hl_exists then
 		-- vim.cmd(("highlight link %s %s"):format(from, to))
-    vim.api.nvim_set_hl(0, from, { link = to });
+		vim.api.nvim_set_hl(0, from, { link = to })
 	end
 end
 
-
 M.highlight_bg = function(group, col)
 	-- vim.cmd("hi " .. group .. " guibg=" .. col)
-  vim.api.nvim_set_hl(0, group, { bg = col })
+	vim.api.nvim_set_hl(0, group, { bg = col })
 end
 
 -- Define fg color
@@ -48,7 +49,7 @@ end
 -- @param color Color
 M.highlight_fg = function(group, col)
 	-- vim.cmd("hi " .. group .. " guifg=" .. col)
-  vim.api.nvim_set_hl(0, group, { fg = col })
+	vim.api.nvim_set_hl(0, group, { fg = col })
 end
 
 -- Define bg and fg color
@@ -57,7 +58,11 @@ end
 -- @param bgcol Bg Color
 M.highlight_fg_bg = function(group, fgcol, bgcol)
 	-- vim.cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
-  vim.api.nvim_set_hl(0, group, { bg = bgcol, fg = fgcol })
+	vim.api.nvim_set_hl(0, group, { bg = bgcol, fg = fgcol })
+end
+
+M.glob_split = function(pattern)
+	return vim.split(vim.fn.glob(pattern), "\n")
 end
 
 return M

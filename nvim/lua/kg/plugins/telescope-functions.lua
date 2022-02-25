@@ -8,8 +8,16 @@ local make_entry = require("telescope.make_entry")
 local os_sep = Path.path.sep
 local pickers = require("telescope.pickers")
 local scan = require("plenary.scandir")
+local tprint = require("kg.utils.functions").tprint
 
 local M = {}
+
+M.search_config = function()
+	require("telescope.builtin").find_files({
+		prompt_title = "< VimConfig >",
+		cwd = "$HOME/.config/nvim",
+	})
+end
 
 M.live_grep_in_folder = function(opts)
 	opts = opts or {}
@@ -47,6 +55,48 @@ M.live_grep_in_folder = function(opts)
 			return true
 		end,
 	}):find()
+end
+
+---Sort and filter lsp results
+local function sort_null_ls_as_last(lsp_results)
+	local results = {}
+	local null_results = {}
+
+	for client_id, result in ipairs(lsp_results) do
+		local client = vim.lsp.get_client_by_id(client_id)
+		local is_null_ls = client.name == "null-ls"
+		print(client.name, is_null_ls)
+
+		if is_null_ls then
+			table.insert(null_results, result)
+		else
+			table.insert(results, result)
+		end
+	end
+
+	-- tprint(lsp_results)
+	-- tprint(null_results)
+	-- tprint(results)
+
+	-- Sort null-ls actions to the end
+	return vim.list_extend(results, null_results)
+end
+
+M.lsp_code_actions = function(opts)
+	-- Attach to vim.lsp.buf_request_sync
+	local buf_request_sync = vim.lsp.buf_request_sync
+
+	vim.lsp.buf_request_sync = function(...)
+		local lsp_results, err = buf_request_sync(...)
+		vim.lsp.buf_request_sync = buf_request_sync
+		if err then
+			return nil, err
+		end
+
+		return sort_null_ls_as_last(lsp_results), nil
+	end
+
+	require("telescope.builtin").lsp_code_actions(opts)
 end
 
 return M

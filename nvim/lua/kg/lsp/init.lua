@@ -8,6 +8,7 @@ if not present_lsp_installer then
 	return
 end
 
+require("kg.lsp.null-ls")
 local remaps = require("kg.lsp.remaps")
 
 local presentLspStatus, lspStatus = pcall(require, "lsp-status")
@@ -90,7 +91,6 @@ local servers = {
 	bashls = {},
 	cssls = {},
 	dockerls = {},
-	efm = require("kg.lsp.servers.efm")(),
 	eslint = {},
 	graphql = {},
 	html = {},

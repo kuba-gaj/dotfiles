@@ -4,6 +4,7 @@ local M = {}
 
 local telescope_builtin = require("telescope.builtin")
 local lsp_functions = require("kg.lsp.functions")
+local telescope_functions = require("kg.plugins.telescope-functions")
 
 local function generate_buf_keymapper(bufnr)
 	return function(type, input, output, unique_identifier, description, extraOptions)
@@ -72,7 +73,8 @@ function M.set_default_on_buffer(client, bufnr)
 
 	if cap.codeActionProvider then
 		buf_set_keymap("n", "<leader>fa", function()
-			telescope_builtin.lsp_code_actions({ timeout = 2000 })
+			-- telescope_builtin.lsp_code_actions({ timeout = 2000 })
+			telescope_functions.lsp_code_actions({ timeout = 2000 })
 		end, "lsp_code_actions", "Code actions")
 		buf_set_keymap("v", "<leader>fa", function()
 			telescope_builtin.lsp_code_actions({ timeout = 2000 })

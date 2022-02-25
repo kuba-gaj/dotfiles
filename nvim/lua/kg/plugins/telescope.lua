@@ -19,7 +19,7 @@ telescope.setup({
 		},
 		sorting_strategy = "descending",
 		layout_strategy = "horizontal",
-		layout_config = { prompt_position = "bottom" },
+		-- layout_config = { prompt_position = "bottom" },
 	},
 	pickers = {
 		buffers = {
@@ -36,7 +36,12 @@ telescope.setup({
 		git_files = { previewer = false, theme = "dropdown" },
 		registers = { theme = "dropdown" },
 		lsp_references = { previewer = false },
-		lsp_code_actions = { theme = "cursor" },
+		lsp_code_actions = { 
+      theme = "cursor",
+      layout_config = {
+        height = 12
+      },
+    },
 		lsp_range_code_actions = { theme = "cursor" },
 		loclist = { previewer = false },
 	},
@@ -91,10 +96,11 @@ r.noremap(
 	"telescope_live_grep_in_folder",
 	"Live grep in folder"
 )
+
 r.noremap("n", "<leader>pf", builtin.find_files, "telescope_files", "Find files")
 r.noremap("n", "<leader>po", builtin.oldfiles, "telescope_old_files", "Find files")
 r.noremap("n", "<leader>pg", builtin.git_files, "telescope_git_files", "Find git files")
--- r.noremap("n", "<leader>cc", functions.search_config, "telescope_search_config", "Search neovim config")
+r.noremap("n", "<leader>cc", telescope_functions.search_config, "telescope_search_config", "Search neovim config")
 r.noremap("n", "<leader>/h", builtin.highlights, "telescope_highlights", "Search highlights")
 r.noremap("n", "<leader>/C", builtin.command_history, "telescope_command_history", "Search command history")
 r.noremap("n", "<leader>/c", builtin.commands, "telescope_commands", "Search commands")
