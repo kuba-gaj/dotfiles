@@ -239,6 +239,7 @@ return packer.startup({
 		use({ "lukas-reineke/indent-blankline.nvim", config = "require 'kg.plugins.indent-blankline'" })
 		use({ "norcalli/nvim-colorizer.lua", config = "require 'kg.plugins.colorizer'" })
 		use({ "karb94/neoscroll.nvim", config = "require 'kg.plugins.neoscroll'" })
+    use({ "monaqa/dial.nvim", config =  "require 'kg.plugins.dial'" })
 
 		-- General
 		use("mbbill/undotree")
