@@ -9,6 +9,7 @@ telescope.setup({
 		-- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
 		vimgrep_arguments = {
 			"rg",
+      "--hidden",
 			"--color=never",
 			"--no-heading",
 			"--with-filename",
