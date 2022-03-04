@@ -1,0 +1,24 @@
+profile home_old {
+  output "ViewSonic Corporation VP2770 SERIES T56133400103" position 0,0 mode 2560x1440
+  output eDP-1 position 2560,0
+  exec dock home "ViewSonic Corporation VP2770 SERIES T56133400103"
+}
+
+profile home {
+  output "Philips Consumer Electronics Company PHL 499P9 AU02015015203" position 0,0 mode 5120x1440
+  output eDP-1 disable
+  # exec makoctl reload
+  exec dock home "Philips Consumer Electronics Company PHL 499P9 AU02015015203"
+}
+
+profile lap {
+  output eDP-1 position 0,0 scale 1
+  # exec makoctl reload
+  exec dock lap
+}
+
+profile trint {
+  output eDP-1 position 0,0 scale 1
+  output "Dell Inc. DELL U2421HE C4RJS83" position 1920,0 mode 1920x1080
+  exec dock office
+}

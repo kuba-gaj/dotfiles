@@ -54,7 +54,6 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source /usr/share/nvm/init-nvm.sh
 nvm use 14
 
-complete -o nospace -C /usr/bin/vault vault
 # tabtab source for serverless package
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
