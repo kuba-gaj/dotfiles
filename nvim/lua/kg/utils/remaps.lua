@@ -17,6 +17,9 @@ local function check_conflicts(type, input, unique_identifier)
 end
 
 local function try_add_to_which_key_by_input(mode, input, description)
+  if (mode == "") then
+    mode = {"n", "v", "o"}
+  end
 	if present_which_key then
     if (type(mode) == "string") then
 			which_key.register({

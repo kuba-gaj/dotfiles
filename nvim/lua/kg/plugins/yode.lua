@@ -15,7 +15,8 @@ r.map(
 	"<leader>yc",
 	":YodeCreateSeditorFloating<CR>",
 	"yode_create_editor_floating",
-	"Create floating Yode editor"
+ "Create floating Yode editor"
+ 
 )
 r.map(
 	"",
@@ -27,7 +28,7 @@ r.map(
 
 -- vim.cmd("map <Leader>yc :YodeCreateSeditorFloating<CR>")
 r.map("n", "<leader>yd", "<cmd>:YodeBufferDelete<CR>", "yode_buffer_delete", "Delete Yode buffer")
-r.map("i", "<leader>yd", "<esc><cmd>:YodeBufferDelete<CR>", "yode_buffer_delete_from_insert", "Delete Yode buffer")
+-- r.map("i", "<leader>yd", "<esc><cmd>:YodeBufferDelete<CR>", "yode_buffer_delete_from_insert", "Delete Yode buffer")
 
 -- map <C-W>r :YodeLayoutShiftWinDown<CR>
 -- map <C-W>R :YodeLayoutShiftWinUp<CR>
