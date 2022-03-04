@@ -1,0 +1,198 @@
+# vim: filetype=i3config
+
+### Sway config
+# Read `man 5 sway` for a complete reference.
+include conf.d/*
+
+# mod1 = alt, mod4 = logo
+set $mod Mod1
+set $sup Mod4
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Floating windows by default
+for_window [class=".*"] floating enable
+for_window [app_id=".*"] floating enable
+
+#
+### Fn keys
+#
+# socket for osd
+  exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+#
+# Audio
+  bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob
+  bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob
+  bindsym XF86AudioMute exec pamixer -t
+  # bindsym XF86AudioMute exec pamixer -t && pamixer --get-volume > $SWAYSOCK.wob
+#
+# Brightness
+  bindsym XF86MonBrightnessUp exec light -A 10 && light -G | cut -d'.' -f1 >> $SWAYSOCK.wob
+  bindsym XF86MonBrightnessDown exec light -U 10 && light -G | cut -d'.' -f1 >> $SWAYSOCK.wob
+#
+# Media player controls
+  bindsym XF86AudioPlay exec playerctl play-pause
+  bindsym XF86AudioPause exec playerctl play-pause
+  bindsym XF86AudioNext exec playerctl next
+  bindsym XF86AudioPrev exec playerctl previous
+
+#
+### Quick access apps
+#
+set $quickAccess move position center, resize set 1920 1200, scratchpad show
+# set $quickAccess move position center, resize set 1900 1000, scratchpad show
+set $quickWindow move to scratchpad, sticky enable
+bindsym $sup+Space scratchpad hide
+#
+# Terminal
+  set $term kitty
+  bindsym $mod+apostrophe exec $term
+  for_window [app_id="^kitty$"] floating disable
+
+  set $qterm kitty --class qterm --config ~/.config/kitty/qterm.conf
+  bindsym $mod+Return [app_id="^qterm$"] $quickAccess
+  bindsym $mod+Shift+Return exec $qterm
+  for_window [app_id="^qterm$"] $quickWindow
+  exec $qterm
+
+# gotop
+  set $gotop kitty --class gotop --config ~/.config/kitty/qterm.conf gotop
+  bindsym $sup+backslash [app_id="^gotop$"] $quickAccess
+  bindsym $sup+Shift+backslash exec $gotop
+  for_window [app_id="^gotop$"] $quickWindow
+  exec $gotop
+
+# vifm
+  set $fm kitty --class vifm --config ~/.config/kitty/qterm.conf vifm
+  bindsym $mod+Shift+backslash exec $fm
+  bindsym $mod+backslash [app_id="^vifm$"] $quickAccess
+  for_window [app_id="^vifm$"] $quickWindow
+  exec $fm
+
+# music
+  set $spt kitty --class spt --config ~/.config/kitty/qterm.conf spt
+  bindsym $mod+Shift+delete exec $spt
+  bindsym $mod+delete [app_id="^spt$"] $quickAccess
+  for_window [app_id="^spt$"] $quickWindow
+  # exec $spt
+
+# pulse audio
+  set $pamixer kitty --class ncpamixer --config ~/.config/kitty/qterm.conf ncpamixer
+  bindsym $sup+Shift+Delete exec $pamixer
+  bindsym $sup+Delete [app_id="^ncpamixer$"] $quickAccess
+  for_window [app_id="^ncpamixer$"] $quickWindow
+  exec $pamixer
+
+# wavebox
+  set $wavebox /opt/wavebox.io/wavebox/wavebox-launcher
+  bindsym $mod+backspace [class="^Wavebox$"] $quickAccess
+  bindsym $mod+Shift+backspace exec $wavebox
+  for_window [class="^Wavebox$"] $quickWindow
+  exec $wavebox
+
+# firefox
+  for_window [app_id="firefox"] floating disable
+  bindsym $sup+Return [app_id="[Ff]irefox" title="FFS-priv"] $quickAccess
+  bindsym $sup+Backspace [app_id="[Ff]irefox" title="FFS-work"] $quickAccess
+  bindsym $sup+apostrophe exec firefox
+  for_window [app_id="[Ff]irefox" title="FFS-priv"] $quickWindow
+  for_window [app_id="[Ff]irefox" title="FFS-work"] $quickWindow
+  # exec sleep 5 && firefox --MOZ_LOG_FILE=/home/kuba/firefox.log
+
+#Browser
+    for_window [window_role="pop-up"] floating enable
+    for_window [window_role="bubble"] floating enable
+    for_window [window_role="task_dialog"] floating enable
+    for_window [window_role="Preferences"] floating enable
+    for_window [window_type="dialog"] floating enable
+    for_window [window_type="menu"] floating enable
+    for_window [window_role="About"] floating enable
+
+# Use with https://addons.mozilla.org/en-US/firefox/addon/window-titler/
+# The extension remembers the title for each window when firefox is exited.
+# When firefox is started (or you assign a tag to a window) these will move it to the right workspace.
+#
+# Note: using assign does not seem to work for these
+# Can run command: swaymsg '[title="FFW1.*"] move window to workspace 1'
+for_window [app_id="[Ff]irefox" title="FFW1.*"] move window to workspace 1
+for_window [app_id="[Ff]irefox" title="FFW2.*"] move window to workspace 2
+for_window [app_id="[Ff]irefox" title="FFW3.*"] move window to workspace 3
+for_window [app_id="[Ff]irefox" title="FFW4.*"] move window to workspace 4
+for_window [app_id="[Ff]irefox" title="FFW5.*"] move window to workspace 5
+for_window [app_id="[Ff]irefox" title="FFW6.*"] move window to workspace 6
+for_window [app_id="[Ff]irefox" title="FFW7.*"] move window to workspace 7
+for_window [app_id="[Ff]irefox" title="FFW8.*"] move window to workspace 8
+for_window [app_id="[Ff]irefox" title="FFW9.*"] move window to workspace 9
+for_window [app_id="[Ff]irefox" title="FFW10.*"] move window to workspace 10
+
+# disable floating for some other stuff
+  # for_window [class="robo3t"] floating disable
+  # for_window [app_id="robo3t"] floating disable
+  # for_window [title="Zoom Meeting"] floating disable
+  # for_window [title="Zoom - Free Account"] floating enable
+  # for_window [class="zoom" title="Dummy video device (0x0000)"] move to scratchpad
+# pdf
+  # set $pdf zathura --fork "learn/cur/Linux Command Line and Shell Scripting Bible/Linux Command Line and Shell Scripting Bible 3rd Edition {PRG}.pdf"
+  # set $pdf zathura --fork "learn/go/Go in Action/Go_in_Action.pdf"
+  # bindsym $sup+Tab [app_id="zathura"] $quickAccess
+  # bindsym $sup+Shift+Tab exec $pdf
+  # for_window [app_id="zathura"] $quickWindow
+  # exec $pdf
+
+#
+# Utility apps
+#
+
+# screen share
+#
+  set $screenrecorder sway-screenshare
+  bindsym $mod+Shift+R exec $screenrecorder
+
+# app launcher
+  set $menu kitty --class launcher --config ~/.config/kitty/launcher.conf env TERMINAL_COMMAND=kitty sway-launcher-desktop
+  bindsym $mod+d exec $menu
+  for_window [app_id="^launcher$"] sticky enable
+#
+# bitwarden (passwords)
+  bindsym $sup+p exec bwmenu --auto-lock -1 --no-clear
+#
+# network manager
+  bindsym $sup+n exec --no-startup-id networkmanager_dmenu
+#
+# bluetooth connection
+  bindsym $sup+b exec --no-startup-id rofi-bluetooth
+#
+# clipman
+  # bindsym $sup+c exec clipman pick
+  # exec clipman -d # unknown flag, breaks other stuff
+#
+# mako notifications
+  bindsym $sup+l exec makoctl dismiss
+  bindsym $sup+Shift+l exec makoctl dismiss --all
+  bindsym $sup+Shift+k exec makoctl invoke
+#
+# screenshots
+  bindsym $sup+s exec slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+  bindsym $sup+Shift+s exec grim $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+
+# AUTOSTART services
+exec dropbox-cli start
+# exec ydotoold
+# needed for vpn
+exec lxqt-policykit-agent
+exec mako
+# https://github.com/emersion/kanshi/issues/43
+# exec_always pkill kanshi; exec kanshi
+exec sleep 1 && kanshi
+# better tiling
+exec autotiling
+# automount
+exec udiskie
+
+exec flashfocus
+
+# systemd
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+# exec sleep 1 && makoctl reload
+# exec sleep 3 && redshift
