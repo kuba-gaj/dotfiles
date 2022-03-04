@@ -252,7 +252,6 @@ return packer.startup({
 
 		use({ "hoschi/yode-nvim", config = "require 'kg.plugins.yode'" })
 		use({ "Everduin94/nvim-quick-switcher", config = "require 'kg.plugins.quick-switcher'" })
-		-- causes problems?
 		use({ "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" })
 
 		use({ "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" })
@@ -272,6 +271,8 @@ return packer.startup({
 				require("kg.plugins.pretty-fold")
 			end,
 		})
+
+    use({ "mickael-menu/zk-nvim", config="require 'kg.plugins.zk'"})
 
 		-- status line
 		use({

@@ -20,11 +20,11 @@ local function try_add_to_which_key_by_input(input, description)
 	if present_which_key then
 		local leader_index = string.find(input, "<leader>")
 		-- print(input)
-		if leader_index then
+		-- if leader_index then
 			which_key.register({
 				[input] = description,
 			})
-		end
+		-- end
 	end
 end
 

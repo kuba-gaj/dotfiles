@@ -24,6 +24,7 @@ treesitter.setup({
 	},
 	highlight = {
 		enable = true,
+    additional_vim_regex_highlighting = { "markdown" },
 	},
 	matchup = {
 		enable = true,

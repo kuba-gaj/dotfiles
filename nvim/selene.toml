@@ -1,4 +1,5 @@
-std="lua51+vim"
+std="vim"
+# std="lua51+vim"
 #
 # [selene]
 # base = "lua51"

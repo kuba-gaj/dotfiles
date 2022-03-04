@@ -9,21 +9,39 @@ end
 -- paci shfmt-bin
 -- paci shellcheck-bin
 -- paci yamllint
-
+-- paci hadolint-bin
+-- paci fixjson
+-- paci write-good
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
+local with_root_file = function(builtin, file)
+  return builtin.with {
+    condition = function(utils)
+      return utils.root_has_file(file)
+    end,
+  }
+end
+
+local with_diagnostics_code = function(builtin)
+  return builtin.with {
+    diagnostics_format = "#{m} [#{c}]",
+  }
+end
+
 null_ls.setup({
  debug = false,
  sources = {
-   diagnostics.actionlint,
-   diagnostics.selene,
+   -- diagnostics.actionlint,
+   with_root_file(diagnostics.selene, "selene.toml"),
+   with_diagnostics_code(diagnostics.shellcheck),
    diagnostics.shellcheck,
    diagnostics.zsh,
    diagnostics.stylelint,
    diagnostics.yamllint,
+   diagnostics.hadolint,
 
    formatting.prettierd,
    formatting.stylelint,
@@ -31,8 +49,10 @@ null_ls.setup({
    formatting.shfmt,
    formatting.sqlformat,
    formatting.xmllint,
-
+   formatting.fixjson,
+   with_root_file(formatting.stylua, "stylua.toml"),
    code_actions.gitsigns,
+   code_actions.gitrebase,
    code_actions.refactoring,
    code_actions.shellcheck
  },
