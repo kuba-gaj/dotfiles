@@ -1,3 +1,4 @@
 Session.vim 
 .gitsecret/keys/random_seed
 !*.secret
+waybar/modules/crypto/config.ini
