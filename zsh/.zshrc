@@ -21,6 +21,7 @@ alias ll='ls -l'
 alias lla='ls -la'
 # or exa (todo: remove one)
 
+alias cat='bat --paging=never'
 # alias git=hub
 # alias gpr=git pull-request
 
@@ -59,7 +60,7 @@ complete -o nospace -C /usr/bin/vault vault
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 # change tab title to current dir
-function precmd () {
+function precmd() {
   window_title="\033]0;${PWD##*/}\007"
   echo -ne "$window_title"
 }
