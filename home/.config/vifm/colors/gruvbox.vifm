@@ -1,5 +1,3 @@
- gruvbox color scheme approximation for vifm
-
 " Reset all styles first
 highlight clear
 
