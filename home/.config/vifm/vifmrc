@@ -1,0 +1,148 @@
+" vim: filetype=vifm
+source ~/.config/vifm/vifmshortcuts
+
+set vicmd=$EDITOR
+set syscalls " use vifm for file operations for progress etc
+set nofollowlinks " auto resolve symlinks on l or Enter
+set sortnumbers " natural sort of numbers within text
+set undolevels=100
+set wildmenu
+set wildstyle=popup
+set scrolloff=4
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set confirm=permdelete
+set dotdirs=rootparent
+
+colorscheme gruvbox
+
+" window management
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-o> <C-w>o
+map <C-s> <C-w>s
+map <C-v> <C-w>v
+
+" rename
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
+
+" yanking
+" make a backup copy in the same pane
+nmap yp :clone <cr>
+" path to directory
+nnoremap yd :!echo %d | wl-copy %i<cr>
+" path to file
+nnoremap yf :!echo %c:p | wl-copy %i<cr>
+" copy to opposite pane
+" nmap yy :!copy %f %D<cr>
+" move to opposite pane
+" nmap yY :!move %f %D<cr>
+
+" other
+map R :restart<CR>
+nnoremap o :file &<cr>
+map mkd :mkdir<space>
+nmap <space> tj
+
+" file actions
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+map E :!$EDITOR %f<CR>
+map X :!ext %f &<CR>
+
+" other commands (to review)
+nnoremap zo :sync %c<CR><Tab>
+" map x :!sxiv -ft * 2>/dev/null &<CR>
+" map bg :!setbg %f &<CR>
+" nnoremap s :shell<cr>
+" nnoremap ,w :set wrap!<cr>
+
+fileview */ tree %c -L 1 --dirsfirst
+fileview ../ tree %c -L 1 --dirsfirst
+fileviewer *.html w3m -dump %c
+filextype *.html,*.htm firefox %f 2>/dev/null &
+
+fileviewer *.docx docx2txt %c -
+fileviewer *.odt odt2txt %c -
+
+filetype *.csv,*.xlsx sc-im %c
+fileviewer *.csv sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
+
+filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus mpv --no-audio-display --input-ipc-server=/tmp/mpvsoc$(date +%%s) %c
+filextype *.pdf,*.ps,*.eps,*.ps.gz,*.djvu,*.epub zathura %f 2>/dev/null &,
+fileviewer *.pdf pdftotext -l 1 -nopgbrk %c -
+fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.qt,*.divx,*.as[fx],*mp3,*.flac file
+filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx] umpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) %f 2>/dev/null &,
+
+fileview *.zip,*.rar,*.tar.gz atool -l %f
+filetype *.zip,*.rar,*.tar.gz ext %f
+
+fileviewer *.[1-8] man ./%c | col -b
+filetype *.[1-8] man ./%c
+
+fileviewer *.jpg,*.jpeg,*.png,*.ico
+  \ kitty-img-preview %pw %ph %px %py %c 2>/dev/null
+  \ %pc
+  \ kitty-img-preview clear 2>/dev/null
+
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.ico,*.gif,*.xpm,*.svg  rotdir %f 2>/dev/null | imv 2>/dev/null &
+
+set vifminfo=dhistory,chistory,tui,shistory,phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
+" GETTING ICONS TO DISPLAY IN VIFM
+" You need the next 14 lines!
+
+" file types
+set classify=' :dir:/, :exe:, :reg:, :link:'
+" various file names
+set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+" archives
+set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+" images
+set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+" audio
+set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+" media
+set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
+" office files
+set classify+=' ::*.doc,,*.docx::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
+
+" trash-cli to handle trash
+" nmap <del> :!trash-put %f<cr>
+" nmap dd :!trash-put %f<cr>
+" nmap u :!trash-restore<cr>
+" nmap DD :!trash-empty <cr>
+
+" :com[mand][!] command_name action
+" The following macros can be used in a command
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %m run the command in a menu window
+
+
+command! fzf :execute 'goto "'.system('fd --type file --hidden --exclude .git --color always --follow | fzf --height 10 2>/dev/tty ').'"%IU' | redraw
+
+command! fzfD :execute 'cd "'.system('fd --type d . $HOME | fzf --height 10 2>/dev/tty ').'"%IU' | redraw
+nnoremap <c-f> :fzfD<cr>
+nnoremap <c-p> :fzf<cr>
+
+" Fast way to add bmark without having to type the folder name (shortcut)
+command! fmark :execute 'bmark "' .system('echo "${PWD##*/}"').'"'
+nnoremap M :fbmark<cr>
+
+command! fzfbookmarks :execute "normal! :bmarks\r:write ~/.vifm/fzf-read/bookmarks\rq"
+                   \ | execute 'cd "'.system('cat ~/.vifm/fzf-read/bookmarks | sed "s/:.*//" |  fzf 2>/dev/tty').'"'
+nnoremap <c-g> :fzfbookmarks<cr>
