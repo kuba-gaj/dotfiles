@@ -2,3 +2,5 @@ Session.vim
 .gitsecret/keys/random_seed
 !*.secret
 waybar/modules/crypto/config.ini
+home/.config/npm/npmrc
+home/.config/spotifyd/spotifyd.conf
