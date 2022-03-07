@@ -26,9 +26,19 @@ export DOCKER_HIDE_LEGACY_COMMANDS=true
 
 export KITTY_LISTEN_ON=/tmp/mykitty
 export KITTY_CONFIG_DIRECTORY=$XDG_CONFIG_HOME/kitty
-
 #  zettlekasten notes with zk
 export ZK_NOTEBOOK_DIR=$HOME/notes
+
+# enable smooth scrolling, blured backgrounds and window animations
+# may be causing some bugs
+# export NEOVIDE_MULTIGRID=true
+
+# current folder as tab
+# export ZSH_TAB_TITLE_ONLY_FOLDER=true
+# export ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
+# export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
+# export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
+# export ZSH_TAB_TITLE_PREFIX=""
 
 # Homebrew
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)

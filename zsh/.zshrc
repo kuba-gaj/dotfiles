@@ -58,8 +58,9 @@ nvm use 14
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
-# change tab title to current dir
-function precmd() {
-  window_title="\033]0;${PWD##*/}\007"
-  echo -ne "$window_title"
-}
+# function precmd () {
+  # window_title="\033]0;${PWD##*/}\007"
+  # echo -ne "$window_title"
+  # echo "^Title"
+#   print -Pn "\e]0;%~\a"
+# }

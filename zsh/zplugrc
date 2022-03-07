@@ -16,7 +16,7 @@ zplug "modules/directory", from:prezto
 zplug "modules/docker", from:prezto
 zplug "modules/editor", from:prezto
 zplug "modules/history", from:prezto
-# zplug "modules/terminal", from:prezto, defer:2 # sets terminal window and tab titles
+# zplug "modules/terminal", from:prezto # sets terminal window and tab titles
 
 # zplug "modules/history-substring-search", from:prezto, defer:2
 
@@ -35,6 +35,7 @@ zplug "mafredri/zsh-async", defer:0
 zplug "seebi/dircolors-solarized"
 zplug "djui/alias-tips", use:alias-tips.plugin.zsh, defer:2
 zplug "jeffreytse/zsh-vi-mode", defer:2
+# zplug "trystan2k/zsh-tab-title", defer:1
 # fzf needs to be restored after zsh-vi-mode plugin
 zvm_after_init() {
     source $ZDOTDIR/plugins/fzf.zsh
