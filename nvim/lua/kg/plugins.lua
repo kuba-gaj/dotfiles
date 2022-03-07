@@ -56,7 +56,7 @@ return packer.startup({
 
 		-- Need to load first
 		use({ "lewis6991/impatient.nvim", rocks = "mpack" })
-		use({ "nathom/filetype.nvim" })
+		-- use({ "nathom/filetype.nvim" }) -- breaks bqf preview syntax hightlighting (https://github.com/kevinhwang91/nvim-bqf/issues/43)
 		use("nvim-lua/plenary.nvim")
 		use("kyazdani42/nvim-web-devicons")
 
