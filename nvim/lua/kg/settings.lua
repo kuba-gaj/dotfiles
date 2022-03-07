@@ -79,6 +79,9 @@ local options = {
   splitbelow = true,
   splitright = true,
 
+  guifont = 'Operator Mono SSm Lig Book:h13',
+  title = true,
+
 }
 
 for k, v in pairs(options) do
@@ -97,8 +100,14 @@ vim.opt.shortmess:append("c");
 
 vim.o.foldlevelstart = 99; -- start file with all folds opened
 vim.wo.foldcolumn = '0'; -- defines 1 col at window left, to indicate folding
-
 -- using treesitter for folding
 vim.wo.foldmethod = 'expr';
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()';
-
+-- neovide
+-- vim.g.neovide_refresh_rate = 60;
+vim.g.neovide_cursor_animation_length = 0;
+vim.g.neovide_cursor_trail_length = 0;
+-- vim.g.neovide_cursor_animate_command_line = 0;
+vim.g.neovide_cursor_antialiasing = 1;
+-- vim.g.neovide_no_idle = 1;
+-- vim.g.neovide_transparency=0.3;

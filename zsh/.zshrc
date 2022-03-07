@@ -8,6 +8,7 @@ source $ZDOTDIR/zplugrc
 al() { alias | rg "$1" }
 alias vi='nvim'
 alias vim='nvim'
+alias nv='neovide --multigrid'
 
 # docked mode
 alias lap='_ systemctl start udevmon; light -S 30'
