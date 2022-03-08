@@ -246,6 +246,7 @@ return packer.startup({
 		use({ "ahmedkhalf/project.nvim", config = "require 'kg.plugins.project'" })
 		use({ "rmagatti/auto-session", config = "require('auto-session').setup({})" })
 		use({ "kevinhwang91/nvim-bqf", config = "require 'kg.plugins.bqf'" })
+    use({ "mhinz/vim-grepper", config= "require 'kg.plugins.grepper'" })
 		use({ "dyng/ctrlsf.vim", config = "require 'kg.plugins.ctrlsf'" })
 		use({ "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" })
 		use({ "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" })
