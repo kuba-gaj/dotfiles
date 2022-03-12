@@ -1,8 +1,12 @@
-local events = require("kg.utils.events")
+local group = vim.api.nvim_create_augroup("HighlightOnYank", { clear = true });
 
-events.addEventListener("LuaHighlight", { "TextYankPost *" }, function()
-	vim.highlight.on_yank({ timeout = 500 })
-end)
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = group,
+  desc = "Highlight the text that was yanked",
+  callback = function ()
+    vim.highlight.on_yank({ timeout = 500 })
+  end
+})
 
 vim.cmd([[
   autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform
