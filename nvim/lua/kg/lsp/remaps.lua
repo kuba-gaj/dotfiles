@@ -73,8 +73,8 @@ function M.set_default_on_buffer(client, bufnr)
 
 	if cap.codeActionProvider then
 		buf_set_keymap("n", "<leader>fa", function()
-			-- telescope_builtin.lsp_code_actions({ timeout = 2000 })
-			telescope_functions.lsp_code_actions({ timeout = 2000 })
+			telescope_builtin.lsp_code_actions({ timeout = 2000 })
+			-- telescope_functions.lsp_code_actions({ timeout = 2000 })
 		end, "lsp_code_actions", "Code actions")
 		buf_set_keymap("v", "<leader>fa", function()
 			telescope_builtin.lsp_code_actions({ timeout = 2000 })
@@ -104,7 +104,7 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "<leader>lsl", function()
 		print(vim.lsp.get_log_path())
 	end, "lsp_debug_logs", "LSP show log path")
-	buf_set_keymap("n", "<leader>fsi", ":LspInfo()<CR>", "lsp_info", "[DEBUG] LSP Info")
+	buf_set_keymap("n", "<leader>lsa", ":LspInfo()<CR>", "lsp_info", "[DEBUG] LSP Info")
 end
 
 function M.set_typescript(client, bufnr)

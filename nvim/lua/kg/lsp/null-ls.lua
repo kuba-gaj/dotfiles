@@ -12,6 +12,8 @@ end
 -- paci hadolint-bin
 -- paci fixjson
 -- paci write-good
+-- paci nginxbeautifier
+-- paci stylua
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -43,6 +45,8 @@ null_ls.setup({
    diagnostics.yamllint,
    diagnostics.hadolint,
 
+   -- with_root_file(formatting.stylua, "stylua.toml"),
+   formatting.stylua,
    formatting.prettierd,
    formatting.stylelint,
    formatting.nginx_beautifier,
@@ -50,7 +54,7 @@ null_ls.setup({
    formatting.sqlformat,
    formatting.xmllint,
    formatting.fixjson,
-   with_root_file(formatting.stylua, "stylua.toml"),
+
    code_actions.gitsigns,
    code_actions.gitrebase,
    code_actions.refactoring,
