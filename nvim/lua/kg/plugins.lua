@@ -194,6 +194,7 @@ return packer.startup({
 				require("kg.plugins.diffview")
 			end,
 		})
+    use({"ThePrimeagen/git-worktree.nvim", config = "require 'kg.plugins.git-worktree'" })
 
 		-- Motions
 		use("tpope/vim-surround")
