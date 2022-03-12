@@ -175,6 +175,14 @@ return packer.startup({
 			end,
 			ft = { "markdown" },
 		})
+    use({
+			"bennypowers/nvim-regexplainer",
+			config = "require 'kg.plugins.regexplainer'",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+      },
+		})
 		use({
 			"ellisonleao/glow.nvim",
 			config = function()
