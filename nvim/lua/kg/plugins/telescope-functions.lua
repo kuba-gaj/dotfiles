@@ -99,4 +99,13 @@ M.lsp_code_actions = function(opts)
 	require("telescope.builtin").lsp_code_actions(opts)
 end
 
+function M.find_git_files()
+  require('telescope.builtin').find_files {
+    find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+    hidden = true,
+    theme = "dropdown",
+    cwd = require('lspconfig.util').root_pattern(".git")(vim.fn.expand("%:p")),
+  }
+end
+
 return M

@@ -34,7 +34,7 @@ telescope.setup({
 			find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
 			hidden = true,
 		},
-		git_files = { previewer = false, theme = "dropdown" },
+		git_files = { previewer = true },
 		registers = { theme = "dropdown" },
 		lsp_references = { previewer = false },
 		lsp_code_actions = { 
@@ -84,23 +84,28 @@ if pcall(require, "nvim-notify") then
 	telescope.load_extension("notify")
 end
 
+if pcall(require, "git-worktree") then
+	telescope.load_extension("git_worktree")
+end
+
 if pcall(require, "dap") then
 	telescope.load_extension("dap")
 end
 
 r.noremap("n", "<leader>pp", "<cmd>Telescope projects<CR>", "telescope_projects", "Projects")
 r.noremap("n", "<leader>ps", builtin.live_grep, "telescope_live_grep", "Live grep")
-r.noremap(
-	"n",
-	"<leader>pS",
-	telescope_functions.live_grep_in_folder,
-	"telescope_live_grep_in_folder",
-	"Live grep in folder"
-)
-
+-- r.noremap(
+-- 	"n",
+-- 	"<leader>pS",
+-- 	telescope_functions.live_grep_in_folder,
+-- 	"telescope_live_grep_in_folder",
+-- 	"Live grep in folder"
+-- )
+--
 r.noremap("n", "<leader>pf", builtin.find_files, "telescope_files", "Find files")
-r.noremap("n", "<leader>po", builtin.oldfiles, "telescope_old_files", "Find files")
-r.noremap("n", "<leader>pg", builtin.git_files, "telescope_git_files", "Find git files")
+r.noremap("n", "<leader>pF", telescope_functions.find_git_files,  "telescope_git_files", "Find git files")
+-- r.noremap("n", "<leader>po", builtin.oldfiles, "telescope_old_files", "Find files")
+-- r.noremap("n", "<leader>pg", builtin.git_files, "telescope_git_files", "Find git files")
 r.noremap("n", "<leader>cc", telescope_functions.search_config, "telescope_search_config", "Search neovim config")
 r.noremap("n", "<leader>/h", builtin.highlights, "telescope_highlights", "Search highlights")
 r.noremap("n", "<leader>/C", builtin.command_history, "telescope_command_history", "Search command history")
