@@ -18,7 +18,9 @@ local highlight_bg = require("kg.utils.functions").highlight_bg
 -- vim.cmd([[:hi ColorColumn ctermbg=0 guibg=lightgrey]])
 highlight_bg("SignColumn", colors.dark0)
 highlight_bg("NumberColumn", colors.dark0_hard)
+-- autocomplete, like CMP
 highlight_fg_bg("PMenu", colors.light1, colors.dark0_hard)
+-- fold preview for example
 highlight_fg_bg("NormalFloat", colors.light1, colors.dark0)
 highlight_fg("StatusLine", colors.dark0)
 

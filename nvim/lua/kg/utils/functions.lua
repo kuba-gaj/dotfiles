@@ -8,6 +8,12 @@ function M.tprint(table)
 	print(vim.inspect(table))
 end
 
+function M.tprint_keys(table)
+  for k, v in pairs(table) do
+    print(k)
+  end
+end
+
 local reload = require("plenary.reload")
 
 M.reload = function()
