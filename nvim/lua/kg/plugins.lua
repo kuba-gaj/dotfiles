@@ -241,6 +241,7 @@ return packer.startup({
 		use({ "norcalli/nvim-colorizer.lua", config = "require 'kg.plugins.colorizer'" })
 		use({ "karb94/neoscroll.nvim", config = "require 'kg.plugins.neoscroll'" })
     use({ "monaqa/dial.nvim", config =  "require 'kg.plugins.dial'" })
+    use({ "mvllow/modes.nvim", config = "require 'kg.plugins.modes'" })
 
 		-- General
 		use("mbbill/undotree")
