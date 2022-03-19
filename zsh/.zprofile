@@ -63,8 +63,19 @@ if [ -f $ZDOTDIR/.zshenv.priv ]; then
   source $ZDOTDIR/.zshenv.priv
 fi
 
+LF_ICONS=$(sed $XDG_CONFIG_HOME/lf/diricons \
+            -e '/^[ \t]*#/d'       \
+            -e '/^[ \t]*$/d'       \
+            -e 's/[ \t]\+/=/g'     \
+            -e 's/$/ /')
+LF_ICONS=${LF_ICONS//$'\n'/:}
+export LF_ICONS
+
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
+
+# remove files from trash older than 5 days
+trash-empty 5
 
 # If you need to have python@3.7 first in your PATH run:
 #   echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/python@3.7/bin:$PATH"' >> ~/.zshrc
