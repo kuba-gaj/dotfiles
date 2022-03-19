@@ -23,6 +23,8 @@ alias lla='ls -la'
 # or exa (todo: remove one)
 
 alias cat='bat --paging=never'
+
+alias yrun='script=$(cat package.json | jq -r ".scripts | keys[]" | sort | fzf --height 20%) && yarn $script'
 # alias git=hub
 # alias gpr=git pull-request
 
