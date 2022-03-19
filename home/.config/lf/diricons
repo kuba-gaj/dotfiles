@@ -1,0 +1,416 @@
+# *.mom=✍\
+# *.me=✍\
+# *.ms=✍\
+# *.svg=🗺\
+# *.tif=🖼\
+# *.tiff=🖼\
+# *.xcf=🖌\
+# *.xml=📰\
+# *.gpg=🔒\
+# *.pdf=📚\
+# *.djvu=📚\
+# *.epub=📚\
+# *.csv=📓\
+# *.xlsx=📓\
+# *.m=📊\
+# *.mp3=🎵\
+# *.opus=🎵\
+# *.ogg=🎵\
+# *.m4a=🎵\
+# *.flac=🎼\
+# *.wav=🎼\
+# *.mkv=🎥\
+# *.mp4=🎥\
+# *.webm=🎥\
+# *.mpeg=🎥\
+# *.avi=🎥\
+# *.mov=🎥\
+# *.mpg=🎥\
+# *.wmv=🎥\
+# *.m4b=🎥\
+# *.flv=🎥\
+# *.zip=📦\
+# *.rar=📦\
+# *.7z=📦\
+# *.tar.gz=📦\
+# *.z64=🎮\
+# *.v64=🎮\
+# *.n64=🎮\
+# *.gba=🎮\
+# *.nes=🎮\
+# *.gdi=🎮\
+# *.1=ℹ\
+# *.nfo=ℹ\
+# *.info=ℹ\
+# *.log=📙\
+# *.iso=📀\
+# *.img=📀\
+# *.bib=🎓\
+# *.ged=👪\
+# *.part=💔\
+# *.torrent=🔽\
+# *.jar=♨\
+# -*- mode conf-space -*- icon config file for [[https//github.com/gokcehan/lf/wiki/Icons][lf]] using mostly [[https//www.nerdfonts.com/cheat-sheet][nerdfonts]].
+
+## Basic File Types
+# tw 
+tw 🤝
+st 
+# ow 
+ow 📂
+dt 
+di 📁
+# di 
+# fi 
+fi 📃
+# ln 
+ln ⛓
+# or 
+or=❌
+# ex 
+ex 🎯
+
+## Misc
+.config          
+
+## Full Matches
+README         
+
+## Extension Associations
+*.git     
+*.pdf     
+*.org     
+*.frm     
+*.myd     
+*.myi     
+*.mkd     
+*.ddf     
+*.sqlite  
+*.bib     
+*.part    
+*.torrent 
+*.url     
+*.link    
+*.ass     
+*.srt     
+*.nfo     
+*.xlsx    
+*.txt     ✍
+
+## Shells and Command Interpreters
+*.cmd  
+
+## Archives
+*.7z   
+*.ace  
+*.alz  
+*.arc  
+*.arj  
+*.bz2  
+*.bz   
+*.cab  
+*.cpio 
+*.deb  
+*.dwm  
+*.dz   
+*.ear  
+*.esd  
+*.gz   
+*.jar  
+*.lha  
+*.lrz  
+*.lz4  
+*.lz   
+*.lzh  
+*.lzma 
+*.lzo  
+*.rar  
+*.rpm  
+*.rz   
+*.sar  
+*.swm  
+*.t7z  
+*.tar  
+*.taz  
+*.tbz2 
+*.tbz  
+*.tgz  
+*.tlz  
+*.txz  
+*.tz   
+*.tzo  
+*.tzst 
+*.war  
+*.wim  
+*.xz   
+*.z    
+*.zip  
+*.zoo  
+*.zst  
+
+## Music
+*.aac  
+*.mp3  
+*.alac 
+*.flac 
+*.m4a  
+*.wav  
+*.webm 
+*.mka  
+*.mid  
+*.midi 
+
+## Video
+*.avi  
+*.m2v  
+*.m4v  
+*.mkv  
+*.mov  
+*.mp4  
+*.mp4v 
+
+## Image
+*.asf   
+*.au    
+*.cgm   
+*.dl    
+*.emf   
+*.flc   
+*.fli   
+*.flv   
+*.gl    
+*.mjpeg 📸
+*.mjpg  📸
+*.mng   
+*.mpc   
+*.mpeg  
+*.mpg   
+*.nuv   
+*.oga   
+*.ogg   
+*.ogm   
+*.ogv   
+*.ogx   
+*.opus  
+*.pbm   
+*.pcx   
+*.pgm   
+*.ppm   
+*.qt    
+*.ra    
+*.rm    
+*.rmvb  
+*.spx   
+*.svg   
+*.svgz  
+*.tga   
+*.tif   
+*.tiff  
+*.vob   
+*.wmv   
+*.xbm   
+*.xcf   
+*.xpm   
+*.xspf  
+*.xwd   
+*.yuv   
+
+## Directories
+.git/           
+.github/        
+.config/        
+games/          
+steam/          
+
+### Home Directories
+# ~/downloads/    
+~/media/videos/ ﳜ
+~/media/images/ 
+~/media/music/  
+~/.steam/       
+~/.wine/        
+~/.homesick/    
+~/.mozilla/     
+~/.tor-browser/ 
+
+### XDG Stuff
+# ~/user/         
+# ~/prog/         
+# ~/multi/        
+# ~/OS/           
+
+# Devicons - extensions
+*.styl      
+*.sass      
+*.scss      
+*.htm       
+*.html      
+# *.html  🌎
+*.slim      
+*.haml      
+*.ejs       
+# *.css   🎨
+*.css       
+*.less      
+# *.md     
+# *.md=📘\
+*.md        
+*.mdx       
+*.markdown  
+# *.rmd=📊\
+# *.Rmd=📊\
+*.rmd       
+*.json      
+*.webmanifest  
+*.js        
+*.mjs       
+*.jsx       
+*.rb        
+*.gemspec   
+*.rake      
+*.php       
+*.py        
+*.pyc       
+*.pyo       
+*.pyd       
+*.coffee    
+*.mustache  
+*.hbs       
+*.conf      
+*.ini       
+*.yml       
+*.yaml      
+*.toml      
+*.bat       
+*.mk        
+# *.jpeg  📸
+# *.jpg   📸
+*.jpg       
+*.jpeg      
+*.bmp       
+*.png       
+*.webp      
+*.gif       
+*.ico       
+*.twig      
+*.cpp       
+*.c++       
+*.cxx       
+*.cc        
+*.cp        
+*.c         
+*.cs        
+*.h         
+*.hh        
+*.hpp       
+*.hxx       
+*.hs        
+*.lhs       
+*.nix       
+*.lua       
+*.java      
+*.sh        
+*.fish      
+*.bash      
+*.zsh       
+*.ksh       
+*.csh       
+*.awk       
+*.ps1       
+*.ml        λ
+*.mli       λ
+*.diff      
+*.db        
+*.sql       
+*.dump      
+*.clj       
+*.cljc      
+*.cljs      
+*.edn       
+*.scala     
+*.go        
+*.dart      
+*.xul       
+*.sln       
+*.suo       
+*.pl        
+*.pm        
+*.t         
+*.rss       
+*.f#        
+*.fsscript  
+*.fsx       
+*.fs        
+*.fsi       
+*.rs        
+*.rlib      
+*.d         
+*.erl       
+*.hrl       
+*.ex        
+*.exs       
+*.eex       
+*.leex      
+*.heex      
+*.vim       
+*.ai        
+*.psd       
+*.psb       
+*.ts        
+*.tsx       
+*.jl        
+*.pp        
+*.vue       ﵂
+*.elm       
+*.swift     
+*.xcplayground  
+*.tex       ﭨ
+*.r         ﳒ
+# *.r=📊\
+# *.R=📊\
+*.rproj     鉶
+*.sol       ﲹ
+*.pem       
+
+# Devicons - exact matches
+exact-match-case-sensitive-1.txt  1
+exact-match-case-sensitive-2      2
+gruntfile.coffee                  
+gruntfile.js                      
+gruntfile.ls                      
+gulpfile.coffee                   
+gulpfile.js                       
+gulpfile.ls                       
+mix.lock                          
+dropbox                           
+.DS_Store                         
+.ds_store                         
+.gitconfig                        
+.gitignore                        
+.gitattributes                    
+.gitlab-ci.yml                    
+.bashrc                           
+.zshrc                            
+.zshenv                           
+.zprofile                         
+.vimrc                            
+.gvimrc                           
+_vimrc                            
+_gvimrc                           
+.bashprofile                      
+favicon.ico                       
+license                           
+LICENSE                           
+# node_modules/                     
+node_modules                      
+react.jsx                         
+procfile                          
+Dockerfile                        
+dockerfile                        
+docker-compose.yml                
+rakefile                          
+config.ru                         
+gemfile                           
+makefile                          
+cmakelists.txt                    
+robots.txt                        ﮧ
