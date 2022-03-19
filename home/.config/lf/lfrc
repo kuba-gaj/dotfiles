@@ -26,6 +26,9 @@ set icons
 # show hidden by default, 
 set hidden
 
+# show borders around the columns
+# set drawbox
+
 # use enter for shell commands
 map <enter> shell
 
@@ -114,3 +117,19 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+cmd az %lf -remote "send $id cd '$(zoxide query $1)'"
+map az push :az<space>
+
+cmd ai ${{
+    res=$(zoxide query -i $1)
+    lf -remote "send $id cd '$res'"
+}}
+map ai push :ai<space>
+
+cmd mkdir %{{
+    IFS=" "
+    mkdir -p -- "$*"
+    lf -remote "send $id select '$*'"
+}}
+map ad push :mkdir<space>
