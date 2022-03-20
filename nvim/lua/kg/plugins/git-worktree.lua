@@ -18,5 +18,5 @@ local telescope = require("telescope")
 r.which_key("<leader>gw", "worktree")
 
 r.noremap("n", "<leader>gwl", telescope.extensions.git_worktree.git_worktrees, "worktree_list_del", "Switch and Delete worktrees");
-r.noremap("n", "<leader>gwc", telescope.extensions.git_worktree.create_git_worktree, "worktree_create", "Create a worktree");
+r.noremap("n", "<leader>gwa", telescope.extensions.git_worktree.create_git_worktree, "worktree_add", "Add a worktree");
 
