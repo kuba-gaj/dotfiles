@@ -25,6 +25,15 @@ alias lla='ls -la'
 alias cat='bat --paging=never'
 
 alias yrun='script=$(cat package.json | jq -r ".scripts | keys[]" | sort | fzf --height 20%) && yarn $script'
+
+# use trash-cli
+alias rm='echo "This is not the command you are looking for."; false'
+alias trp='trash-put'
+alias tre='trash-empty'
+alias trl='trash-list'
+alias trr='trash-restore'
+alias trrm='trash-remove'
+
 # alias git=hub
 # alias gpr=git pull-request
 
