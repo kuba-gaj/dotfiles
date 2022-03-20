@@ -32,5 +32,5 @@ local r = require("kg.utils.remaps")
   -- Open the code actions for a visual selection.
   map("v", "<leader>za", ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
   -- support conceal level for links
-  vim.bo.conceallevel = 2
+  vim.wo.conceallevel = 2
 end
