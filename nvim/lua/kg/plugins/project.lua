@@ -5,7 +5,7 @@ require("project_nvim").setup {
   ignore_lsp = { },
   exclude_dirs = { "~/notes/*" },
   show_hidden = true,
-  silent_chdir = false,
+  silent_chdir = true,
   datapath = vim.fn.stdpath("data"),
 }
 

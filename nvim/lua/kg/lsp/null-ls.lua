@@ -1,6 +1,6 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
-    return
+  return
 end
 
 -- npm install -g @fsouza/prettierd
@@ -33,31 +33,31 @@ local with_diagnostics_code = function(builtin)
   }
 end
 
-null_ls.setup({
- debug = false,
- sources = {
-   -- diagnostics.actionlint,
-   with_root_file(diagnostics.selene, "selene.toml"),
-   with_diagnostics_code(diagnostics.shellcheck),
-   diagnostics.shellcheck,
-   diagnostics.zsh,
-   diagnostics.stylelint,
-   diagnostics.yamllint,
-   diagnostics.hadolint,
+null_ls.setup {
+  debug = false,
+  sources = {
+    -- diagnostics.actionlint,
+    with_root_file(diagnostics.selene, "selene.toml"),
+    with_diagnostics_code(diagnostics.shellcheck),
+    diagnostics.shellcheck,
+    diagnostics.zsh,
+    diagnostics.stylelint,
+    diagnostics.yamllint,
+    diagnostics.hadolint,
 
-   -- with_root_file(formatting.stylua, "stylua.toml"),
-   formatting.stylua,
-   formatting.prettierd,
-   formatting.stylelint,
-   formatting.nginx_beautifier,
-   formatting.shfmt,
-   formatting.sqlformat,
-   formatting.xmllint,
-   formatting.fixjson,
+    -- with_root_file(formatting.stylua, "stylua.toml"),
+    formatting.stylua,
+    formatting.prettierd,
+    formatting.stylelint,
+    formatting.nginx_beautifier,
+    formatting.shfmt,
+    formatting.sqlformat,
+    formatting.xmllint,
+    formatting.fixjson,
 
-   code_actions.gitsigns,
-   code_actions.gitrebase,
-   code_actions.refactoring,
-   code_actions.shellcheck
- },
-})
+    code_actions.gitsigns,
+    code_actions.gitrebase,
+    code_actions.refactoring,
+    code_actions.shellcheck,
+  },
+}

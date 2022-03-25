@@ -62,10 +62,10 @@ cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 
 -- windows
 -- Split navigation
-r.noremap("n", "<C-h>", "<C-w>h", "remap_<C-h>", "Remaps <C-h> to handle windows")
-r.noremap("n", "<C-j>", "<C-w>j", "remap_<C-j>", "Remaps <C-j> to handle windows")
-r.noremap("n", "<C-k>", "<C-w>k", "remap_<C-k>", "Remaps <C-k> to handle windows")
-r.noremap("n", "<C-l>", "<C-w>l", "remap_<C-l>", "Remaps <C-l> to handle windows")
+-- r.noremap("n", "<C-h>", "<C-w>h", "remap_<C-h>", "Remaps <C-h> to handle windows")
+-- r.noremap("n", "<C-j>", "<C-w>j", "remap_<C-j>", "Remaps <C-j> to handle windows")
+-- r.noremap("n", "<C-k>", "<C-w>k", "remap_<C-k>", "Remaps <C-k> to handle windows")
+-- r.noremap("n", "<C-l>", "<C-w>l", "remap_<C-l>", "Remaps <C-l> to handle windows")
 
 -- Resizing
 r.noremap("n", "<leader>w+", "<cmd>vertical resize +5<CR>", "window_increase_size", "Increase window size")

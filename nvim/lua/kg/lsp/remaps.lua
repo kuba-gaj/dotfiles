@@ -73,8 +73,8 @@ function M.set_default_on_buffer(client, bufnr)
 
 	if cap.codeActionProvider then
 		buf_set_keymap("n", "<leader>fa", function()
-			telescope_builtin.lsp_code_actions({ timeout = 2000 })
-			-- telescope_functions.lsp_code_actions({ timeout = 2000 })
+			-- telescope_builtin.lsp_code_actions({ timeout = 2000 })
+			telescope_functions.lsp_code_actions({ timeout = 2000 })
 		end, "lsp_code_actions", "Code actions")
 		buf_set_keymap("v", "<leader>fa", function()
 			telescope_builtin.lsp_code_actions({ timeout = 2000 })
@@ -88,11 +88,12 @@ function M.set_default_on_buffer(client, bufnr)
 	buf_set_keymap("n", "[e", vim.lsp.diagnostic.goto_prev, "lsp_previous_diagnostic", "Previous diagnostic")
 	buf_set_keymap("n", "]e", vim.lsp.diagnostic.goto_next, "lsp_next_diagnostic", "Next diagnostic")
 
-	if cap.documentFormattingProvider then
+  -- when sumneko lua will be able to format we can reput the capabilities
+  -- if cap.documentFormattingProvider then
 		buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_format", "Format")
-	elseif cap.documentRangeFormattingProvider then
-		buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_range_format", "Format")
-	end
+	-- elseif cap.documentRangeFormattingProvider then
+	-- 	buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_range_format", "Format")
+	-- end
 
 	if cap.renameProvider then
 		buf_set_keymap("n", "<leader>fr", vim.lsp.buf.rename, "lsp_rename", "Rename")

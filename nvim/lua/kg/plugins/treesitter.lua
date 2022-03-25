@@ -21,6 +21,7 @@ treesitter.setup({
 		"c_sharp",
 		"norg",
 		"graphql",
+    "regex",
 	},
 	highlight = {
 		enable = true,

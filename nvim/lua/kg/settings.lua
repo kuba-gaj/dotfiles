@@ -80,7 +80,11 @@ local options = {
   splitright = true,
 
   guifont = 'Operator Mono SSm Lig Book:h13',
-  title = true,
+  title = false,
+  lazyredraw = false,
+
+  -- global statusline
+  laststatus = 3,
 
 }
 
@@ -105,8 +109,8 @@ vim.wo.foldmethod = 'expr';
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()';
 -- neovide
 -- vim.g.neovide_refresh_rate = 60;
-vim.g.neovide_cursor_animation_length = 0;
-vim.g.neovide_cursor_trail_length = 0;
+-- vim.g.neovide_cursor_animation_length = 0;
+-- vim.g.neovide_cursor_trail_length = 0;
 -- vim.g.neovide_cursor_animate_command_line = 0;
 vim.g.neovide_cursor_antialiasing = 1;
 -- vim.g.neovide_no_idle = 1;

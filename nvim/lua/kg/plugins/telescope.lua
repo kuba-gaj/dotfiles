@@ -36,7 +36,7 @@ telescope.setup({
 		},
 		git_files = { previewer = true },
 		registers = { theme = "dropdown" },
-		lsp_references = { previewer = false },
+		-- lsp_references = { previewer = false },
 		lsp_code_actions = { 
       theme = "cursor",
       layout_config = {
