@@ -151,9 +151,11 @@ for_window [app_id="[Ff]irefox" title="FFW10.*"] move window to workspace 10
   bindsym $mod+Shift+R exec $screenrecorder
 
 # app launcher
-  set $menu kitty --class launcher --config ~/.config/kitty/launcher.conf env TERMINAL_COMMAND=kitty sway-launcher-desktop
+  # set $menu kitty --class launcher --config ~/.config/kitty/launcher.conf env TERMINAL_COMMAND=kitty sway-launcher-desktop
+  set $menu "rofi -combi-modi drun,run -show combi -show-icons
+  # set $menu rofi -show drun -show-icons
   bindsym $mod+d exec $menu
-  for_window [app_id="^launcher$"] sticky enable
+  # for_window [app_id="^launcher$"] sticky enable
 #
 # bitwarden (passwords)
   bindsym $sup+p exec bwmenu --auto-lock -1 --no-clear
@@ -169,9 +171,9 @@ for_window [app_id="[Ff]irefox" title="FFW10.*"] move window to workspace 10
   # exec clipman -d # unknown flag, breaks other stuff
 #
 # mako notifications
-  bindsym $sup+l exec makoctl dismiss
-  bindsym $sup+Shift+l exec makoctl dismiss --all
-  bindsym $sup+Shift+k exec makoctl invoke
+  # bindsym $sup+l exec makoctl dismiss
+  # bindsym $sup+Shift+l exec makoctl dismiss --all
+  # bindsym $sup+Shift+k exec makoctl invoke
 #
 # screenshots
   bindsym $sup+s exec slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
