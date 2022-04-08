@@ -63,7 +63,7 @@ local options = {
   showmode = false,
 
   -- shows spaces
-  list = true,
+  list = false,
   listchars= 'eol:¬,tab:>·,trail:~,extends:>,precedes:<',
 
   -- session options

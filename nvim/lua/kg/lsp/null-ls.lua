@@ -36,6 +36,7 @@ end
 null_ls.setup {
   debug = false,
   sources = {
+    -- github actions
     -- diagnostics.actionlint,
     with_root_file(diagnostics.selene, "selene.toml"),
     with_diagnostics_code(diagnostics.shellcheck),
