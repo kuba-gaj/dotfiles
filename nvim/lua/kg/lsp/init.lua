@@ -16,6 +16,7 @@ local presentLspStatus, lspStatus = pcall(require, "lsp-status")
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 local presentAerial, aerial = pcall(require, "aerial")
 local presentLspSignature, lspSignature = pcall(require, "lsp_signature")
+local presentNavic, navic = pcall(require, "nvim-navic")
 
 vim.lsp.set_log_level "error" -- 'trace', 'debug', 'info', 'warn', 'error'
 
@@ -33,6 +34,10 @@ local function on_attach(client, bufnr)
 
   if presentLspSignature then
     lspSignature.on_attach { floating_window = false, timer_interval = 500 }
+  end
+
+  if presentNavic then
+    navic.attach(client, bufnr)
   end
 end
 
@@ -92,15 +97,18 @@ local servers = {
   bashls = {},
   cssls = {},
   dockerls = {},
-  eslint = {},
+  eslint = require "kg.lsp.servers.eslint"(on_attach),
   graphql = {},
   html = {},
   jsonls = require "kg.lsp.servers.jsonls"(capabilities),
-  sumneko_lua = require "kg.lsp.servers.sumneko_lua"(),
+  sumneko_lua = require "kg.lsp.servers.sumneko_lua"(on_attach),
   tailwindcss = {},
   terraformls = {},
   tsserver = require "kg.lsp.servers.tsserver"(on_attach),
   yamlls = require "kg.lsp.servers.yamlls"(capabilities),
+  solang = {},
+  solc = {}, -- official solc from ethereum
+  solidity_ls = {}, -- not workign atm, this is vs-code wtih code completion
 }
 
 local default_lsp_config = {
@@ -128,6 +136,7 @@ for server_name, server_config in pairs(servers) do
           server:attach_buffers()
         else
           server:setup(merged_config)
+          server:attach_buffers()
         end
       else
         server:setup(merged_config)

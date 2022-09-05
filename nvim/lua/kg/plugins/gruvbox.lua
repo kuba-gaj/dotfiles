@@ -9,7 +9,7 @@ vim.o.background = "dark"
 vim.g.gruvbox_contrast_dark = "hard"
 vim.cmd("colorscheme gruvbox")
 
-local colors = require("gruvbox.colors")
+local colors = require("gruvbox.palette")
 
 local highlight = require("kg.utils.functions").highlight
 local highlight_fg_bg = require("kg.utils.functions").highlight_fg_bg

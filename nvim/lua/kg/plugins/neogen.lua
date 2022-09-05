@@ -1,13 +1,13 @@
 local present, neogen = pcall(require, "neogen")
 
 if not present then
-	return
+  return
 end
 
-neogen.setup({
-	enabled = true,
-})
+neogen.setup {
+  enabled = true,
+}
 
-local r = require("kg.utils.remaps")
+local r = require "kg.utils.remaps"
 
-r.map("n", "<leader>tc", neogen.generate, "neogen_generate", "Add documentation for the method/class/function ")
+r.map("n", "<leader>tc", neogen.generate, "Add documentation for the method/class/function ")

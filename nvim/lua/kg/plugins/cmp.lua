@@ -1,3 +1,4 @@
+local vim = vim
 local present, cmp = pcall(require, "cmp")
 local presentLspKind, lspKind = pcall(require, "lspkind")
 
@@ -8,7 +9,7 @@ if presentLspKind then
 	lspKind.init()
 end
 
-require("cmp-npm").setup({})
+-- require("cmp-npm").setup({})
 
 cmp.setup({
 	snippet = {
@@ -67,9 +68,10 @@ cmp.setup({
 		end,
 	},
 	sources = {
+    { name = "copilot", group_index = 2 },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip", max_item_count = 10 },
-		{ name = "npm", keyword_length = 4 },
+		-- { name = "npm", keyword_length = 4 },
 		{ name = "nvim_lsp", max_item_count = 10 },
 		{ name = "nvim_lua" },
 		{ name = "path" },
@@ -78,6 +80,7 @@ cmp.setup({
 		{ name = "calc" },
 		{ name = "emoji" },
 	},
+  experimental = { native_menu = false, ghost_test = false },
 })
 
 cmp.setup.cmdline(":", { sources = { { name = "cmdline" } } })

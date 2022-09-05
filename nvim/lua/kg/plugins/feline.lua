@@ -8,6 +8,7 @@ end
 
 local lsp_provider = require("feline.providers.lsp")
 local u = require("kg.plugins.feline_util")
+local winbar = require("kg.plugins.feline_winbar")
 
 -- "┃", "█", "", "", "", "", "", "", "●"
 
@@ -189,4 +190,16 @@ feline.setup({
       "LSP_INSTALLER",
 		},
 	},
+})
+
+feline.winbar.setup({
+  components = {
+    active = { winbar },
+    inactive = {},
+  },
+  force_inactive = {
+    filetypes = {},
+    buftypes = {},
+    bufnames = {},
+  },
 })

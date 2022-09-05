@@ -4,7 +4,7 @@ if not present then
 	return
 end
 
-local gruvbox = require("gruvbox.colors")
+local gruvbox = require("gruvbox.palette")
 
 vim.opt.cursorline = true
 
@@ -23,5 +23,5 @@ modes.setup({
   set_cursor = true,
 
   -- Highlight in active window only
-  focus_only = true
+  -- focus_only = true
 })

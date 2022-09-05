@@ -11,7 +11,6 @@ r.map(
 	"i",
 	"<C-a>",
 	"copilot#Accept()",
-	"copilot_accept",
 	"Accepts copilot suggestion",
 	{ script = true, expr = true, silent = true }
 )
@@ -19,7 +18,6 @@ r.map(
 	"i",
 	"<C-x>",
 	"copilot#Dismiss()",
-	"copilot_dismiss",
 	"Dismisses copilot suggestion",
 	{ script = true, expr = true, silent = true }
 )

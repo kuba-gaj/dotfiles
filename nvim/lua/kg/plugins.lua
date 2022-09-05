@@ -91,11 +91,14 @@ return packer.startup {
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
-      requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+      requires = {
+        { "nvim-lua/popup.nvim" },
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+        { "nvim-telescope/telescope-ui-select.nvim" },
+      },
       config = "require 'kg.plugins.telescope'",
     }
-    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-    use { "nvim-telescope/telescope-ui-select.nvim" }
 
     -- LSP
     use { "neovim/nvim-lspconfig" }
@@ -127,13 +130,17 @@ return packer.startup {
       end,
     }
 
+    use {
+      "zbirenbaum/copilot.lua",
+      event = "InsertEnter",
+      config = function()
+        vim.schedule(function()
+          require("copilot").setup()
+        end)
+      end,
+    }
     use { "github/copilot.vim", config = "require 'kg.plugins.copilot'" }
 
-    -- use({
-    -- 	"creativenull/efmls-configs-nvim",
-    -- 	-- tag = 'v0.1.1', -- tag is optional
-    -- 	requires = { "neovim/nvim-lspconfig" },
-    -- })
     use { "jose-elias-alvarez/null-ls.nvim" }
 
     -- Completion
@@ -152,10 +159,13 @@ return packer.startup {
         "hrsh7th/cmp-calc",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lsp-document-symbol",
-        "David-Kunz/cmp-npm",
+        -- "David-Kunz/cmp-npm",
       },
     }
-    use { "David-Kunz/cmp-npm", requires = "nvim-lua/plenary.nvim" }
+    use {
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua", "nvim-cmp" },
+    }
 
     -- Snippets
     use {
@@ -214,6 +224,7 @@ return packer.startup {
     use "tpope/vim-surround"
     use "tpope/vim-repeat"
     use { "phaazon/hop.nvim", config = "require 'kg.plugins.hop'" }
+    -- use { "ggandor/leap.nvim", config = "require 'kg.plugins.leap'" }
     use { "bkad/CamelCaseMotion", config = "require 'kg.plugins.camelcasemotion'" }
     use { "kevinhwang91/nvim-hlslens", config = "require 'kg.plugins.hlslens'" }
 
@@ -267,7 +278,7 @@ return packer.startup {
     use { "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" }
     use { "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" }
 
-    use { "hoschi/yode-nvim", config = "require 'kg.plugins.yode'" }
+    -- use { "hoschi/yode-nvim", config = "require 'kg.plugins.yode'" } -- was broken
     use { "Everduin94/nvim-quick-switcher", config = "require 'kg.plugins.quick-switcher'" }
     use { "petertriho/nvim-scrollbar", config = "require 'kg.plugins.scrollbar'" }
 
@@ -284,6 +295,7 @@ return packer.startup {
     }
     use {
       "anuvyklack/pretty-fold.nvim",
+      requires = "anuvyklack/nvim-keymap-amend",
       config = function()
         require "kg.plugins.pretty-fold"
       end,
@@ -297,6 +309,11 @@ return packer.startup {
       requires = "nvim-treesitter/nvim-treesitter",
       config = "require 'kg.plugins.gps'",
     }
+
+    use({
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig"
+    })
 
     use {
       "feline-nvim/feline.nvim",

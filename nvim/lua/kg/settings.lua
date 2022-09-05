@@ -85,7 +85,7 @@ local options = {
 
   -- global statusline
   laststatus = 3,
-
+  -- winbar = "%=%m %f",
 }
 
 for k, v in pairs(options) do

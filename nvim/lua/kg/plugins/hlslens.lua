@@ -24,7 +24,6 @@ r.noremap(
 	{ "n", "v", "o" },
 	"n",
 	"<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
-	"hlslens_next_n",
 	"Next search by n",
 	{ silent = true }
 )
@@ -32,7 +31,6 @@ r.noremap(
 	{ "n", "v", "o" },
 	"N",
 	"<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
-	"hlslens_prev_n",
 	"Previous search br N",
 	{ silent = true }
 )
@@ -40,7 +38,6 @@ r.noremap(
 	{ "n", "v", "o" },
 	"*",
 	"*<Cmd>lua require('hlslens').start()<CR>",
-	"hlslens_next_*",
 	"Next search (by *)",
 	{ silent = true }
 )
@@ -48,7 +45,6 @@ r.noremap(
 	{ "n", "v", "o" },
 	"#",
 	"#<Cmd>lua require('hlslens').start()<CR>",
-	"hlslens_previous_#",
 	"Previous search (by #)",
 	{ silent = true }
 )
@@ -57,7 +53,6 @@ r.noremap(
 	{ "n", "v", "o" },
 	"g*",
 	"g*<Cmd>lua require('hlslens').start()<CR>",
-	"hlslens_next_g*",
 	"Next search (by *)",
 	{ silent = true }
 )
@@ -66,7 +61,6 @@ r.noremap(
 	{ "n", "v", "o" },
 	"g#",
 	"g#<Cmd>lua require('hlslens').start()<CR>",
-	"hlslens_previous_g#",
 	"Previous search (by #)",
 	{ silent = true }
 )

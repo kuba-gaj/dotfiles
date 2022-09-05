@@ -24,6 +24,7 @@ M.lsp_install_servers = function()
 	installLanguageServer("efm")
 	installLanguageServer("terraformls")
 	installLanguageServer("eslint")
+	installLanguageServer("solidity_ls")
 end
 
 return M

@@ -3,17 +3,8 @@ if not null_ls_status_ok then
   return
 end
 
--- npm install -g @fsouza/prettierd
--- npm install -g stylelint
--- paci selene-linter
--- paci shfmt-bin
--- paci shellcheck-bin
--- paci yamllint
--- paci hadolint-bin
--- paci fixjson
--- paci write-good
--- paci nginxbeautifier
--- paci stylua
+-- npm install -g @fsouza/prettierd stylelint
+-- paci selene-linter shfmt-bin shellcheck-bin yamllint hadolint-bin fixjson write-good nginxbeautifier stylua
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics

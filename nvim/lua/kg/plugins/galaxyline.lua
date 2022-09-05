@@ -4,7 +4,7 @@ if not present then
 	return
 end
 
-local gruvbox = require("gruvbox.colors")
+local gruvbox = require("gruvbox.palette")
 local condition = require("galaxyline.condition")
 local gps = require("nvim-gps")
 local fileinfo = require("galaxyline.providers.fileinfo")

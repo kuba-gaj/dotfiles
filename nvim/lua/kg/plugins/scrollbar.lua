@@ -5,7 +5,7 @@ if not present then
 	return
 end
 
-local colors = require("gruvbox.colors")
+local colors = require("gruvbox.palette")
 
 scrollbar.setup({
 	handle = {
