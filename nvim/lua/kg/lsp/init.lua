@@ -1,10 +1,5 @@
-local present, _ = pcall(require, "lspconfig")
+local present, lspconfig = pcall(require, "lspconfig")
 if not present then
-  return
-end
-
-local present_lsp_installer, lsp_installer = pcall(require, "nvim-lsp-installer.servers")
-if not present_lsp_installer then
   return
 end
 
@@ -37,7 +32,9 @@ local function on_attach(client, bufnr)
   end
 
   if presentNavic then
-    navic.attach(client, bufnr)
+    if client.name ~= "eslint" and client.name ~= "angularls" then
+      navic.attach(client, bufnr)
+    end
   end
 end
 
@@ -104,7 +101,6 @@ local servers = {
   sumneko_lua = require "kg.lsp.servers.sumneko_lua"(on_attach),
   tailwindcss = {},
   terraformls = {},
-  tsserver = require "kg.lsp.servers.tsserver"(on_attach),
   yamlls = require "kg.lsp.servers.yamlls"(capabilities),
   solang = {},
   solc = {}, -- official solc from ethereum
@@ -120,30 +116,37 @@ local default_lsp_config = {
   },
 }
 
+local server_names = {}
+for server_name, _ in pairs(servers) do
+  table.insert(server_names, server_name)
+end
+
+local present_lsp_installer, lsp_installer = pcall(require, "nvim-lsp-installer")
+if present_lsp_installer then
+  lsp_installer.setup { ensure_installed = server_names }
+end
+
+local present_typescript, typescript = pcall(require, "typescript")
+if present_typescript then
+  typescript.setup({
+    server = {
+      on_attach = function(_, bufnr)
+        remaps.set_typescript(bufnr)
+      end,
+    },
+  })
+end
+
 for server_name, server_config in pairs(servers) do
-  local server_installed, server = lsp_installer.get_server(server_name)
-  if server_installed then
-    server:on_ready(function()
-      local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
+  local merged_config = vim.tbl_deep_extend("force", default_lsp_config, server_config)
 
-      if server.name == "rust_analyzer" then
-        local default_server_lsp_config = server:get_default_options()
-        merged_config = vim.tbl_deep_extend("force", default_server_lsp_config, merged_config)
-        local present_rust_tools, rust_tools = pcall(require, "rust-tools")
+  lspconfig[server_name].setup(merged_config)
 
-        if present_rust_tools then
-          rust_tools.setup { server = merged_config }
-          server:attach_buffers()
-        else
-          server:setup(merged_config)
-          server:attach_buffers()
-        end
-      else
-        server:setup(merged_config)
-      end
-    end)
-    if not server:is_installed() then
-      server:install()
+  if server_name == "rust_analyzer" then
+    local present_rust_tools, rust_tools = pcall(require, "rust-tools")
+
+    if present_rust_tools then
+      rust_tools.setup { server = merged_config }
     end
   end
 end

@@ -1,4 +1,5 @@
 local M = {}
+local vim = vim
 
 M.show_diagnostics = function(opts)
 	opts = opts or {}

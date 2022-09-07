@@ -53,18 +53,8 @@ function M.set_default_on_buffer(client, bufnr)
 
   if cap.documentSymbolProvider then
     -- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-    buf_set_keymap(
-      "n",
-      "<leader>tO",
-      telescope_builtin.lsp_document_symbols,
-      "Document symbols"
-    )
-    buf_set_keymap(
-      "n",
-      "<leader>to",
-      "<cmd>AerialToggle!<CR>",
-      "(Aerial) Document symbols"
-    )
+    buf_set_keymap("n", "<leader>tO", telescope_builtin.lsp_document_symbols, "Document symbols")
+    buf_set_keymap("n", "<leader>to", "<cmd>AerialToggle!<CR>", "(Aerial) Document symbols")
   end
 
   buf_set_keymap("n", "<leader>ts", vim.lsp.buf.signature_help, "Show signature")
@@ -75,12 +65,7 @@ function M.set_default_on_buffer(client, bufnr)
 
   if cap.codeActionProvider then
     buf_set_keymap("n", "<leader>fa", vim.lsp.buf.code_action, "Code actions")
-    buf_set_keymap(
-      "v",
-      "<leader>fa",
-      vim.lsp.buf.range_code_action,
-      "Range code actions"
-    )
+    buf_set_keymap("v", "<leader>fa", vim.lsp.buf.range_code_action, "Range code actions")
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
@@ -95,7 +80,7 @@ function M.set_default_on_buffer(client, bufnr)
   -- when sumneko lua will be able to format we can reput the capabilities
   -- if cap.documentFormattingProvider then
   buf_set_keymap("n", "<leader>ff", function()
-    vim.lsp.buf.format({ async = true })
+    vim.lsp.buf.format { async = true }
   end, "Format")
   -- elseif cap.documentRangeFormattingProvider then
   -- buf_set_keymap("n", "<leader>ff", vim.lsp.buf.formatting, "lsp_range_format", "Format")
@@ -116,31 +101,25 @@ function M.set_default_on_buffer(client, bufnr)
   buf_set_keymap("n", "<leader>lsa", ":LspInfo()<CR>", "LSP Info")
 end
 
-function M.set_typescript(client, bufnr)
+function M.set_typescript(bufnr)
   local buf_set_keymap = generate_buf_keymapper(bufnr)
+  local typescript = require "typescript"
 
-  local presentTsUtils, tsUtils = pcall(require, "nvim-lsp-ts-utils")
+  buf_set_keymap("n", "<leader>fo", function()
+    typescript.actions.organizeImports()
+  end, "Organize imports")
 
-  if presentTsUtils then
-    -- defaults
-    tsUtils.setup({
-      auto_inlay_hints = false,
-    })
+  buf_set_keymap("n", "<leader>fu", function()
+    typescript.actions.removeUnused()
+  end, "Remove unused variables")
 
-    -- required to fix code action ranges and filter diagnostics
-    tsUtils.setup_client(client)
-  end
+  buf_set_keymap("n", "<leader>fc", function()
+    typescript.actions.fixAll()
+  end, "Fix All problems")
 
-  buf_set_keymap(
-    "n",
-    "<leader>fo",
-    ":TSLspOrganize<CR>",
-    "Organize imports",
-    { silent = true }
-  )
-  buf_set_keymap("n", "<leader>fc", ":TSLspFixCurrent<CR>", "Fix current")
-  -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
-  buf_set_keymap("n", "<leader>fi", ":TSLspImportAll<CR>", "Import all")
+  buf_set_keymap("n", "<leader>fi", function()
+    typescript.actions.addMissingImports()
+  end, "Import all")
 end
 
 r.which_key("<leader>ls", "servers")

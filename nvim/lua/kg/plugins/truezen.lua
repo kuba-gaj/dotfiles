@@ -1,13 +1,17 @@
-local true_zen = require("true-zen")
+local present, true_zen = pcall(require, "true-zen")
 
-true_zen.setup({
-	integrations = {
-		gitsigns = true,
-		galaxyline = true,
-	},
-})
+if not present then
+  return
+end
 
-local r = require("kg.utils.remaps")
+true_zen.setup {
+  integrations = {
+    gitsigns = true,
+    galaxyline = true,
+  },
+}
+
+local r = require "kg.utils.remaps"
 
 -- r.which_key("<leader>z", "zen")
 r.noremap("n", "<leader>bz", "<cmd>:TZFocus<CR>", "Zen Focus")

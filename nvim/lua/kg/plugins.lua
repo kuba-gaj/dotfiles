@@ -176,6 +176,7 @@ return packer.startup {
 
     -- Languages
     use "hashivim/vim-terraform"
+    use "jose-elias-alvarez/typescript.nvim"
     use "kevinoid/vim-jsonc"
     use {
       "Fymyte/rasi.vim",
@@ -276,7 +277,7 @@ return packer.startup {
     use { "mhinz/vim-grepper", config = "require 'kg.plugins.grepper'" }
     use { "dyng/ctrlsf.vim", config = "require 'kg.plugins.ctrlsf'" }
     use { "andymass/vim-matchup", config = "require 'kg.plugins.vim-matchup'" }
-    use { "Pocco81/TrueZen.nvim", config = "require 'kg.plugins.truezen'" }
+    use { "Pocco81/true-zen.nvim", config = "require 'kg.plugins.truezen'" }
 
     -- use { "hoschi/yode-nvim", config = "require 'kg.plugins.yode'" } -- was broken
     use { "Everduin94/nvim-quick-switcher", config = "require 'kg.plugins.quick-switcher'" }
@@ -284,18 +285,13 @@ return packer.startup {
 
     use { "folke/which-key.nvim", config = "require 'kg.plugins.which-key'" }
     use {
-      "ThePrimeagen/harpoon",
-      config = "require 'kg.plugins.harpoon'",
-      requires = "nvim-lua/plenary.nvim",
-    }
-    use {
       "kyazdani42/nvim-tree.lua",
       requires = { "kyazdani42/nvim-web-devicons" },
       config = "require 'kg.plugins.nvim-tree'",
     }
     use {
       "anuvyklack/pretty-fold.nvim",
-      requires = "anuvyklack/nvim-keymap-amend",
+      requires = { "anuvyklack/nvim-keymap-amend", "anuvyklack/fold-preview.nvim" },
       config = function()
         require "kg.plugins.pretty-fold"
       end,
@@ -310,10 +306,10 @@ return packer.startup {
       config = "require 'kg.plugins.gps'",
     }
 
-    use({
+    use {
       "SmiteshP/nvim-navic",
-      requires = "neovim/nvim-lspconfig"
-    })
+      requires = "neovim/nvim-lspconfig",
+    }
 
     use {
       "feline-nvim/feline.nvim",
