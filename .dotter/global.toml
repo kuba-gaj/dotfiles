@@ -1,0 +1,23 @@
+[helpers]
+
+[all]
+depends = ["shell", "nvim", "wayland"]
+
+[shell.files]
+atuin = "~/.config/atuin"
+bat = "~/.config/bat"
+kitty = "~/.config/kitty"
+ripgrep = "~/.config/ripgrep"
+sheldon = { target = "~/.config/sheldon", type = "symbolic" }
+systemd = { target = "~/.config/systemd", type = "symbolic" }
+zsh = "~/.config/zsh"
+
+[nvim.files]
+nvim = "~/.config/nvim"
+
+[wayland.files]
+hypr = "~/.config/hypr"
+kanshi = "~/.config/kanshi"
+rofi = "~/.config/rofi"
+waybar = "~/.config/waybar"
+"waybar/modules/crypto" = { target = "~/.config/waybar/modules/crypto", type = "symbolic" }

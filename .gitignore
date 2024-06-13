@@ -1,0 +1,14 @@
+# dotter
+.dotter/local.toml
+.dotter/cache.toml
+.dotter/cache
+
+todo.md
+
+systemd
+
+# has some keys in config
+waybar/modules/crypto
+
+# todo: private for now
+zsh/.zshenv.priv

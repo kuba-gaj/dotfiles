@@ -1,0 +1,109 @@
+# `sheldon` configuration file
+# ----------------------------
+# See https://sheldon.cli.rs
+
+[templates]
+defer = """{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}{{ hooks?.post | nl }}"""
+defer-more = """{{ hooks?.pre | nl }}{% for file in files %}zsh-defer -t 0.5 source "{{ file }}"\n{% endfor %}{{ hooks?.post | nl }}"""
+
+shell = "zsh"
+
+# Completions
+# -----------
+
+[plugins.docker-zsh-completion]
+github = "greymd/docker-zsh-completion"
+
+[plugins.rust-zsh-completions]
+github = "ryutok/rust-zsh-completions"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+# Sourced
+# -------
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+# Deferred
+# --------
+
+[plugins.aliases]
+local = "~/.config/zsh/plugins"
+apply = ["defer"]
+
+[plugins.zsh-you-should-use]
+github = "MichaelAquilina/zsh-you-should-use"
+apply = ["defer"]
+hooks.pre = """
+export YSU_MODE=ALL
+export YSU_MESSAGE_POSITION=after
+export YSU_HARDCORE=1
+"""
+
+# fzf-tab needs to be loaded after compinit, but before plugins which will wrap widgets, such as zsh-autosuggestions or fast-syntax-highlighting
+# Keybindings
+# - Ctrl+Space: select multiple results, can be configured by fzf-bindings tag
+# - </>: switch between groups, can be configured by switch-group tag
+# - /: trigger continuous completion (useful when completing a deep path), can be configured by continuous-trigger tag
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+apply = ["defer"]
+hooks.pre = """
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+"""
+
+[plugins.vi-mode]
+github = "jeffreytse/zsh-vi-mode"
+apply = ["defer"]
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+use = ["{{ name }}.zsh"]
+apply = ["defer"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+apply = ["defer"]
+
+[plugins.ohmyzsh-lib]
+github = "ohmyzsh/ohmyzsh"
+dir = "lib"
+use = ["{completion,functions}.zsh"]
+# use = ["{clipboard,completion,functions,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
+apply = ["defer"]
+
+[plugins.ohmyzsh-plugins]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins"
+# use = ["{copybuffer,git,pip}/*.plugin.zsh"]
+use = ["{aliases,aws,git,kubectl,terraform,ripgrep}/*.plugin.zsh"]
+apply = ["defer"]
+
+[plugins.prezto-plugins]
+github = "sorin-ionescu/prezto"
+dir = "modules"
+use = ["{docker,utility,pacman}/*.zsh"]
+apply = ["defer"]
+hooks.pre = "zstyle ':prezto:module:pacman' frontend 'yay'"
+
+# This works best if it is placed last.
+[plugins.compinit]
+github = "rossmacarthur/dotfiles"
+dir = "src/zsh/plugins"
+use = ["compinit.plugin.zsh"]
+apply = ["defer"]
