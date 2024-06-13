@@ -83,15 +83,17 @@ apply = ["defer"]
 [plugins.ohmyzsh-lib]
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
-use = ["{completion,functions,git}.zsh"]
+use = ["{clipboard,completion,functions,git}.zsh"]
 # use = ["{clipboard,completion,functions,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
 apply = ["defer"]
 
 [plugins.ohmyzsh-plugins]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
-# use = ["{copybuffer,git,pip}/*.plugin.zsh"]
-use = ["{aliases,aws,git,kubectl,terraform,ripgrep}/*.plugin.zsh"]
+# ? fzf,globalias,jsontools,tmux,tmuxinator
+use = [
+  "{aliases,aws,colored-man-pages,copybuffer,copyfile,copypath,fd,gh,git,golang,helm,kubectl,node,pip,pyenv,python,redis-cli,ripgrep,rsync,rust,systemadmin,systemd,terraform,yarn,zsh-navigation-tools}/*.plugin.zsh",
+]
 apply = ["defer"]
 
 [plugins.prezto-plugins]
