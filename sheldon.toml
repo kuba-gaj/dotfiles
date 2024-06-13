@@ -83,7 +83,7 @@ apply = ["defer"]
 [plugins.ohmyzsh-lib]
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
-use = ["{completion,functions}.zsh"]
+use = ["{completion,functions,git}.zsh"]
 # use = ["{clipboard,completion,functions,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
 apply = ["defer"]
 

@@ -4,11 +4,11 @@
 depends = ["shell", "nvim", "wayland"]
 
 [shell.files]
-atuin = "~/.config/atuin"
-bat = "~/.config/bat"
+"atuin.toml" = "~/.config/atuin/config.toml"
+bat = "~/.config/bat/config"
 kitty = "~/.config/kitty"
 ripgrep = "~/.config/ripgrep"
-sheldon = { target = "~/.config/sheldon", type = "symbolic" }
+"sheldon.toml" = { target = "~/.config/sheldon/plugins.toml", type = "symbolic" }
 systemd = { target = "~/.config/systemd", type = "symbolic" }
 zsh = "~/.config/zsh"
 
@@ -16,8 +16,11 @@ zsh = "~/.config/zsh"
 nvim = "~/.config/nvim"
 
 [wayland.files]
-hypr = "~/.config/hypr"
-kanshi = "~/.config/kanshi"
-rofi = "~/.config/rofi"
-waybar = "~/.config/waybar"
-"waybar/modules/crypto" = { target = "~/.config/waybar/modules/crypto", type = "symbolic" }
+"hyprland.conf" = "~/.config/hypr/hyprland.conf"
+"hyprpaper.conf" = "~/.config/hypr/hyprpaper.conf"
+"pyprland.toml" = "~/.config/hypr/pyprland.toml"
+"waybar.conf" = "~/.config/waybar/config"
+"waybar.css" = "~/.config/waybar/style.css"
+"kanshi.conf" = "~/.config/kanshi/config"
+"rofi_colors.rasi" = "~/.config/rofi/colors.rasi"
+"rofi_config.rasi" = "~/.config/rofi/config.rasi"
