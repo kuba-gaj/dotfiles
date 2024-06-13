@@ -11,6 +11,7 @@ ripgrep = "~/.config/ripgrep"
 "sheldon.toml" = { target = "~/.config/sheldon/plugins.toml", type = "symbolic" }
 systemd = { target = "~/.config/systemd", type = "symbolic" }
 zsh = "~/.config/zsh"
+"zsh/.zshenv" = "~/.zshenv"
 
 [nvim.files]
 nvim = "~/.config/nvim"

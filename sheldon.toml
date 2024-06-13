@@ -22,6 +22,19 @@ github = "zsh-users/zsh-completions"
 
 # Sourced
 # -------
+# Prompt first
+[plugins.starship]
+inline = 'eval "$(starship init zsh)"'
+
+# The history plugin doesn't like being deferred, not sure why.
+[plugins.history]
+github = "ohmyzsh/ohmyzsh"
+dir = "lib"
+hooks.pre = """
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTSIZE=250000
+export SAVESIZE=25000
+"""
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
@@ -90,9 +103,9 @@ apply = ["defer"]
 [plugins.ohmyzsh-plugins]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
-# ? fzf,globalias,jsontools,tmux,tmuxinator
+# ? fzf,globalias,jsontools,tmux,tmuxinator,pyenv
 use = [
-  "{aliases,aws,colored-man-pages,copybuffer,copyfile,copypath,fd,gh,git,golang,helm,kubectl,node,pip,pyenv,python,redis-cli,ripgrep,rsync,rust,systemadmin,systemd,terraform,yarn,zsh-navigation-tools}/*.plugin.zsh",
+  "{aliases,aws,colored-man-pages,copybuffer,copyfile,copypath,fd,gh,git,golang,helm,kubectl,node,pip,python,redis-cli,ripgrep,rsync,rust,systemadmin,systemd,terraform,yarn,zsh-navigation-tools}/*.plugin.zsh",
 ]
 apply = ["defer"]
 
@@ -103,9 +116,23 @@ use = ["{docker,utility,pacman}/*.zsh"]
 apply = ["defer"]
 hooks.pre = "zstyle ':prezto:module:pacman' frontend 'yay'"
 
+[plugins.tools]
+local = "~/dotfiles/zsh/plugins"
+apply = ["defer"]
+
+[plugins.dev]
+local = "~/dotfiles/zsh/plugins"
+apply = ["defer"]
+
 # This works best if it is placed last.
 [plugins.compinit]
 github = "rossmacarthur/dotfiles"
 dir = "src/zsh/plugins"
 use = ["compinit.plugin.zsh"]
 apply = ["defer"]
+
+# even more deferred
+# -----------------------------------
+[plugins.last]
+local = "~/dotfiles/zsh/plugins"
+apply = ["defer-more"]

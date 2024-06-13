@@ -15,10 +15,6 @@ alias desk='_ systemctl stop udevmon; light -S 100'
 
 # exa
 alias ls='exa --icons'
-alias la='ls -a'
-alias l='ls -1'
-alias ll='ls -l'
-alias lla='ls -la'
 
 # bat
 alias cat='bat --paging=never'
