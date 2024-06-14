@@ -1,0 +1,16 @@
+# --> Catppuccin (Gruvbox)
+# thm_bg="#282828"
+thm_bg="#1d2021"
+thm_fg="#d5c4a1" 
+thm_cyan="#8ec07c"
+thm_black="#282828"
+thm_gray="#504945"
+thm_magenta="#d3869b"
+thm_pink="#f5c2e7"
+thm_red="#fb4934"
+thm_green="#b8bb26"
+thm_yellow="#fabd2d"
+thm_blue="#83a598"
+thm_orange="#fab387"
+thm_black4="#3c3836"
+

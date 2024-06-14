@@ -423,12 +423,12 @@ set -g default-command "${SHELL}"
 # by default, launching tmux will update tpm and all plugins
 #   - true (default)
 #   - false
-tmux_conf_update_plugins_on_launch=true
+tmux_conf_update_plugins_on_launch=false
 
 # by default, reloading the configuration will update tpm and all plugins
 #   - true (default)
 #   - false
-tmux_conf_update_plugins_on_reload=true
+tmux_conf_update_plugins_on_reload=false
 
 # by default, reloading the configuration will uninstall tpm and plugins when no
 # plugins are enabled
@@ -447,15 +447,15 @@ tmux_conf_uninstall_plugins_on_reload=false
 # to enable a plugin, use the 'set -g @plugin' syntax:
 # visit https://github.com/tmux-plugins for available plugins
 set -g @plugin 'alexwforsythe/tmux-which-key'
-set -g @plugin 'tmux-plugins/tmux-copycat'
-set -g @plugin 'tmux-plugins/tmux-cpu'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-open'
+# set -g @plugin 'tmux-plugins/tmux-copycat'
+# set -g @plugin 'tmux-plugins/tmux-cpu'
+# set -g @plugin 'tmux-plugins/tmux-yank'
+# set -g @plugin 'tmux-plugins/tmux-open'
 
 set -g @plugin 'christoomey/vim-tmux-navigator'
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session'
 
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-boot 'on' # start on boot
