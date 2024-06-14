@@ -18,7 +18,7 @@ max_workspaces = 9
 
 [scratchpads.dropterm]
 animation = "fromTop"
-command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf zellij attach dropterm --create"
+command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf tmux new -A -s dropterm"
 class = "term-drop"
 lazy = true
 size = "90% 90%"

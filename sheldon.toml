@@ -103,9 +103,9 @@ apply = ["defer"]
 [plugins.ohmyzsh-plugins]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
-# ? fzf,globalias,jsontools,tmux,tmuxinator,pyenv
+# ? fzf,globalias,jsontools,pyenv
 use = [
-  "{aliases,aws,colored-man-pages,copybuffer,copyfile,copypath,fd,gh,git,golang,helm,kubectl,node,pip,python,redis-cli,ripgrep,rsync,rust,systemadmin,systemd,terraform,yarn,zsh-navigation-tools}/*.plugin.zsh",
+  "{aliases,aws,colored-man-pages,copybuffer,copyfile,copypath,fd,gh,git,golang,helm,kubectl,node,pip,python,redis-cli,ripgrep,rsync,rust,systemadmin,systemd,terraform,tmux,yarn,zsh-navigation-tools}/*.plugin.zsh",
 ]
 apply = ["defer"]
 

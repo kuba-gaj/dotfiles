@@ -10,6 +10,8 @@ kitty = "~/.config/kitty"
 ripgrep = "~/.config/ripgrep"
 "sheldon.toml" = { target = "~/.config/sheldon/plugins.toml", type = "symbolic" }
 systemd = { target = "~/.config/systemd", type = "symbolic" }
+"tmux.conf" = "~/.config/tmux/tmux.conf"
+"tmux.conf.local" = "~/.config/tmux/tmux.conf.local"
 zsh = "~/.config/zsh"
 "zsh/.zshenv" = "~/.zshenv"
 
