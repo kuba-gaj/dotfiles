@@ -14,13 +14,13 @@
 # session_path = "~/.session"
 
 ## date format used, either "us" or "uk"
-# dialect = "us"
+dialect = "uk"
 
 ## default timezone to use when displaying time
 ## either "l", "local" to use the system's current local timezone, or an offset
 ## from UTC in the format of "<+|->H[H][:M[M][:S[S]]]"
 ## for example: "+9", "-05", "+03:30", "-01:23:45", etc.
-# timezone = "local"
+timezone = "local"
 
 ## enable or disable automatic sync
 # auto_sync = true
@@ -39,11 +39,11 @@ update_check = false
 
 ## which search mode to use
 ## possible values: prefix, fulltext, fuzzy, skim
-# search_mode = "fuzzy"
+search_mode = "fuzzy"
 
 ## which filter mode to use
 ## possible values: global, host, session, directory
-# filter_mode = "global"
+filter_mode = "global"
 
 ## With workspace filtering enabled, Atuin will filter for commands executed
 ## in any directory within a git repository tree (default: false)
@@ -61,7 +61,7 @@ update_check = false
 
 ## which style to use
 ## possible values: auto, full, compact
-# style = "auto"
+style = "full"
 
 ## the maximum number of lines the interface should take up
 ## set it to 0 to always go full screen
@@ -121,7 +121,7 @@ update_check = false
 ## Configure whether or not to show the help row, which includes the current Atuin
 ## version (and whether an update is available), a keymap hint, and the total
 ## amount of commands in your history.
-# show_help = true
+show_help = true
 
 ## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include
 ## 1. AWS key id
@@ -142,7 +142,7 @@ enter_accept = true
 ## keybinding is defined.  If this is set to "emacs", "vim-insert", or
 ## "vim-normal", the startup keymap mode in the Atuin search is forced to be
 ## the specified one.
-# keymap_mode = "auto"
+keymap_mode = "emacs"
 
 ## Cursor style in each keymap mode.  If specified, the cursor style is changed
 ## in entering the cursor shape.  Available values are "default" and
