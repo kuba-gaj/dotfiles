@@ -11,7 +11,8 @@ ripgrep = "~/.config/ripgrep"
 "sheldon.toml" = { target = "~/.config/sheldon/plugins.toml", type = "symbolic" }
 systemd = { target = "~/.config/systemd", type = "symbolic" }
 "tmux.conf" = "~/.config/tmux/tmux.conf"
-"tmux.conf.local" = "~/.config/tmux/tmux.conf.local"
+tmux_theme = "~/.config/tmux/plugins/tmux/themes/catppuccin_gruvbox.tmuxtheme"
+# "tmux.conf.local" = "~/.config/tmux/tmux.conf.local"
 zsh = "~/.config/zsh"
 "zsh/.zshenv" = "~/.zshenv"
 
@@ -22,6 +23,7 @@ nvim = "~/.config/nvim"
 "hyprland.conf" = "~/.config/hypr/hyprland.conf"
 "hyprpaper.conf" = "~/.config/hypr/hyprpaper.conf"
 "pyprland.toml" = "~/.config/hypr/pyprland.toml"
+"mako.conf" = "~/.config/mako/config"
 "waybar.conf" = "~/.config/waybar/config"
 "waybar.css" = "~/.config/waybar/style.css"
 "kanshi.conf" = "~/.config/kanshi/config"
