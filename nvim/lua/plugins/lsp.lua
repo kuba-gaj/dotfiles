@@ -36,10 +36,8 @@ return {
               useSyntaxServer = "auto", --auto,always,never
               useSeparateSyntaxServer = true,
               -- log = "/home/kuba/dev/tsserver.log",
-              -- using unofficial build with pointer compression enabled
-              -- https://github.com/typescript-language-server/typescript-language-server/issues/472#issuecomment-1195166893
-              -- https://github.com/yioneko/vtsls/issues/136#issuecomment-1919246219
-              nodePath = "/home/kuba/dev/node-v22.1.0-linux-x64-pointer-compression/bin/node",
+              -- use cmd in setup instead to get rid of the tsserver popup
+              -- nodePath = "/home/kuba/dev/node-v22.1.0-linux-x64-pointer-compression/bin/node",
             },
           },
         },
@@ -54,6 +52,21 @@ return {
             client.server_capabilities.documentFormattingProvider = false
           end
         end)
+      end,
+      vtsls = function(_, opts)
+        -- using unofficial build with pointer compression enabled
+        -- https://github.com/typescript-language-server/typescript-language-server/issues/472#issuecomment-1195166893
+        -- https://github.com/yioneko/vtsls/issues/136#issuecomment-1919246219
+        local nodePath = "/home/kuba/dev/node-v22.1.0-linux-x64-pointer-compression/bin/node"
+        local masonRoot = vim.env.MASON or (vim.fn.stdpath("data") .. "/mason")
+        local vtslsPath = masonRoot .. "/bin/vtsls"
+
+        opts.cmd = {
+          nodePath,
+          vtslsPath,
+          "--stdio",
+        }
+        -- return opts
       end,
     },
   },
