@@ -16,7 +16,7 @@ opt.relativenumber = false
 -- * the name of a detector function like `lsp` or `cwd`
 -- * a pattern or array of patterns like `.git` or `lua`.
 -- * a function with signature `function(buf) -> string|string[]`
-vim.g.root_spec = { { "package.json", "project.json", "Cargo.toml", "rust-project.json", ".git", "lua" }, "lsp", "cwd" }
+vim.g.root_spec = { { "package.json", "project.json", "Cargo.toml", "rust-project.json", ".git" }, "lsp", "cwd" }
 -- vim.g.autoformat = false
 -- LSP Server to use for Python.
 -- Set to "basedpyright" to use basedpyright instead of pyright.
