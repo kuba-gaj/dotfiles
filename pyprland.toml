@@ -1,20 +1,5 @@
 [pyprland]
-plugins = [
-  "scratchpads",
-  # "lost_windows",
-  # "monitors",
-  # "shift_monitors",
-  # "toggle_dpms",
-  # "magnify",
-  # "expose",
-  # "workspaces_follow_focus",
-]
-
-[workspaces_follow_focus]
-max_workspaces = 9
-#
-# [expose]
-# include_special = false
+plugins = ["scratchpads"]
 
 [scratchpads.dropterm]
 animation = "fromTop"
@@ -24,15 +9,6 @@ lazy = true
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-
-# [scratchpads.dropterm2]
-# animation = "fromBottom"
-# command = "wezterm --class wezterm-drop"
-# class = "wezterm-drop"
-# lazy = true
-# size = "90% 90%"
-# max_size = "1920px 90%"
-# excludes = "*"
 
 [scratchpads.top]
 animation = "fromBottom"
@@ -55,8 +31,6 @@ excludes = "*"
 
 [scratchpads.whatsapp]
 animation = "fromBottom"
-# command = "whatsapp-for-linux"
-# class = "whatsapp-for-linux"
 command = "whatsie"
 class = "com.ktechpit.whatsie"
 lazy = true
@@ -89,7 +63,6 @@ lazy = true
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-# unfocus = "hide"
 
 # [scratchpads.gmeet]
 # command = "/opt/google/chrome-beta/google-chrome-beta \"--profile-directory=Profile 1\" --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
@@ -107,14 +80,13 @@ command = "chatbox"
 class = "xyz.chatboxapp.app"
 size = "33% 90%"
 max_size = "1280px 90%"
-lazy = true
+# lazy = true
 excludes = ["volume"]
 
 [scratchpads.volume]
 animation = "fromRight"
 command = "pavucontrol"
 class = "pavucontrol"
-lazy = true
 size = "33% 66%"
 excludes = ["chatbox"]
 max_size = "1280px 66%"
@@ -126,11 +98,3 @@ max_size = "1280px 66%"
 # class = "top"
 # class_match
 # sizje = "70% 90%"
-
-
-# [monitors]
-# unknown = "wlrlui"
-#
-# [monitors.placement]
-# "Acer".leftOf = "HDMI-0"
-# "Sony".topOf = "eDP-1"
