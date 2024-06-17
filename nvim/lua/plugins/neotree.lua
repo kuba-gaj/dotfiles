@@ -1,6 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  enabled = false,
+  -- enabled = false,
   opts = {
     -- sync_root_with_cwd = true,
     respect_buf_cwd = true,
