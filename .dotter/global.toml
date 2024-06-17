@@ -1,7 +1,7 @@
 [helpers]
 
 [all]
-depends = ["shell", "nvim", "wayland"]
+depends = ["shell", "nvim", "local", "wayland"]
 
 [shell.files]
 "atuin.toml" = "~/.config/atuin/config.toml"
@@ -22,6 +22,7 @@ nvim = "~/.config/nvim"
 [wayland.files]
 "hyprland.conf" = "~/.config/hypr/hyprland.conf"
 "hyprpaper.conf" = "~/.config/hypr/hyprpaper.conf"
+"gtk-4.0" = "~/.config/gtk-4.0"
 "pyprland.toml" = "~/.config/hypr/pyprland.toml"
 "mako.conf" = "~/.config/mako/config"
 "waybar.conf" = "~/.config/waybar/config"
@@ -29,3 +30,7 @@ nvim = "~/.config/nvim"
 "kanshi.conf" = "~/.config/kanshi/config"
 "rofi_colors.rasi" = "~/.config/rofi/colors.rasi"
 "rofi_config.rasi" = "~/.config/rofi/config.rasi"
+"pipewire.conf.d" = "~/.config/pipewire/pipewire.conf.d"
+
+[local.files]
+"local/applications" = "~/.local/share/applications"
