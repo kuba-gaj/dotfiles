@@ -4,11 +4,10 @@ export NPM_TOKEN=$(cat $NPM_CONFIG_USERCONFIG | grep _authToken | sed 's/.*=//')
 path+=("./node_modules/.bin")
 path+=("$HOME/.node_modules/bin")
 path+="$HOME/.yarn/bin"
+znap eval fnm 'fnm env --use-on-cd'
 
 # docker
 export DOCKER_HIDE_LEGACY_COMMANDS=true
-# socket for rootless
-# export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
 # rust
 path+=("$HOME/.cargo/bin")
@@ -19,8 +18,9 @@ export GOBIN=$GOPATH/bin
 path+=("$GOBIN")
 
 # python
-eval "$(register-python-argcomplete pipx)"
 [[ -d $PYENV_ROOT/bin ]] && path+="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
+znap eval pyenv 'pyenv init -'
+znap eval pipx-argcomplete 'register-python-argcomplete pipx'
 
 
