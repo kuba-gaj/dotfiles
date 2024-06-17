@@ -31,6 +31,7 @@ nvim = "~/.config/nvim"
 "rofi_colors.rasi" = "~/.config/rofi/colors.rasi"
 "rofi_config.rasi" = "~/.config/rofi/config.rasi"
 "pipewire.conf.d" = "~/.config/pipewire/pipewire.conf.d"
+"wlogout" = "~/.config/wlogout"
 
 [local.files]
 "local/applications" = "~/.local/share/applications"
