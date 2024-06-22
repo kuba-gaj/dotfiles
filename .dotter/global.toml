@@ -24,7 +24,6 @@ nvim = "~/.config/nvim"
 [wayland.files]
 "hyprland.conf" = "~/.config/hypr/hyprland.conf"
 "hyprpaper.conf" = "~/.config/hypr/hyprpaper.conf"
-"gtk-4.0" = "~/.config/gtk-4.0"
 "pyprland.toml" = "~/.config/hypr/pyprland.toml"
 "mako.conf" = "~/.config/mako/config"
 "waybar.conf" = "~/.config/waybar/config"
