@@ -9,6 +9,7 @@ bat = "~/.config/bat/config"
 "eget.toml" = { target = "~/.config/.eget.toml", type = "symbolic" }
 glab-cli = "~/.config/glab-cli"
 kitty = "~/.config/kitty"
+"luarocks-5.4.lua" = "~/.config/luarocks/config-5.4.lua"
 ripgrep = "~/.config/ripgrep"
 systemd = { target = "~/.config/systemd", type = "symbolic" }
 "tmux.conf" = "~/.config/tmux/tmux.conf"
