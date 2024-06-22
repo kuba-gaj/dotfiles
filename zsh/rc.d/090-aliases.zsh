@@ -189,3 +189,7 @@ nu() {
   local args\="$@"
   command nu -c "$args"
 }
+
+function upd {
+  source "$ZDOTDIR/scripts/update-system.zsh"
+}
