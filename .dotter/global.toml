@@ -10,7 +10,6 @@ bat = "~/.config/bat/config"
 glab-cli = "~/.config/glab-cli"
 kitty = "~/.config/kitty"
 ripgrep = "~/.config/ripgrep"
-"sheldon.toml" = { target = "~/.config/sheldon/plugins.toml", type = "symbolic" }
 systemd = { target = "~/.config/systemd", type = "symbolic" }
 "tmux.conf" = "~/.config/tmux/tmux.conf"
 tmux_theme = "~/.config/tmux/plugins/tmux/themes/catppuccin_gruvbox.tmuxtheme"
