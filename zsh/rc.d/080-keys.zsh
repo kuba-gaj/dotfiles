@@ -58,3 +58,7 @@ bindkey '^[w' where-is
     LBUFFER="sudo $LBUFFER"
   }
 } .sudo
+
+# Alt-Enter to insert a newline without executing the command.
+# bindkey '^[^M' self-insert-unmeta
+bindkey -M viins '^[^M' self-insert-unmeta
