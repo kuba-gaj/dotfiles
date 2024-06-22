@@ -3,6 +3,7 @@ plugins = ["scratchpads"]
 
 [scratchpads.dropterm]
 animation = "fromTop"
+# command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf tmux new -A -s dropterm"
 command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf tmux attach -d -t dropterm"
 class = "term-drop"
 lazy = true
