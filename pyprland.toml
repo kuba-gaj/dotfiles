@@ -65,7 +65,7 @@ max_size = "1920px 90%"
 excludes = "*"
 
 # [scratchpads.gmeet]
-# command = "/opt/google/chrome-beta/google-chrome-beta \"--profile-directory=Profile 1\" --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
+# command = "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
 # animation = "fromRight"
 # class = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1"
 # size = "50% 90%"
@@ -74,19 +74,27 @@ excludes = "*"
 # shared_pid = true
 # unfocus = "hide"
 
+[scratchpads.onepass]
+animation = "fromBottom"
+command = "1password"
+class = "1Password"
+size = "33% 50%"
+max_size = "1280px 50%"
+lazy = true
+
 [scratchpads.chatbox]
 animation = "fromRight"
 command = "chatbox"
 class = "xyz.chatboxapp.app"
 size = "33% 90%"
 max_size = "1280px 90%"
-# lazy = true
+lazy = true
 excludes = ["volume"]
 
 [scratchpads.volume]
 animation = "fromRight"
 command = "pavucontrol"
-class = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
 size = "33% 66%"
 excludes = ["chatbox"]
 max_size = "1280px 66%"
