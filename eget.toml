@@ -1,0 +1,8 @@
+# Download binaries from GitHub releases
+# https://github.com/zyedidia/eget
+
+[global]
+to = "~/.local/bin"
+target = "~/.local/bin"
+upgrade_only = true
+quiet = false

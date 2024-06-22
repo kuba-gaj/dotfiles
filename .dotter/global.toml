@@ -6,6 +6,7 @@ depends = ["shell", "nvim", "local", "wayland"]
 [shell.files]
 "atuin.toml" = "~/.config/atuin/config.toml"
 bat = "~/.config/bat/config"
+"eget.toml" = { target = "~/.config/.eget.toml", type = "symbolic" }
 glab-cli = "~/.config/glab-cli"
 kitty = "~/.config/kitty"
 ripgrep = "~/.config/ripgrep"
