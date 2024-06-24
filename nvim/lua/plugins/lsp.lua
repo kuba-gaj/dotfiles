@@ -57,6 +57,7 @@ return {
         -- using unofficial build with pointer compression enabled
         -- https://github.com/typescript-language-server/typescript-language-server/issues/472#issuecomment-1195166893
         -- https://github.com/yioneko/vtsls/issues/136#issuecomment-1919246219
+        -- https://v8.dev/blog/pointer-compression
         local nodePath = "/home/kuba/dev/node-v22.1.0-linux-x64-pointer-compression/bin/node"
         local masonRoot = vim.env.MASON or (vim.fn.stdpath("data") .. "/mason")
         local vtslsPath = masonRoot .. "/bin/vtsls"
