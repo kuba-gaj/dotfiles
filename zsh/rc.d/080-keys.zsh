@@ -62,3 +62,7 @@ bindkey '^[w' where-is
 # Alt-Enter to insert a newline without executing the command.
 # bindkey '^[^M' self-insert-unmeta
 bindkey -M viins '^[^M' self-insert-unmeta
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
