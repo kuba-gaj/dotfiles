@@ -25,7 +25,8 @@ znap eval pipx-argcomplete 'register-python-argcomplete pipx'
 
 # lua5.1 is in /usr/local/bin
 export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config-5.4.lua"
-znap eval luarocks 'luarocks path'
+# TODO: this unsets some PATH like the one for fnm
+# znap eval luarocks 'luarocks path'
 
 # git
 export GITLAB_HOST="gitlab.trint.io"
