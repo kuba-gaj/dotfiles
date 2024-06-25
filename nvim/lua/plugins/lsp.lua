@@ -11,13 +11,20 @@ return {
         disableOrganizeImports = true, -- using Ruff
       },
       vtsls = {
+        -- monorepo fix, also looks like it fixes memory issues
+        -- i override vim.g.root_spec to have cwd/root pickers working correctly
+        root_dir = function()
+          local lazyvimRoot = require("lazyvim.util.root")
+          -- use git for lsp root or fallback to default option vim.g.root_spec
+          return lazyvimRoot.git() or lazyvimRoot.detect()
+        end,
         settings = {
           vtsls = {
             autoUseWorkspaceTsdk = true,
             experimental = {
               completion = {
                 enableServerSideFuzzyMatch = true,
-                -- entriesLimit = 100,
+                -- entriesLimit = 25,
               },
             },
           },
@@ -29,13 +36,16 @@ return {
               -- "Always search dependencies.",
               includePackageJsonAutoImports = "auto", -- auto, on, off
               -- Specify glob patterns of files to exclude from auto imports. Relative paths are resolved relative to the workspace root. Patterns are evaluated using tsconfig.json [`exclude`](https://www.typescriptlang.org/tsconfig#exclude) semantics.
-              -- autoImportFileExcludePatterns = [],
+              -- autoImportFileExcludePatterns = { "*trint-operation*" },
             },
             tsserver = {
-              maxTsServerMemory = 16000,
+              maxTsServerMemory = 8000,
+              -- deprecated in favor of useSyntaxServer
+              useSeparateSyntaxServer = false,
+              -- Controls if TypeScript launches a dedicated server to more quickly handle syntax related operations, such as computing code folding.
               useSyntaxServer = "auto", --auto,always,never
-              useSeparateSyntaxServer = true,
-              -- log = "/home/kuba/dev/tsserver.log",
+              -- in /tmp/tsserver-log-*/tsserver.log
+              log = "off", -- off, terse, normal, verbose
               -- use cmd in setup instead to get rid of the tsserver popup
               -- nodePath = "/home/kuba/dev/node-v22.1.0-linux-x64-pointer-compression/bin/node",
             },
