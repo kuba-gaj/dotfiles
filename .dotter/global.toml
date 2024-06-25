@@ -17,21 +17,21 @@ tmux_theme = "~/.config/tmux/plugins/tmux/themes/catppuccin_gruvbox.tmuxtheme"
 # "tmux.conf.local" = "~/.config/tmux/tmux.conf.local"
 zsh = "~/.config/zsh"
 "zsh/.zshenv" = "~/.zshenv"
+"zsh/scripts/tcreds.zsh" = "~/.local/bin/tcreds"
 
 [nvim.files]
 nvim = "~/.config/nvim"
 
 [wayland.files]
-"hyprland.conf" = "~/.config/hypr/hyprland.conf"
-"hyprpaper.conf" = "~/.config/hypr/hyprpaper.conf"
-"pyprland.toml" = "~/.config/hypr/pyprland.toml"
+"hypr" = "~/.config/hypr"
+"waybar" = "~/.config/waybar"
 "gtk-4.0" = "~/.config/gtk-4.0"
 "mako.conf" = "~/.config/mako/config"
-"waybar.conf" = "~/.config/waybar/config"
-"waybar.css" = "~/.config/waybar/style.css"
+"rofi/config.rasi" = "~/.config/rofi/config.rasi"
+"rofi/themes" = "~/.local/share/rofi/themes"
 "kanshi.conf" = "~/.config/kanshi/config"
-"rofi_colors.rasi" = "~/.config/rofi/colors.rasi"
-"rofi_config.rasi" = "~/.config/rofi/config.rasi"
+# "rofi_colors.rasi" = "~/.config/rofi/colors.rasi"
+# "rofi_config.rasi" = "~/.config/rofi/config.rasi"
 "pipewire.conf.d" = "~/.config/pipewire/pipewire.conf.d"
 "wlogout" = "~/.config/wlogout"
 
