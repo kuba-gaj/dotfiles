@@ -2,7 +2,7 @@
 
 * {
   font-family: FantasqueSansMono Nerd Font;
-  font-size: 17px;
+  font-size: 14px;
   min-height: 0;
 }
 
@@ -10,33 +10,10 @@
   background: @mantle;
   /* background: transparent; */
   color: @text;
-  margin: 5px 5px;
+  /* margin: 24px 48px; */
 }
 
-#workspaces {
-  border-radius: 1rem;
-  margin: 5px;
-  background-color: @surface0;
-  margin-left: 1rem;
-  padding: 0 1rem;
-}
-
-#workspaces button {
-  color: @lavender;
-  border-radius: 1rem;
-  padding: 0.4rem;
-}
-
-#workspaces button.active {
-  color: @sky;
-  border-radius: 1rem;
-}
-
-#workspaces button:hover {
-  color: @sapphire;
-  border-radius: 1rem;
-}
-
+#workspaces,
 #custom-music,
 #tray,
 #backlight,
@@ -52,9 +29,29 @@
 #custom-power {
   background-color: @surface0;
   border-radius: 1rem;
-  /* border-radius: 0px 1rem 1rem 0px; */
-  padding: 0.5rem 1rem;
-  margin: 5px 5px;
+  padding: 0 1rem;
+  margin: 4px 4px;
+}
+
+#workspaces {
+  margin-left: 1rem;
+}
+
+#workspaces button {
+  color: @lavender;
+  border-radius: 1rem;
+  padding: 2px;
+  /* padding: 0.4rem; */
+}
+
+#workspaces button.active {
+  color: @sky;
+  border-radius: 1rem;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+  border-radius: 1rem;
 }
 
 #clock {
