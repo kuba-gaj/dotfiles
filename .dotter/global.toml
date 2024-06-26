@@ -5,15 +5,20 @@ depends = ["shell", "nvim", "local", "wayland"]
 
 [shell.files]
 "atuin.toml" = "~/.config/atuin/config.toml"
-bat = "~/.config/bat/config"
+bat = "~/.config/bat"
+"bottom.toml" = "~/.config/bottom/bottom.toml"
 "eget.toml" = { target = "~/.config/.eget.toml", type = "symbolic" }
 glab-cli = "~/.config/glab-cli"
+k9s = "~/.config/k9s"
 kitty = "~/.config/kitty"
+lazygit = { target = "~/.config/lazygit", type = "symbolic" }
 "luarocks-5.4.lua" = "~/.config/luarocks/config-5.4.lua"
 ripgrep = "~/.config/ripgrep"
+"starship.toml" = "~/.config/starship.toml"
 systemd = { target = "~/.config/systemd", type = "symbolic" }
 "tmux.conf" = "~/.config/tmux/tmux.conf"
 tmux_theme = "~/.config/tmux/plugins/tmux/themes/catppuccin_gruvbox.tmuxtheme"
+yazi = "~/.config/yazi"
 zsh = "~/.config/zsh"
 "zsh/.zshenv" = "~/.zshenv"
 "zsh/scripts/tcreds.zsh" = "~/.local/bin/tcreds"

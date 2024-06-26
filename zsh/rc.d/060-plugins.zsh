@@ -58,6 +58,7 @@ znap source Aloxaf/fzf-tab
 
 znap source zsh-users/zsh-autosuggestions       # Inline suggestions
 znap source zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
+znap source catppuccin/zsh-syntax-highlighting themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 znap eval zoxide 'zoxide init zsh'
 znap eval direnv 'direnv hook zsh'
@@ -77,7 +78,11 @@ export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep
 # FZF respect version control ignore files excluding hidden files
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --exclude .git --color always --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--ansi'
+export FZF_DEFAULT_OPTS=" \
+--ansi \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
