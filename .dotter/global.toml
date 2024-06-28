@@ -29,13 +29,14 @@ nvim = "~/.config/nvim"
 [wayland.files]
 "hypr" = "~/.config/hypr"
 "waybar" = "~/.config/waybar"
-"mako.conf" = "~/.config/mako/config"
 "swaync" = "~/.config/swaync"
 "rofi/config.rasi" = "~/.config/rofi/config.rasi"
 "rofi/themes" = "~/.local/share/rofi/themes"
-"kanshi.conf" = "~/.config/kanshi/config"
+"shikane.toml" = "~/.config/shikane/config.toml"
 "pipewire.conf.d" = "~/.config/pipewire/pipewire.conf.d"
 "wlogout" = "~/.config/wlogout"
+"chrome-flags.conf" = "~/.config/chrome-flags.conf"
 
 [local.files]
 "local/applications" = "~/.local/share/applications"
+"local/bin" = "~/.local/bin"

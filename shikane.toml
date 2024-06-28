@@ -1,0 +1,67 @@
+# use nwg-displays to configure and save config, 
+# then use shikanectl export <profile>
+[[profile]]
+name = "home"
+exec = [
+  'notify-send shikane "Profile $SHIKANE_PROFILE_NAME detected"',
+  'hyprctl keyword general:layout "master"',
+  'light -S 30',
+  'sudo systemctl stop udevmon',
+  'notify-send shikane "Profile $SHIKANE_PROFILE_NAME has been applied"',
+]
+
+# laptop
+[[profile.output]]
+search = "eDP-1"
+enable = false
+mode = "2256x1504@60Hz"
+position = "0,0"
+scale = 1.175
+transform = "normal"
+adaptive_sync = false
+
+# philips ultrawide
+[[profile.output]]
+enable = true
+search = [
+  "m=PHL 499P9",
+  "s=AU02015015203",
+  "v=Philips Consumer Electronics Company",
+]
+mode = "5120x1440@59.977Hz"
+position = "0,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile]]
+name = "trint4k"
+exec = [
+  'notify-send shikane "Profile $SHIKANE_PROFILE_NAME detected"',
+  'hyprctl keyword general:layout "dwindle"',
+  'light -S 100',
+  'sudo systemctl stop udevmon',
+  'notify-send shikane "Profile $SHIKANE_PROFILE_NAME has been applied"',
+]
+
+# laptop
+[[profile.output]]
+search = "eDP-1"
+enable = true
+# search = ["m=0x0BCA", "s=", "v=BOE"]
+mode = "2256x1504@60Hz"
+position = "0,902"
+scale = 1.56640625
+transform = "normal"
+adaptive_sync = false
+
+# 4k LG monitor
+[[profile.output]]
+enable = true
+search = ["m=LG Ultra HD", "s=0x000363D9", "v=LG Electronics"]
+mode = "3840x2160@30Hz"
+position = "1437,0"
+exec = ["echo This is output $SHIKANE_OUTPUT_NAME"]
+scale = 1.33203125
+transform = "normal"
+adaptive_sync = false
