@@ -22,7 +22,8 @@ excludes = "*"
 
 [scratchpads.slack]
 animation = "fromBottom"
-command = "/usr/bin/slack --disable-gpu-compositing --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-features=WaylandWindowDecorations --silent"
+command = "/usr/bin/slack --disable-gpu-compositing --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer,WaylandWindowDecorations"
+# command = "/usr/bin/slack --disable-gpu-compositing --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-features=WaylandWindowDecorations --silent"
 class = "Slack"
 match_by = "initialTitle"
 initialTitle = "Slack"
