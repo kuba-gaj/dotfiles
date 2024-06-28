@@ -1,0 +1,34 @@
+#!/bin/bash
+
+window_title_changed() {
+	local window_address="0x${1#windowtitle>>}"
+	# echo "Window title changed"
+	# echo "Window Address: $window_address"
+
+	# Run hyprctl command to list all windows in JSON format
+	local windows_json=$(hyprctl -j clients)
+
+	# Find the window with the given address and extract class and title using jq
+	local window_info=$(echo "$windows_json" | jq --arg addr "$window_address" '.[] | select(.address == $addr) | { class, title }')
+
+	# Extract class and title values from the window_info JSON object
+	local window_class=$(echo "$window_info" | jq -r '.class')
+	local window_title=$(echo "$window_info" | jq -r '.title')
+	# echo "Window Class: $window_class"
+	# echo "Window Title: $window_title"
+
+	# Check if the window_class is 'firefox' and window_title matches the specified format
+	if [ "$window_class" = "firefox" ] && [[ "$window_title" =~ ^\[FFW([0-9]+).* ]]; then
+		local workspace_number="${BASH_REMATCH[1]}"
+		# echo "Extracted Number: $workspace_number"
+		hyprctl dispatch movetoworkspacesilent $workspace_number,address:$window_address
+	fi
+}
+
+handle() {
+	case $1 in
+	windowtitle*) window_title_changed "$1" ;;
+	esac
+}
+
+socat -U - UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock | while read -r line; do handle "$line"; done
