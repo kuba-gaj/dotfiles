@@ -68,6 +68,8 @@ return {
     },
   },
   {
+    -- tmux nvim status integration
+    -- also see: https://github.com/b0o/nvim-conf/blob/main/lua/user/plugins/status.lua
     "vimpostor/vim-tpipeline",
     -- enabled = false,
     -- cond = function()
