@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Screenshots
+
+# TODO:
+# - Add a delay option
+# - Add screen lock from hyprpicker
+# - check if clipboard has image
+
+iDIR="$HOME/.config/swaync/icons"
+notify_cmd_shot="timeout 5 notify-send -u low -i ${iDIR}/picture.png --action=edit=Edit --action=save=Save -t 5000"
+
+time=$(date "+%d-%b_%H-%M-%S")
+dir="$(xdg-user-dir)/Pictures/Screenshots"
+file="Screenshot_${time}.png"
+# file="Screenshot_${time}_${RANDOM}.png"
+
+# notify and view screenshot
+notify_view() {
+	tmppath="/tmp/$file"
+	wl-paste >"$tmppath"
+	notify_action=$(${notify_cmd_shot} "Screenshot saved to clipboard" "<img src=\"$tmppath\" />")
+	if [[ "$notify_action" = "edit" ]]; then
+		wl-paste | swappy -f -
+	elif [[ "$notify_action" = "save" ]]; then
+		wl-paste >"${dir}/${file}"
+	fi
+	rm -f "${tmppath}"
+}
+
+shotregion() {
+	grim -g "$(slurp)" - | wl-copy
+	notify_view
+}
+
+shotactive() {
+	area=$(hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+	grim -g "$area" - | wl-copy
+	notify_view
+}
+
+shotoutput() {
+	grim - | wl-copy
+	notify_view
+}
+
+if [[ ! -d "$dir" ]]; then
+	mkdir -p "$dir"
+fi
+
+if [[ "$1" == "--output" ]]; then
+	shotoutput
+elif [[ "$1" == "--region" ]]; then
+	shotregion
+elif [[ "$1" == "--window" ]]; then
+	shotactive
+else
+	echo -e "Available Options : --output --region --window"
+fi
+exit 0
