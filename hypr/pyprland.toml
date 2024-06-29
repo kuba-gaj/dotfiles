@@ -20,13 +20,13 @@ excludes = "*"
 
 [scratchpads.slack]
 animation = "fromBottom"
-command = "/usr/bin/slack --disable-gpu-compositing --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
+command = "/usr/bin/slack --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --silent"
 # command = "/usr/bin/slack --disable-gpu-compositing --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-features=WaylandWindowDecorations --silent"
 class = "Slack"
-# looks like it's needed by pyprland atm
-lazy = true
-match_by = "initialTitle"
-initialTitle = "Slack"
+# TODO: maybe initial title is better but it's different for sign in
+# maybe that could work: https://hyprland-community.github.io/pyprland/scratchpads_nonstandard.html#skip-windowrules-optional
+match_by = "initialClass"
+initialClass = "Slack"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
@@ -39,10 +39,11 @@ size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
 
+# TODO: breaks because of starting another process
 [scratchpads.discord]
 animation = "fromBottom"
 command = "/usr/bin/discord"
-match_by = "class"
+process_tracking = false
 class = "discord"
 lazy = true
 size = "90% 90%"
