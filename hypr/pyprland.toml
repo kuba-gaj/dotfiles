@@ -6,7 +6,6 @@ animation = "fromTop"
 # command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf tmux new -A -s dropterm"
 command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf tmux attach -d -t dropterm"
 class = "term-drop"
-lazy = true
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
@@ -14,7 +13,6 @@ excludes = "*"
 [scratchpads.top]
 animation = "fromBottom"
 command = "kitty --class kitty_btm --config ~/.config/kitty/qterm.conf btm"
-lazy = true
 class = "kitty_btm"
 size = "90% 90%"
 max_size = "1920px 90%"
@@ -22,9 +20,11 @@ excludes = "*"
 
 [scratchpads.slack]
 animation = "fromBottom"
-command = "/usr/bin/slack --disable-gpu-compositing --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer,WaylandWindowDecorations"
+command = "/usr/bin/slack --disable-gpu-compositing --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
 # command = "/usr/bin/slack --disable-gpu-compositing --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-features=WaylandWindowDecorations --silent"
 class = "Slack"
+# looks like it's needed by pyprland atm
+lazy = true
 match_by = "initialTitle"
 initialTitle = "Slack"
 size = "90% 90%"
@@ -35,7 +35,6 @@ excludes = "*"
 animation = "fromBottom"
 command = "whatsie"
 class = "com.ktechpit.whatsie"
-lazy = true
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
@@ -43,6 +42,7 @@ excludes = "*"
 [scratchpads.discord]
 animation = "fromBottom"
 command = "/usr/bin/discord"
+match_by = "class"
 class = "discord"
 lazy = true
 size = "90% 90%"
@@ -82,7 +82,6 @@ command = "1password"
 class = "1Password"
 size = "33% 50%"
 max_size = "1280px 50%"
-lazy = true
 
 [scratchpads.chatbox]
 animation = "fromRight"
