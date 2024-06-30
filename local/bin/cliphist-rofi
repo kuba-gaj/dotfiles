@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Usage: rofi -show clipboard -config ~/.config/rofi/config-clipboard.rasi
+# TODO: hide id column
+
+print_lines() {
+	tmp_dir="/tmp/cliphist"
+	rm -rf "$tmp_dir"
+
+	mkdir -p "$tmp_dir"
+
+	read -r -d '' prog <<EOF
+/^[0-9]+\s<meta http-equiv=/ { next }
+match(\$0, /^([0-9]+)\s(\[\[\s)?binary.*(jpg|jpeg|png|bmp)/, grp) {
+    system("echo " grp[1] "\\\\\t | cliphist decode >$tmp_dir/"grp[1]"."grp[3])
+    print \$0"\0icon\x1f$tmp_dir/"grp[1]"."grp[3]
+    next
+}
+1
+EOF
+	cliphist list | gawk "$prog"
+}
+
+case $ROFI_RETV in
+# print lines on start
+0)
+	# needs to be enabled to handle custom keys
+	echo -en "\x00use-hot-keys\x1ftrue\n"
+	print_lines
+	;;
+# handle select line
+1)
+	notify-send "Clipboard" "Copied to clipboard $1"
+	cliphist decode <<<"$1" | wl-copy # && wtype -M ctrl -P v -m ctrl
+	title=$(hyprctl -j activewindow | jq -r '.initialTitle')
+	if [[ "$title" = "kitty" ]]; then
+		coproc wtype -M shift -M ctrl -P v -m ctrl
+	else
+		coproc wtype -M ctrl -P v -m ctrl
+	fi
+	exit
+	;;
+# kb-custom-1 (Ctrl-Delete)
+10) cliphist delete <<<"$1" && print_lines ;;
+# kb-custom-2 (Alt-Delete)
+11) cliphist wipe ;;
+*) echo "exit retv: $ROFI_RETV" ;;
+esac
