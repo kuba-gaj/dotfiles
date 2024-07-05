@@ -16,8 +16,10 @@ yay -Syu --devel                   # update repo and AUR packages, including -gi
 yay -S --needed neovim-nightly-bin # update the nightly neovim
 echo "##### Cleaning znap eval cache #####"
 \rm -f "$XDG_CACHE_HOME"/zsh-snap/eval/*
+# echo "Cleaning cliphist"
+# \rm -f "$XDG_CACHE_HOME"/cliphist/db" or *?
 echo "##### Updating znap packages #####"
-znap pull || true # update zsh plugins
+znap pull || true 
 echo "##### Updating znap packages #####"
 pipx upgrade-all
 echo "##### Updating firmware #####"

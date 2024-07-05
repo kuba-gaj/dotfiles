@@ -8,7 +8,6 @@ print_lines() {
 
   cliphist list | while read -r line; do
     if [[ $line == *meta\ http-equiv=* ]]; then
-      # notify-send "skipping meta line"
       continue
     fi
 
@@ -32,13 +31,11 @@ case $ROFI_RETV in
 # print lines on start
 0)
   # needs to be enabled to handle custom keys
-  # notify-send "Clipboard: start"
   echo -en "\x00use-hot-keys\x1ftrue\n"
   print_lines
   ;;
 # handle select line
 1)
-  # notify-send "Clipboard: selected"
   cliphist decode "$ROFI_INFO" | wl-copy
 
   title=$(hyprctl -j activewindow | jq -r '.initialTitle')
@@ -51,12 +48,10 @@ case $ROFI_RETV in
   ;;
 # kb-custom-1 (Ctrl-Delete)
 10)
-  # notify-send "Clipboard: delete $ROFI_INFO"
   cliphist delete <<<"$ROFI_INFO" && print_lines
   ;;
 # kb-custom-2 (Alt-Delete)
 11)
-  # notify-send "Clipboard: wipe"
   cliphist wipe
   ;;
 *) notify-send "Clipboard: unknown exit $ROFI_RETV" ;;
