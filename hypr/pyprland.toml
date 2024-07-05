@@ -8,7 +8,7 @@ command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf 
 class = "term-drop"
 size = "90% 90%"
 max_size = "1920px 90%"
-excludes = "*"
+# excludes = "*"
 
 [scratchpads.top]
 animation = "fromBottom"
@@ -16,20 +16,18 @@ command = "kitty --class kitty_btm --config ~/.config/kitty/qterm.conf btm"
 class = "kitty_btm"
 size = "90% 90%"
 max_size = "1920px 90%"
-excludes = "*"
+# excludes = "*"
 
 [scratchpads.slack]
 animation = "fromBottom"
 command = "/usr/bin/slack --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --silent"
-# command = "/usr/bin/slack --disable-gpu-compositing --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-features=WaylandWindowDecorations --silent"
+# TODO: check regex that it works with huddle and sign-in
+match_by = "initialTitle"
+initialTitle = "re:.*Slack$"
 class = "Slack"
-# TODO: maybe initial title is better but it's different for sign in
-# maybe that could work: https://hyprland-community.github.io/pyprland/scratchpads_nonstandard.html#skip-windowrules-optional
-match_by = "initialClass"
-initialClass = "Slack"
 size = "90% 90%"
 max_size = "1920px 90%"
-excludes = "*"
+# excludes = "*"
 
 [scratchpads.whatsapp]
 animation = "fromBottom"
@@ -37,18 +35,18 @@ command = "whatsie"
 class = "com.ktechpit.whatsie"
 size = "90% 90%"
 max_size = "1920px 90%"
-excludes = "*"
+# excludes = "*"
 
 # TODO: breaks because of starting another process
-[scratchpads.discord]
-animation = "fromBottom"
-command = "/usr/bin/discord"
-process_tracking = false
-class = "discord"
-lazy = true
-size = "90% 90%"
-max_size = "1920px 90%"
-excludes = "*"
+# [scratchpads.discord]
+# animation = "fromBottom"
+# command = "/usr/bin/discord"
+# process_tracking = false
+# class = "discord"
+# lazy = true
+# size = "90% 90%"
+# max_size = "1920px 90%"
+# excludes = "*"
 
 [scratchpads.obsidian]
 animation = "fromBottom"
@@ -56,7 +54,7 @@ command = "obsidian obsidian://open?vault=notes"
 class = "obsidian"
 size = "90% 90%"
 max_size = "1920px 90%"
-excludes = "*"
+# excludes = "*"
 
 [scratchpads.ytmusic]
 animation = "fromBottom"
@@ -65,7 +63,7 @@ class = "YouTube Music"
 lazy = true
 size = "90% 90%"
 max_size = "1920px 90%"
-excludes = "*"
+# excludes = "*"
 
 # [scratchpads.gmeet]
 # command = "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
@@ -91,14 +89,14 @@ class = "xyz.chatboxapp.app"
 size = "33% 90%"
 max_size = "1280px 90%"
 lazy = true
-excludes = ["volume"]
+# excludes = ["volume"]
 
 [scratchpads.volume]
 animation = "fromRight"
 command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 size = "33% 66%"
-excludes = ["chatbox"]
+# excludes = ["chatbox"]
 max_size = "1280px 66%"
 
 # todo
@@ -107,4 +105,4 @@ max_size = "1280px 66%"
 # command = ":"
 # class = "top"
 # class_match
-# sizje = "70% 90%"
+# size = "70% 90%"
