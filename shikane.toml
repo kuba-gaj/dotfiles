@@ -4,6 +4,7 @@
 name = "home"
 exec = [
   'notify-send shikane "Profile $SHIKANE_PROFILE_NAME detected"',
+  'hyprctl keyword monitor eDP-1,disable',                                # looks like disable doesn't always work for me
   'hyprctl keyword general:layout "master"',
   'light -S 30',
   'sudo systemctl stop udevmon',
