@@ -36,3 +36,6 @@ path=(
     ~/.local/bin/**/*(N/)
 )
 
+if [ -f $ZDOTDIR/.zshenv.priv ]; then
+  source $ZDOTDIR/.zshenv.priv
+fi
