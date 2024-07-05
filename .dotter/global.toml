@@ -33,12 +33,11 @@ nvim = "~/.config/nvim"
 "swaync" = "~/.config/swaync"
 "swappy.conf" = "~/.config/swappy/config"
 "rofi" = "~/.config/rofi"
-# "rofi/config.rasi" = "~/.config/rofi/config.rasi"
-# "rofi/themes" = "~/.local/share/rofi/themes"
 "shikane.toml" = "~/.config/shikane/config.toml"
 "pipewire.conf.d" = "~/.config/pipewire/pipewire.conf.d"
 "wlogout" = "~/.config/wlogout"
 "chrome-flags.conf" = "~/.config/chrome-flags.conf"
+"tridactylrc" = "~/.config/tridactyl/tridactylrc"
 
 [local.files]
 "local/applications" = "~/.local/share/applications"
