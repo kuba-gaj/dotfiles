@@ -23,7 +23,7 @@ return {
       auto_follow_cursor = false,
       show_folds = true,
       auto_insert_mode = false,
-      clear_chat_on_new_prompt = true,
+      clear_chat_on_new_prompt = false,
       highlight_selection = true,
       context = nil,
       mappings = {
