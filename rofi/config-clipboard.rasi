@@ -3,8 +3,8 @@
 @import "~/.config/rofi/config.rasi" 
 
 configuration {
-  // modi: "clipboard:cliphist-rofi";
-  // display-clipboard: "📋 Clipboard ";
+  modi: "clipboard:cliphist-rofi";
+  display-clipboard: "📋 Clipboard ";
   disable-history: true;
   display-columns: 2;
   kb-custom-1: "Ctrl-Delete";
@@ -19,5 +19,10 @@ entry {
 listview {
   columns: 1;
   lines: 8;
+}
+
+window {
+    width: 1200px;
+    height: 900px;
 }
 

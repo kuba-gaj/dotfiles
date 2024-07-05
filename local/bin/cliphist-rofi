@@ -1,47 +1,63 @@
 #!/usr/bin/env bash
 # Usage: rofi -show clipboard -config ~/.config/rofi/config-clipboard.rasi
-# TODO: hide id column
 
 print_lines() {
-	tmp_dir="/tmp/cliphist"
-	rm -rf "$tmp_dir"
+  tmp_dir="/tmp/cliphist"
+  rm -rf "$tmp_dir"
+  mkdir -p "$tmp_dir"
 
-	mkdir -p "$tmp_dir"
+  cliphist list | while read -r line; do
+    if [[ $line == *meta\ http-equiv=* ]]; then
+      # notify-send "skipping meta line"
+      continue
+    fi
 
-	read -r -d '' prog <<EOF
-/^[0-9]+\s<meta http-equiv=/ { next }
-match(\$0, /^([0-9]+)\s(\[\[\s)?binary.*(jpg|jpeg|png|bmp)/, grp) {
-    system("echo " grp[1] "\\\\\t | cliphist decode >$tmp_dir/"grp[1]"."grp[3])
-    print \$0"\0icon\x1f$tmp_dir/"grp[1]"."grp[3]
-    next
-}
-1
-EOF
-	cliphist list | gawk "$prog"
+    id=$(echo "$line" | awk '{print $1}')
+    name=$(echo "$line" | awk '{$1=""; print $0}')
+
+    if [[ "$line" =~ ^([0-9]+)[[:space:]]+\[\[\ binary.*(jpg|jpeg|png|bmp) ]]; then
+      ext="${BASH_REMATCH[2]}"
+      icon_path="$tmp_dir/$id.$ext"
+      if ! [ -f "$icon_path" ]; then
+        cliphist decode "$id" >"$icon_path"
+      fi
+      printf '%s\000icon\037%s\037info\037%s\n' "$name" "$icon_path" "$id"
+    else
+      printf '%s\000info\037%s\n' "$name" "$id"
+    fi
+  done
 }
 
 case $ROFI_RETV in
 # print lines on start
 0)
-	# needs to be enabled to handle custom keys
-	echo -en "\x00use-hot-keys\x1ftrue\n"
-	print_lines
-	;;
+  # needs to be enabled to handle custom keys
+  # notify-send "Clipboard: start"
+  echo -en "\x00use-hot-keys\x1ftrue\n"
+  print_lines
+  ;;
 # handle select line
 1)
-	notify-send "Clipboard" "Copied to clipboard $1"
-	cliphist decode <<<"$1" | wl-copy # && wtype -M ctrl -P v -m ctrl
-	title=$(hyprctl -j activewindow | jq -r '.initialTitle')
-	if [[ "$title" = "kitty" ]]; then
-		coproc wtype -M shift -M ctrl -P v -m ctrl
-	else
-		coproc wtype -M ctrl -P v -m ctrl
-	fi
-	exit
-	;;
+  # notify-send "Clipboard: selected"
+  cliphist decode "$ROFI_INFO" | wl-copy
+
+  title=$(hyprctl -j activewindow | jq -r '.initialTitle')
+  if [[ "$title" = "kitty" ]]; then
+    coproc wtype -M shift -M ctrl -P v -m ctrl
+  else
+    coproc wtype -M ctrl -P v -m ctrl
+  fi
+  exit
+  ;;
 # kb-custom-1 (Ctrl-Delete)
-10) cliphist delete <<<"$1" && print_lines ;;
+10)
+  # notify-send "Clipboard: delete $ROFI_INFO"
+  cliphist delete <<<"$ROFI_INFO" && print_lines
+  ;;
 # kb-custom-2 (Alt-Delete)
-11) cliphist wipe ;;
-*) echo "exit retv: $ROFI_RETV" ;;
+11)
+  # notify-send "Clipboard: wipe"
+  cliphist wipe
+  ;;
+*) notify-send "Clipboard: unknown exit $ROFI_RETV" ;;
 esac
