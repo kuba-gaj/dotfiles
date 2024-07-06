@@ -1,0 +1,36 @@
+- intercept: KEY_CAPSLOCK
+  ontap: KEY_ESC
+  onhold: KEY_LEFTCTRL
+
+# looks like it's not currently supported
+# - intercept: KEY_ESC
+#   ontap: KEY_CAPSLOCK
+
+# - intercept: KEY_ENTER
+#   # not necessary: ontap: KEY_ENTER is inferred if left empty
+#   onhold: KEY_RIGHTCTRL
+
+# this is a layer. hold space (onhold) contains several remappings
+- intercept: KEY_SLASH
+  onhold:
+
+  # vim home row
+  - {from: KEY_H, to: KEY_LEFT}
+  - {from: KEY_J, to: KEY_DOWN}
+  - {from: KEY_K, to: KEY_UP}
+  - {from: KEY_L, to: KEY_RIGHT}
+
+  # vim above home row
+  - {from: KEY_Y, to: KEY_HOME}
+  - {from: KEY_U, to: KEY_PAGEDOWN}
+  - {from: KEY_I, to: KEY_PAGEUP}
+  - {from: KEY_O, to: KEY_END}
+
+  # xf86 audio
+  - {from: KEY_D, to: KEY_MUTE}
+  - {from: KEY_A, to: KEY_VOLUMEDOWN}
+  - {from: KEY_S, to: KEY_VOLUMEUP}
+
+  # mouse navigation
+  # - {from: BTN_LEFT, to: BTN_BACK}
+  # - {from: BTN_RIGHT, to: BTN_FORWARD}

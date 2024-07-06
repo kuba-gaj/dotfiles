@@ -2,7 +2,7 @@
 default_target_type = "symbolic"
 
 [all]
-depends = ["shell", "nvim", "local", "wayland"]
+depends = ["shell", "nvim", "local", "wayland", "system"]
 
 [shell.files]
 "atuin.toml" = "~/.config/atuin/config.toml"
@@ -42,3 +42,7 @@ nvim = "~/.config/nvim"
 [local.files]
 "local/applications" = "~/.local/share/applications"
 "local/bin" = "~/.local/bin"
+
+[system.files]
+"system/udevmon.yaml" = { target = "/etc/interception/udevmon.yaml", type = "symbolic", owner = "root" }
+"system/interception-vimproved.yaml" = { target = "/etc/interception-vimproved/config.yaml", type = "symbolic", owner = "root" }
