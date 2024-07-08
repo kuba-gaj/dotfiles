@@ -44,5 +44,4 @@ nvim = "~/.config/nvim"
 "local/bin" = "~/.local/bin"
 
 [system.files]
-"system/udevmon.yaml" = { target = "/etc/interception/udevmon.yaml", type = "symbolic", owner = "root" }
-"system/interception-vimproved.yaml" = { target = "/etc/interception-vimproved/config.yaml", type = "symbolic", owner = "root" }
+"system/keyd.conf" = { target = "/etc/keyd/default.conf", type = "symbolic", owner = "root" }
