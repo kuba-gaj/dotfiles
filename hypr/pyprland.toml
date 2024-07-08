@@ -8,7 +8,8 @@ command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf 
 class = "term-drop"
 size = "90% 90%"
 max_size = "1920px 90%"
-# excludes = "*"
+excludes = "*"
+smart_focus = false
 
 [scratchpads.top]
 animation = "fromBottom"
@@ -16,7 +17,8 @@ command = "kitty --class kitty_btm --config ~/.config/kitty/qterm.conf btm"
 class = "kitty_btm"
 size = "90% 90%"
 max_size = "1920px 90%"
-# excludes = "*"
+excludes = "*"
+smart_focus = false
 
 [scratchpads.slack]
 animation = "fromBottom"
@@ -27,7 +29,8 @@ initialTitle = "re:.*Slack$"
 class = "Slack"
 size = "90% 90%"
 max_size = "1920px 90%"
-# excludes = "*"
+excludes = "*"
+smart_focus = false
 
 [scratchpads.whatsapp]
 animation = "fromBottom"
@@ -35,7 +38,8 @@ command = "whatsie"
 class = "com.ktechpit.whatsie"
 size = "90% 90%"
 max_size = "1920px 90%"
-# excludes = "*"
+excludes = "*"
+smart_focus = false
 
 # TODO: breaks because of starting another process
 # [scratchpads.discord]
@@ -47,6 +51,7 @@ max_size = "1920px 90%"
 # size = "90% 90%"
 # max_size = "1920px 90%"
 # excludes = "*"
+# smart_focus = false
 
 [scratchpads.obsidian]
 animation = "fromBottom"
@@ -54,7 +59,8 @@ command = "obsidian obsidian://open?vault=notes"
 class = "obsidian"
 size = "90% 90%"
 max_size = "1920px 90%"
-# excludes = "*"
+excludes = "*"
+smart_focus = false
 
 [scratchpads.ytmusic]
 animation = "fromBottom"
@@ -63,7 +69,8 @@ class = "YouTube Music"
 lazy = true
 size = "90% 90%"
 max_size = "1920px 90%"
-# excludes = "*"
+excludes = "*"
+smart_focus = false
 
 # [scratchpads.gmeet]
 # command = "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
@@ -89,14 +96,16 @@ class = "xyz.chatboxapp.app"
 size = "33% 90%"
 max_size = "1280px 90%"
 lazy = true
-# excludes = ["volume"]
+excludes = ["volume"]
+smart_focus = false
 
 [scratchpads.volume]
 animation = "fromRight"
 command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 size = "33% 66%"
-# excludes = ["chatbox"]
+excludes = ["chatbox"]
+smart_focus = false
 max_size = "1280px 66%"
 
 # todo
