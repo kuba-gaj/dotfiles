@@ -8,6 +8,6 @@ ls -t /home/kuba/.local/share/tmux/resurrect | tail -n +13 | xargs -d '\n' -I {}
 
 # autostart hyprland
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  dbus-run-session Hyprland
+  exec Hyprland
 fi
 

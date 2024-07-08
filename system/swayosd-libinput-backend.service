@@ -1,0 +1,10 @@
+; vim: filetype=systemd
+[Unit]
+PartOf=
+PartOf=default.target
+After=
+After=default.target
+
+[Install]
+WantedBy=
+WantedBy=default.target

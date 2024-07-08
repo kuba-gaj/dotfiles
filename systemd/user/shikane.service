@@ -1,0 +1,15 @@
+[Unit]
+Description=Shikane output configuration service
+Documentation=https://gitlab.com/w0lff/shikane
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+ExecStart=/usr/bin/shikane
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
+
+

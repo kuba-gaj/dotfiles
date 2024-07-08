@@ -1,0 +1,7 @@
+[Unit]
+Description=hyprland compositor session
+Documentation=man:systemd.special(7)
+Requires=basic.target
+BindsTo=graphical-session.target
+After=graphical-session-pre.target
+Wants=graphical-session-pre.target

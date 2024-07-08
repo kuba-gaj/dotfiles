@@ -1,0 +1,8 @@
+[Unit]
+Description=Save tmux session every ten minutes
+
+[Timer]
+OnCalendar=*:0/10
+
+[Install]
+WantedBy=timers.target

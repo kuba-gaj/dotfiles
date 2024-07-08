@@ -1,0 +1,20 @@
+[Unit]
+Description=tmux default session (detached)
+Documentation=man:tmux(1)
+After=graphical-session.target
+
+[Service]
+Type=forking
+Environment=DISPLAY=:0
+EnvironmentFile=/home/kuba/.config/hypr/hyprlandenv
+
+ExecStart=/usr/bin/tmux new-session -s main -d
+ExecStop=/home/kuba/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+ExecStop=/usr/bin/tmux kill-server
+KillMode=control-group
+
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
+; WantedBy=default.target

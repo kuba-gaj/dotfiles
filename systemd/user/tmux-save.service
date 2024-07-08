@@ -1,0 +1,6 @@
+[Unit]
+Description=Save tmux sessions
+OnFailure=error@%n.service
+
+[Service]
+ExecStart=/bin/bash /home/kuba/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
