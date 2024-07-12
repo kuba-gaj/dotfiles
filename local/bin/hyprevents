@@ -28,11 +28,7 @@ window_title_changed() {
 handle() {
   case $1 in
   windowtitle*) window_title_changed "$1" ;;
-  configreloaded*)
-    shikanectl reload
-    # pkill hyprpaper
-    # hyprpaper >/dev/null >/tmp/hyprpaper.log 2>&1 &
-    ;;
+  configreloaded*) shikanectl reload ;;
   esac
 }
 
