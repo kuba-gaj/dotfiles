@@ -3,6 +3,8 @@ Description=Enhance your Hyprland experience
 Documentation=https://github.com/hyprland-community/pyprland
 PartOf=graphical-session.target
 After=graphical-session.target
+Wants=network-online.target
+After=network-online.target
 ConditionEnvironment=HYPRLAND_INSTANCE_SIGNATURE
 
 [Service]
