@@ -13,8 +13,17 @@ smart_focus = false
 
 [scratchpads.top]
 animation = "fromBottom"
-command = "kitty --class kitty_btm --config ~/.config/kitty/qterm.conf btm"
-class = "kitty_btm"
+command = "kitty --class term_btm --config ~/.config/kitty/qterm.conf btm"
+class = "term_btm"
+size = "90% 90%"
+max_size = "1920px 90%"
+excludes = "*"
+smart_focus = false
+
+[scratchpads.nvtop]
+animation = "fromBottom"
+command = "kitty --class term_nvtop --config ~/.config/kitty/qterm.conf nvtop"
+class = "term_nvtop"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
@@ -23,7 +32,6 @@ smart_focus = false
 [scratchpads.slack]
 animation = "fromBottom"
 command = "/usr/bin/slack --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --silent"
-# TODO: check regex that it works with huddle and sign-in
 match_by = "initialTitle"
 initialTitle = "re:.*Slack$"
 class = "Slack"
@@ -34,24 +42,14 @@ smart_focus = false
 
 [scratchpads.whatsapp]
 animation = "fromBottom"
-command = "whatsie"
-class = "com.ktechpit.whatsie"
+command = "whatsapp-for-linux"
+class = "whatsapp-for-linux"
+# command = "whatsie"
+# class = "com.ktechpit.whatsie"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
 smart_focus = false
-
-# TODO: breaks because of starting another process
-# [scratchpads.discord]
-# animation = "fromBottom"
-# command = "/usr/bin/discord"
-# process_tracking = false
-# class = "discord"
-# lazy = true
-# size = "90% 90%"
-# max_size = "1920px 90%"
-# excludes = "*"
-# smart_focus = false
 
 [scratchpads.obsidian]
 animation = "fromBottom"
@@ -71,23 +69,14 @@ size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
 smart_focus = false
+skip_rules = ["aspect"]
 
-# [scratchpads.gmeet]
-# command = "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
-# animation = "fromRight"
-# class = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1"
-# size = "50% 90%"
-# max_size = "1920px 90%"
-# lazy = true
-# shared_pid = true
-# unfocus = "hide"
-
-[scratchpads.onepass]
-animation = "fromBottom"
-command = "1password"
-class = "1Password"
-size = "33% 50%"
-max_size = "1280px 50%"
+# [scratchpads.onepass]
+# animation = "fromBottom"
+# command = "1password"
+# class = "1Password"
+# size = "33% 50%"
+# max_size = "1280px 50%"
 
 [scratchpads.chatbox]
 animation = "fromRight"
@@ -107,6 +96,33 @@ size = "33% 66%"
 excludes = ["chatbox"]
 smart_focus = false
 max_size = "1280px 66%"
+
+# TODO: pwa apps always cause problems
+# [scratchpads.gmeet]
+# animation = "fromRight"
+# command = "/usr/bin/chromium --profile-directory=Default --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
+# match_by = "initialClass"
+# initialClass = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Default"
+# class = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Default"
+# process_tracking = false
+# size = "50% 90%"
+# max_size = "1920px 90%"
+# smart_focus = false
+# skip_windowrules = ["aspect", "workspace", "float"]
+
+# TODO: breaks because of starting another process
+[scratchpads.discord]
+animation = "fromBottom"
+command = "/usr/bin/chromium --profile-directory=Default --app=https://discord.com/app"
+# match_by = "initialClass"
+# initialClass = "chrome-discord.com__app-Default"
+class = "chrome-discord.com__app-Default"
+process_tracking = false
+size = "90% 90%"
+max_size = "1920px 90%"
+excludes = "*"
+smart_focus = false
+# skip_windowrules = ["aspect", "workspace"]
 
 # todo
 # [scratchpads.firefox]
