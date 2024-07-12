@@ -44,7 +44,4 @@ nvim = "~/.config/nvim"
 "local/bin" = "~/.local/bin"
 
 [system.files]
-"system/keyd.conf" = { target = "/etc/keyd/default.conf", type = "symbolic", owner = "root" }
-"system/swayosd-libinput-backend.service" = { target = "/etc/systemd/system/swayosd-libinput-backend.service.d/override.conf", type = "symbolic", owner = "root" }
-"system/NetworkManager-wait-online.service" = { target = "/etc/systemd/system/NetworkManager-wait-online.service.d/override.conf", type = "symbolic", owner = "root" }
-"system/iwd.service" = { target = "/etc/systemd/system/iwd.service.d/override.conf", type = "symbolic", owner = "root" }
+"etc" = { target = "/etc", type = "template", owner = "root" }
