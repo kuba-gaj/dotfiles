@@ -6,8 +6,9 @@ After=graphical-session.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
+Type=simple
+ExecStartPre=/usr/bin/rm -f /tmp/walker-service.lock
 ExecStart=/usr/bin/walker --gapplication-service
-Restart=on-failure
 
 [Install]
 WantedBy=graphical-session.target

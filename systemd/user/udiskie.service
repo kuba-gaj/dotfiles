@@ -1,14 +1,16 @@
 [Unit]
-Description=Shikane output configuration service
-Documentation=https://gitlab.com/w0lff/shikane
+Description=Handle automounting of usb devices
+Documentation=https://github.com/coldfix/udiskie
 PartOf=graphical-session.target
 After=graphical-session.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/shikane
+ExecStart=/usr/bin/udiskie --smart-tray
 Restart=on-failure
 
 [Install]
 WantedBy=graphical-session.target
+
+

@@ -1,14 +1,16 @@
 [Unit]
-Description=Shikane output configuration service
-Documentation=https://gitlab.com/w0lff/shikane
+Description=Bluetooth applet (blueman)
+Documentation=https://wiki.archlinux.org/title/Blueman
 PartOf=graphical-session.target
 After=graphical-session.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/shikane
+ExecStart=/usr/bin/blueman-applet
 Restart=on-failure
 
 [Install]
 WantedBy=graphical-session.target
+
+

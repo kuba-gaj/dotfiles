@@ -1,0 +1,14 @@
+[Unit]
+Description=Enhance your Hyprland experience
+Documentation=https://github.com/hyprland-community/pyprland
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=HYPRLAND_INSTANCE_SIGNATURE
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pypr
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

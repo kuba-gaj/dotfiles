@@ -1,0 +1,14 @@
+[Unit]
+Description=wallpaper utility for Hyprland
+Documentation=https://github.com/hyprwm/hyprpaper
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=HYPRLAND_INSTANCE_SIGNATURE
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hyprpaper
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
