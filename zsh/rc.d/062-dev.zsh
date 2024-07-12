@@ -18,9 +18,9 @@ export GOBIN=$GOPATH/bin
 path+=("$GOBIN")
 
 # python
-[[ -d $PYENV_ROOT/bin ]] && path+="$PYENV_ROOT/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-znap eval pyenv 'pyenv init -'
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && path+="$PYENV_ROOT/bin:$PATH"
+# znap eval pyenv 'pyenv init -'
 znap eval pipx-argcomplete 'register-python-argcomplete pipx'
 
 # lua5.1 is in /usr/local/bin

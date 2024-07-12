@@ -30,10 +30,8 @@ export ZDOTDIR=${XDG_CONFIG_HOME:=~/.config}/zsh
 # Note that each value in an array is expanded separately. Thus, we can use ~
 # for $HOME in each $path entry.
 path=(
-    $path
     ~/.local/bin
-    # add all subdirectories
-    ~/.local/bin/**/*(N/)
+    $path
 )
 
 if [ -f $ZDOTDIR/.zshenv.priv ]; then
