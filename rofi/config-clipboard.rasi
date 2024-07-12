@@ -1,5 +1,3 @@
-/* Clipboard Config - Clipboard */
-
 @import "~/.config/rofi/config.rasi" 
 
 configuration {
