@@ -3,13 +3,12 @@ plugins = ["scratchpads"]
 
 [scratchpads.dropterm]
 animation = "fromTop"
-# command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf tmux new -A -s dropterm"
 command = "kitty --class term-drop --config /home/kuba/.config/kitty/qterm.conf tmux attach -d -t dropterm"
 class = "term-drop"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
+# smart_focus = false
 
 [scratchpads.top]
 animation = "fromBottom"
@@ -18,7 +17,7 @@ class = "term_btm"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
+# smart_focus = false
 
 [scratchpads.nvtop]
 animation = "fromBottom"
@@ -27,18 +26,19 @@ class = "term_nvtop"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
+# smart_focus = false
 
 [scratchpads.slack]
 animation = "fromBottom"
-command = "/usr/bin/slack --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --silent"
+#  --disable-gpu-compositing --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer,WaylandWindowDecorations --disable-features=WaylandFractionalScaleV1 
+command = "/usr/bin/slack --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer,WaylandWindowDecorations"
 match_by = "initialTitle"
 initialTitle = "re:.*Slack$"
 class = "Slack"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
+# smart_focus = false
 
 [scratchpads.whatsapp]
 animation = "fromBottom"
@@ -49,7 +49,7 @@ class = "whatsapp-for-linux"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
+# smart_focus = false
 
 [scratchpads.obsidian]
 animation = "fromBottom"
@@ -58,7 +58,7 @@ class = "obsidian"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
+# smart_focus = false
 
 [scratchpads.ytmusic]
 animation = "fromBottom"
@@ -68,47 +68,23 @@ lazy = true
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
-skip_rules = ["aspect"]
+# smart_focus = false
 
-# [scratchpads.onepass]
-# animation = "fromBottom"
-# command = "1password"
-# class = "1Password"
-# size = "33% 50%"
-# max_size = "1280px 50%"
-
-[scratchpads.chatbox]
-animation = "fromRight"
-command = "chatbox"
-class = "xyz.chatboxapp.app"
-size = "33% 90%"
-max_size = "1280px 90%"
-lazy = true
-excludes = ["volume"]
-smart_focus = false
+[scratchpads.onepass]
+animation = "fromBottom"
+command = "1password"
+class = "1Password"
+size = "33% 50%"
+max_size = "1280px 50%"
+# smart_focus = false
 
 [scratchpads.volume]
 animation = "fromRight"
 command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 size = "33% 66%"
-excludes = ["chatbox"]
-smart_focus = false
-max_size = "1280px 66%"
-
-# TODO: pwa apps always cause problems
-# [scratchpads.gmeet]
-# animation = "fromRight"
-# command = "/usr/bin/chromium --profile-directory=Default --app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan"
-# match_by = "initialClass"
-# initialClass = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Default"
-# class = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Default"
-# process_tracking = false
-# size = "50% 90%"
-# max_size = "1920px 90%"
 # smart_focus = false
-# skip_windowrules = ["aspect", "workspace", "float"]
+max_size = "1280px 66%"
 
 # TODO: breaks because of starting another process
 [scratchpads.discord]
@@ -121,7 +97,7 @@ process_tracking = false
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-smart_focus = false
+# smart_focus = false
 # skip_windowrules = ["aspect", "workspace"]
 
 # todo
