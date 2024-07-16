@@ -1,13 +1,13 @@
 [Unit]
 Description=Legacy polkit authentication agent for GNOME
-Documentation=https://github.com/ncopa/xfce-polkit
+Documentation=https://gitlab.gnome.org/Archive/policykit-gnome
 PartOf=graphical-session.target
 After=graphical-session.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/xfce-polkit
+ExecStart=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 Restart=on-failure
 
 [Install]
