@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "loginctl lock-session",
+    "action" : "hyprlock",
     "text" : "Lock",
     "keybind" : "l"
 }
@@ -11,10 +11,10 @@
     "keybind" : "h"
 }
 {
-    "label" : "logout",
-    "action" : "loginctl terminate-user $USER",
-    "text" : "Logout",
-    "keybind" : "e"
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend",
+    "keybind" : "s"
 }
 {
     "label" : "shutdown",
@@ -23,14 +23,14 @@
     "keybind" : "S"
 }
 {
-    "label" : "suspend",
-    "action" : "systemctl suspend",
-    "text" : "Suspend",
-    "keybind" : "s"
+    "label" : "sreboot",
+    "action" : "systemctl soft-reboot",
+    "text" : "Soft Reboot",
+    "keybind" : "r"
 }
 {
     "label" : "reboot",
     "action" : "systemctl reboot",
     "text" : "Reboot",
-    "keybind" : "r"
+    "keybind" : "R"
 }
