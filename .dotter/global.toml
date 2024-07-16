@@ -38,6 +38,7 @@ nvim = "~/.config/nvim"
 "wlogout" = "~/.config/wlogout"
 "chrome-flags.conf" = "~/.config/chrome-flags.conf"
 "tridactylrc" = "~/.config/tridactyl/tridactylrc"
+"iwgtk.conf" = "~/.config/iwgtk.conf"
 
 [local.files]
 "local/applications" = "~/.local/share/applications"
