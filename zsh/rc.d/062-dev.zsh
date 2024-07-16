@@ -30,7 +30,7 @@ export LUAROCKS_CONFIG="$XDG_CONFIG_HOME/luarocks/config-5.4.lua"
 
 # git
 export GITLAB_HOST="gitlab.trint.io"
-znap eval scmpuff 'scmpuff init -s'
+znap eval scmpuff 'scmpuff init -s --aliases=false'
 alias gs='scmpuff_status'
 znap fpath '_glab' 'glab completion -s zsh'
 

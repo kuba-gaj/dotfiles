@@ -193,3 +193,5 @@ nu() {
 function upd {
   source "$ZDOTDIR/scripts/update-system.zsh"
 }
+
+alias psc='ps xawf -eo pid,user,cgroup,args'
