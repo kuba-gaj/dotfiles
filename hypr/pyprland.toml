@@ -100,10 +100,10 @@ excludes = "*"
 # smart_focus = false
 # skip_windowrules = ["aspect", "workspace"]
 
-# todo
-# [scratchpads.firefox]
-# animation = "fromBottom"
-# command = ":"
-# class = "top"
-# class_match
-# size = "70% 90%"
+[scratchpads.dropfox]
+animation = "fromBottom"
+command = "/usr/bin/firefox-beta"
+class = "Firefox Beta"
+size = "90% 90%"
+max_size = "1920px 90%"
+excludes = "*"
