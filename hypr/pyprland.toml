@@ -75,7 +75,7 @@ animation = "fromBottom"
 command = "1password"
 class = "1Password"
 size = "33% 50%"
-max_size = "1280px 50%"
+max_size = "800px 600px"
 # smart_focus = false
 
 [scratchpads.volume]
