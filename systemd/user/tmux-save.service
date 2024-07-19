@@ -3,4 +3,9 @@ Description=Save tmux sessions
 OnFailure=error@%n.service
 
 [Service]
-ExecStart=/bin/bash /home/kuba/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=systemd-inhibit --why="Tmux session save in progress" --what="sleep:shutdown" --mode="delay" /bin/bash /home/kuba/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+ExecStart=/bin/bash -c 'echo "tmux session saved" && sleep 1'
+ExecStop=/bin/bash -c 'echo "tmux session save stopped" && sleep 1'
+StandardOutput=journal
