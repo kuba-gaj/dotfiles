@@ -26,6 +26,7 @@ zsh = "~/.config/zsh"
 
 [nvim.files]
 nvim = "~/.config/nvim"
+"lazyrc/trint_backend.lua" = "~/dev/trint/backend/.lazy.lua"
 
 [wayland.files]
 "hypr" = "~/.config/hypr"
@@ -37,6 +38,7 @@ nvim = "~/.config/nvim"
 "pipewire.conf.d" = "~/.config/pipewire/pipewire.conf.d"
 "wlogout" = "~/.config/wlogout"
 "chrome-flags.conf" = "~/.config/chrome-flags.conf"
+"electron-flags.conf" = "~/.config/electron-flags.conf"
 "tridactylrc" = "~/.config/tridactyl/tridactylrc"
 "iwgtk.conf" = "~/.config/iwgtk.conf"
 
