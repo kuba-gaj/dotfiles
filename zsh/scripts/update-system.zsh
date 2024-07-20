@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-if [[ -o !interactive ]]; then
+if [[ ! -o interactive ]]; then
     echo "This script is meant to be run interactively, try `upd` instead"
     exit 1
 fi
