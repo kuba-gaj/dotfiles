@@ -195,3 +195,27 @@ function upd {
 }
 
 alias psc='ps xawf -eo pid,user,cgroup,args'
+
+# journalctl
+alias jc='journalctl'
+alias jc-b='journalctl -b'
+alias jc-e='journalctl -p 4'
+alias jc-f='journalctl -f'
+alias jc-u='journalctl -u'
+alias jc-bu='journalctl -b -u'
+alias jc-fu='journalctl -f -u'
+alias jc-fb='journalctl -f -b'
+alias jc-fbu='journalctl -f -b -u'
+
+alias jcu='journalctl --user'
+alias jcu-b='journalctl --user -b'
+alias jcu-e='journalctl --user -p 4'
+alias jcu-f='journalctl --user -f'
+alias jcu-u='journalctl --user -u'
+alias jcu-bu='journalctl --user -b -u'
+alias jcu-fu='journalctl --user -f -u'
+alias jcu-fb='journalctl --user -f -b'
+alias jcu-fbu='journalctl --user -f -b -u'
+
+alias jc-j='journalctl -o json --output-fields=MESSAGE,PRIORITY,_PID,SYSLOG_IDENTIFIER,_SYSTEMD_UNIT'
+alias jcu-j='journalctl -o json --output-fields=MESSAGE,PRIORITY,_PID,SYSLOG_IDENTIFIER,_SYSTEMD_UNIT'
