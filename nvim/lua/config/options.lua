@@ -24,15 +24,3 @@ vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
 opt.clipboard = "unnamed"
--- vim.g.clipboard = {
---   name = "wl-clipboard",
---   copy = {
---     ["*"] = { "wl-copy", "--trim-newline" },
---     ["+"] = { "wl-copy", "--trim-newline", "--primary" },
---   },
---   paste = {
---     ["*"] = { "wl-paste" },
---     ["+"] = { "wl-paste", "--no-newline", "--primary" },
---   },
---   cache_enabled = 1,
--- }
