@@ -1,0 +1,99 @@
+* {
+  color: #cad3f5;
+}
+
+#window {
+}
+
+#box {
+  background: #24273a;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+/* looks like search in activation mode */
+#searchwrapper {
+  background: #24273a;
+}
+
+#search,
+#typeahead {
+  /* background: #6e738d; */
+  background: #24273a;
+  /* background: #1f1f28; */
+  border-radius: 0;
+  outline: none;
+  outline-width: 0px;
+  box-shadow: none;
+  border-bottom: none;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 2px;
+}
+
+#spinner {
+  opacity: 0;
+}
+
+#spinner.visible {
+  opacity: 1;
+}
+
+#typeahead {
+  background: none;
+  opacity: 0.5;
+}
+
+#search placeholder {
+  opacity: 0.5;
+}
+
+#list {
+}
+
+row:selected {
+  background: #24273a;
+}
+
+row:selected .label {
+  background: #24273a;
+  color: #ed8796;
+}
+
+.item {
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.icon {
+  padding-right: 5px;
+}
+
+.textwrapper {
+}
+
+.label {
+  /* color: #ed8796; */
+}
+
+.sub {
+  opacity: 0.5;
+}
+
+.activationlabel {
+  opacity: 0.25;
+}
+
+.activation .activationlabel {
+  opacity: 1;
+  color: #8aadf4;
+}
+
+.activation .textwrapper,
+.activation .icon,
+.activation .search {
+  opacity: 0.5;
+}

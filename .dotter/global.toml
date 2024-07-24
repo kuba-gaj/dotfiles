@@ -42,6 +42,7 @@ nvim = "~/.config/nvim"
 "electron-flags.conf" = "~/.config/electron-flags.conf"
 "tridactylrc" = "~/.config/tridactyl/tridactylrc"
 "iwgtk.conf" = "~/.config/iwgtk.conf"
+"walker" = "~/.config/walker"
 
 [local.files]
 "local/applications" = "~/.local/share/applications"
