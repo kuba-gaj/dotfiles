@@ -1,0 +1,20 @@
+
+[Unit]
+Description=Password manager and secure wallet
+Documentation=https://developer.1password.com/
+PartOf=graphical-session.target
+After=graphical-session.target
+; Wants=pyprland.service
+After=pyprland.service
+; Before=pyprland.service
+ConditionEnvironment=HYPRLAND_INSTANCE_SIGNATURE
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/1password
+ExecStartPost=/usr/bin/pypr toggle onepass || /usr/bin/true
+Restart=never
+; Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
