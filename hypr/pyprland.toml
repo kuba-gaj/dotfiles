@@ -8,30 +8,26 @@ class = "term-drop"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-# smart_focus = false
 
 [scratchpads.top]
 animation = "fromBottom"
-command = "kitty --class term_btm --config ~/.config/kitty/qterm.conf btm"
-class = "term_btm"
+command = "kitty --class term-btm --config ~/.config/kitty/qterm.conf btm"
+class = "term-btm"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-# smart_focus = false
 
 [scratchpads.nvtop]
 animation = "fromBottom"
-command = "kitty --class term_nvtop --config ~/.config/kitty/qterm.conf nvtop"
-class = "term_nvtop"
+command = "kitty --class term-nvtop --config ~/.config/kitty/qterm.conf nvtop"
+class = "term-nvtop"
 size = "90% 90%"
 max_size = "1920px 90%"
 excludes = "*"
-# smart_focus = false
 
 [scratchpads.slack]
 animation = "fromBottom"
-#  --disable-gpu-compositing --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer,WaylandWindowDecorations --disable-features=WaylandFractionalScaleV1 
-command = "/usr/bin/slack --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer,WaylandWindowDecorations"
+command = "/usr/bin/slack --disable-gpu-compositing --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WebRTCPipeWireCapturer --enable-features=WaylandWindowDecorations --disable-features=WaylandFractionalScaleV1"
 match_by = "initialTitle"
 initialTitle = "re:.*Slack$"
 class = "Slack"
@@ -72,10 +68,11 @@ excludes = "*"
 
 [scratchpads.onepass]
 animation = "fromBottom"
-command = "1password"
 class = "1Password"
-size = "33% 50%"
-max_size = "800px 600px"
+preserve_aspect = true
+# command = "1password"
+# size = "33% 50%"
+# max_size = "800px 600px"
 # smart_focus = false
 
 [scratchpads.volume]
@@ -83,8 +80,8 @@ animation = "fromRight"
 command = "pavucontrol"
 class = "org.pulseaudio.pavucontrol"
 size = "33% 66%"
-# smart_focus = false
 max_size = "1280px 66%"
+# smart_focus = false
 
 # TODO: breaks because of starting another process
 [scratchpads.discord]
@@ -96,7 +93,7 @@ class = "chrome-discord.com__app-Default"
 process_tracking = false
 size = "90% 90%"
 max_size = "1920px 90%"
-excludes = "*"
+# excludes = "*"
 # smart_focus = false
 # skip_windowrules = ["aspect", "workspace"]
 
