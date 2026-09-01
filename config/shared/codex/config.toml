@@ -8,40 +8,48 @@ notify = [
 
 [mcp_servers.tessl]
 command = "tessl"
-args = [ "mcp", "start" ]
+args = ["mcp", "start"]
 
 [mcp_servers.filesystem]
 command = "npx"
-args = [
-  "-y",
-  "@modelcontextprotocol/server-filesystem",
-  "/Users/kuba.gaj/dotfiles",
-  "/Users/kuba.gaj/dev",
-  "/Users/kuba.gaj/Documents/notes"
-]
+args = ["-y", "@modelcontextprotocol/server-filesystem", "/Users/kuba.gaj/dotfiles", "/Users/kuba.gaj/dev", "/Users/kuba.gaj/Documents/notes"]
 
 [mcp_servers.node_repl]
-args = []
 command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
-startup_timeout_sec = 120
+startup_timeout_sec = 120.0
 
-  [mcp_servers.node_repl.env]
-  NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
-  NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
-  NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
-  NODE_REPL_TRUSTED_CODE_PATHS = "/Users/kuba.gaj/.config/codex"
-  CODEX_HOME = "/Users/kuba.gaj/.config/codex"
-  NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "97669f77b3ca7114a2df05d55646416ea34b28100c07213ef9f643803449ef2f"
-  BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-  NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
-  NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
-  BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-  BROWSER_USE_CODEX_APP_VERSION = "26.623.141536"
-  CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+[mcp_servers.node_repl.env]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.623.141536"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+CODEX_HOME = "/Users/kuba.gaj/.config/codex"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "97669f77b3ca7114a2df05d55646416ea34b28100c07213ef9f643803449ef2f"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/kuba.gaj/.config/codex"
 
 [mcp_servers.workshop]
 command = "/Users/kuba.gaj/.raindrop/bin/raindrop"
-args = [ "workshop", "mcp" ]
+args = ["workshop", "mcp"]
+
+[mcp_servers.gateway]
+url = "http://localhost:3000/mcp"
+
+[mcp_servers.logfire]
+url = "http://localhost:3000/logfire"
+
+[mcp_servers.notion]
+url = "http://localhost:3000/notion"
+
+[mcp_servers.newrelic]
+url = "http://localhost:3000/newrelic"
+
+[mcp_servers.slack]
+url = "http://localhost:3000/slack"
 
 [projects."/Users/kuba.gaj/swapc/window-shop-monorepo"]
 trust_level = "trusted"
