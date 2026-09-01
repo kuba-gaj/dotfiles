@@ -58,11 +58,20 @@ to `~/.pi/webui/settings.json` (`resourceDefaults.tools.enabledTools`
 allowlist) — dotter-managed as `config/custom/pi/webui/settings.json`; `pi-rw`
 points `PI_WEBUI_SETTINGS_FILE` at the worktree copy.
 
-Dynamic tools (`ctx_*`, `workflow_*`, `subagents_*`, lazy `mcp__*` proxies)
-register after startup; they are pinned in the allowlist anyway so scope
-recomputes (model switch, session-tree navigation) cannot clamp them — the
-extension preserves saved-but-unavailable names. Caveat: brand-new *static*
-tools from future extensions start disabled until added via `/tools`.
+Dynamic tools (`ctx_*`, `workflow_*`, `subagents_*`, `repowise_*`, lazy
+`mcp__*` proxies) register after startup; they are pinned in the allowlist
+anyway so scope recomputes (model switch, session-tree navigation) cannot
+clamp them — the extension preserves saved-but-unavailable names.
+
+Policy (KUB-26 audit, 2026-09): the allowlist is deliberate. New *static*
+tools from a freshly installed extension start disabled — enable via
+`/tools`, commit the settings diff. New MCP servers in `mcp.json` need their
+`mcp__<server>` proxy pinned here too; remove pins when a server is retired
+(context7/exa/firecrawl/linear proxies went stale when those servers folded
+into `gateway`). Aug 5 disable-intent for `mcpScript` and
+`plannotator_submit_plan` is superseded — both deliberately enabled and in
+daily use. `source_check` stays out (disabled via web-search.json).
+Usage-telemetry-based pruning waits on pi-otel data maturity (KUB-24).
 
 Write-source: the extension saves via tmp-file + rename, which would replace a
 dotter *symlink* with a regular file. Solved by `PI_WEBUI_SETTINGS_FILE` (set in
