@@ -25,15 +25,21 @@ changes are live in new sessions, no `dotter deploy` needed.
 
 - `model: provider/model:thinking` — one literal string; a separate
   `thinking:` key is rejected.
-- `tools:` starts with `"!*"` (wipe) then lists literals. Since the
-  repowise migration (KUB-17): navigation = `readSeek_*`, call-graph =
-  `cymbal_impact` / `cymbal_changed` (only cymbal tools still active),
-  codebase intelligence = repowise via the `mcp` gateway.
+- `tools:` starts with `"!*"` (wipe) then lists literals (plus lazy-tool
+  globs `ctx_*` / `repowise_*`). Since the repowise migration (KUB-17):
+  navigation = `readSeek_*`, call-graph = `cymbal_impact` / `cymbal_changed`
+  (only cymbal tools still active), codebase intelligence = direct
+  `repowise_*` tools (recon/dev/reviewer/tests). Every role with `mcp` also
+  gets `mcpScript` + the `mcp-scripting` skill. `ctx_*` on all roles except
+  recon (only `ctx_search`/`ctx_execute_file` — keeps its no-shell design)
+  and impl (minimal). `source_check` removed 2026-08 — disabled in
+  web-search.json, passing it was a no-op.
 - `skills:` negations after the `"!*"` wipe (exact names — a selector matching
   nothing silently disables everything): `dev` = `cock-tdd`,
-  `cock-codebase-design`; `tests` = `cock-tdd`; `recon` = `logfire-query`,
-  `mcp-scripting`; `researcher` = `cock-research`; `comms`, `impl`, and
-  `reviewer` = none (`["!*"]`) — composio/notion/linear skills dropped with
+  `cock-codebase-design`, `mcp-scripting`; `tests` = `cock-tdd`,
+  `mcp-scripting`; `recon` = `logfire-query`, `mcp-scripting`; `researcher` =
+  `cock-research`, `mcp-scripting`; `comms` and `reviewer` = `mcp-scripting`;
+  `impl` = none (`["!*"]`) — composio/notion/linear skills dropped with
   the move to direct remote MCP (KUB-22).
 - `extensions:` refinements (layered after global settings, last-match-wins):
   caveman terse mode ON for dev/impl/tests, re-disabled
@@ -75,10 +81,13 @@ npx -y @piewf/cli doctor --role <role>   # aliased to `piewf` in zsh
 Read-only. Reports resolved model, tools, effective/excluded skills and
 extensions, and prepared prompt. Run after any role or settings change.
 
-Known false positive: context-mode registers `ctx_*` tools lazily on a
-session's first agent turn, so `piewf doctor` (fresh process, no turn) flags
-them ROLE_TOOL_INACTIVE. Real dispatch works — verified end-to-end. Ignore
-doctor errors for `ctx_*` only.
+Known false positives: context-mode registers `ctx_*` tools lazily on a
+session's first agent turn, and `@ff-labs/pi-fff` queues `find`/`grep` and
+registers them on `session_start` — so `piewf doctor` (fresh process, no
+turn) flags them ROLE_TOOL_INACTIVE. Real dispatch works (`ctx_*` verified
+end-to-end; `find`/`grep` same lazy-registration class). Glob selectors like
+`ctx_*`/`repowise_*` match nothing at doctor time and stay silent. Ignore
+doctor errors for `ctx_*`, `find`, and `grep` only.
 
 ## Per-call role overrides
 

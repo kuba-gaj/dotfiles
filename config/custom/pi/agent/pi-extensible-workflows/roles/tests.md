@@ -1,8 +1,8 @@
 ---
 description: Agent focused in writing/reading tests
 model: anthropic/claude-sonnet-5:medium
-tools: ["!*", read, grep, find, ls, bash, write, edit, readSeek_grep, readSeek_search, readSeek_def, readSeek_refs, cymbal_impact, mcp, ask_advisor, record_advisor_outcome, ctx_*]
-skills: ["!*", "cock-tdd"]
+tools: ["!*", read, grep, find, ls, bash, write, edit, readSeek_grep, readSeek_search, readSeek_def, readSeek_refs, cymbal_impact, cymbal_changed, mcp, mcpScript, repowise_*, ask_advisor, record_advisor_outcome, ctx_*]
+skills: ["!*", "cock-tdd", "mcp-scripting"]
 ---
 
 # Test Engineer

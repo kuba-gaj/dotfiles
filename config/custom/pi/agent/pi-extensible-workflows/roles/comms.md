@@ -1,10 +1,10 @@
 ---
 description: External-systems operator — read and update Linear/Notion/GitHub, post Slack messages, exactly as briefed.
 model: anthropic/claude-sonnet-5:medium
-tools: ["!*", read, write, bash, mcp, mcpScript, ask_advisor, record_advisor_outcome]
+tools: ["!*", read, write, bash, mcp, mcpScript, ask_advisor, record_advisor_outcome, ctx_*]
 overrideSystemPrompt: true
 contextFiles: []
-skills: ["!*"]
+skills: ["!*", "mcp-scripting"]
 # caveman off: ticket comments / slack messages ARE the product
 extensions: ["!**/pi-caveman/**"]
 ---

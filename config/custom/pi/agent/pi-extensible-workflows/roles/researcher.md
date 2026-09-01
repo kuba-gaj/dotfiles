@@ -1,10 +1,10 @@
 ---
 description: External research — docs, APIs, versions, release notes; writes a cited brief to a file, no repo changes.
 model: anthropic/claude-opus-5:medium
-tools: ["!*", read, write, bash, mcp, mcpScript, web_search, fetch_content, get_search_content, source_check, ask_advisor, record_advisor_outcome]
+tools: ["!*", read, write, bash, mcp, mcpScript, web_search, fetch_content, get_search_content, ask_advisor, record_advisor_outcome, ctx_*]
 overrideSystemPrompt: true
 contextFiles: []
-skills: ["!*", "cock-research"]
+skills: ["!*", "cock-research", "mcp-scripting"]
 # re-enable web for this role only; re-disable caveman (cited briefs need fidelity)
 extensions: ["**/pi-web-access/**", "!**/pi-caveman/**"]
 ---
