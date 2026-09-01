@@ -4,5 +4,5 @@
   "turnSummaryMinCalls": 1,
   "missWarnings": true,
   "missWarnUsd": 1,
-  "missWarnTokens": 50000000
+  "missWarnTokens": 20000
 }
