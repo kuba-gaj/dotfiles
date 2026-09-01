@@ -42,8 +42,15 @@
         ".",
         "--transport",
         "stdio",
-        "--tools",
-        "lean"
+        "--all"
+      ],
+      "directTools": [
+        "search_codebase",
+        "get_answer",
+        "get_context",
+        "get_symbol",
+        "get_why",
+        "get_risk"
       ],
       "description": "repowise: codebase intelligence — docs, graph, git signals, dead code, decisions"
     }
