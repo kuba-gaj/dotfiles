@@ -1,4 +1,4 @@
-@~/.config/claude/CLAUDE.md
+@~/.config/agents/AGENTS.md
 
 # Global instructions
 
