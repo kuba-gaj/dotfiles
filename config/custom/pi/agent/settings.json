@@ -88,7 +88,8 @@
   "clearOnStart": true,
   "theme": "terminal",
   "ccHeader": {
-    "pkg": true
+    "pkg": true,
+    "readOnlyConfig": true
   },
   "otel": {
     "enabled": true,

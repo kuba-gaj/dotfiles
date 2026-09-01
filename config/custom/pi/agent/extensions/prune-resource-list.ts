@@ -7,9 +7,11 @@
  * anchor and contextimate never installs. So: let pi render the list, let contextimate
  * anchor, then drop the rows.
  *
- * pi-cc-header fights this: since it dropped /hrl it forces `quietStartup: true` into
- * settings.json on every session_start (configStartupEnabled). Left alone that starves
- * contextimate of its anchor from the next boot onward, so we write the flag back.
+ * pi-cc-header used to fight this: it forced `quietStartup: true` into settings.json on
+ * every session_start, and the deferred write-back below raced it (lost race = quiet boot,
+ * no anchor, spurious warning). Neutered via `ccHeader.readOnlyConfig: true` in
+ * settings.json — see docs/troubleshooting/pi-quietstartup-write-race.md. unquietStartup
+ * stays as a safety net should anything force the flag again.
  *
  * ponytail: reuse contextimate's own `globalThis.__piContextimateChat` rather than walking
  * the TUI tree. A tree walk has to render-probe every component to find the rows, which
