@@ -13,7 +13,15 @@
     "npm:pi-observational-memory",
     "npm:pi-readseek",
     "npm:@ff-labs/pi-fff",
-    "npm:@dietrichgebert/ponytail",
+    {
+      "source": "npm:@dietrichgebert/ponytail",
+      "skills": [
+        "-skills/ponytail-audit/SKILL.md",
+        "-skills/ponytail-debt/SKILL.md",
+        "-skills/ponytail-gain/SKILL.md",
+        "-skills/ponytail-help/SKILL.md"
+      ]
+    },
     "npm:pi-caveman",
     "npm:pi-mcp-adapter",
     "npm:pi-advisor-flow",
@@ -21,13 +29,16 @@
     "npm:@ogulcancelik/pi-herdr",
     "npm:@yassimba/pi-herdr-worktree",
     "npm:pi-web-access",
-    "npm:context-mode",
+    {
+      "source": "npm:context-mode",
+      "skills": [
+        "+skills/context-mode/SKILL.md"
+      ]
+    },
     "npm:@plannotator/pi-extension",
     "npm:pi-mermaid",
     "npm:@tmustier/pi-usage-extension",
     "npm:@zhcsyncer/pi-recap",
-    "npm:@tifan/pi-rename",
-    "npm:pi-rename-pane",
     "npm:@firstpick/pi-extension-tools",
     "git:github.com/punk-dev-robot/pi-otel@fix/otlp-http-per-signal-paths",
     "npm:@juicesharp/rpiv-ask-user-question",
@@ -115,6 +126,14 @@
   "skills": [
     "-../../.agents/skills/plannotator-compound/SKILL.md",
     "-../../.agents/skills/plannotator-setup-goal/SKILL.md",
-    "+../../.agents/skills/tessl__wayfinder/SKILL.md"
+    "+../../.agents/skills/tessl__wayfinder/SKILL.md",
+    "+../../.agents/skills/logfire-instrumentation/SKILL.md",
+    "-../../.agents/skills/tessl__html-prototype/SKILL.md",
+    "-../../.agents/skills/tessl__html-wireframe/SKILL.md",
+    "-../../.agents/skills/tessl__linear-cli/SKILL.md",
+    "-../../.agents/skills/tessl__notion/SKILL.md",
+    "-../../.agents/skills/tessl__setup-matt-pocock-skills/SKILL.md",
+    "-../../.agents/skills/tessl__writing-for-agents/SKILL.md",
+    "-../../.agents/skills/tessl__wizard/SKILL.md"
   ]
 }
