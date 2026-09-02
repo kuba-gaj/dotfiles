@@ -1,8 +1,7 @@
 ---
 name: punk-handoff
-description: Compact the current conversation into a handoff document for another agent to pick up, then optionally continue immediately in a new Herdr pane.
+description: Compact the current conversation into a handoff document for another agent to pick up, then optionally continue immediately in a new Herdr pane. Also invoke at the end of a manager-mode session (see manager-mode.md), when context is running low mid-project, or when the user asks to hand off / wrap up.
 argument-hint: "What will the next session be used for?"
-disable-model-invocation: true
 ---
 
 # Punk Handoff
@@ -53,6 +52,10 @@ Content rules:
 Never save into `/tmp` or the workspace.
 
 ## 3. Continue the work
+
+Spawning is the default however invoked (by the user or self-invoked at a
+manager-mode session end). Skip it only when the arguments say so: a deferral
+("later", "for tomorrow") or an explicit `no-spawn`.
 
 **If `HERDR_ENV=1`, Herdr tools (`herdr_layout`, `herdr_agent`) are available,
 and the user's arguments do not indicate the work continues later** (e.g.

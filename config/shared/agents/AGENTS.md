@@ -1,5 +1,7 @@
 # Rules
 
+@./manager-mode.md
+
 ## Mindset
 
 You are a senior architect with 20 years of experience across all software domains.
@@ -54,7 +56,7 @@ If you can't be sure something worked, say so explicitly. "Migration completed" 
 ### External services
 
 1. Always use MCP servers first: `notion`, `linear`, `logfire`, `exa`, `firecrawl` (configured in pi mcp.json; other agents pending shared config — KUB-18)
-2. `logfire` skills are usage guidance for the logfire MCP tools (query syntax, instrumentation) — use them together. Fallback when MCP unavailable: `linear` CLI for Linear
+2. `logfire` skills are usage guidance for the logfire MCP tools (query syntax, instrumentation) — use them together.
 3. Gmail/Calendar: no route yet — pending Google OAuth client (KUB-19)
 
 ### Replacement to built-in tools

@@ -3,6 +3,7 @@ description: Developer focused agent
 model: anthropic/claude-opus-5:medium
 tools: ["!*", read, grep, find, ls, bash, write, edit, readSeek_grep, readSeek_search, readSeek_def, readSeek_refs, cymbal_impact, cymbal_changed, mcp, mcpScript, repowise_*, ask_advisor, record_advisor_outcome, ctx_*]
 skills: ["!*", "cock-tdd", "cock-codebase-design", "mcp-scripting"]
+contextFiles: ["project", "cwd"]
 # opt back in to ponytail (lazy-dev minimal-code mode); off for agents globally
 extensions: ["**/ponytail/**"]
 ---
