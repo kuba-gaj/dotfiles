@@ -22,7 +22,7 @@ open_notification_target = "prefix+shift+o"
 copy_mode = "prefix+enter"
 resize_mode = "prefix+alt+r"
 
-workspace_picker = "prefix+o"
+# workspace_picker = "prefix+o"
 navigate_workspace_up = "up"
 navigate_workspace_down = "down"
 previous_workspace = "prefix+k"
@@ -126,6 +126,17 @@ description = "resize right (nvim/herdr)"
 # type = "plugin_action"
 # command = "worktrunk.remove"
 # description = "remove worktree"
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "nvim sidebar"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
 
 [[keys.command]]
 key = "prefix+x"
@@ -147,12 +158,23 @@ description = "clear active pane"
 
 [[keys.command]]
 key = "prefix+p"
-type = "popup"
-command = 'exec "${SHELL:-sh}"'
-description = "open scratch terminal"
-width = "80%"
-height = "80%"
+type = "plugin_action"
+command = "pet.toggle"      # wake / tuck away
+description = "pet: toggle"
 
+[[keys.command]]
+key = "prefix+shift+p"
+type = "plugin_action"
+command = "pet.settings"      # popover: pick a pet, size, speed, mode…
+description = "pet: settings"
+# [[keys.command]]
+# key = "prefix+p"
+# type = "popup"
+# command = 'exec "${SHELL:-sh}"'
+# description = "open scratch terminal"
+# width = "80%"
+# height = "80%"
+#
 [[keys.command]]
 key = "prefix+t"
 type = "plugin_action"
@@ -187,7 +209,7 @@ type = "plugin_action"
 command = "flock.farm.open"
 description = "Open Flock Farm"
 
-# Terminal annotations
+# plannotator-tui (Terminal annotations)
 [[keys.command]]
 key = "prefix+a"
 type = "plugin_action"
@@ -206,7 +228,6 @@ type = "plugin_action"
 command = "annotate.manage"
 description = "manage annotations"
 
-# Document review (plannotator-tui)
 [[keys.command]]
 key = "prefix+alt+o"
 type = "plugin_action"
@@ -218,6 +239,25 @@ key = "prefix+alt+shift+o"
 type = "plugin_action"
 command = "annotate.last"
 description = "review the agent's last reply"
+
+# herdr-floax:keybind (float term)
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "herdr-floax.toggle"
+description = "Toggle floating pane"
+
+[[keys.command]]
+key = "prefix+h"
+type = "plugin_action"
+command = "gh-pr.open-pr"
+description = "open PR in browser"
+
+[[keys.command]]
+key = "prefix+shift+h"
+type = "plugin_action"
+command = "gh-pr.refresh"
+description = "refresh PR status"
 
 [ui]
 sidebar_width = 24
@@ -280,10 +320,3 @@ switch_ascii_input_source_in_prefix = false
 kitty_graphics = true
 reveal_hidden_cursor_for_cjk_ime = true
 cjk_ime_agents = ["claude", "pi", "codex"]
-
-# herdr-floax:keybind
-[[keys.command]]
-key = "prefix+f"
-type = "plugin_action"
-command = "herdr-floax.toggle"
-description = "Toggle floating pane"
