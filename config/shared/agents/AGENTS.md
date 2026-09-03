@@ -56,7 +56,7 @@ If you can't be sure something worked, say so explicitly. "Migration completed" 
 ### External services
 
 1. Always use MCP servers first: `notion`, `linear`, `logfire`, `exa`, `firecrawl` (configured in pi mcp.json; other agents pending shared config — KUB-18)
-2. `logfire` skills are usage guidance for the logfire MCP tools (query syntax, instrumentation) — use them together.
+2. `logfire` skills are usage guidance for the logfire MCP tools (query syntax, instrumentation) — load the `logfire-query` skill BEFORE the first logfire tool call of a session (it carries gotchas like the default 30-min query lookback).
 3. Gmail/Calendar: no route yet — pending Google OAuth client (KUB-19)
 
 ### Replacement to built-in tools
@@ -65,7 +65,7 @@ If you can't be sure something worked, say so explicitly. "Migration completed" 
 
 ## repowise (codebase intelligence)
 
-Repos with `.repowise/` (MCP tools or `repowise` CLI):
+Repos with `.repowise/` (MCP tools or `repowise` CLI). Repowise FIRST for concept/history/risk questions; `grep`/`find` are the unindexed fallback (stale index, outside workspace, un-indexed repo); `bash` is for processes, not navigation:
 
 - Concept/docs question ("how does X work", "where is Y flow") → `repowise_search_codebase`, `repowise_get_answer`
 - File/symbol triage (usage, fix history, layer) → `repowise_get_context` (takes `targets` array)
