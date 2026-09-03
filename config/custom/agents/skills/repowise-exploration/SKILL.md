@@ -52,7 +52,8 @@ workspace. `bash` is for running processes, not navigation.
 - `retrieval_quality` is `partial`/`weak`, or
 - a result's `search_method` is `bm25`.
 
-Otherwise the response is current — act on it.
+Otherwise the response reflects the last indexed commit — uncommitted working-tree
+changes are invisible to it (index syncs on post-commit).
 
 ## Error handling
 

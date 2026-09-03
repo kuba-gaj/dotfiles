@@ -33,7 +33,8 @@ const TOOL_MAP: Record<string, string> = {
 // Matches upstream hooks.json timeout: 10. Common PostToolUse path measured ~0.5s;
 // the zero-match semantic rescue (embedding lookup) legitimately takes ~10s.
 const SESSION_START_TIMEOUT_MS = 10_000;
-const POST_TOOL_TIMEOUT_MS = 10_000;
+const SEARCH_TIMEOUT_MS = 10_000; // zero-match semantic rescue legitimately ~10s
+const FAST_TIMEOUT_MS = 3_000; // staleness / decision notices; common path ~0.5-1.4s
 const MAX_OUTPUT_CHARS = 20_000; // cap tool output forwarded to augment
 
 const SESSION_ID = randomUUID(); // ledger correlation only
@@ -124,6 +125,9 @@ export default function (pi: ExtensionAPI) {
 		dbg(`tool_result tool=${event.toolName} cwd=${ctx?.cwd}`);
 		const claudeTool = TOOL_MAP[event.toolName];
 		if (!claudeTool) return;
+		// Read success-path notices need Claude-shaped tool_response we don't
+		// synthesize yet (Phase-2 candidate) — skip to avoid pure latency.
+		if (event.toolName === "read" && !event.isError) return;
 		const root = repoWithIndex(ctx.cwd);
 		if (!root) return;
 
@@ -138,7 +142,8 @@ export default function (pi: ExtensionAPI) {
 			: { hook_event_name: "PostToolUse", ...base, tool_response: { output: textOf(event.content) } };
 
 		const t0 = Date.now();
-		const context = await augment(payload, POST_TOOL_TIMEOUT_MS);
+		const timeoutMs = claudeTool === "Grep" || claudeTool === "Glob" ? SEARCH_TIMEOUT_MS : FAST_TIMEOUT_MS;
+		const context = await augment(payload, timeoutMs);
 		dbg(`augment done tool=${event.toolName} ms=${Date.now() - t0} ctx=${context ? context.slice(0, 60) : null}`);
 		if (!context) return;
 		return {
