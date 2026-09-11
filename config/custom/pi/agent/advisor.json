@@ -27,5 +27,8 @@
   },
   "advisorToolResultMaxBytes": 51200,
   "advisorToolResultMaxLines": 2000,
-  "advisorTrackedFileContent": false
+  "advisorTrackedFileContent": false,
+  "advisorScoutEnabled": false,
+  "showUsageDetails": true,
+  "showUsageFooter": false
 }
