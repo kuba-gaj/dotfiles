@@ -63,6 +63,13 @@ If you can't be sure something worked, say so explicitly. "Migration completed" 
 
 - use `exa` and `firecrawl` MCP servers instead of default `WebSearch` and `WebFetch`
 
+## Multi-repo workspaces
+
+When cwd is a workspace root (a dir with `.repowise-workspace.yaml` above
+sibling git repos): you are the **coordinator** — load the `multi-repo-ticket`
+skill before any implementation work, even when the task looks single-repo
+(scoping decides the shape, not memory). Inside a member repo or worktree,
+escalate to that skill the moment scope touches a sibling repo.
 ## repowise (codebase intelligence)
 
 Repos with `.repowise/`, or a workspace root with `.repowise-workspace.yaml` (at a workspace root pass `repo="<alias>"` or `repo="all"`; workspace-only tools like blast radius appear too). Repowise FIRST for concept/history/risk questions; `grep`/`find` are the unindexed fallback (stale index, outside workspace, un-indexed repo); `bash` is for processes, not navigation:
