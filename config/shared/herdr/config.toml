@@ -323,6 +323,7 @@ position = "bottom-right"
 enabled = true
 
 [experimental]
+kitty_graphics = true
 switch_ascii_input_source_in_prefix = false
 reveal_hidden_cursor_for_cjk_ime = true
 cjk_ime_agents = ["claude", "pi", "codex"]
