@@ -254,7 +254,7 @@ command = "gh-pr.open-pr"
 description = "open PR in browser"
 
 [[keys.command]]
-key = "prefix+shift+h"
+key = "prefix+alt+h"
 type = "plugin_action"
 command = "gh-pr.refresh"
 description = "refresh PR status"
