@@ -62,11 +62,6 @@
   "defaultProvider": "anthropic",
   "defaultModel": "claude-fable-5",
   "defaultThinkingLevel": "high",
-  "enabledModels": [
-    "anthropic/claude-fable-5",
-    "anthropic/claude-sonnet-5",
-    "anthropic/claude-opus-5"
-  ],
   "warnings": {
     "anthropicExtraUsage": false
   },
