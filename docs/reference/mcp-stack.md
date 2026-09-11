@@ -45,6 +45,10 @@ Work network constraint: custom OAuth apps blocked, localhost redirect whitelist
 
 Code-mode + lazy discovery: `mcp({ search })` / `describe` / `mcpScript` keep tool schemas out of context until needed (Anthropic "Code execution with MCP", Cloudflare Code Mode, MCP SEP-2636). One gateway tool instead of 10k+ tokens of tool definitions per server.
 
+## Evaluated alternatives
+
+- **Executor** (executor.sh, 2026-09, v1.6.7): not a gateway replacement — code-mode proxy/integration layer, never re-exposes upstream tools 1:1. Fails config-as-code (web UI → SQLite only); custom OAuth authorize params cloud-only. Best-in-class at terminating MCP auth for strict RFC 9728 clients. Complementary, not competing — side-by-side trial tracked in KUB-29. Scorecard: `docs/.scratch/research-executor-sh-gateway-eval.md` (gitignored). Its Slack OAuth uses `oauth/v2_user/authorize` + `oauth.v2.user.access` with plain `scope` — candidate to eliminate our mcp-remote Slack bridge; untested.
+
 ## Validation (2026-08-31)
 
 - All 5 servers connected via `/mcp-auth`; OAuth localhost callback passes work network policy.
