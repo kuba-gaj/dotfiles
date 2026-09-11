@@ -1,6 +1,6 @@
 ---
 description: Repo-read-only scout (NO bash/web/ssh) — codebase questions only. Route live-system or web questions to researcher/dev.
-model: anthropic/claude-sonnet-5:low
+model: workhorse:low
 tools: ["!*", read, grep, find, ls, write, readSeek_grep, readSeek_search, readSeek_def, readSeek_refs, cymbal_impact, ask_advisor, record_advisor_outcome, mcp, mcpScript, repowise_*, ctx_search, ctx_execute_file]
 overrideSystemPrompt: true
 contextFiles: []

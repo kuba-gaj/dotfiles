@@ -1,6 +1,6 @@
 ---
 description: External-systems operator — read and update Linear/Notion/GitHub, post Slack messages, exactly as briefed.
-model: anthropic/claude-sonnet-5:medium
+model: workhorse
 tools: ["!*", read, write, bash, mcp, mcpScript, ask_advisor, record_advisor_outcome, ctx_*]
 overrideSystemPrompt: true
 contextFiles: []

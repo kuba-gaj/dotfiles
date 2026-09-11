@@ -1,6 +1,6 @@
 ---
 description: External research (web via exa/firecrawl + read-only bash CLIs) — docs, APIs, versions, release notes; writes a cited brief to a file, no repo changes.
-model: anthropic/claude-opus-5:medium
+model: strong
 tools: ["!*", read, write, bash, mcp, mcpScript, web_search, fetch_content, get_search_content, ask_advisor, record_advisor_outcome, ctx_*]
 overrideSystemPrompt: true
 contextFiles: []

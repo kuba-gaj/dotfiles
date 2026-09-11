@@ -23,8 +23,19 @@ changes are live in new sessions, no `dotter deploy` needed.
 
 ## Frontmatter conventions
 
-- `model: provider/model:thinking` — one literal string; a separate
-  `thinking:` key is rejected.
+- `model:` — one string: an alias (optionally `alias:thinking`) or literal
+  `provider/model:thinking`; a separate `thinking:` key is rejected. Roles use
+  the static alias registry in workflow `settings.json` `modelAliases`:
+  `workhorse` (sonnet-5:medium — impl/tests/comms; recon uses `workhorse:low`),
+  `strong` (opus-5:medium — dev/researcher), `sota` (fable-5:high — reviewer),
+  `sota-openai` (gpt-6-astra:high), `review-openai` (gpt-5.6-sol:high, PR-review
+  OpenAI branch), `cheap-model` (chains to `workhorse`, back-compat). Naming:
+  `-openai` suffix for OpenAI-pinned aliases, no model codenames in alias names.
+  Model upgrades = edit the alias target, not the role files. A suffix on an
+  alias reference overrides the target's thinking level. Beware: a trusted
+  project's `modelAliases` key REPLACES the whole global map (`{}` wipes it);
+  omit the key to inherit. Aliases are piewf-only — `advisor.json`,
+  `pi-task-models`, and web-search take literal `provider/model` strings.
 - `tools:` starts with `"!*"` (wipe) then lists literals (plus lazy-tool
   globs `ctx_*` / `repowise_*`). Since the repowise migration (KUB-17):
   navigation = `readSeek_*`, call-graph = `cymbal_impact` / `cymbal_changed`

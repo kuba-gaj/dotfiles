@@ -38,12 +38,12 @@ Output markdown. End with a line: FINDINGS: <n>.`;
 
 const reviewBrief = `Review ${target}\n\n${criteria}`;
 
-// reviewer role = fable-5:high, read-only+cymbal tools; sol overrides model inside the role object
-const solRole = { name: "reviewer", model: "openai-codex/gpt-5.6-sol", thinking: "high" };
+// reviewer role model = sota (fable); the openai branch overrides it with the review-openai alias
+const openaiReviewer = { role: "reviewer", model: "review-openai" };
 
 const initial = await parallel("review", {
   fable: () => agent(reviewBrief, { role: "reviewer", label: "fable-review" }),
-  sol: () => agent(reviewBrief, { role: solRole, label: "sol-review" }),
+  sol: () => agent(reviewBrief, { ...openaiReviewer, label: "sol-review" }),
 });
 
 let fablePos = initial.fable;
@@ -72,7 +72,7 @@ for (let i = 1; i <= rounds; i++) {
       }),
     sol: () =>
       agent(prompt(debateTemplate, { own: solPos, other: fablePos }), {
-        role: solRole, label: `sol-debate-${i}`,
+        ...openaiReviewer, label: `sol-debate-${i}`,
       }),
   });
   fablePos = debate.fable;
@@ -107,4 +107,4 @@ Return a short summary: verdict + top 3 findings + the report path.`,
   { fable: fablePos, sol: solPos, reportPath },
 );
 
-return await agent(arbiterBrief, { model: "anthropic/claude-opus-5", thinking: "high", label: "arbiter" });
+return await agent(arbiterBrief, { model: "strong:high", label: "arbiter" });

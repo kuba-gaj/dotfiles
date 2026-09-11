@@ -1,6 +1,6 @@
 ---
 description: Implementer for bounded, well-specified edits — known approach, smallest diff.
-model: anthropic/claude-sonnet-5:medium
+model: workhorse
 tools: ["!*", read, grep, find, ls, bash, write, edit, ask_advisor, record_advisor_outcome, ctx_*]
 overrideSystemPrompt: true
 contextFiles: []
