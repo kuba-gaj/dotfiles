@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# wt-ticket — manage a multi-repo worktree set for one ticket.
+#
+# Creates/lists/removes same-named branches + worktrees across several repos in
+# the swapc workspace, so a ticket touching N repos is one command. Wraps
+# worktrunk (`wt`) so its hooks fire (post-start: cymbal index; pre-remove:
+# cymbal-prune-index). Each new worktree also gets a background
+# `repowise update --no-workspace` seed — bare `repowise update` inside a
+# worktree of a workspace member triggers a workspace-wide update instead.
+#
+# Usage:
+#   wt-ticket create <TICKET-slug> <repo>...   e.g. wt-ticket create AGIP-123-add-field shopmr shopai
+#   wt-ticket list [TICKET]                    in-flight ticket worktrees across all repos
+#   wt-ticket remove <TICKET-slug> [--force] [repo]...   remove set (all repos by default; --force discards uncommitted)
+set -euo pipefail
+
+ROOT="${WT_TICKET_ROOT:-$HOME/dev/swapc}"
+
+usage() { sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//'; exit 1; }
+
+# Resolve the worktree path wt created for a branch in a repo (template-agnostic).
+wt_path_for_branch() { # <repo> <branch>
+	wt list --format json 2>/dev/null \
+		| jq -r --arg b "$2" '.items[]? | select(.branch == $b) | .worktree.path // empty' | head -1
+}
+
+cmd="${1:-}"; shift || usage
+
+case "$cmd" in
+create)
+	ticket="${1:?ticket slug required}"; shift
+	[ $# -ge 1 ] || { echo "error: at least one repo required" >&2; exit 1; }
+	for repo in "$@"; do
+		[ -d "$ROOT/$repo/.git" ] || { echo "error: $ROOT/$repo is not a repo" >&2; exit 1; }
+	done
+	for repo in "$@"; do
+		echo "== $repo: wt switch --create $ticket"
+		(cd "$ROOT/$repo" && wt switch --create "$ticket" </dev/null)
+		wtpath=$(cd "$ROOT/$repo" && wt_path_for_branch "$repo" "$ticket")
+		if [ -n "$wtpath" ] && [ -d "$wtpath" ]; then
+			echo "   seeding repowise index (background): $wtpath"
+			(cd "$wtpath" && nohup repowise update --no-workspace >>"/tmp/repowise-seed-$(basename "$wtpath").log" 2>&1 &)
+		else
+			echo "   warn: could not resolve worktree path for $repo/$ticket — skipping repowise seed" >&2
+		fi
+	done
+	echo "done. panes/agents next: cd into each worktree above."
+	;;
+list)
+	ticket="${1:-}"
+	found=0
+	for d in "$ROOT"/*/; do
+		[ -f "$d/.git" ] || continue # linked worktrees have .git as a file
+		branch=$(git -C "$d" branch --show-current 2>/dev/null || true)
+		case "$branch" in *"$ticket"*) ;; *) continue ;; esac
+		found=1
+		dirty=$(git -C "$d" status --porcelain 2>/dev/null | head -1)
+		printf '%-55s %-45s %s\n' "$(basename "$d")" "$branch" "${dirty:+DIRTY}"
+	done
+	[ "$found" = 1 ] || echo "no ticket worktrees${ticket:+ matching '$ticket'}"
+	;;
+remove)
+	ticket="${1:?ticket slug required}"; shift
+	force=""
+	if [ "${1:-}" = "--force" ]; then force="--force"; shift; fi
+	repos=("$@")
+	for d in "$ROOT"/*/; do
+		[ -f "$d/.git" ] || continue
+		branch=$(git -C "$d" branch --show-current 2>/dev/null || true)
+		[ "$branch" = "$ticket" ] || continue
+		name=$(basename "$d")
+		repo="${name%%.*}"
+		if [ ${#repos[@]} -gt 0 ]; then
+			case " ${repos[*]} " in *" $repo "*) ;; *) continue ;; esac
+		fi
+		echo "== $repo: wt remove $ticket"
+		(cd "$ROOT/$repo" && wt remove "$ticket" --foreground $force </dev/null)
+	done
+	;;
+*) usage ;;
+esac
