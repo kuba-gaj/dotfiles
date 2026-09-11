@@ -65,7 +65,7 @@ If you can't be sure something worked, say so explicitly. "Migration completed" 
 
 ## repowise (codebase intelligence)
 
-Repos with `.repowise/` (MCP tools or `repowise` CLI). Repowise FIRST for concept/history/risk questions; `grep`/`find` are the unindexed fallback (stale index, outside workspace, un-indexed repo); `bash` is for processes, not navigation:
+Repos with `.repowise/`, or a workspace root with `.repowise-workspace.yaml` (at a workspace root pass `repo="<alias>"` or `repo="all"`; workspace-only tools like blast radius appear too). Repowise FIRST for concept/history/risk questions; `grep`/`find` are the unindexed fallback (stale index, outside workspace, un-indexed repo); `bash` is for processes, not navigation:
 
 - Concept/docs question ("how does X work", "where is Y flow") → `repowise_search_codebase`, `repowise_get_answer`
 - File/symbol triage (usage, fix history, layer) → `repowise_get_context` (takes `targets` array)

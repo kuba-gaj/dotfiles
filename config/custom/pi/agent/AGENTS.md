@@ -76,7 +76,7 @@ edits, not for `cat`/`grep` chains.
 
 ## Codebase intelligence routing
 
-When the repowise MCP server is available (repo has `.repowise/`):
+When the repowise MCP server is available (repo has `.repowise/`, or cwd is under a workspace root with `.repowise-workspace.yaml` — there pass `repo="<alias>"` or `repo="all"`):
 
 - Concept/docs questions ("how does X work", "where is the Y flow") →
   `repowise_search_codebase`, `repowise_get_answer`.

@@ -2,7 +2,8 @@
 name: repowise-pre-modification
 description: >
   Use before modifying, refactoring, or deleting files in a codebase that has Repowise indexed
-  (indicated by a .repowise/ directory). Activates when about to edit code, especially
+  (indicated by a .repowise/ directory, or a .repowise-workspace.yaml multi-repo workspace
+  root — there, pass repo="<alias>" or repo="all"). Activates when about to edit code, especially
   shared utilities, core modules, or files the user didn't explicitly mention. Helps assess
   impact and avoid breaking things.
 ---

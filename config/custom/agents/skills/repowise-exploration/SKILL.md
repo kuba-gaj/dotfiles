@@ -2,7 +2,8 @@
 name: repowise-exploration
 description: >
   Use when exploring, understanding, or answering questions about a codebase that has Repowise
-  indexed (a .repowise/ directory in the project root). Activates for "how does X work",
+  indexed (a .repowise/ directory in the project root, or a .repowise-workspace.yaml marking a
+  multi-repo workspace root — there, pass repo="<alias>" or repo="all"). Activates for "how does X work",
   "explain the architecture", "where is Y implemented", "what does this module do", or any task
   that needs an understanding of structure before diving into source files.
 ---
