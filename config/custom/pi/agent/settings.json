@@ -48,7 +48,9 @@
     "npm:@d3ara1n/pi-context-include",
     "npm:@tigorhutasuhut/pi-rules",
     "../../../dev/oss/pi-extensible-workflows/packages/core",
-    "../../../dev/oss/pi-extensible-workflows/packages/extensions/herdr"
+    "../../../dev/oss/pi-extensible-workflows/packages/extensions/herdr",
+    "npm:@henryqw/pi-task-models",
+    "npm:@henryqw/pi-herdr-rename"
   ],
   "npmCommand": [
     "fnm",

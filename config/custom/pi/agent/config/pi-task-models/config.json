@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "fast": {
+      "primary": { "model": "anthropic/claude-sonnet-5", "thinkingLevel": "low" },
+      "fallback": { "model": "openai-codex/gpt-5.6-sol", "thinkingLevel": "low" }
+    }
+  },
+  "tasks": {}
+}
