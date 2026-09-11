@@ -1,11 +1,12 @@
 ---
 name: multi-repo-ticket
 description: >
-  Coordinate a ticket or project whose changes span two or more repos in a repowise
-  workspace (a parent dir with .repowise-workspace.yaml, e.g. ~/dev/swapc). Use when
-  a Linear ticket names multiple workspace repos, when planning shows blast radius
-  crossing repo boundaries, or when the user asks to run a multi-repo ticket or
-  scope a multi-repo project. Coordinator is plan-only; per-repo work runs in
+  Coordinate work in a repowise workspace (a parent dir with
+  .repowise-workspace.yaml, e.g. ~/dev/swapc). Use whenever a session starts at a
+  workspace root — before any implementation, even when work looks single-repo —
+  and when work inside a member repo grows to touch a sibling repo, when a Linear
+  ticket names multiple workspace repos, or when the user asks to run or scope a
+  multi-repo ticket/project. Coordinator is plan-only; per-repo work runs in
   executor agents in worktrees.
 ---
 
@@ -30,6 +31,12 @@ section of the ticket file is their interface.
   `~/dotfiles/config/shared/agents/manager-mode.md`. Then run each multi-repo
   ticket through ticket mode.
 
+> [!NOTE]
+> Scoping decides the shape, not the entry point. When step 2 shows exactly one
+> affected repo, degrade cheaply: one worktree, one executor (or a single
+> `wt switch --create` + normal session there) — skip the ticket file and merge
+> ordering. The coordinator habit costs one scoping pass; the machinery is only
+> for genuinely multi-repo work.
 ## Ticket mode
 
 1. **Claim** — read the Linear ticket; assign yourself / move to in-progress
