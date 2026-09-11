@@ -263,12 +263,12 @@ description = "refresh PR status"
 sidebar_width = 24
 sidebar_min_width = 18
 sidebar_max_width = 60
-sidebar_start_collapsed = true
+sidebar_start_collapsed = false
 mouse_capture = true
 copy_on_select = true
 confirm_close = true
 prompt_new_tab_name = false
-pane_borders = true
+pane_borders = "always"
 pane_gaps = true
 pane_scrollbars = false
 show_agent_labels_on_pane_borders = true
@@ -276,6 +276,7 @@ agent_panel_sort = "spaces"
 window_title = "{hostname}: {workspace} · {tab}"
 status_indicators = "symbols"
 prompt_new_workspace_name = true
+tab_bar_position = "bottom"
 
 [ui.sidebar.agents]
 row_gap = 1
@@ -283,7 +284,12 @@ rows = [
   [
     "state_icon",
     { token = "agent", bold = true },
-    "state_text",
+    { token = "state_text", rules = [
+      { starts_with = "blocked", fg = "#f38ba8", bold = true },
+      { starts_with = "working", fg = "#f9e2af" },
+      { starts_with = "done", fg = "#a6e3a1" },
+      { starts_with = "idle", dim = true },
+    ] },
   ],
   [
     "workspace",
@@ -300,7 +306,10 @@ rows = [
     { token = "workspace", bold = true },
   ],
   [
-    "branch",
+    { token = "branch", rules = [
+      { equals = "main", dim = true },
+      { equals = "master", dim = true },
+    ] },
     "git_status",
   ],
 ]
@@ -317,6 +326,5 @@ enabled = true
 
 [experimental]
 switch_ascii_input_source_in_prefix = false
-kitty_graphics = true
 reveal_hidden_cursor_for_cjk_ime = true
 cjk_ime_agents = ["claude", "pi", "codex"]
