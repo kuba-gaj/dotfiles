@@ -292,8 +292,7 @@ rows = [
     ] },
   ],
   [
-    "workspace",
-    "tab",
+    { token = "tab", dim = false },
   ],
 ]
 
