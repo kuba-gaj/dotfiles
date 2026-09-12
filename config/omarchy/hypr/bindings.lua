@@ -105,6 +105,12 @@ o.bind("ALT + Q", "Close window", hl.dsp.window.close())
 o.bind("ALT + SHIFT + Q", "Kill window", hl.dsp.window.kill())
 hl.unbind("SUPER + CTRL + A") -- omarchy: Audio
 o.bind("SUPER + CTRL + A", "Toggle pipewire profile", "pw-profile toggle")
+-- KUB-128: Vicinae is the primary launcher (user service vicinae.service). Omarchy menu moves SUPER+SPACE → SUPER+SHIFT+D.
+-- Omarchy's SUPER+ALT+SPACE (apps menu) and the other omarchy-menu binds stay.
+hl.unbind("SUPER + SPACE") -- omarchy: Omarchy menu (omarchy-menu toggle)
+hl.unbind("SUPER + SHIFT + D") -- omarchy: Docker webapp (SUPER+SHIFT+D is now the Omarchy menu)
+o.bind("SUPER + D", "Vicinae launcher", "vicinae toggle")
+o.bind("SUPER + SHIFT + D", "Omarchy menu", "omarchy-menu toggle")
 -- KUB-127: hold Right ◇ (SUPER_R, HHKB) = push-to-talk dictation; same release shape as omarchy's F9.
 -- ALT+ALT_L tap-toggle dropped (mistriggers). Omarchy SUPER+CTRL+X toggle and F9 PTT stay.
 -- Probed: press fires as bare "SUPER_R"; release only fires with the modifier in the mask ("SUPER + SUPER_R").

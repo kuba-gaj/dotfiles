@@ -85,6 +85,7 @@ zoom
 #fbrokendesktop               # workflow?
 #lsdesktopf                   # workflow?
 #charasay                     # workflow?
+vicinae-bin # KUB-128 launcher (SUPER+D); user service vicinae.service
 
 # --- parked during KUB-83 install ---
 #jellyfin-desktop # 2.0.0-3 v2.0.0.tar.gz fails sha256 (upstream re-tag); retry later
