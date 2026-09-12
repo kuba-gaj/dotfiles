@@ -15,7 +15,6 @@ arm-none-eabi-gcc
 arm-none-eabi-newlib
 atop
 atuin
-aws-cli-v2
 bandwhich
 bees
 bind

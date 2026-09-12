@@ -4,8 +4,6 @@
 # (or: sed 's/#.*//' system/pkglist-aur.txt | grep . | yay -S --needed -)
 
 amazon-ssm-agent
-aws-ecs-cli
-aws-session-manager-plugin
 bottles
 boxes
 brother-cups-wrapper-common
@@ -38,8 +36,6 @@ lazysql
 libdeep_filter_ladspa-git
 lssecret-git
 mmdbctl
-mongodb-bin
-mongodb-tools-bin
 open-in-native-client
 openssh-askpass
 opentofu-bin
@@ -89,5 +85,4 @@ zoom
 #charasay                     # workflow?
 
 # --- parked during KUB-83 install ---
-#mongodb-compass  # needs electron37 source build (10h+ chromium clone); use mongosh-bin
 #jellyfin-desktop # 2.0.0-3 v2.0.0.tar.gz fails sha256 (upstream re-tag); retry later
