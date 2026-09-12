@@ -45,6 +45,16 @@
   difftool = true
 [checkout]
 	workers = 8
+# adopted from omarchy's skel git config (KUB-97); aliases + defaultBranch=master skipped
+[column]
+  ui = auto                # Output in columns when possible
+[branch]
+  sort = -committerdate    # Sort branches by most recent commit first
+[tag]
+  sort = -version:refname  # Sort version numbers as you would expect
+[rerere]
+  enabled = true           # Record and reuse conflict resolutions
+  autoupdate = true        # Apply stored conflict resolutions automatically
 [url "git@github-swap:swapcommerce/"]
 	insteadOf = git@github.com:swapcommerce/
 [includeIf "gitdir:/Users/kuba.gaj/dev/swapc/"]
