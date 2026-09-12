@@ -66,12 +66,20 @@ o.bind("ALT + semicolon", "Swap with master", hl.dsp.layout("swapwithmaster auto
 o.bind("ALT + comma", "Roll stack left", hl.dsp.layout("rollprev"))
 o.bind("ALT + period", "Roll stack right", hl.dsp.layout("rollnext"))
 -- 3-way layout cycle for the active workspace (replaces hyprtogglelayout; `layoutmsg setlayout` is gone in 0.56).
--- ponytail: not persisted across hyprctl reload (omarchy's toggle writes ~/.local/state/omarchy/workspace-layouts/).
+-- KUB-120: persisted the way omarchy-hyprland-workspace-layout-toggle does — one line in
+-- $XDG_STATE_HOME/omarchy/workspace-layouts/<id>.lua, which default/hypr/workspace-layouts.lua re-applies on every reload.
+local layouts_dir = require("default.hypr.paths").state_home .. "/omarchy/workspace-layouts"
 o.bind("ALT + CTRL + L", "Cycle layout master → dwindle → scrolling", function()
   local ws = hl.get_active_workspace()
   if not ws then return end
   local nxt = ({ master = "dwindle", dwindle = "scrolling", scrolling = "master" })[ws.tiled_layout] or "master"
   hl.workspace_rule({ workspace = tostring(ws.id), layout = nxt })
+  os.execute("mkdir -p '" .. layouts_dir .. "'")
+  local f = io.open(layouts_dir .. "/" .. ws.id .. ".lua", "w")
+  if f then
+    f:write(string.format('hl.workspace_rule({ workspace = "%s", layout = "%s" })\n', ws.id, nxt))
+    f:close()
+  end
   hl.exec_cmd("omarchy-notification-send -g 󱂬 'Layout: " .. nxt .. "'")
 end)
 
