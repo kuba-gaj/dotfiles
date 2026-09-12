@@ -6,8 +6,11 @@ set -eu
 
 root="$HOME/.tessl/plugins/mattpocock/skills/skills"
 
+[ -d "$root" ] || { echo "tessl-cock-prefix: no mattpocock skills at $root (run 'tessl install -g' first)" >&2; exit 0; }
+
+# perl -i is portable across GNU (Linux) and BSD (macOS); sed -i differs between them.
 for f in "$root"/*/*/SKILL.md; do
-  sed -i '' 's/^name: \(cock-\)\{0,1\}/name: cock-/' "$f"
+  perl -i -pe 's/^name: (cock-)?/name: cock-/' "$f"
 done
 
 # Skills cross-reference each other slash-style (/grilling, /tdd, ...) in SKILL.md

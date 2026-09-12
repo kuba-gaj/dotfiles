@@ -1,7 +1,16 @@
 {{#if is_macos}}Include {{home_dir}}/.config/colima/ssh_config
 
 {{/if}}# Host-specific blocks must come before Host * (first match wins in SSH config)
+{{#if mac_lan_ip}}
+# Work mac on the home LAN (kubas-mac). Pinned to one key: the 1Password agent
+# holds 6 and macOS sshd cuts off after MaxAuthTries.
+Host mac
+  HostName {{mac_lan_ip}}
+  User {{mac_user}}
+  IdentityFile ~/.ssh/kuba.dev.pub
+  IdentitiesOnly yes
 
+{{/if}}
 Host github-swap
   HostName github.com
   User git

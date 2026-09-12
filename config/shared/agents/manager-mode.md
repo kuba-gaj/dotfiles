@@ -35,10 +35,11 @@ work the manager can do himself.
 
 ## Linear conventions
 
-- Access: gateway MCP tools only (`gateway_linear_*` via the `mcp`/`mcpScript`
-  tools). There is no fallback route: if the linear MCP tools fail, fail early
-  and fix the gateway (launchd `com.user.agentgateway`, localhost:3000) instead
-  of improvising — applies to anyone updating issues (manager, comms, workflows).
+- Access: Linear MCP tools only (`*linear_*` via the `mcp`/`mcpScript` tools —
+  gateway route on the mac, direct `linear` server on omarchy). No CLI fallback:
+  if the tools fail, fail early and fix the MCP route instead of improvising —
+  applies to anyone updating issues (manager, comms, workflows).
+  Operations reference: `docs/agents/issue-tracker.md`.
 - Branch names and PR titles carry the ticket reference (e.g. `KUB-123`);
   at work this auto-transitions status (in-pr/uat/prod). Same habit privately.
 - Private team: `Kuba` (KUB). Wayfinder artifacts: map labelled

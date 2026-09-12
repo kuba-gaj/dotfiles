@@ -53,6 +53,11 @@ depends = ["base"]
 "config/custom/launchagents/com.user.agentgateway.plist" = { target = "~/Library/LaunchAgents/com.user.agentgateway.plist", type = "template" }
 "config/custom/agentgateway/config.yaml" = "~/.config/agentgateway/config.yaml"
 
+# ─── Omarchy = base only. Desktop stack (config/linux) and /etc stay omarchy-managed
+#     until each piece is reviewed mine-vs-omarchy; host profile excludes collisions. ───
+[omarchy]
+depends = ["base"]
+
 # ─── Arch = base + linux + system files (/etc, root) ───
 [arch]
 depends = ["base", "linux"]
