@@ -96,46 +96,55 @@ o.bind("SUPER + CTRL + A", "Toggle pipewire profile", "pw-profile toggle")
 o.bind("ALT + ALT_L", "Voxtype record toggle", "voxtype record toggle")
 
 ---------------------------------------------------------------------------
--- 3. Scratchpads as special workspaces (ADR 0002). No daemon: if a window whose class contains
+-- 3. Scratchpads as special workspaces (ADR 0002). Terminal app-ids must be reverse-DNS (ghostty rejects
+--    "drop-term" and falls back to com.mitchellh.ghostty). Class regexes are case-sensitive. No daemon: if a window whose class contains
 --    `match` exists → toggle its special workspace, else launch it (window rule parks it there).
 ---------------------------------------------------------------------------
 for _, k in ipairs({
   "SUPER + BACKSPACE", "SUPER + SHIFT + BACKSPACE", "SUPER + O", "SUPER + SHIFT + O", "SUPER + SHIFT + A",
   "SUPER + P", "SUPER + T", "SUPER + V", "SUPER + RETURN",
+  "SUPER + L", -- omarchy 2-way layout toggle; ours is ALT+CTRL+L (3-way)
 }) do
   hl.unbind(k)
 end
 
 local function scratch(key, name, match, cmd, rules)
   o.bind(key, "Scratchpad: " .. name, function()
-    local needle = match:gsub("%[%a(%a)%]", "%1"):lower() -- "[Ss]potify" → "spotify" for the plain-find below
+    -- "[Ss]potify.*" → "spotify" for the plain-find below (window-rule class regexes are full-match)
+    local needle = match:gsub("%[%a(%a)%]", "%1"):gsub("%.%*", ""):lower()
     for _, w in ipairs(hl.get_windows({ mapped = true })) do
       if w.class:lower():find(needle, 1, true) then
         hl.dispatch(hl.dsp.workspace.toggle_special(name))
+        -- input.special_fallthrough=true: a floating-only special doesn't take focus by itself.
+        local sp = hl.get_active_special_workspace()
+        if sp and sp.name == "special:" .. name then
+          hl.dispatch(hl.dsp.focus({ window = w }))
+        end
         return
       end
     end
     hl.exec_cmd("uwsm-app -- " .. cmd)
   end)
-  local rule = { workspace = "special:" .. name .. " silent", float = true, center = true, size = { 1920, 1200 } }
+  -- not "silent": first launch should reveal the special workspace
+  local rule = { workspace = "special:" .. name, float = true, center = true, size = { 1920, 1200 } }
   for k, v in pairs(rules or {}) do rule[k] = v end
   o.window(match, rule)
 end
 
-scratch("SUPER + BACKSPACE", "slack", "Slack", "slack")
+scratch("SUPER + BACKSPACE", "slack", "[Ss]lack", "slack")
 scratch("SUPER + SHIFT + BACKSPACE", "whatsapp", "chrome-web.whatsapp.com__-Default", "omarchy-launch-webapp https://web.whatsapp.com/")
 scratch("SUPER + O", "obsidian", "obsidian", "obsidian")
 scratch("SUPER + SHIFT + O", "1password", "1Password", "1password", { size = { "33%", "66%" } })
-scratch("SUPER + M", "spotify", "[Ss]potify", "spotify-launcher")
+scratch("SUPER + M", "spotify", "[Ss]potify.*", "spotify-launcher")
 scratch("SUPER + A", "openwebui", "crx_ciaamnabomjhndmogimfmmkflefihebh", "gtk-launch openwebui")
-scratch("SUPER + SHIFT + A", "claude", "[Cc]laude", "claude-desktop")
-scratch("SUPER + P", "protonmail", "Proton Mail", "proton-mail")
-scratch("SUPER + T", "linear", "[Ll]inear", "linear")
+scratch("SUPER + SHIFT + A", "claude", "[Cc]laude.*", "claude-desktop")
+scratch("SUPER + P", "protonmail", ".*[Pp]roton.*", "proton-mail")
+scratch("SUPER + T", "linear", "linear-linux", "linear-linux")
 scratch("SUPER + V", "volume", "org.pulseaudio.pavucontrol", "pavucontrol", { size = { 800, 600 } })
 scratch("SUPER + SHIFT + V", "easyeffects", "com.github.wwmm.easyeffects", "easyeffects")
-scratch("SUPER + I", "top", "btm-term", "xdg-terminal-exec --app-id=btm-term -e btm")
-scratch("SUPER + SHIFT + I", "nvtop", "nvtop-term", "xdg-terminal-exec --app-id=nvtop-term -e nvtop")
-scratch("SUPER + RETURN", "dropterm", "drop-term", "xdg-terminal-exec --app-id=drop-term")
+scratch("SUPER + I", "top", "scratch.btm", "xdg-terminal-exec --app-id=scratch.btm -e btm")
+scratch("SUPER + SHIFT + I", "nvtop", "scratch.nvtop", "xdg-terminal-exec --app-id=scratch.nvtop -e nvtop")
+scratch("SUPER + RETURN", "dropterm", "scratch.dropterm", "xdg-terminal-exec --app-id=scratch.dropterm")
 scratch("SUPER + DELETE", "reclaim", "chrome-reclaim.ai__-Profile_1", "gtk-launch reclaim")
-scratch("SUPER + SHIFT + DELETE", "todoist", "Todoist", "todoist")
+scratch("SUPER + SHIFT + DELETE", "todoist", ".*[Tt]odoist.*", "todoist")
 o.window("obsidian", { focus_on_activate = true })
