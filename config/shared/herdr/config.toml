@@ -10,6 +10,10 @@ accent = "#fab387"
 
 [terminal]
 shell_mode = "auto"
+# Pin the pane shell to zsh (PATH-resolved, works on Arch + macOS). Without this,
+# default_shell = "" falls back to the herdr server's inherited $SHELL, so a
+# server started from a bash terminal spawns every pane as bash.
+default_shell = "zsh"
 new_cwd = "follow"
 
 [keys]

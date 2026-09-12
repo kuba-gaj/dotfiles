@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 echo "Post deploy script"
 
+# pi's default config dir is ~/.pi, but this repo manages ~/.config/pi (many pi
+# extensions also hardcode ~/.pi). Keep ~/.pi as a symlink to ~/.config/pi so pi
+# always sees the dotter-managed config, extensions, and auth. Only (re)create the
+# link when it's missing or wrong; never clobber a real dir that holds live data.
+if [ ! -L "$HOME/.pi" ] && [ -d "$HOME/.pi" ]; then
+    echo "  warning: ~/.pi is a real directory, not a symlink to ~/.config/pi (leaving it; move it aside manually)" >&2
+elif [ "$(readlink "$HOME/.pi" 2>/dev/null)" != "$HOME/.config/pi" ]; then
+    ln -sfn "$HOME/.config/pi" "$HOME/.pi"
+    echo "  linked ~/.pi -> ~/.config/pi"
+fi
+
 if [[ "$(uname)" == "Linux" ]]; then
   # Fix keyd config permissions (dotter creates root-owned files with 600)
   sudo chmod -f 644 /etc/keyd/*.conf 2>/dev/null || true
