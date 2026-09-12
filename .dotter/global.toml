@@ -85,7 +85,7 @@ depends = ["base"]
 # KUB-122: pipewire drop-ins: pipewire.conf.d (rnnoise "Noise Canceling source"), pipewire-pulse.conf.d (switch-on-connect —
 #   pulse.cmd is only read from pipewire-pulse.conf.d; the museum copy sat in pipewire.conf.d and never loaded); easyeffects presets.
 "config/omarchy/pipewire" = "~/.config/pipewire"
-"config/omarchy/easyeffects" = "~/.config/easyeffects"
+"config/omarchy/easyeffects" = "~/.local/share/easyeffects" # 8.x preset dir; it migrates+trashes ~/.config/easyeffects/{input,output}
 
 # ─── Arch = base + linux + system files (/etc, root) ───
 [arch]
