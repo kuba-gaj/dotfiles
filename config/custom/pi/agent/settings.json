@@ -23,7 +23,7 @@
       ]
     },
     "npm:pi-caveman",
-    "npm:pi-mcp-adapter",
+    "npm:pi-mcp-adapter@2.32.1",
     "npm:pi-advisor-flow",
     "npm:pi-cymbal",
     "npm:@ogulcancelik/pi-herdr",
@@ -62,7 +62,7 @@
   "lastChangelogVersion": "0.85.1",
   "showCacheMissNotices": false,
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-fable-5",
+  "defaultModel": "claude-fable-5-1",
   "defaultThinkingLevel": "high",
   "warnings": {
     "anthropicExtraUsage": false

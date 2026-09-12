@@ -53,6 +53,10 @@
         "get_risk"
       ],
       "description": "repowise: codebase intelligence — docs, graph, git signals, dead code, decisions"
+    },
+    "linear": {
+      "url": "https://mcp.linear.app/mcp",
+      "lifecycle": "lazy"
     }
   }
 }
