@@ -7,3 +7,4 @@ tpm_path = "/usr/share/tmux-plugin-manager/tpm"
 op_agent_sock = "~/.1password/agent.sock"
 home_dir = "/home/kuba"
 is_linux = true
+chatgpt_resources = "/usr/lib/chatgpt/resources" # codex node_repl / CLI bundle (KUB-124)

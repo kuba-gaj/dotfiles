@@ -10,4 +10,5 @@ tpm_path = "/opt/homebrew/opt/tpm/share/tpm/tpm"
 op_agent_sock = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 home_dir = "/Users/kuba.gaj"
 is_macos = true
+chatgpt_resources = "/Applications/ChatGPT.app/Contents/Resources" # codex node_repl / CLI bundle (KUB-124)
 ghostty_font_size = 18

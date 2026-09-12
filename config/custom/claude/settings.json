@@ -114,7 +114,6 @@
     ],
     "skipDengerousModePermissionPrompt": true
   },
-  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {

@@ -27,6 +27,12 @@ default_target_type = "symbolic"
 # tessl global skill manifest (which plugins/skills are installed; excludes derived from it).
 # After changing: tessl install -g ... then tessl-cock-prefix. Do NOT run tessl inside ~/.tessl.
 "config/custom/tessl/tessl.json" = "~/.tessl/tessl.json"
+# KUB-124: apps that rewrite their own config (codex: model/trust/plugins; claude: "model") — deployed as
+# templates = rendered real files, so self-writes stay in ~/.config and never dirty the repo. App-managed keys
+# are dropped from the repo copies. codex paths use {{home_dir}} + {{chatgpt_resources}} (per-host vars).
+# The rest of config/shared/{codex,claude} (hooks, skills, CLAUDE.md…) stays symlinked via the recursive map.
+"config/custom/codex/config.toml" = { target = "~/.config/codex/config.toml", type = "template" }
+"config/custom/claude/settings.json" = { target = "~/.config/claude/settings.json", type = "template" }
 
 # own agent skills (punk-*); deployed next to tessl__* symlinks managed by tessl-cock-prefix.
 "config/custom/agents/skills" = "~/.agents/skills"
