@@ -1,0 +1,33 @@
+[Unit]
+Description=agentgateway — local MCP gateway (KUB-18/KUB-79)
+Documentation=https://agentgateway.dev/docs/standalone/latest/
+# Linux counterpart of config/custom/launchagents/com.user.agentgateway.plist.
+# Coupled to the graphical session like the other user units (mcpo etc.);
+# the /notion mcp-remote bridge needs a browser for its one-off OAuth grant.
+PartOf=graphical-session.target
+After=graphical-session.target
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h
+# mise shims first: the /notion route spawns `npx mcp-remote`.
+Environment=PATH=%h/.local/share/mise/shims:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+# Secrets: 4 keys, chmod 600, written once from 1Password (no `op run` in the
+# unit — polkit/vault-unlock timing under systemd is unreliable). Refresh with:
+#   (umask 077; grep -E '^(EXA|FIRECRAWL|CONTEXT7|LINEAR)_API_KEY=' \
+#     ~/.config/claude/secrets.env | op inject -o ~/.config/agentgateway/env)
+#   systemctl --user restart agentgateway
+EnvironmentFile=%h/.config/agentgateway/env
+# Always -f: without it agentgateway generates its own config into ~/.config/agentgateway.
+ExecStart=%h/.local/bin/agentgateway -f %h/.config/agentgateway/config.yaml
+# launchd KeepAlive=true + ThrottleInterval=60 parity.
+Restart=always
+RestartSec=60
+# SECURITY (KUB-78 D7): v1.5.0 binds 0.0.0.0:3000 with no bindAddress option.
+# Relies on ufw default-deny incoming; never add an allow rule for 3000/15000.
+# Set gateways.default.bindAddress: 127.0.0.1 once a release ships it.
+
+[Install]
+WantedBy=graphical-session.target
