@@ -58,6 +58,11 @@ depends = ["base"]
 [omarchy]
 depends = ["base"]
 
+[omarchy.files]
+# KUB-79: agentgateway as a systemd user unit. config.yaml is a template (work routes are mac-only).
+"config/custom/agentgateway/config.yaml" = { target = "~/.config/agentgateway/config.yaml", type = "template" }
+"config/omarchy/systemd/agentgateway.service" = "~/.config/systemd/user/agentgateway.service"
+
 # ─── Arch = base + linux + system files (/etc, root) ───
 [arch]
 depends = ["base", "linux"]

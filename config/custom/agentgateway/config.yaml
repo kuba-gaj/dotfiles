@@ -1,7 +1,10 @@
 # yaml-language-server: $schema=https://agentgateway.dev/schema/config
-# KUB-18: shared MCP gateway.
-# Run: op run --account my.1password.com --env-file=config/shared/claude/secrets.env \
+# KUB-18: shared MCP gateway. Dotter TEMPLATE: work routes (logfire, newrelic,
+# slack) are mac-only — an unset env var anywhere in this file is a hard parse
+# failure on the host that lacks the secret (KUB-78 D2).
+# Run (mac):   op run --account my.1password.com --env-file=config/shared/claude/secrets.env \
 #   -- agentgateway -f <this file>
+# Run (linux): systemd user unit config/omarchy/systemd/agentgateway.service
 #
 # /mcp       — multiplexed key-auth upstreams (gateway holds credentials)
 # /logfire, /newrelic, /notion — mcp-remote stdio bridges: OAuth done ONCE
@@ -54,6 +57,7 @@ routes:
               policies:
                 backendAuth:
                   key: "$LINEAR_API_KEY"
+{{#if is_macos}}
   - name: logfire
     matches:
       - path:
@@ -76,6 +80,7 @@ routes:
               stdio:
                 cmd: npx
                 args: ["-y", "mcp-remote@0.8.3", "https://mcp.eu.newrelic.com/mcp/"]
+{{/if}}
   - name: notion
     matches:
       - path:
@@ -87,6 +92,7 @@ routes:
               stdio:
                 cmd: npx
                 args: ["-y", "mcp-remote@0.8.3", "https://mcp.notion.com/mcp"]
+{{#if is_macos}}
   - name: slack
     matches:
       - path:
@@ -108,3 +114,4 @@ routes:
                   - '{"scope":"canvases:read canvases:write channels:history channels:read chat:write groups:history search:read.private search:read.public users:read","token_endpoint_auth_method":"client_secret_post"}'
                   - "--authorize-param"
                   - "user_scope=canvases:read,canvases:write,channels:history,channels:read,chat:write,groups:history,search:read.private,search:read.public,users:read"
+{{/if}}
