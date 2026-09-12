@@ -12,6 +12,8 @@ default_target_type = "symbolic"
 [base.files]
 "local" = "~/.local"
 "config/shared" = "~/.config"
+# KUB-129: colima context is mac-only; linux talks to the local dockerd (default context).
+"config/shared/docker/config.json" = { target = "~/.config/docker/config.json", type = "template" }
 "config/custom/ghostty" = { target = "~/.config/ghostty", type = "template" }
 "config/custom/nvim" = { target = "~/.config/nvim", type = "symbolic", recurse = false }
 "config/custom/git/gitconfig" = { target = "~/.gitconfig", type = "template" }
@@ -94,9 +96,27 @@ depends = ["base"]
 "config/omarchy/pipewire" = "~/.config/pipewire"
 "config/omarchy/easyeffects" = "~/.local/share/easyeffects" # 8.x preset dir; it migrates+trashes ~/.config/easyeffects/{input,output}
 
-# ─── Arch = base + linux + system files (/etc, root) ───
+# ─── Omarchy system files (/etc, root-owned copies). KUB-129 / verdicts KUB-94 / ADR 0003.
+#     Per-file until KUB-105 deletes the adopt-verdicted rest of etc/. Copies (template type), not symlinks:
+#     pacman-owned targets (earlyoom, btrfsmaintenance, daemon.json) → expect *.pacnew on upgrades, merge into repo.
+#     Originals: /etc/<file>.omarchy-bak. Deploy needs sudo (owner types it). ───
+[omarchy-system]
+depends = ["omarchy"]
+
+[omarchy-system.files]
+"etc/1password/custom_allowed_browsers" = { target = "/etc/1password/custom_allowed_browsers", type = "template", owner = "root" }
+"etc/btrbk/btrbk.conf" = { target = "/etc/btrbk/btrbk.conf", type = "template", owner = "root" }
+"etc/default/btrfsmaintenance" = { target = "/etc/default/btrfsmaintenance", type = "template", owner = "root" }
+"etc/default/earlyoom" = { target = "/etc/default/earlyoom", type = "template", owner = "root" }
+"etc/docker/daemon.json" = { target = "/etc/docker/daemon.json", type = "template", owner = "root" }
+"etc/systemd/system/mnt-btr_pool.mount" = { target = "/etc/systemd/system/mnt-btr_pool.mount", type = "template", owner = "root" }
+"etc/systemd/system/btrbk.service" = { target = "/etc/systemd/system/btrbk.service", type = "template", owner = "root" }
+"etc/systemd/system/btrbk.timer" = { target = "/etc/systemd/system/btrbk.timer", type = "template", owner = "root" }
+"etc/systemd/system/notify-failure@.service" = { target = "/etc/systemd/system/notify-failure@.service", type = "template", owner = "root" }
+"etc/systemd/system/notify-success@.service" = { target = "/etc/systemd/system/notify-success@.service", type = "template", owner = "root" }
+"etc/systemd/system/containerd-cleanup.service" = { target = "/etc/systemd/system/containerd-cleanup.service", type = "template", owner = "root" }
+"etc/systemd/system/containerd-cleanup.timer" = { target = "/etc/systemd/system/containerd-cleanup.timer", type = "template", owner = "root" }
+
+# ─── Arch (non-omarchy) = base + linux. /etc moved to [omarchy-system] (KUB-129). ───
 [arch]
 depends = ["base", "linux"]
-
-[arch.files]
-"etc" = { target = "/etc", type = "template", owner = "root" }

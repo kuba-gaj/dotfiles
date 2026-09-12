@@ -1,3 +1,4 @@
+{{#if is_macos}}
 {
 	"auths": {},
 	"currentContext": "colima",
@@ -5,3 +6,8 @@
 		"/opt/homebrew/lib/docker/cli-plugins"
 	]
 }
+{{else}}
+{
+	"auths": {}
+}
+{{/if}}

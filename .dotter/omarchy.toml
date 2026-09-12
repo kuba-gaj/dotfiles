@@ -1,4 +1,4 @@
-packages = ["omarchy"]
+packages = ["omarchy", "omarchy-system"]
 
 [files]
 # Per-tool mine-vs-omarchy exclusions lived here during M2 (ghostty/tmux/nvim). All resolved

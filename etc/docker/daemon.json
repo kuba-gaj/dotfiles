@@ -1,12 +1,13 @@
 {
-  "default-address-pools": [
-    {
-      "base": "172.240.0.0/16",
-      "size": 24
+    "log-driver": "json-file",
+    "log-opts": { "max-size": "10m", "max-file": "5" },
+    "dns": ["172.17.0.1"],
+    "bip": "172.17.0.1/16",
+    "default-address-pools": [
+        { "base": "172.240.0.0/16", "size": 24 }
+    ],
+    "features": {
+        "buildkit": true,
+        "containerd-snapshotter": true
     }
-  ],
-  "features": {
-    "buildkit": true,
-    "containerd-snapshotter": true
-  }
 }

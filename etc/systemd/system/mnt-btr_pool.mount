@@ -1,0 +1,12 @@
+# KUB-129: top-level btrfs (subvolid=5) so btrbk can snapshot @ and @home. fstab stays omarchy's.
+[Unit]
+Description=btrfs top-level for btrbk snapshots
+
+[Mount]
+What=/dev/mapper/root
+Where=/mnt/btr_pool
+Type=btrfs
+Options=subvolid=5,noatime
+
+[Install]
+WantedBy=multi-user.target

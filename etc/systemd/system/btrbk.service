@@ -1,6 +1,8 @@
 [Unit]
 Description=btrbk local snapshots
 Documentation=man:btrbk(1)
+RequiresMountsFor=/mnt/btr_pool
+OnFailure=notify-failure@%n.service
 
 [Service]
 Type=oneshot

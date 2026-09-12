@@ -5,7 +5,7 @@ After=multi-user.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/containerd-cleanup --age-days 7
+ExecStart=/home/kuba/.local/bin/containerd-cleanup --age-days 7
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=containerd-cleanup
@@ -19,7 +19,8 @@ Environment="LOG_TAG=containerd-cleanup"
 # Security hardening
 PrivateTmp=yes
 ProtectSystem=strict
-ProtectHome=yes
+# KUB-129: script lives in /home/kuba/.local/bin
+ProtectHome=read-only
 ReadWritePaths=/var/lib/containerd
 NoNewPrivileges=yes
 

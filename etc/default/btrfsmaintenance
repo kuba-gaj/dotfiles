@@ -15,7 +15,7 @@ BTRFS_LOG_OUTPUT="journal"
 # nested subvolumes, all have to be listed in this variable.
 # (Colon separated paths)
 # Defrag home directory for better performance with many small files
-BTRFS_DEFRAG_PATHS="/home"
+BTRFS_DEFRAG_PATHS=""
 
 ## Path:           System/File systems/btrfs
 ## Type:           string(none,daily,weekly,monthly)
@@ -23,7 +23,7 @@ BTRFS_DEFRAG_PATHS="/home"
 ## ServiceRestart: btrfsmaintenance-refresh
 #
 # Frequency of defrag.
-BTRFS_DEFRAG_PERIOD="weekly"
+BTRFS_DEFRAG_PERIOD="none"
 
 ## Path:        System/File systems/btrfs
 ## Type:        string
@@ -130,7 +130,7 @@ BTRFS_SCRUB_READ_ONLY="false"
 # in the format documented in the "Calendar Events" section of systemd.time(7),
 # if available.
 # Enable weekly TRIM for SSD optimization
-BTRFS_TRIM_PERIOD="weekly"
+BTRFS_TRIM_PERIOD="none"
 
 ## Path:        System/File systems/btrfs
 ## Description: Configuration for periodic fstrim - mountpoints
