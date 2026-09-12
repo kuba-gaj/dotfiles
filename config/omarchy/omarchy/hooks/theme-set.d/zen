@@ -1,0 +1,22 @@
+#!/bin/bash
+# KUB-118: Zen follows the omarchy theme. Runs after templates are rendered (omarchy-hook theme-set "$1").
+# Self-heals the profile symlinks (a profile reset drops them) and nudges for a restart — never kills Zen.
+# Also runnable by hand for first-time setup: bash ~/.config/omarchy/hooks/theme-set.d/zen
+set -euo pipefail
+
+theme=$HOME/.local/state/omarchy/current/theme
+ini=$HOME/.config/zen/profiles.ini
+[[ -f $ini && -f $theme/zen.css && -f $theme/zen-user.js ]] || exit 0
+
+# Profile Zen actually uses = [Install…] Default= (NOT Profile*/Default=1, which points at a stale profile here).
+profile=$(awk -F= '/^\[Install/{f=1;next} /^\[/{f=0} f && $1=="Default"{print $2;exit}' "$ini")
+[[ -n $profile ]] || exit 0
+dir=$HOME/.config/zen/$profile
+[[ -d $dir ]] || exit 0
+
+mkdir -p "$dir/chrome"
+ln -sfn "$theme/zen-user.js" "$dir/user.js"
+ln -sfn "$theme/zen.css" "$dir/chrome/omarchy.css"
+grep -qsF 'omarchy.css' "$dir/chrome/userChrome.css" || printf '@import url("omarchy.css");\n' >>"$dir/chrome/userChrome.css"
+
+pgrep -x zen-bin >/dev/null && omarchy-notification-send -u low "Theme" "Restart Zen to apply $1" || true
