@@ -40,17 +40,21 @@ _Avoid_: hook, config dir, user config
 
 **Host profile**:
 A `.dotter/<hostname>.toml` selecting the dotter packages and variables for one
-machine (`omarchy`, `arch`, `kubas-mac`).
+machine (`omarchy`, `kubas-mac`).
 _Avoid_: target, machine config
 
 **Museum**:
 `config/linux/`: the pre-Omarchy Arch/Hyprland stack, kept intact until each
-entry has a verdict.
+entry had a verdict. Removed in KUB-105 after every entry's verdict was
+implemented (Keep/Tweak ported, Adopt retired); term kept for history in
+older docs/ADRs.
 _Avoid_: legacy, old config
 
 **Omarchy package**:
 `config/omarchy/`: artifacts that exist only because of Omarchy (override-point
-files, Omarchy-specific dotter entries). Grows as the museum empties.
+files, Omarchy-specific dotter entries). Names the Keep/Tweak-verdicted
+artifacts ported from the museum; Adopt-verdicted material is not here —
+Omarchy's own copy wins and nothing of mine ships.
 _Avoid_: linux config, overrides dir
 
 ### Desktop

@@ -1,14 +1,12 @@
 [settings]
 default_target_type = "symbolic"
 
-# config/ holds exactly four dirs:
-#   shared/  → ~/.config/*   plain configs, every host   (one-line recursive map)
-#   linux/   → ~/.config/*   plain Arch-only configs     (one-line recursive map)
-#   mac/     → ~/.config/*   plain macOS-only configs    (one-line recursive map)
-#   custom/  → configs needing special handling (templating, single-dir symlink,
-#              or a target outside ~/.config); listed individually below.
-# Add a plain config = drop the dir into shared/linux/mac, no edit here.
-# Hosts pick packages in .dotter/<hostname>.toml: macOS=["macos"], Arch=["arch"].
+# config/ holds: shared/ and mac/ (plain per-host dirs, ~/.config/*, one-line recursive map),
+# custom/ (needs special handling: templating, single-dir symlink, or a target outside
+# ~/.config; listed individually below), omarchy/ (Omarchy desktop overrides, listed under
+# [omarchy.files] below), and .disabled/ (parked configs, not deployed — not referenced here).
+# Add a plain config = drop the dir into shared/mac, no edit here.
+# Hosts pick packages in .dotter/<hostname>.toml: macOS=["macos"], Linux=["omarchy", "omarchy-system"].
 [base.files]
 "local" = "~/.local"
 "config/shared" = "~/.config"
@@ -39,10 +37,6 @@ default_target_type = "symbolic"
 # own agent skills (punk-*); deployed next to tessl__* symlinks managed by tessl-cock-prefix.
 "config/custom/agents/skills" = "~/.agents/skills"
 
-# ─── Linux desktop (Hyprland stack) ───
-[linux.files]
-"config/linux" = "~/.config"
-
 # ─── macOS (AeroSpace stack) ───
 [macos]
 depends = ["base"]
@@ -57,8 +51,7 @@ depends = ["base"]
 "config/custom/launchagents/com.user.agentgateway.plist" = { target = "~/Library/LaunchAgents/com.user.agentgateway.plist", type = "template" }
 "config/custom/agentgateway/config.yaml" = { target = "~/.config/agentgateway/config.yaml", type = "template" }
 
-# ─── Omarchy = base only. Desktop stack (config/linux) and /etc stay omarchy-managed
-#     until each piece is reviewed mine-vs-omarchy; host profile excludes collisions. ───
+# ─── Omarchy = base + reviewed desktop overrides (per-file, listed under [omarchy.files]). ───
 [omarchy]
 depends = ["base"]
 
@@ -97,8 +90,8 @@ depends = ["base"]
 "config/omarchy/easyeffects" = "~/.local/share/easyeffects" # 8.x preset dir; it migrates+trashes ~/.config/easyeffects/{input,output}
 
 # ─── Omarchy system files (/etc, root-owned copies). KUB-129 / verdicts KUB-94 / ADR 0003.
-#     Per-file until KUB-105 deletes the adopt-verdicted rest of etc/. Copies (template type), not symlinks:
-#     pacman-owned targets (earlyoom, btrfsmaintenance, daemon.json) → expect *.pacnew on upgrades, merge into repo.
+#     Per-file ownership: each entry below is a copy (template type), not a symlink. Pacman-owned
+#     targets (earlyoom, btrfsmaintenance, daemon.json) may get *.pacnew on upgrades — merge into repo.
 #     Originals: /etc/<file>.omarchy-bak. Deploy needs sudo (owner types it). ───
 [omarchy-system]
 depends = ["omarchy"]
@@ -116,7 +109,3 @@ depends = ["omarchy"]
 "etc/systemd/system/notify-success@.service" = { target = "/etc/systemd/system/notify-success@.service", type = "template", owner = "root" }
 "etc/systemd/system/containerd-cleanup.service" = { target = "/etc/systemd/system/containerd-cleanup.service", type = "template", owner = "root" }
 "etc/systemd/system/containerd-cleanup.timer" = { target = "/etc/systemd/system/containerd-cleanup.timer", type = "template", owner = "root" }
-
-# ─── Arch (non-omarchy) = base + linux. /etc moved to [omarchy-system] (KUB-129). ───
-[arch]
-depends = ["base", "linux"]

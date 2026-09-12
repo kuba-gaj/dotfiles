@@ -25,4 +25,4 @@ Zen must be closed on both machines. Copy only the profile dir, not `Profile Gro
 
 ## What survived
 
-Themes/mods, sidebar side, `about:config` (`prefs.js`), logins/cookies, history, Tridactyl (native host from `firefox-tridactyl-native-bin`, config from `config/linux/tridactyl`). Extensions survive if `extensions.json` is left alone.
+Themes/mods, sidebar side, `about:config` (`prefs.js`), logins/cookies, history, Tridactyl (native host from `firefox-tridactyl-native-bin`, config from `config/omarchy/tridactyl`). Extensions survive if `extensions.json` is left alone.

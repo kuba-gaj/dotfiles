@@ -181,6 +181,9 @@ Counts `.txt` save files in `~/.local/share/tmux/resurrect/`, deletes all but th
 
 Automated test script for the tmux+alacritty+systemd integration. Runs configurable iterations of stop-start cycles, checking that all services activate correctly, sessions attach to the right tmux sessions, and Hyprland windows are created. Uses a lock file to prevent concurrent runs.
 
+**Retired (KUB-105/KUB-121):** removed from `local/bin/`; the script was unused museum-audit
+debris, not part of the live restore/save/cleanup path documented above.
+
 ## Quick Reference
 
 ### Service Management
