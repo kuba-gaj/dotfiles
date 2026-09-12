@@ -11,6 +11,12 @@
         },
         {
           "id": "omarchy.system-update"
+        },
+        {
+          "id": "omaplug"
+        },
+        {
+          "id": "tmn73.calendar"
         }
       ],
       "left": [
@@ -19,6 +25,12 @@
         },
         {
           "id": "omarchy.workspaces"
+        },
+        {
+          "id": "io.github.sohanemon.submap"
+        },
+        {
+          "id": "quickshell.spotify"
         }
       ],
       "right": [
@@ -28,6 +40,34 @@
           "pinned": [
             "1Password_status_icon_1"
           ]
+        },
+        {
+          "id": "io.github.tyrichards.tray"
+        },
+        {
+          "id": "io.github.x3me.nexthop"
+        },
+        {
+          "id": "io.github.twiking.omasettings"
+        },
+        {
+          "id": "crmne.hyprmoncfg"
+        },
+        {
+          "id": "zeru.portwatch"
+        },
+        {
+          "id": "harshith.system-monitor",
+          "barMode": "Adaptive"
+        },
+        {
+          "id": "robzolkos.github"
+        },
+        {
+          "id": "akitaonrails.ai-usagebar"
+        },
+        {
+          "id": "jankeesvw.notification-center"
         },
         {
           "id": "omarchy.agents"
@@ -51,9 +91,9 @@
           "id": "omarchy.power"
         },
         {
-          "format": "dddd HH:mm",
-          "formatAlt": "d MMMM 'W'ww yyyy",
           "id": "omarchy.clock",
+          "format": "ddd d MMM HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
           "verticalFormat": "HH\n—\nmm"
         }
       ]
@@ -65,6 +105,10 @@
     "lock": 1200,
     "screensaver": 600
   },
-  "plugins": [],
+  "plugins": [
+    {
+      "id": "bobbynicholas.omaland"
+    }
+  ],
   "version": 1
 }
