@@ -35,7 +35,7 @@ export ZSH_LIB_DIR="$ZDOTDIR/lib"
 # Default applications
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="ghostty"
 if (( $+commands[zen-browser] )); then
   export BROWSER="zen-browser"
 elif [[ "$OSTYPE" == darwin* ]]; then
