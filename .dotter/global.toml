@@ -61,6 +61,12 @@ depends = ["base"]
 # KUB-102: Hyprland override points. omarchy-refresh-hyprland targets → dotter owns them; omarchy's originals
 # are kept as ~/.config/hypr/*.omarchy-bak. hyprland.lua + .luarc.json are verbatim omarchy copies.
 "config/omarchy/hypr" = "~/.config/hypr"
+# KUB-111: shell.json (bar layout, idle). omarchy's original: ~/.config/omarchy/shell.json.omarchy-bak.
+# `omarchy bar ...`/`omarchy plugin ...`/`omarchy refresh shell` replace the symlink with a real file (mv) →
+# `dotter -v -d` reports a collision; diff it back into the repo, back up, redeploy.
+"config/omarchy/omarchy/shell.json" = "~/.config/omarchy/shell.json"
+# shell.toml: user layer over theme/shell.toml (font base-size). Never run `omarchy display text size` (mv over symlink).
+"config/omarchy/omarchy/shell.toml" = "~/.config/omarchy/shell.toml"
 
 # ─── Arch = base + linux + system files (/etc, root) ───
 [arch]

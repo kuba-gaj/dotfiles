@@ -1,0 +1,4 @@
+# KUB-111: user override layered over theme/shell.toml (live-watched by omarchy-shell).
+# NOT via `omarchy display text size` — that `mv`s over this symlink and `sed -i`s ghostty config.
+[font]
+base-size = 14

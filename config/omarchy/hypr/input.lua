@@ -32,3 +32,7 @@ hl.config({
     force_zero_scaling = true,
   },
 })
+
+-- KUB-111: screenshots land in ~/Pictures/Screenshots (omarchy default: ~/Pictures). Editor = tensaku (trial);
+-- fallback: hl.env("OMARCHY_SCREENSHOT_EDITOR", "swappy -f") needs a 1-line wrapper (editor is invoked quoted).
+hl.env("OMARCHY_SCREENSHOT_DIR", os.getenv("HOME") .. "/Pictures/Screenshots")
