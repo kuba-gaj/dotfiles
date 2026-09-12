@@ -10,7 +10,11 @@
 # Required for `voxtype record toggle` and `voxtype status` commands.
 state_file = "auto"
 
-engine = "parakeet"
+# KUB-127: parakeet is the target (see [parakeet]); switching needs the ONNX binary + model download, owner-run:
+#   sudo voxtype setup onnx --enable && voxtype setup model   # pick parakeet-tdt-0.6b-v3
+#   then set engine = "parakeet" here and `systemctl --user restart voxtype`.
+# Note: `setup onnx` re-points pacman-owned /usr/bin/voxtype; a voxtype-bin upgrade reverts it (re-run).
+engine = "whisper"
 
 [hotkey]
 # KUB-127: Hyprland drives recording (hold SUPER_R / SUPER+CTRL+X toggle / F9); no evdev hotkey.
