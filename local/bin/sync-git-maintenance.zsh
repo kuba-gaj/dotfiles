@@ -2,6 +2,12 @@
 
 # Git Maintenance Sync Script
 # Keeps git maintenance configuration in sync with actual repositories
+#
+# Registrations live in ~/.gitconfig-maintenance (included by ~/.gitconfig, which is a dotter
+# template and would lose local state on redeploy). `git maintenance register` has no repo
+# argument — it registers the cwd, hence `git -C`. `git config --global` does not follow
+# include.path unless told (`--includes`), so reads need it too (KUB-126).
+MAINT_CFG=~/.gitconfig-maintenance
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -16,10 +22,10 @@ echo -e "\n${YELLOW}Step 1: Cleaning up non-existent repositories...${NC}"
 removed_count=0
 
 # Process removals
-for repo in $(git config --global --get-all maintenance.repo 2>/dev/null | sort | uniq); do
+for repo in $(git config --global --includes --get-all maintenance.repo 2>/dev/null | sort | uniq); do
     if [[ ! -d "$repo/.git" ]]; then
         echo -e "${RED}✗ Removing non-existent: $repo${NC}"
-        git maintenance unregister --config-file ~/.gitconfig "$repo" 2>/dev/null || true
+        git config --file "$MAINT_CFG" --fixed-value --unset-all maintenance.repo "$repo" 2>/dev/null || true
         ((removed_count++))
     fi
 done
@@ -50,7 +56,7 @@ added_count=0
 current_repos=()
 while IFS= read -r repo; do
     current_repos+=("$repo")
-done < <(git config --global --get-all maintenance.repo 2>/dev/null | sort | uniq)
+done < <(git config --global --includes --get-all maintenance.repo 2>/dev/null | sort | uniq)
 
 # Convert to associative array for quick lookup
 typeset -A current_repos_map
@@ -62,7 +68,7 @@ done
 for repo in "${repos[@]}"; do
     if [[ -z "${current_repos_map[$repo]:-}" ]]; then
         echo -e "${GREEN}✓ Registering: $repo${NC}"
-        git maintenance register --config-file ~/.gitconfig "$repo"
+        git -C "$repo" maintenance register --config-file "$MAINT_CFG"
         ((added_count++))
     fi
 done
@@ -71,7 +77,7 @@ done
 echo -e "\n${GREEN}✅ Sync complete!${NC}"
 echo "  - Removed: $removed_count non-existent repositories"
 echo "  - Added: $added_count new repositories"
-echo "  - Total registered: $(git config --global --get-all maintenance.repo 2>/dev/null | wc -l) repositories"
+echo "  - Total registered: $(git config --global --includes --get-all maintenance.repo 2>/dev/null | wc -l) repositories"
 
 # Step 5: Reset failed service if needed
 if systemctl --user is-failed git-maintenance@hourly.service &>/dev/null; then
