@@ -59,7 +59,9 @@ hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "s
 local FLASH_OPACITY, FLASH_MS = "0.85", 150
 o.window({ tag = "flash" }, { opacity = FLASH_OPACITY })
 hl.on("window.active", function(w)
-  if not w or w.floating then return end -- museum: animate_floating = false
+  -- KUB-132: switching to an empty workspace fires this with HL.Window(expired) — fields read nil, the window
+  -- selector then errors on the dispatcher context (pcall can't hide it). address == nil ⇒ expired ⇒ skip.
+  if not w or not w.address or w.floating then return end -- museum: animate_floating = false
   hl.dispatch(hl.dsp.window.tag({ window = w, tag = "+flash" }))
   hl.timer(function()
     pcall(hl.dispatch, hl.dsp.window.tag({ window = w, tag = "-flash" })) -- window may be gone
