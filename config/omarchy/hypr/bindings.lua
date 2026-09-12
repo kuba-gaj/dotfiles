@@ -100,10 +100,15 @@ o.bind("mouse:278", "MX gesture: close tab", hl.dsp.send_shortcut({ mods = "CTRL
 ---------------------------------------------------------------------------
 -- 2. Apps / misc
 ---------------------------------------------------------------------------
-o.bind("SUPER + SHIFT + Q", "Kill window", hl.dsp.window.kill())
+-- KUB-114: ALT = WM layer. ALT+Q close, ALT+SHIFT+Q force-kill (omarchy SUPER+W close stays).
+o.bind("ALT + Q", "Close window", hl.dsp.window.close())
+o.bind("ALT + SHIFT + Q", "Kill window", hl.dsp.window.kill())
 hl.unbind("SUPER + CTRL + A") -- omarchy: Audio
 o.bind("SUPER + CTRL + A", "Toggle pipewire profile", "pw-profile toggle")
-o.bind("ALT + ALT_L", "Voxtype record toggle", "voxtype record toggle")
+-- KUB-127: hold Right ◇ (SUPER_R, HHKB) = push-to-talk dictation; same release shape as omarchy's F9.
+-- ALT+ALT_L tap-toggle dropped (mistriggers). Omarchy SUPER+CTRL+X toggle and F9 PTT stay.
+o.bind("SUPER_R", "Dictation (hold)", "voxtype record start")
+o.bind("SUPER_R", "Dictation (release)", "voxtype record stop", { release = true })
 
 ---------------------------------------------------------------------------
 -- 3. Scratchpads as special workspaces (ADR 0002). Terminal app-ids must be reverse-DNS (ghostty rejects
