@@ -49,7 +49,7 @@ depends = ["base"]
 "config/custom/launchagents/com.user.borders.plist" = { target = "~/Library/LaunchAgents/com.user.borders.plist", type = "template" }
 "config/custom/launchagents/com.user.colima.plist" = { target = "~/Library/LaunchAgents/com.user.colima.plist", type = "template" }
 "config/custom/launchagents/com.user.agentgateway.plist" = { target = "~/Library/LaunchAgents/com.user.agentgateway.plist", type = "template" }
-"config/custom/agentgateway/config.yaml" = "~/.config/agentgateway/config.yaml"
+"config/custom/agentgateway/config.yaml" = { target = "~/.config/agentgateway/config.yaml", type = "template" }
 
 # ─── Omarchy = base only. Desktop stack (config/linux) and /etc stay omarchy-managed
 #     until each piece is reviewed mine-vs-omarchy; host profile excludes collisions. ───
