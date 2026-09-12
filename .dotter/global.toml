@@ -58,6 +58,9 @@ depends = ["base"]
 # KUB-79: agentgateway as a systemd user unit. config.yaml is a template (work routes are mac-only).
 "config/custom/agentgateway/config.yaml" = { target = "~/.config/agentgateway/config.yaml", type = "template" }
 "config/omarchy/systemd/agentgateway.service" = "~/.config/systemd/user/agentgateway.service"
+# KUB-102: Hyprland override points. omarchy-refresh-hyprland targets → dotter owns them; omarchy's originals
+# are kept as ~/.config/hypr/*.omarchy-bak. hyprland.lua + .luarc.json are verbatim omarchy copies.
+"config/omarchy/hypr" = "~/.config/hypr"
 
 # ─── Arch = base + linux + system files (/etc, root) ───
 [arch]
