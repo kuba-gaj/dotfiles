@@ -9,6 +9,6 @@ grep -v '^\s*#' "$list" | grep -v '^\s*$' | while read -r src; do
     echo "ok       $src"
   else
     echo "install  $src"
-    herdr plugin install -y "$src" || echo "FAILED   $src" >&2
+    herdr plugin install "$src" -y || echo "FAILED   $src" >&2
   fi
 done
