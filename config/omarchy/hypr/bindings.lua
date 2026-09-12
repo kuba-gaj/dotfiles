@@ -104,6 +104,7 @@ for _, k in ipairs({
   "SUPER + BACKSPACE", "SUPER + SHIFT + BACKSPACE", "SUPER + O", "SUPER + SHIFT + O", "SUPER + SHIFT + A",
   "SUPER + P", "SUPER + T", "SUPER + V", "SUPER + RETURN",
   "SUPER + L", -- omarchy 2-way layout toggle; ours is ALT+CTRL+L (3-way)
+  "SUPER + code:10", -- omarchy "workspace 1"; ours are ALT+digits. KUB-107: SUPER+1 = 1password
 }) do
   hl.unbind(k)
 end
@@ -145,12 +146,12 @@ scratch("SUPER + BACKSPACE", "slack", "[Ss]lack", "slack")
 scratch("SUPER + SHIFT + BACKSPACE", "whatsapp", "chrome-web.whatsapp.com__.*", "omarchy-launch-webapp https://web.whatsapp.com/")
 scratch("SUPER + O", "obsidian", "obsidian", "obsidian")
 scratch("SUPER + N", "notion", "chrome-www.notion.so__.*", "omarchy-launch-webapp https://www.notion.so")
-scratch("SUPER + SHIFT + O", "1password", "1[Pp]assword", "1password", { size = { "33%", "66%" } })
+scratch("SUPER + code:10", "1password", "1[Pp]assword", "1password", { size = { "33%", "66%" } })
 scratch("SUPER + M", "spotify", "[Ss]potify.*", "spotify-launcher")
 scratch("SUPER + A", "openwebui", "crx_ciaamnabomjhndmogimfmmkflefihebh", "gtk-launch openwebui")
 scratch("SUPER + SHIFT + A", "claude", "[Cc]laude.*", "claude-desktop")
 scratch("SUPER + P", "protonmail", ".*[Pp]roton.*", "proton-mail")
-scratch("SUPER + T", "linear", "linear-linux", "linear-linux")
+scratch("SUPER + L", "linear", "linear-linux", "linear-linux")
 scratch("SUPER + V", "volume", "org.pulseaudio.pavucontrol", "pavucontrol", { size = { 800, 600 } })
 scratch("SUPER + SHIFT + V", "easyeffects", "com.github.wwmm.easyeffects", "easyeffects")
 scratch("SUPER + I", "top", "scratch.btm", "xdg-terminal-exec --app-id=scratch.btm -e btm")
