@@ -1,6 +1,6 @@
 # Font
 font-family = MesloLGL Nerd Font Mono
-font-size = 18
+font-size = {{ghostty_font_size}}
 adjust-icon-height=10%
 
 # Theme
