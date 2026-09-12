@@ -35,13 +35,6 @@
       ],
       "right": [
         {
-          "hidden": [],
-          "id": "omarchy.tray",
-          "pinned": [
-            "1Password_status_icon_1"
-          ]
-        },
-        {
           "id": "io.github.tyrichards.tray"
         },
         {
