@@ -33,7 +33,17 @@ o.bind("ALT + mouse_down", "Next workspace (relative)", hl.dsp.focus({ workspace
 o.bind("ALT + mouse_up", "Previous workspace (relative)", hl.dsp.focus({ workspace = "r-1" }))
 
 -- Floating
-o.bind("ALT + SPACE", "Toggle floating", hl.dsp.window.float({ action = "toggle" }))
+-- KUB-106: on a scratchpad (special ws, id < 0) togglefloating just tiles it inside the full-screen special overlay;
+-- pull it into the current regular workspace instead (lands tiled).
+o.bind("ALT + SPACE", "Toggle floating / pull scratchpad window into workspace", function()
+  local w = hl.get_active_window()
+  if w and w.workspace and w.workspace.id < 0 then
+    hl.dispatch(hl.dsp.window.move({ workspace = "e+0" }))
+    if w.floating then hl.dispatch(hl.dsp.window.float({ action = "off" })) end -- scratch rule floats it; owner wants tiled
+  else
+    hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+  end
+end)
 o.bind("ALT + SHIFT + SPACE", "Focus other layer (floating <-> tiled)", function()
   local active = hl.get_active_window()
   if not active then return end
