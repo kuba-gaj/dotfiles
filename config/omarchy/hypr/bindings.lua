@@ -114,6 +114,16 @@ local function scratch(key, name, match, cmd, rules)
     local needle = match:gsub("%[%a(%a)%]", "%1"):gsub("%.%*", ""):lower()
     for _, w in ipairs(hl.get_windows({ mapped = true })) do
       if w.class:lower():find(needle, 1, true) then
+        -- Self-heal: a window that opened while another special was showing lands there. Adopt it.
+        if not (w.workspace and w.workspace.name == "special:" .. name) then
+          hl.dispatch(hl.dsp.focus({ window = w }))
+          hl.dispatch(hl.dsp.window.move({ workspace = "special:" .. name, follow = false }))
+          if not w.floating then -- window rules only apply at map time
+            hl.dispatch(hl.dsp.window.float({ action = "on" }))
+            hl.dispatch(hl.dsp.window.resize({ x = 1920, y = 1200 }))
+            hl.dispatch(hl.dsp.window.center())
+          end
+        end
         hl.dispatch(hl.dsp.workspace.toggle_special(name))
         -- input.special_fallthrough=true: a floating-only special doesn't take focus by itself.
         local sp = hl.get_active_special_workspace()
@@ -132,9 +142,10 @@ local function scratch(key, name, match, cmd, rules)
 end
 
 scratch("SUPER + BACKSPACE", "slack", "[Ss]lack", "slack")
-scratch("SUPER + SHIFT + BACKSPACE", "whatsapp", "chrome-web.whatsapp.com__-Default", "omarchy-launch-webapp https://web.whatsapp.com/")
+scratch("SUPER + SHIFT + BACKSPACE", "whatsapp", "chrome-web.whatsapp.com__.*", "omarchy-launch-webapp https://web.whatsapp.com/")
 scratch("SUPER + O", "obsidian", "obsidian", "obsidian")
-scratch("SUPER + SHIFT + O", "1password", "1Password", "1password", { size = { "33%", "66%" } })
+scratch("SUPER + N", "notion", "chrome-www.notion.so__.*", "omarchy-launch-webapp https://www.notion.so")
+scratch("SUPER + SHIFT + O", "1password", "1[Pp]assword", "1password", { size = { "33%", "66%" } })
 scratch("SUPER + M", "spotify", "[Ss]potify.*", "spotify-launcher")
 scratch("SUPER + A", "openwebui", "crx_ciaamnabomjhndmogimfmmkflefihebh", "gtk-launch openwebui")
 scratch("SUPER + SHIFT + A", "claude", "[Cc]laude.*", "claude-desktop")
