@@ -1,5 +1,5 @@
 -- Look'n'feel (KUB-102): museum eye candy on top of omarchy. Border colours are NOT set here so the
--- active omarchy theme wins. Plugins (hyprfocus, hyprwinwrap) intentionally not ported — not installed.
+-- active omarchy theme wins. hyprwinwrap intentionally not ported — not installed.
 
 hl.config({
   general = {
@@ -52,3 +52,16 @@ end
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 3, bezier = "smoothOut" })
 hl.animation({ leaf = "border", enabled = true, speed = 2, bezier = "snap" })
 hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "snap", style = "slidevert" })
+
+-- Flash-on-focus without hyprfocus (KUB-117, stage 1): tag the newly active window, an opacity rule dims it,
+-- a oneshot timer untags it; the `fade` animation makes it a flash. Zero plugins / rebuilds.
+-- ponytail: calibration knobs — opacity + ms; museum hyprfocus was fade_opacity 0.9.
+local FLASH_OPACITY, FLASH_MS = "0.85", 150
+o.window({ tag = "flash" }, { opacity = FLASH_OPACITY })
+hl.on("window.active", function(w)
+  if not w or w.floating then return end -- museum: animate_floating = false
+  hl.dispatch(hl.dsp.window.tag({ window = w, tag = "+flash" }))
+  hl.timer(function()
+    pcall(hl.dispatch, hl.dsp.window.tag({ window = w, tag = "-flash" })) -- window may be gone
+  end, { timeout = FLASH_MS, type = "oneshot" })
+end)
