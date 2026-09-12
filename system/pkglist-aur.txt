@@ -34,6 +34,7 @@ jsonfmt
 kubepug-bin
 lazysql
 libdeep_filter_ladspa-git
+linear-desktop-bin
 lssecret-git
 mmdbctl
 open-in-native-client
