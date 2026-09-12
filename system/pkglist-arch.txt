@@ -1,0 +1,254 @@
+# system/pkglist-arch.txt — official repos (core/extra/multilib) + [omarchy]
+# Source: KUB-82 triage (docs/.scratch/research-KUB-82-package-triage.md) + KUB-83 audit.
+# Reinstall:  sudo pacman -S --needed - < system/pkglist-arch.txt
+# (grep -v '^#' first if your pacman chokes on comments: sed 's/#.*//' file | grep . | sudo pacman -S --needed -)
+# AUR set lives in pkglist-aur.txt.
+
+alacritty
+alsa-tools
+amberol
+android-tools
+anki
+ansible
+apache
+arm-none-eabi-gcc
+arm-none-eabi-newlib
+atop
+atuin
+bandwhich
+bees
+bind
+botsay
+bottom
+broot
+btrfsmaintenance
+bun-bin
+cage
+calc
+calibre
+chatblade
+choose
+claude-desktop
+cmake
+code
+compsize
+cowsay
+cups-pdf
+devtools
+dfu-util
+difftastic
+direnv
+distrobox
+doggo
+dool
+dos2unix
+dpkg
+dropbox
+duf
+dust
+earlyoom
+easyeffects
+electron
+figlet
+firefoxpwa
+firejail
+flatpak
+flatseal
+fluxcd
+foomatic-db-gutenprint-ppds
+fortune-mod
+fwupd
+git-delta
+git-filter-repo
+github-cli
+gitleaks
+glab
+glfw
+go
+gopls
+go-tools
+gparted
+gping
+gptfdisk
+graphviz
+grex
+gst-plugin-va
+guestfs-tools
+gufw
+gutenprint
+helm
+htop
+httpie
+hurl
+hyperfine
+hyprland-qt-support
+iperf3
+jaq
+jdk17-openjdk
+just
+k9s
+keyd
+khal
+kooha
+kubectl
+kubectx
+kubeseal
+kustomize
+ldns
+lf
+lib32-vulkan-radeon
+libva-utils
+libvirt
+libvncserver
+lnav
+lolcat
+lostfiles
+lynx
+man-pages
+mbuffer
+mesa-utils
+meson
+misfortune
+mkcert
+mono
+moor
+moreutils
+mtr
+nano
+ncdu
+nethogs
+network-manager-applet
+nfs-utils
+ninja
+nload
+nmap
+noise-suppression-for-voice
+nvtop
+okular
+ouch
+packer
+parallel
+pavucontrol
+pgcli
+pkgfile
+pnpm
+podman
+podman-compose
+podman-desktop
+powerline
+powerline-fonts
+pqiv
+progress
+pulse-native-provider
+pv
+pwgen
+python-aiohttp-oauthlib
+python-boto3
+python-botocore
+python-distutils-extra
+python-flit-core
+python-pipx
+python-pytest
+python-pytest-xdist
+python-pywinrm
+qalculate-gtk
+qbittorrent
+qemu-full
+qt5-wayland
+radeontop
+reflector
+remmina
+ristretto
+rocm-smi-lib
+rpi-imager
+rpm-tools
+run-parts
+rustscan
+rustup
+sad
+sane-airscan
+sassc
+scmpuff
+sd
+seahorse
+serpl
+sheldon
+shellcheck
+signal-desktop
+sniffnet
+solaar
+sops
+sox
+spotify-launcher
+sshpass
+steam
+stress-ng
+swappy
+swayimg
+syncthing
+sysstat
+systembus-notify
+systemctl-tui
+tailscale
+telegram-desktop
+terminus-font
+terraform
+texlive-bin
+tflint
+thunar
+toilet
+tokei
+traceroute
+trash-cli
+trippy
+ttf-bitstream-vera
+ttf-dejavu
+ttf-droid
+ttf-fira-code
+ttf-inconsolata
+ttf-meslo-nerd
+ttf-ubuntu-font-family
+unarchiver
+unrar
+urlscan
+v4l2loopback-dkms
+vdirsyncer
+vlc
+watchexec
+wev
+wf-recorder
+wget
+wine-mono
+wine-staging
+wlr-randr
+xh
+xorg-xhost
+yad
+yazi
+ydotool
+yq
+zathura
+zathura-pdf-mupdf
+zsh-completions
+
+# --- judgement calls (KUB-82 §"Contradictions"), not installed by default ---
+#fish             # shell; zsh configured
+#nushell          # shell; zsh configured
+#opencode         # mise-managed already
+#bluetuith        # redundant; omarchy bluetooth panel
+#impala           # redundant; omarchy network panel
+#swaync           # superseded; quickshell notifications
+#pyenv            # superseded; mise
+#nodejs-lts-jod   # superseded; mise
+# chaotic-keyring/chaotic-mirrorlist: not a repo here (see report verdict)
+
+# --- unverified workflows (KUB-82 §"UNVERIFIED"), not installed by default ---
+#reaper               # DAW
+#carla                # DAW
+#realtime-privileges  # DAW
+
+# --- dropped during KUB-83 install ---
+#bitwarden-cli    # pulls nodejs-lts-jod (mise owns node); 1password installed
+#asar             # pulls nodejs; build dep only
+#tealdeer         # conflicts with tldr (omarchy)
+#mise             # omarchy ships mise-bin

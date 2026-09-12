@@ -1,0 +1,88 @@
+# system/pkglist-aur.txt — AUR packages (yay)
+# Source: KUB-82 triage + KUB-83 audit.
+# Reinstall:  yay -S --needed - < system/pkglist-aur.txt
+# (or: sed 's/#.*//' system/pkglist-aur.txt | grep . | yay -S --needed -)
+
+amazon-ssm-agent
+bottles
+boxes
+brother-cups-wrapper-common
+brother-hll8240cdw
+brother-lpr-drivers-common
+btrfs-list
+ccusage
+claude-cowork-service
+cymbal
+deadbeef
+deadbeef-plugin-quicksearch-gtk3-git
+debtap
+devcontainer-cli
+docker-rootless-extras
+downgrade
+exercism
+firefox-tridactyl-native-bin
+fluxctl-bin
+fuc-bin
+gcalcli
+git-secret
+gosu
+gotify-cli
+ipscan
+isomaster
+jaeger-all-in-one-bin
+jsonfmt
+kubepug-bin
+lazysql
+libdeep_filter_ladspa-git
+lssecret-git
+mmdbctl
+open-in-native-client
+openssh-askpass
+opentofu-bin
+otel-tui-bin
+pandoc-bin
+playwright
+pnpm-shell-completion
+proton-mail-bin
+protonmail-bridge-free-nokeychain-git
+raindrop
+redis
+remmina-plugin-ultravnc
+rtk-bin
+runjs-bin
+simple-mtpfs
+snmpscan
+systemd-timer-notify
+teams-for-linux-bin
+tmux-plugin-manager
+todoist-appimage
+ugit
+ventoy-bin
+vesktop
+viddy
+way-displays
+wireguard-ui-bin
+wireguird
+worktrunk-bin
+xcp
+yarn-berry
+yaycache
+yaycache-hook
+zen-twilight-bin
+zoom
+
+# --- judgement calls, not installed by default ---
+#tfenv            # superseded; mise
+#fnm-bin          # superseded; mise
+
+# --- unverified workflows, not installed by default ---
+#yabridge-wine10-git          # DAW
+#yabridgectl-wine10-git       # DAW
+#gitlab-ci-local              # workflow?
+#terraform-pug-bin            # workflow?
+#fbrokendesktop               # workflow?
+#lsdesktopf                   # workflow?
+#charasay                     # workflow?
+
+# --- parked during KUB-83 install ---
+#jellyfin-desktop # 2.0.0-3 v2.0.0.tar.gz fails sha256 (upstream re-tag); retry later
