@@ -76,7 +76,8 @@ depends = ["base"]
 "config/omarchy/omarchy" = "~/.config/omarchy"
 # KUB-122: udiskie device rules (omarchy autostarts udiskie; config.yml is read regardless of its flags).
 "config/omarchy/udiskie" = "~/.config/udiskie"
-# KUB-122: pipewire drop-ins (switch-on-connect, rnnoise "Noise Canceling source"); easyeffects presets (user data).
+# KUB-122: pipewire drop-ins: pipewire.conf.d (rnnoise "Noise Canceling source"), pipewire-pulse.conf.d (switch-on-connect —
+#   pulse.cmd is only read from pipewire-pulse.conf.d; the museum copy sat in pipewire.conf.d and never loaded); easyeffects presets.
 "config/omarchy/pipewire" = "~/.config/pipewire"
 "config/omarchy/easyeffects" = "~/.config/easyeffects"
 
