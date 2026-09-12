@@ -27,3 +27,14 @@ require("default.hypr.toggles")
 
 -- Add any other personal Hyprland configuration below.
 -- o.window("qemu", { workspace = "5" })
+
+-- KUB-122 (item 7): zen tab-title routing — a tab titled "ws3 …" / "[ws3] …" pulls its window to workspace 3 (silent).
+-- Replaces the museum `hyprevents` socket listener's title handler. Callback gets the window handle; `window.move`
+-- accepts `window = w` (verified: moves a non-focused window).
+hl.on("window.title", function(w)
+  if not (w and w.class and w.title and w.class:match("^zen")) then return end
+  local ws = w.title:match("^%[?ws(%d+)")
+  if ws and w.workspace and w.workspace.id ~= tonumber(ws) then
+    hl.dispatch(hl.dsp.window.move({ workspace = ws, follow = false, window = w }))
+  end
+end)
