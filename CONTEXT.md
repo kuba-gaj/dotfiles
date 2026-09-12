@@ -52,3 +52,10 @@ _Avoid_: legacy, old config
 `config/omarchy/`: artifacts that exist only because of Omarchy (override-point
 files, Omarchy-specific dotter entries). Grows as the museum empties.
 _Avoid_: linux config, overrides dir
+
+### Desktop
+
+**Scratchpad**:
+A named Hyprland special workspace holding one app, toggled by a key; launches the
+app if it is not running. Defined in the omarchy package, not by a daemon.
+_Avoid_: dropdown, hyprscratch, special
