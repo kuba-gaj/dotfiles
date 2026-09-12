@@ -107,8 +107,9 @@ hl.unbind("SUPER + CTRL + A") -- omarchy: Audio
 o.bind("SUPER + CTRL + A", "Toggle pipewire profile", "pw-profile toggle")
 -- KUB-127: hold Right ◇ (SUPER_R, HHKB) = push-to-talk dictation; same release shape as omarchy's F9.
 -- ALT+ALT_L tap-toggle dropped (mistriggers). Omarchy SUPER+CTRL+X toggle and F9 PTT stay.
+-- Probed: press fires as bare "SUPER_R"; release only fires with the modifier in the mask ("SUPER + SUPER_R").
 o.bind("SUPER_R", "Dictation (hold)", "voxtype record start")
-o.bind("SUPER_R", "Dictation (release)", "voxtype record stop", { release = true })
+o.bind("SUPER + SUPER_R", "Dictation (release)", "voxtype record stop", { release = true })
 
 ---------------------------------------------------------------------------
 -- 3. Scratchpads as special workspaces (ADR 0002). Terminal app-ids must be reverse-DNS (ghostty rejects
