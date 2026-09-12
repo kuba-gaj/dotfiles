@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 echo "Post deploy script"
 
-# pi's default config dir is ~/.pi, but this repo manages ~/.config/pi (many pi
-# extensions also hardcode ~/.pi). Keep ~/.pi as a symlink to ~/.config/pi so pi
+# pi's default config dir is ~/.pi, but this repo manages ~/.config/pi. 9 installed
+# extensions still hardcode ~/.pi (docs/troubleshooting/pi-xdg-dir.md). Keep ~/.pi
+# as a symlink to ~/.config/pi so pi
 # always sees the dotter-managed config, extensions, and auth. Only (re)create the
 # link when it's missing or wrong; never clobber a real dir that holds live data.
 if [ ! -L "$HOME/.pi" ] && [ -d "$HOME/.pi" ]; then

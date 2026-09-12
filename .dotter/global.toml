@@ -22,9 +22,7 @@ default_target_type = "symbolic"
 "config/custom/.markdownlint.jsonc" = "~/.markdownlint.jsonc"
 "config/custom/pnpm/global-packages.txt" = "~/.config/pnpm/global-packages.txt"
 "config/custom/pi/agent" = "~/.config/pi/agent"
-# pi-claude-code-ui reads its own settings from ~/.pi/settings.json (~/.pi == ~/.config/pi)
-"config/custom/pi/settings.json" = "~/.config/pi/settings.json"
-# @firstpick/pi-extension-tools + WebUI shared resource defaults (/tools global+model scopes)
+# @firstpick/pi-extension-tools (/tools) resource defaults; path via PI_WEBUI_SETTINGS_FILE in .zshenv
 "config/custom/pi/webui/settings.json" = "~/.config/pi/webui/settings.json"
 # tessl global skill manifest (which plugins/skills are installed; excludes derived from it).
 # After changing: tessl install -g ... then tessl-cock-prefix. Do NOT run tessl inside ~/.tessl.
