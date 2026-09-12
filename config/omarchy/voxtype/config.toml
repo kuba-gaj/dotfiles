@@ -13,8 +13,6 @@ state_file = "auto"
 # KUB-127: parakeet on the ONNX (AVX-512) CPU binary. MIGraphX (AMD GPU) variant fails to register the EP on this
 # driver and silently falls back to CPU — same speed, so use the clean variant. Re-run after a voxtype-bin upgrade
 # (it resets pacman-owned /usr/bin/voxtype to Whisper): voxtype setup onnx --enable; voxtype setup gpu --disable
-engine = "parakeet" here and `systemctl --user restart voxtype`.
-# Note: `setup onnx` re-points pacman-owned /usr/bin/voxtype; a voxtype-bin upgrade reverts it (re-run).
 engine = "parakeet"
 
 [hotkey]
