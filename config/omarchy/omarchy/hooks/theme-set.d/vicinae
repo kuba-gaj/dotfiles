@@ -1,0 +1,11 @@
+#!/bin/bash
+# KUB-123: Vicinae follows the omarchy theme. themed/vicinae.toml.tpl is rendered before this hook runs;
+# install it as Vicinae theme "omarchy" and select it. Also runnable by hand for first-time setup.
+set -euo pipefail
+
+theme=$HOME/.local/state/omarchy/current/theme
+command -v vicinae >/dev/null && [[ -f $theme/vicinae.toml ]] || exit 0
+
+mkdir -p "$HOME/.local/share/vicinae/themes"
+cp -f "$theme/vicinae.toml" "$HOME/.local/share/vicinae/themes/omarchy.toml"
+vicinae theme set omarchy >/dev/null 2>&1 || true

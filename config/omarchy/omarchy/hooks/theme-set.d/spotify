@@ -1,0 +1,20 @@
+#!/bin/bash
+# KUB-123: Spotify follows the omarchy theme via Spicetify (AUR spicetify-cli, configured for the
+# spotify-launcher install). Spicetify patches Spotify's files, so every Spotify update breaks it:
+# then run `spicetify restore backup apply`. Never restarts Spotify (-n); nudges like the zen hook.
+set -euo pipefail
+
+theme=$HOME/.local/state/omarchy/current/theme
+command -v spicetify >/dev/null && [[ -f $theme/spicetify-color.ini ]] || exit 0
+
+dst=$HOME/.config/spicetify/Themes/omarchy
+mkdir -p "$dst"
+cp -f "$theme/spicetify-color.ini" "$dst/color.ini"
+cp -f "$theme/spicetify-user.css" "$dst/user.css"
+spicetify config current_theme omarchy color_scheme base >/dev/null
+
+if spicetify -q -n apply; then
+  pgrep -x spotify >/dev/null && omarchy-notification-send -u low "Theme" "Restart Spotify to apply $1" || true
+else
+  omarchy-notification-send -u critical "Theme" "Spicetify apply failed (Spotify updated?). Run: spicetify restore backup apply"
+fi
