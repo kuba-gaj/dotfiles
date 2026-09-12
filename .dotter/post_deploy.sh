@@ -36,3 +36,11 @@ fi
 if command -v herdr >/dev/null 2>&1 && [ -x "$HOME/.local/bin/herdr-sync-plugins" ]; then
     "$HOME/.local/bin/herdr-sync-plugins" || echo "  warning: herdr plugin sync had failures" >&2
 fi
+
+# KUB-122: own user timers (config/omarchy/systemd). Only when a user systemd is reachable
+# (Linux desktop session); no-op elsewhere.
+if [[ "$(uname)" == "Linux" ]] && systemctl --user show-environment >/dev/null 2>&1; then
+    systemctl --user daemon-reload
+    systemctl --user enable --now btrfs-space-monitor.timer git-maintenance-sync.timer screenshot-cleanup.timer \
+        || echo "  warning: enabling user timers failed" >&2
+fi

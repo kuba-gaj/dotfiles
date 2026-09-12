@@ -58,6 +58,13 @@ depends = ["base"]
 # KUB-79: agentgateway as a systemd user unit. config.yaml is a template (work routes are mac-only).
 "config/custom/agentgateway/config.yaml" = { target = "~/.config/agentgateway/config.yaml", type = "template" }
 "config/omarchy/systemd/agentgateway.service" = "~/.config/systemd/user/agentgateway.service"
+# KUB-122: own maintenance timers (omarchy has none besides snapper-cleanup); post_deploy enables them.
+"config/omarchy/systemd/btrfs-space-monitor.service" = "~/.config/systemd/user/btrfs-space-monitor.service"
+"config/omarchy/systemd/btrfs-space-monitor.timer" = "~/.config/systemd/user/btrfs-space-monitor.timer"
+"config/omarchy/systemd/git-maintenance-sync.service" = "~/.config/systemd/user/git-maintenance-sync.service"
+"config/omarchy/systemd/git-maintenance-sync.timer" = "~/.config/systemd/user/git-maintenance-sync.timer"
+"config/omarchy/systemd/screenshot-cleanup.service" = "~/.config/systemd/user/screenshot-cleanup.service"
+"config/omarchy/systemd/screenshot-cleanup.timer" = "~/.config/systemd/user/screenshot-cleanup.timer"
 # KUB-102: Hyprland override points. omarchy-refresh-hyprland targets → dotter owns them; omarchy's originals
 # are kept as ~/.config/hypr/*.omarchy-bak. hyprland.lua + .luarc.json are verbatim omarchy copies.
 "config/omarchy/hypr" = "~/.config/hypr"
@@ -69,6 +76,9 @@ depends = ["base"]
 "config/omarchy/omarchy" = "~/.config/omarchy"
 # KUB-122: udiskie device rules (omarchy autostarts udiskie; config.yml is read regardless of its flags).
 "config/omarchy/udiskie" = "~/.config/udiskie"
+# KUB-122: pipewire drop-ins (switch-on-connect, rnnoise "Noise Canceling source"); easyeffects presets (user data).
+"config/omarchy/pipewire" = "~/.config/pipewire"
+"config/omarchy/easyeffects" = "~/.config/easyeffects"
 
 # ─── Arch = base + linux + system files (/etc, root) ───
 [arch]
