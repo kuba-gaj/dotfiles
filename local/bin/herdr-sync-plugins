@@ -1,0 +1,14 @@
+#!/bin/sh
+# Install every herdr plugin listed in ~/.config/herdr/plugins.txt that is not installed yet.
+# ponytail: install-only; never uninstalls extras — remove by hand with `herdr plugin uninstall`.
+set -eu
+list="${XDG_CONFIG_HOME:-$HOME/.config}/herdr/plugins.txt"
+installed=$(herdr plugin list 2>/dev/null | grep -o 'github:[^@]*' | sed 's/^github://')
+grep -v '^\s*#' "$list" | grep -v '^\s*$' | while read -r src; do
+  if printf '%s\n' "$installed" | grep -qx "$src"; then
+    echo "ok       $src"
+  else
+    echo "install  $src"
+    herdr plugin install -y "$src" || echo "FAILED   $src" >&2
+  fi
+done

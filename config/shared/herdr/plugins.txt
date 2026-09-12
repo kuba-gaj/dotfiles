@@ -1,0 +1,18 @@
+# herdr plugins: one GitHub source per line (OWNER/REPO[/SUBDIR]); `herdr-sync-plugins` installs missing ones.
+# Snapshot from the mac (herdr 0.9.0). Not listed: official.plannotator (local link to ~/dev/oss/herdr-plannotator).
+plannotator/herdr-annotate
+ChmaraX/herdr-nvim
+ragamo/herdr-flock
+wyattjoh/herdr-plugin-gh-pr
+qu8n/herdr-automatic-rename
+smarzban/herdr-file-viewer
+Tyru5/herdr-floax
+crokily/herdr-lazygit
+thanhdat77/herdr-navigator
+lmilojevicc/herdr-splits.nvim
+nikok6/herdr-mirror
+persiyanov/herdr-reviewr
+nikok6/herdr-pet
+iurysza/termscope
+devashish2203/herdr-worktrunk
+zenbu-labs/terminal-browser/herdr-plugin
