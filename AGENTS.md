@@ -26,7 +26,7 @@
 
 ### Issue tracker
 
-Issues tracked in GitHub Issues (punk-dev-robot/dotfiles) via `gh` CLI. See `docs/agents/issue-tracker.md`.
+Planning and wayfinder work tracked in Linear (team `Kuba`, `KUB-n`) via Linear MCP tools; GitHub Issues (`gh`) only for public repo bugs. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

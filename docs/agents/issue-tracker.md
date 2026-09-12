@@ -1,45 +1,86 @@
-# Issue tracker: GitHub
+# Issue tracker: Linear (primary), GitHub Issues (repo bugs)
 
-Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
+Planning, wayfinder maps, and manager-mode work live in **Linear**, team `Kuba`
+(key `KUB`). GitHub Issues on `punk-dev-robot/dotfiles` remain for public repo
+bugs and for `#123` references in commits. When a skill says "the issue
+tracker" without qualification, it means Linear.
 
-## Conventions
+## Linear
 
-- **Create an issue**: `gh issue create --title "..." --body "..."`. Use a heredoc for multi-line bodies.
-- **Read an issue**: `gh issue view <number> --comments`, filtering comments by `jq` and also fetching labels.
-- **List issues**: `gh issue list --state open --json number,title,body,labels,comments --jq '[.[] | {number, title, body, labels: [.labels[].name], comments: [.comments[].body]}]'` with appropriate `--label` and `--state` filters.
-- **Comment on an issue**: `gh issue comment <number> --body "..."`
-- **Apply / remove labels**: `gh issue edit <number> --add-label "..."` / `--remove-label "..."`
-- **Close**: `gh issue close <number> --comment "..."`
+Access: Linear MCP tools (`*linear_*`, via `mcp` / `mcpScript`). No CLI
+fallback — if the tools fail, fix the MCP route, don't improvise. Manager-mode
+rules and branch/PR naming: `config/shared/agents/manager-mode.md`.
 
-Infer the repo from `git remote -v` — `gh` does this automatically when run inside a clone.
+### Conventions
 
-## Pull requests as a triage surface
+- **Create an issue**: `linear_save_issue` with `team: "Kuba"`, `title`,
+  `description` (markdown), `project`, optional `labels`, `parentId`,
+  `projectMilestone`.
+- **Read an issue**: `linear_get_issue` with `id: "KUB-n"` — returns body,
+  status, assignee, labels, `parentId`. Comments: `linear_list_comments`.
+- **List issues**: `linear_list_issues` filtered by `project` / `team` /
+  `assignee` / `state`. Output is large — use `mcpScript` and emit only the
+  fields you need.
+- **Comment**: `linear_save_comment` with `issueId`.
+- **Update / close**: `linear_save_issue` with `id` plus `state`
+  (`Backlog` / `Todo` / `In Progress` / `Done` / `Canceled`), `assignee: "me"`,
+  `labels`, etc.
+- **Documents**: `linear_save_document` for long-form briefs; attach to an
+  issue via `linear_prepare_attachment_upload` + `linear_create_attachment_from_upload`.
 
-**PRs as a request surface: no.** _(Set to `yes` if this repo treats external PRs as feature requests; `/cock-triage` reads this flag.)_
+### Quirks
 
-When set to `yes`, PRs run through the same labels and states as issues, using the `gh pr` equivalents:
+- `linear_list_issues` with `parentId` returns `[]` — list by `project` and
+  filter on each issue's `parentId` client-side.
+- `linear_save_issue` description patches anchor against Linear's *normalised*
+  markdown (`* ` bullets, not `- `).
+- Blocking relations are **not echoed** by `get_issue` / `list_issues`; verify
+  in the UI.
+- Result payloads >~20 KB are spilled to a tempfile by the MCP output guard;
+  parse the file rather than re-running the call.
 
-- **Read a PR**: `gh pr view <number> --comments` and `gh pr diff <number>` for the diff.
-- **List external PRs for triage**: `gh pr list --state open --json number,title,body,labels,author,authorAssociation,comments` then keep only `authorAssociation` of `CONTRIBUTOR`, `FIRST_TIME_CONTRIBUTOR`, or `NONE` (drop `OWNER`/`MEMBER`/`COLLABORATOR`).
-- **Comment / label / close**: `gh pr comment`, `gh pr edit --add-label`/`--remove-label`, `gh pr close`.
+### When a skill says "publish to the issue tracker"
 
-GitHub shares one number space across issues and PRs, so a bare `#42` may be either — resolve with `gh pr view 42` and fall back to `gh issue view 42`.
+Create a Linear issue in team `Kuba`, in the relevant project.
 
-## When a skill says "publish to the issue tracker"
+### When a skill says "fetch the relevant ticket"
 
-Create a GitHub issue.
+`linear_get_issue` with the `KUB-n` id, then `linear_list_comments` for the
+resolution thread.
 
-## When a skill says "fetch the relevant ticket"
+### Wayfinding operations
 
-Run `gh issue view <number> --comments`.
+Used by `/cock-wayfinder` and manager mode. The **map** is one issue with
+**sub-issues** as tickets.
 
-## Wayfinding operations
+- **Map**: one issue labelled `wayfinder:map`, holding Destination / Notes /
+  Decisions-so-far / Not-yet-specified / Out-of-scope. Assigned to the owner.
+- **Child ticket**: a sub-issue of the map (`parentId: <map uuid>`), labelled
+  `wayfinder:<type>` (`research` / `prototype` / `grilling` / `task`), placed
+  in a project milestone. Body = the question, sized to one session.
+- **Blocking**: Linear's native **blocked by** relation — the canonical,
+  UI-visible gate. A ticket is unblocked when every blocker is `Done`.
+- **Frontier query**: open sub-issues of the map, no assignee, no open
+  blocker. First in map / milestone order wins.
+- **Claim**: `linear_save_issue { id, assignee: "me", state: "In Progress" }`
+  — the session's first write. One ticket per session.
+- **Resolve**: `linear_save_comment` with the answer, `state: "Done"`, then
+  append a one-line pointer to the map's **Decisions so far** list
+  (`[title](<url>): summary`).
+- **Annoyances**: plain issues in the project, milestone `Annoyances`, no
+  wayfinder label.
 
-Used by `/cock-wayfinder`. The **map** is a single issue with **child** issues as tickets.
+## GitHub Issues (repo bugs only)
 
-- **Map**: a single issue labelled `wayfinder:map`, holding the Notes / Decisions-so-far / Fog body. `gh issue create --label wayfinder:map`.
-- **Child ticket**: an issue linked to the map as a GitHub sub-issue (`gh api` on the sub-issues endpoint). Where sub-issues aren't enabled, add the child to a task list in the map body and put `Part of #<map>` at the top of the child body. Labels: `wayfinder:<type>` (`research`/`prototype`/`grilling`/`task`). Once claimed, the ticket is assigned to the driving dev.
-- **Blocking**: GitHub's **native issue dependencies** — the canonical, UI-visible representation. Add an edge with `gh api --method POST repos/<owner>/<repo>/issues/<child>/dependencies/blocked_by -F issue_id=<blocker-db-id>`, where `<blocker-db-id>` is the blocker's numeric **database id** (`gh api repos/<owner>/<repo>/issues/<n> --jq .id`, _not_ the `#number` or `node_id`). GitHub reports `issue_dependencies_summary.blocked_by` (open blockers only — the live gate). Where dependencies aren't available, fall back to a `Blocked by: #<n>, #<n>` line at the top of the child body. A ticket is unblocked when every blocker is closed.
-- **Frontier query**: list the map's open children (`gh issue list --state open`, scoped to the map's sub-issues / task list), drop any with an open blocker (`issue_dependencies_summary.blocked_by > 0`, or an open issue in the `Blocked by` line) or an assignee; first in map order wins.
-- **Claim**: `gh issue edit <n> --add-assignee @me` — the session's first write.
-- **Resolve**: `gh issue comment <n> --body "<answer>"`, then `gh issue close <n>`, then append a context pointer (gist + link) to the map's Decisions-so-far.
+Use the `gh` CLI; it infers the repo from `git remote -v`.
+
+- **Read**: `gh issue view <n> --comments`
+- **Create**: `gh issue create --title "..." --body "..."`
+- **Comment / label / close**: `gh issue comment`, `gh issue edit --add-label`
+  / `--remove-label`, `gh issue close --comment "..."`
+
+Code-review skills resolving `#123` in commit messages use `gh issue view`
+(fall back to `gh pr view` — GitHub shares one number space). Linear refs look
+like `KUB-123` and resolve via `linear_get_issue`.
+
+**PRs as a request surface: no.**
