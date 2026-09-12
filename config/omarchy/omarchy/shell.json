@@ -4,19 +4,16 @@
     "layout": {
       "center": [
         {
-          "id": "omarchy.indicators"
-        },
-        {
-          "id": "omarchy.active-window"
+          "id": "omaplug"
         },
         {
           "id": "omarchy.system-update"
         },
         {
-          "id": "omaplug"
+          "id": "omarchy.active-window"
         },
         {
-          "id": "tmn73.calendar"
+          "id": "omarchy.indicators"
         }
       ],
       "left": [
@@ -28,9 +25,6 @@
         },
         {
           "id": "io.github.sohanemon.submap"
-        },
-        {
-          "id": "quickshell.spotify"
         }
       ],
       "right": [
@@ -41,12 +35,6 @@
           "id": "io.github.x3me.nexthop"
         },
         {
-          "id": "io.github.twiking.omasettings"
-        },
-        {
-          "id": "crmne.hyprmoncfg"
-        },
-        {
           "id": "zeru.portwatch"
         },
         {
@@ -55,9 +43,6 @@
         },
         {
           "id": "robzolkos.github"
-        },
-        {
-          "id": "akitaonrails.ai-usagebar"
         },
         {
           "id": "jankeesvw.notification-center"
@@ -78,16 +63,7 @@
           "id": "omarchy.audio"
         },
         {
-          "id": "omarchy.monitor"
-        },
-        {
-          "id": "omarchy.power"
-        },
-        {
-          "id": "omarchy.clock",
-          "format": "ddd d MMM HH:mm",
-          "formatAlt": "d MMMM 'W'ww yyyy",
-          "verticalFormat": "HH\n—\nmm"
+          "id": "tmn73.calendar"
         }
       ]
     },
@@ -98,10 +74,6 @@
     "lock": 1200,
     "screensaver": 600
   },
-  "plugins": [
-    {
-      "id": "bobbynicholas.omaland"
-    }
-  ],
+  "plugins": [],
   "version": 1
 }

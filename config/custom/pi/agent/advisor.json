@@ -1,5 +1,5 @@
 {
-  "executor": "anthropic/claude-fable-5-1",
+  "executor": "openai-codex/gpt-6-astra",
   "executorEffort": "medium",
   "advisor": "anthropic/claude-fable-5",
   "advisorEffort": "xhigh",

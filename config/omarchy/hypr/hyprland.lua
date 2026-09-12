@@ -11,7 +11,20 @@ dofile((os.getenv("OMARCHY_PATH") or "/usr/share/omarchy") .. "/default/hypr/boo
 -- omarchy_preinstalled_bindings = false
 
 -- Load Omarchy defaults.
+-- require("default.hypr.omarchy")
+-- Replace with keybinding-guide loader
+local guide_root = (os.getenv("HOME") or "") .. "/.config/omarchy/plugins/io.github.ctl0v0.keybinding-guide/hypr"
+local function load_guide_file(name)
+  local path = guide_root .. "/" .. name
+  local file = io.open(path, "r")
+  if file then
+    file:close()
+    dofile(path)
+  end
+end
+load_guide_file("keybinding-guide-preload.lua")
 require("default.hypr.omarchy")
+load_guide_file("keybinding-guide.lua")
 
 -- Put your personal overrides in these files. They're loaded after Omarchy's
 -- defaults so package updates can improve the defaults without rewriting your
@@ -38,3 +51,6 @@ hl.on("window.title", function(w)
     hl.dispatch(hl.dsp.window.move({ workspace = ws, follow = false, window = w }))
   end
 end)
+
+-- Load settings written by OmaSettings (omasettings:managed).
+require("default.hypr.require_optional").module("hypr.omasettings")

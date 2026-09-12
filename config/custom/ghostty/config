@@ -4,11 +4,20 @@ font-size = {{ghostty_font_size}}
 adjust-icon-height=10%
 
 # Theme
+{{#if is_omarchy}}
+# Omarchy owns the colors: `omarchy theme set` regenerates this file from the
+# selected theme (same include as stock /usr/share/omarchy/config/ghostty/config).
+# `?` = optional, so a missing file is not an error. Ghostty reloads it live.
+config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
+{{else}}
 theme = Catppuccin Mocha
+{{/if}}
 
 # Palette slots 16-23: pi's `terminal-tinted` theme (pi-terminal-theme) reads these
 # as UI colors - selected/message/tool backgrounds and tool title/output text.
-# Values are Catppuccin Mocha surfaces plus hue tints over base #1e1e2e.
+# Values are Catppuccin Mocha surfaces plus hue tints over base #1e1e2e. Fixed on
+# both branches (not themed by omarchy): omarchy's generated ghostty.conf only
+# writes palette 0-15, so these slots never conflict with the native theme above.
 # Trade-off: any app addressing xterm-cube indices 16-23 directly gets these
 # instead of the stock cube (16=black, 17-21 dark blues, 22-23 dark greens).
 palette = 16=#585b70

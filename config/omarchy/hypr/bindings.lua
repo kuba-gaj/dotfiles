@@ -23,8 +23,10 @@ for ws = 1, 10 do
 end
 o.bind("ALT + bracketleft", "Previous workspace (relative)", hl.dsp.focus({ workspace = "r-1" }))
 o.bind("ALT + bracketright", "Next workspace (relative)", hl.dsp.focus({ workspace = "r+1" }))
-o.bind("ALT + SHIFT + bracketleft", "Move window to previous workspace (silent)", hl.dsp.window.move({ workspace = "r-1", follow = false }))
-o.bind("ALT + SHIFT + bracketright", "Move window to next workspace (silent)", hl.dsp.window.move({ workspace = "r+1", follow = false }))
+o.bind("ALT + SHIFT + bracketleft", "Move window to previous workspace (silent)",
+  hl.dsp.window.move({ workspace = "r-1", follow = false }))
+o.bind("ALT + SHIFT + bracketright", "Move window to next workspace (silent)",
+  hl.dsp.window.move({ workspace = "r+1", follow = false }))
 o.bind("ALT + CTRL + bracketleft", "Move window to previous workspace", hl.dsp.window.move({ workspace = "r-1" }))
 o.bind("ALT + CTRL + bracketright", "Move window to next workspace", hl.dsp.window.move({ workspace = "r+1" }))
 hl.unbind("ALT + TAB") -- omarchy: next window / reveal on top
@@ -84,8 +86,10 @@ o.bind("ALT + CTRL + L", "Cycle layout master → dwindle → scrolling", functi
 end)
 
 -- Resize: ALT+arrows ±50 (repeat), ALT+R submap h/j/k/l ±10, escape to leave.
-o.bind("ALT + LEFT", "Resize window left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
-o.bind("ALT + RIGHT", "Resize window right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+o.bind("ALT + LEFT", "Resize window left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
+  { repeating = true })
+o.bind("ALT + RIGHT", "Resize window right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
+  { repeating = true })
 o.bind("ALT + UP", "Resize window up", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
 o.bind("ALT + DOWN", "Resize window down", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
 o.bind("ALT + R", "Resize submap: hjkl then escape", hl.dsp.submap("resize"))
@@ -115,7 +119,7 @@ hl.unbind("SUPER + CTRL + A") -- omarchy: Audio
 o.bind("SUPER + CTRL + A", "Toggle pipewire profile", "pw-profile toggle")
 -- KUB-128: Vicinae is the primary launcher (user service vicinae.service). Omarchy menu moves SUPER+SPACE → SUPER+SHIFT+D.
 -- Omarchy's SUPER+ALT+SPACE (apps menu) and the other omarchy-menu binds stay.
-hl.unbind("SUPER + SPACE") -- omarchy: Omarchy menu (omarchy-menu toggle)
+hl.unbind("SUPER + SPACE")     -- omarchy: Omarchy menu (omarchy-menu toggle)
 hl.unbind("SUPER + SHIFT + D") -- omarchy: Docker webapp (SUPER+SHIFT+D is now the Omarchy menu)
 o.bind("SUPER + D", "Vicinae launcher", "vicinae toggle")
 o.bind("SUPER + SHIFT + D", "Omarchy menu", "omarchy-menu toggle")
@@ -124,7 +128,6 @@ o.bind("SUPER + SHIFT + D", "Omarchy menu", "omarchy-menu toggle")
 -- Probed: press fires as bare "SUPER_R"; release only fires with the modifier in the mask ("SUPER + SUPER_R").
 o.bind("SUPER_R", "Dictation (hold)", "voxtype record start")
 o.bind("SUPER + SUPER_R", "Dictation (release)", "voxtype record stop", { release = true })
-
 ---------------------------------------------------------------------------
 -- 3. Scratchpads as special workspaces (ADR 0002). Terminal app-ids must be reverse-DNS (ghostty rejects
 --    "drop-term" and falls back to com.mitchellh.ghostty). Class regexes are case-sensitive. No daemon: if a window whose class contains
@@ -133,7 +136,7 @@ o.bind("SUPER + SUPER_R", "Dictation (release)", "voxtype record stop", { releas
 for _, k in ipairs({
   "SUPER + BACKSPACE", "SUPER + SHIFT + BACKSPACE", "SUPER + O", "SUPER + SHIFT + O", "SUPER + SHIFT + A",
   "SUPER + P", "SUPER + T", "SUPER + V", "SUPER + RETURN",
-  "SUPER + L", -- omarchy 2-way layout toggle; ours is ALT+CTRL+L (3-way)
+  "SUPER + L",       -- omarchy 2-way layout toggle; ours is ALT+CTRL+L (3-way)
   "SUPER + code:10", -- omarchy "workspace 1"; ours are ALT+digits. KUB-107: SUPER+1 = 1password
 }) do
   hl.unbind(k)
@@ -173,7 +176,8 @@ local function scratch(key, name, match, cmd, rules)
 end
 
 scratch("SUPER + BACKSPACE", "slack", "[Ss]lack", "slack")
-scratch("SUPER + SHIFT + BACKSPACE", "whatsapp", "chrome-web.whatsapp.com__.*", "omarchy-launch-webapp https://web.whatsapp.com/")
+scratch("SUPER + SHIFT + BACKSPACE", "whatsapp", "chrome-web.whatsapp.com__.*",
+  "omarchy-launch-webapp https://web.whatsapp.com/")
 scratch("SUPER + O", "obsidian", "obsidian", "obsidian")
 scratch("SUPER + N", "notion", "chrome-www.notion.so__.*", "omarchy-launch-webapp https://www.notion.so")
 scratch("SUPER + code:10", "1password", "1[Pp]assword", "1password", { size = { "33%", "66%" } })

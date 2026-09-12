@@ -11,6 +11,7 @@ tpm_path = "/usr/share/tmux-plugin-manager/tpm"
 op_agent_sock = "~/.1password/agent.sock"
 home_dir = "/home/kuba"
 is_linux = true
+is_omarchy = true # KUB-133: apps follow the omarchy theme (native state dir) instead of pinned colors
 chatgpt_resources = "/usr/lib/chatgpt/resources" # codex node_repl / CLI bundle (KUB-124)
 ghostty_font_size = 14 # KUB-108: 18 is mac Retina (2x); omarchy panel is scale=1
 # Work mac on the home LAN; set in .dotter/local.toml (gitignored). Empty = no `Host mac` block.
