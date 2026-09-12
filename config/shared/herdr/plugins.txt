@@ -5,13 +5,11 @@ ChmaraX/herdr-nvim
 ragamo/herdr-flock
 wyattjoh/herdr-plugin-gh-pr
 qu8n/herdr-automatic-rename
-smarzban/herdr-file-viewer@96fcc0a2bdd2727ec88c38f8c8806f97b7ca0ea0
 Tyru5/herdr-floax
 crokily/herdr-lazygit
 thanhdat77/herdr-navigator
 lmilojevicc/herdr-splits.nvim@107273e004e4f7ef07f13c83164d2cb2c51df65d
 nikok6/herdr-mirror
-persiyanov/herdr-reviewr@160ad607a195ee35ac9450e887974b3b5ddc4479
 nikok6/herdr-pet
 iurysza/termscope@cbc6da8103c263343b7082e27e804cc91312f944
 devashish2203/herdr-worktrunk@e9131c0b576fd68635194c758c9691dbfb778b61
