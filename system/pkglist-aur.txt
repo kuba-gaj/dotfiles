@@ -51,6 +51,7 @@ remmina-plugin-ultravnc
 rtk-bin
 runjs-bin
 simple-mtpfs
+slack-desktop
 snmpscan
 systemd-timer-notify
 teams-for-linux-bin
