@@ -74,6 +74,19 @@ mac lid closed, on AC, on WiFi. Requires (owner tickets):
 
 ## Open
 
-- KUB-137/138 owner steps, KUB-139 reconnect matrix, KUB-140 1P headless auth decision.
-- M2 lean boot (KUB-142…146): login items, launchd pruning, `mac-desktop` bulk-start.
+- KUB-139 reconnect matrix (owner cases: dock switch, lid, mac TUI, Linux reboot).
+- KUB-140 1P headless auth: **blocking** — `git pull` on the mac over ssh fails
+  (`communication with agent failed`); file key + service account pending.
+- KUB-143 SMAppService "Open at Login" items (Ghostty, Granola, Wispr, macshot, PortalBox,
+  Logi, Spotify helper) — System Settings only. KUB-146 before/after measurement.
+
+## Lean boot (M2)
+
+Kept on the mac: 1Password (+ssh-agent), agentgateway, SoundID, Spotify (remote play; audio
+interface hangs off the mac), Karabiner, corp (JumpCloud, SentinelOne), git maintenance.
+Removed: launchd `com.user.{tmux,colima,borders}`, `homebrew.mxcl.borders`, llm-wiki,
+raindrop, vexp, Pearcleaner autoupdate (plists parked in `config/.disabled/launchagents/`);
+login items AeroSpace, Raycast, Amphetamine, a-bar, MiddleClick, Menuwhere.
+`mac-desktop` (`local/bin`) brings the tiling + utility set back for a laptop day;
+`colima start` on demand. Baseline before pruning: 14 G used / 1 G unused, 736 procs (KUB-142).
 - Remote access from outside home: parked (Tailscale vs Cloudflare WARP tunnel).
