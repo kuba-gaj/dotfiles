@@ -36,6 +36,9 @@ background-opacity = 0.90
 # Terminal
 clipboard-read = allow
 clipboard-write = allow
+# omarchy-menu-emoji-insert (SUPER+CTRL+E) copies the emoji then types Shift+Insert.
+# Ghostty's default shift+insert pastes the *primary selection*; alacritty pastes clipboard.
+keybind = shift+insert=paste_from_clipboard
 
 {{#if is_macos}}
 # Auto-attach to tmux main session (escape hatch: ghostty -e /bin/zsh)
