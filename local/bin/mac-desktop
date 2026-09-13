@@ -1,0 +1,9 @@
+#!/bin/sh
+# Bring the mac from server mode to full desktop for a real laptop day (KUB-145).
+# No "off": reboot returns to server mode (login items pruned in KUB-143).
+[ "$(uname)" = Darwin ] || { echo "mac only" >&2; exit 1; }
+
+for app in AeroSpace Karabiner-Elements a-bar Raycast Menuwhere macshot MiddleClick "Wispr Flow" Ghostty; do
+  open -gja "$app"
+done
+launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/homebrew.mxcl.borders.plist 2>/dev/null || true
