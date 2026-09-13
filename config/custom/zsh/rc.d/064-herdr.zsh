@@ -4,3 +4,7 @@ for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/ho
   source $_f; break
 done
 unset _f
+
+# hm: run herdr CLI against the mac's server (KUB-141). Linux only; `hm pane list`,
+# `hm agent prompt ...`. Same commands as local herdr, different socket.
+[[ $OSTYPE == linux* ]] && hm() { ssh mac "export PATH=/opt/homebrew/bin:\$PATH; herdr ${(q)@}"; }
