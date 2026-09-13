@@ -9,6 +9,7 @@ hl.config({
     follow_mouse = 1,
     follow_mouse_threshold = 1,
     special_fallthrough = true,
+    kb_options = "compose:caps,shift:both_capslock_cancel,altwin:swap_lalt_lwin",
   },
   misc = {
     focus_on_activate = false,

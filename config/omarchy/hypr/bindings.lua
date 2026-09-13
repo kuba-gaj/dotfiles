@@ -1,43 +1,82 @@
 -- Personal bindings on top of omarchy (KUB-102, from KUB-90 verdicts + ADR 0001/0002).
--- Omarchy SUPER binds stay unless listed in the unbind block below. ALT is the window-management layer.
+-- Omarchy SUPER binds stay unless listed in the unbind block below. SUPER is the primary WM/app layer
+-- (ADR 0001 v2); ALT is secondary WM (monitor/layout, less-frequent). SHIFT = variant of same action.
 -- Every o.bind carries a description: omarchy-menu-keybindings reads them.
 -- Validate: hyprctl reload && hyprctl configerrors; dispatcher arg errors only surface at keypress.
 
 ---------------------------------------------------------------------------
--- 1. ALT window-management layer (ADR 0001) — all keys free in omarchy
+-- 0. Consolidated unbinds — one initial pass, before any replacement registration.
+--    Later unbinds can erase newly registered replacements; keep them all here.
+---------------------------------------------------------------------------
+for _, k in ipairs({
+  "SUPER + J",                    -- omarchy: toggle split, unused; J stays focus-down only
+  "SUPER + L",                    -- omarchy: 2-way layout toggle; ours is SUPER+ALT+L (3-way)
+  "SUPER + LEFT", "SUPER + RIGHT", "SUPER + UP", "SUPER + DOWN", -- omarchy: directional focus -> resize
+  "SUPER + TAB",                  -- omarchy: next workspace (e+1) -> former workspace
+  "SUPER + CTRL + TAB",           -- omarchy: former-workspace alias, redundant with SUPER+TAB
+  "ALT + TAB", "ALT + SHIFT + TAB", -- omarchy: cycle-next/bring-to-top/prev (unused; left to apps)
+  "CTRL + ALT + TAB", "CTRL + ALT + SHIFT + TAB", -- omarchy: monitor cycling, redundant with SUPER+ALT+`
+  "CTRL + ALT + DELETE",          -- omarchy: close all windows, unused
+  "SUPER + SPACE",                -- omarchy: Omarchy menu -> floating toggle / scratchpad pull (vicinae is SUPER+D)
+  "SUPER + SHIFT + SPACE",        -- omarchy: top-bar toggle, unused -> floating<->tiled focus
+  "SUPER + comma",                -- omarchy: dismiss last notification -> roll stack left
+  "SUPER + K",                    -- omarchy: desktop keybindings help -> folded into SUPER+CTRL+K
+  "SUPER + ALT + K",               -- omarchy: tmux help, unused (tmux replaced by Herdr)
+  "SUPER + CTRL + K",              -- omarchy: Herdr keybindings -> SUPER+CTRL+SHIFT+K
+  "SUPER + CTRL + N",              -- omarchy: nightlight, unused -> dismiss-latest notification
+  "SUPER + ALT + code:34", "SUPER + ALT + code:35", -- omarchy: webcam overlay resize, unused; frees Super+Alt+[/]
+  "SUPER + mouse_down", "SUPER + mouse_up", -- omarchy: scroll workspace e+-1 -> relative r+-1
+  "SUPER + BACKSPACE", "SUPER + SHIFT + BACKSPACE", "SUPER + O", "SUPER + SHIFT + O", "SUPER + SHIFT + A",
+  "SUPER + P", "SUPER + T", "SUPER + V", "SUPER + RETURN", -- scratchpad trigger keys (retargeted below)
+  "SUPER + SHIFT + RETURN",       -- omarchy: Browser -> new plain terminal
+  "SUPER + CTRL + A",             -- omarchy: Audio -> pipewire profile toggle
+  "SUPER + SHIFT + D",            -- omarchy: Docker webapp -> Omarchy menu
+}) do
+  hl.unbind(k)
+end
+
+for code = 10, 19 do
+  hl.unbind("SUPER + code:" .. code)        -- omarchy: switch workspace (re-registered below, own callback)
+  hl.unbind("SUPER + SHIFT + code:" .. code) -- omarchy: move window + follow -> silent move
+end
+for _, code in ipairs({ 10, 11, 12, 13, 14 }) do
+  hl.unbind("SUPER + ALT + code:" .. code) -- omarchy: grouped-window select -> move window + follow
+end
+
+---------------------------------------------------------------------------
+-- 1. SUPER window-management layer (ADR 0001 v2 — Super primary, Alt secondary)
 ---------------------------------------------------------------------------
 local dirs = { H = "l", J = "d", K = "u", L = "r" }
 for key, d in pairs(dirs) do
-  o.bind("ALT + " .. key, "Focus window " .. d, hl.dsp.focus({ direction = d }))
-  o.bind("ALT + SHIFT + " .. key, "Move window " .. d, hl.dsp.window.move({ direction = d }))
+  o.bind("SUPER + " .. key, "Focus window " .. d, hl.dsp.focus({ direction = d }))
+  o.bind("SUPER + SHIFT + " .. key, "Move window " .. d, hl.dsp.window.move({ direction = d }))
 end
 
--- Workspaces 1..10 on keycodes 10..19 (layout-independent). SHIFT = move silently, CTRL = move and follow.
+-- Workspaces 1..10 on keycodes 10..19 (layout-independent). SHIFT = move silently, ALT = move and follow.
 for ws = 1, 10 do
   local key = "code:" .. (ws + 9)
-  o.bind("ALT + " .. key, "Workspace " .. ws, hl.dsp.focus({ workspace = tostring(ws) }))
-  o.bind("ALT + SHIFT + " .. key, "Move window to workspace " .. ws .. " (silent)",
+  o.bind("SUPER + " .. key, "Workspace " .. ws, hl.dsp.focus({ workspace = tostring(ws) }))
+  o.bind("SUPER + SHIFT + " .. key, "Move window to workspace " .. ws .. " (silent)",
     hl.dsp.window.move({ workspace = tostring(ws), follow = false }))
-  o.bind("ALT + CTRL + " .. key, "Move window to workspace " .. ws,
+  o.bind("SUPER + ALT + " .. key, "Move window to workspace " .. ws,
     hl.dsp.window.move({ workspace = tostring(ws) }))
 end
-o.bind("ALT + bracketleft", "Previous workspace (relative)", hl.dsp.focus({ workspace = "r-1" }))
-o.bind("ALT + bracketright", "Next workspace (relative)", hl.dsp.focus({ workspace = "r+1" }))
-o.bind("ALT + SHIFT + bracketleft", "Move window to previous workspace (silent)",
+o.bind("SUPER + bracketleft", "Previous workspace (relative)", hl.dsp.focus({ workspace = "r-1" }))
+o.bind("SUPER + bracketright", "Next workspace (relative)", hl.dsp.focus({ workspace = "r+1" }))
+o.bind("SUPER + SHIFT + bracketleft", "Move window to previous workspace (silent)",
   hl.dsp.window.move({ workspace = "r-1", follow = false }))
-o.bind("ALT + SHIFT + bracketright", "Move window to next workspace (silent)",
+o.bind("SUPER + SHIFT + bracketright", "Move window to next workspace (silent)",
   hl.dsp.window.move({ workspace = "r+1", follow = false }))
-o.bind("ALT + CTRL + bracketleft", "Move window to previous workspace", hl.dsp.window.move({ workspace = "r-1" }))
-o.bind("ALT + CTRL + bracketright", "Move window to next workspace", hl.dsp.window.move({ workspace = "r+1" }))
-hl.unbind("ALT + TAB") -- omarchy: next window / reveal on top
-o.bind("ALT + TAB", "Former workspace", hl.dsp.focus({ workspace = "previous" }))
-o.bind("ALT + mouse_down", "Next workspace (relative)", hl.dsp.focus({ workspace = "r+1" }))
-o.bind("ALT + mouse_up", "Previous workspace (relative)", hl.dsp.focus({ workspace = "r-1" }))
+o.bind("SUPER + ALT + bracketleft", "Move window to previous workspace", hl.dsp.window.move({ workspace = "r-1" }))
+o.bind("SUPER + ALT + bracketright", "Move window to next workspace", hl.dsp.window.move({ workspace = "r+1" }))
+o.bind("SUPER + TAB", "Former workspace", hl.dsp.focus({ workspace = "previous" }))
+o.bind("SUPER + mouse_down", "Next workspace (relative)", hl.dsp.focus({ workspace = "r+1" }))
+o.bind("SUPER + mouse_up", "Previous workspace (relative)", hl.dsp.focus({ workspace = "r-1" }))
 
 -- Floating
 -- KUB-106: on a scratchpad (special ws, id < 0) togglefloating just tiles it inside the full-screen special overlay;
 -- pull it into the current regular workspace instead (lands tiled).
-o.bind("ALT + SPACE", "Toggle floating / pull scratchpad window into workspace", function()
+o.bind("SUPER + SPACE", "Toggle floating / pull scratchpad window into workspace", function()
   local w = hl.get_active_window()
   if w and w.workspace and w.workspace.id < 0 then
     hl.dispatch(hl.dsp.window.move({ workspace = "e+0" }))
@@ -46,7 +85,7 @@ o.bind("ALT + SPACE", "Toggle floating / pull scratchpad window into workspace",
     hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
   end
 end)
-o.bind("ALT + SHIFT + SPACE", "Focus other layer (floating <-> tiled)", function()
+o.bind("SUPER + SHIFT + SPACE", "Focus other layer (floating <-> tiled)", function()
   local active = hl.get_active_window()
   if not active then return end
   local ws = hl.get_active_workspace()
@@ -57,21 +96,19 @@ o.bind("ALT + SHIFT + SPACE", "Focus other layer (floating <-> tiled)", function
 end)
 
 -- Monitors
-o.bind("ALT + X", "Move window to next monitor", hl.dsp.window.move({ monitor = "+1" }))
-o.bind("ALT + SHIFT + X", "Move workspace to next monitor", hl.dsp.workspace.move({ monitor = "+1" }))
-o.bind("ALT + grave", "Focus next monitor", hl.dsp.focus({ monitor = "+1" }))
-o.bind("ALT + SUPER + H", "Focus monitor left", hl.dsp.focus({ monitor = "l" }))
-o.bind("ALT + SUPER + L", "Focus monitor right", hl.dsp.focus({ monitor = "r" }))
+o.bind("SUPER + ALT + SHIFT + grave", "Move window to next monitor", hl.dsp.window.move({ monitor = "+1" }))
+o.bind("SUPER + ALT + W", "Move workspace to next monitor", hl.dsp.workspace.move({ monitor = "+1" }))
+o.bind("SUPER + ALT + grave", "Focus next monitor", hl.dsp.focus({ monitor = "+1" }))
 
 -- Master layout
-o.bind("ALT + semicolon", "Swap with master", hl.dsp.layout("swapwithmaster auto"))
-o.bind("ALT + comma", "Roll stack left", hl.dsp.layout("rollprev"))
-o.bind("ALT + period", "Roll stack right", hl.dsp.layout("rollnext"))
+o.bind("SUPER + semicolon", "Swap with master", hl.dsp.layout("swapwithmaster auto"))
+o.bind("SUPER + comma", "Roll stack left", hl.dsp.layout("rollprev"))
+o.bind("SUPER + period", "Roll stack right", hl.dsp.layout("rollnext"))
 -- 3-way layout cycle for the active workspace (replaces hyprtogglelayout; `layoutmsg setlayout` is gone in 0.56).
 -- KUB-120: persisted the way omarchy-hyprland-workspace-layout-toggle does — one line in
 -- $XDG_STATE_HOME/omarchy/workspace-layouts/<id>.lua, which default/hypr/workspace-layouts.lua re-applies on every reload.
 local layouts_dir = require("default.hypr.paths").state_home .. "/omarchy/workspace-layouts"
-o.bind("ALT + CTRL + L", "Cycle layout master → dwindle → scrolling", function()
+o.bind("SUPER + ALT + L", "Cycle layout master → dwindle → scrolling", function()
   local ws = hl.get_active_workspace()
   if not ws then return end
   local nxt = ({ master = "dwindle", dwindle = "scrolling", scrolling = "master" })[ws.tiled_layout] or "master"
@@ -85,14 +122,14 @@ o.bind("ALT + CTRL + L", "Cycle layout master → dwindle → scrolling", functi
   hl.exec_cmd("omarchy-notification-send -g 󱂬 'Layout: " .. nxt .. "'")
 end)
 
--- Resize: ALT+arrows ±50 (repeat), ALT+R submap h/j/k/l ±10, escape to leave.
-o.bind("ALT + LEFT", "Resize window left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
+-- Resize: SUPER+arrows ±50 (repeat), SUPER+R submap h/j/k/l ±10, escape to leave.
+o.bind("SUPER + LEFT", "Resize window left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
   { repeating = true })
-o.bind("ALT + RIGHT", "Resize window right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
+o.bind("SUPER + RIGHT", "Resize window right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
   { repeating = true })
-o.bind("ALT + UP", "Resize window up", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
-o.bind("ALT + DOWN", "Resize window down", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
-o.bind("ALT + R", "Resize submap: hjkl then escape", hl.dsp.submap("resize"))
+o.bind("SUPER + UP", "Resize window up", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
+o.bind("SUPER + DOWN", "Resize window down", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
+o.bind("SUPER + R", "Resize submap: hjkl then escape", hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
   hl.bind("escape", hl.dsp.submap("reset"))
   hl.bind("H", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
@@ -102,25 +139,23 @@ hl.define_submap("resize", function()
 end)
 
 -- Mouse
-o.bind("ALT + mouse:272", "Drag window", hl.dsp.window.drag(), { mouse = true })
-o.bind("ALT + mouse:273", "Resize window", hl.dsp.window.resize(), { mouse = true })
+-- SUPER+mouse:272/273 (drag/resize) reuse stock Omarchy binds — same semantics/flags; no personal override.
 -- Logitech MX Master extra buttons → shortcuts into the active window
 o.bind("mouse:276", "MX forward: Obsidian web clipper", hl.dsp.send_shortcut({ mods = "SHIFT SUPER", key = "O" }))
 o.bind("mouse:277", "MX haptic: reopen tab", hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = "T" }))
 o.bind("mouse:278", "MX gesture: close tab", hl.dsp.send_shortcut({ mods = "CTRL", key = "W" }))
 
+-- KUB-114: SUPER = WM/app layer. SUPER+Q close, SUPER+SHIFT+Q force-kill (omarchy SUPER+W close stays).
+o.bind("SUPER + Q", "Close window", hl.dsp.window.close())
+o.bind("SUPER + SHIFT + Q", "Kill window", hl.dsp.window.kill())
+
 ---------------------------------------------------------------------------
 -- 2. Apps / misc
 ---------------------------------------------------------------------------
--- KUB-114: ALT = WM layer. ALT+Q close, ALT+SHIFT+Q force-kill (omarchy SUPER+W close stays).
-o.bind("ALT + Q", "Close window", hl.dsp.window.close())
-o.bind("ALT + SHIFT + Q", "Kill window", hl.dsp.window.kill())
-hl.unbind("SUPER + CTRL + A") -- omarchy: Audio
 o.bind("SUPER + CTRL + A", "Toggle pipewire profile", "pw-profile toggle")
--- KUB-128: Vicinae is the primary launcher (user service vicinae.service). Omarchy menu moves SUPER+SPACE → SUPER+SHIFT+D.
+-- KUB-128: Vicinae is the primary launcher (user service vicinae.service). Omarchy menu moves SUPER+SPACE → SUPER+SHIFT+D
+-- (SUPER+SPACE itself is unbound above and now runs the floating-toggle WM binding).
 -- Omarchy's SUPER+ALT+SPACE (apps menu) and the other omarchy-menu binds stay.
-hl.unbind("SUPER + SPACE")     -- omarchy: Omarchy menu (omarchy-menu toggle)
-hl.unbind("SUPER + SHIFT + D") -- omarchy: Docker webapp (SUPER+SHIFT+D is now the Omarchy menu)
 o.bind("SUPER + D", "Vicinae launcher", "vicinae toggle")
 o.bind("SUPER + SHIFT + D", "Omarchy menu", "omarchy-menu toggle")
 -- KUB-127: hold Right ◇ (SUPER_R, HHKB) = push-to-talk dictation; same release shape as omarchy's F9.
@@ -128,19 +163,24 @@ o.bind("SUPER + SHIFT + D", "Omarchy menu", "omarchy-menu toggle")
 -- Probed: press fires as bare "SUPER_R"; release only fires with the modifier in the mask ("SUPER + SUPER_R").
 o.bind("SUPER_R", "Dictation (hold)", "voxtype record start")
 o.bind("SUPER + SUPER_R", "Dictation (release)", "voxtype record stop", { release = true })
+
+-- Help
+o.bind("SUPER + CTRL + K", "Keybindings", "omarchy-menu-keybindings")
+o.bind("SUPER + CTRL + SHIFT + K", "Herdr keybindings", "omarchy-menu-herdr-keybindings")
+
+-- Notifications
+o.bind("SUPER + CTRL + N", "Dismiss last notification", "omarchy-shell notifications dismissOne")
+o.bind_toggle("SUPER + CTRL + SHIFT + N", "Toggle silencing notifications", "notification-silencing")
+
+-- Terminal
+o.bind("SUPER + SHIFT + RETURN", "Terminal", { omarchy = "terminal" })
+-- SUPER+RETURN dropterm (below, scratchpads) and SUPER+CTRL+RETURN Herdr (omarchy, unchanged) stay as-is.
+
 ---------------------------------------------------------------------------
 -- 3. Scratchpads as special workspaces (ADR 0002). Terminal app-ids must be reverse-DNS (ghostty rejects
 --    "drop-term" and falls back to com.mitchellh.ghostty). Class regexes are case-sensitive. No daemon: if a window whose class contains
 --    `match` exists → toggle its special workspace, else launch it (window rule parks it there).
 ---------------------------------------------------------------------------
-for _, k in ipairs({
-  "SUPER + BACKSPACE", "SUPER + SHIFT + BACKSPACE", "SUPER + O", "SUPER + SHIFT + O", "SUPER + SHIFT + A",
-  "SUPER + P", "SUPER + T", "SUPER + V", "SUPER + RETURN",
-  "SUPER + L",       -- omarchy 2-way layout toggle; ours is ALT+CTRL+L (3-way)
-  "SUPER + code:10", -- omarchy "workspace 1"; ours are ALT+digits. KUB-107: SUPER+1 = 1password
-}) do
-  hl.unbind(k)
-end
 
 local function scratch(key, name, match, cmd, rules)
   o.bind(key, "Scratchpad: " .. name, function()
@@ -148,6 +188,13 @@ local function scratch(key, name, match, cmd, rules)
     local needle = match:gsub("%[%a(%a)%]", "%1"):gsub("%.%*", ""):lower()
     for _, w in ipairs(hl.get_windows({ mapped = true })) do
       if w.class:lower():find(needle, 1, true) then
+        -- Tiled on a regular workspace = owner pinned it there (SUPER + SPACE pull). Focus only,
+        -- never re-park/re-float (parity with local/bin/aerospace-toggle TILED_ID).
+        -- Float it again (SUPER + SPACE) and it goes back to being a scratchpad: falls through below.
+        if w.workspace and w.workspace.id >= 0 and not w.floating then
+          hl.dispatch(hl.dsp.focus({ window = w }))
+          return
+        end
         -- Self-heal: a window that opened while another special was showing lands there. Adopt it.
         if not (w.workspace and w.workspace.name == "special:" .. name) then
           hl.dispatch(hl.dsp.focus({ window = w }))
@@ -180,12 +227,12 @@ scratch("SUPER + SHIFT + BACKSPACE", "whatsapp", "chrome-web.whatsapp.com__.*",
   "omarchy-launch-webapp https://web.whatsapp.com/")
 scratch("SUPER + O", "obsidian", "obsidian", "obsidian")
 scratch("SUPER + N", "notion", "chrome-www.notion.so__.*", "omarchy-launch-webapp https://www.notion.so")
-scratch("SUPER + code:10", "1password", "1[Pp]assword", "1password", { size = { "33%", "66%" } })
+scratch("SUPER + P", "1password", "1[Pp]assword", "1password", { size = { "33%", "66%" } })
 scratch("SUPER + M", "spotify", "[Ss]potify.*", "spotify-launcher")
 scratch("SUPER + A", "openwebui", "crx_ciaamnabomjhndmogimfmmkflefihebh", "gtk-launch openwebui")
 scratch("SUPER + SHIFT + A", "claude", "[Cc]laude.*", "claude-desktop")
-scratch("SUPER + P", "protonmail", ".*[Pp]roton.*", "proton-mail")
-scratch("SUPER + L", "linear", "[Ll]inear-linux", "gtk-launch Linear") -- KUB-118: user .desktop adds GDK_BACKEND=x11 (class is Linear-linux on XWayland)
+scratch("SUPER + E", "protonmail", ".*[Pp]roton.*", "proton-mail")
+scratch("SUPER + T", "linear", "[Ll]inear-linux", "gtk-launch Linear") -- KUB-118: user .desktop adds GDK_BACKEND=x11 (class is Linear-linux on XWayland)
 scratch("SUPER + V", "volume", "org.pulseaudio.pavucontrol", "pavucontrol", { size = { 800, 600 } })
 scratch("SUPER + SHIFT + V", "easyeffects", "com.github.wwmm.easyeffects", "easyeffects")
 scratch("SUPER + I", "top", "scratch.btm", "xdg-terminal-exec --app-id=scratch.btm -e btm")
