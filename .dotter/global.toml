@@ -46,8 +46,7 @@ depends = ["base"]
 "config/custom/karabiner" = { target = "~/.config/karabiner", type = "symbolic", recurse = false }
 "config/custom/a-bar/a-barrc" = "~/.a-barrc"
 "config/custom/hammerspoon" = { target = "~/.hammerspoon", type = "symbolic", recurse = false }
-"config/custom/launchagents/com.user.borders.plist" = { target = "~/Library/LaunchAgents/com.user.borders.plist", type = "template" }
-"config/custom/launchagents/com.user.colima.plist" = { target = "~/Library/LaunchAgents/com.user.colima.plist", type = "template" }
+# KUB-144: borders/colima launchd agents parked in config/.disabled/launchagents (mac = headless herdr server; `mac-desktop` / `colima start` on demand).
 "config/custom/launchagents/com.user.agentgateway.plist" = { target = "~/Library/LaunchAgents/com.user.agentgateway.plist", type = "template" }
 "config/custom/agentgateway/config.yaml" = { target = "~/.config/agentgateway/config.yaml", type = "template" }
 
