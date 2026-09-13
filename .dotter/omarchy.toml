@@ -15,5 +15,5 @@ is_omarchy = true # KUB-133: apps follow the omarchy theme (native state dir) in
 chatgpt_resources = "/usr/lib/chatgpt/resources" # codex node_repl / CLI bundle (KUB-124)
 ghostty_font_size = 14 # KUB-108: 18 is mac Retina (2x); omarchy panel is scale=1
 # Work mac on the home LAN; set in .dotter/local.toml (gitignored). Empty = no `Host mac` block.
-mac_lan_ip = ""
+mac_host = ""
 mac_user = ""
