@@ -44,3 +44,29 @@ Host *
   IdentityAgent "{{op_agent_sock}}"
 #  RemoteForward 52698 127.0.0.1:52698
 #  ForwardAgent yes
+{{#if is_macos}}
+
+# homelab-agent BEGIN (KUB-55)
+Host px-cpu
+  HostName 10.10.101.11
+Host px-net
+  HostName 10.10.101.12
+Host px-nas
+  HostName 10.10.101.13
+Host zima pbs
+  HostName 10.10.10.34
+Host px-cpu px-net px-nas zima pbs
+  User root
+  IdentityFile ~/.ssh/homelab-agent
+  IdentitiesOnly yes
+Host truenas
+  HostName 10.10.10.31
+  User kuba
+  IdentityFile ~/.ssh/homelab-agent
+  IdentitiesOnly yes
+# homelab-agent END
+
+Host gateway-vps 141.147.93.212
+  HostName 141.147.93.212
+  User ubuntu
+{{/if}}
