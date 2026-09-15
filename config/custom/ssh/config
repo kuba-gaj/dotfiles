@@ -13,17 +13,22 @@ Host mac
 
 {{/if}}
 {{#if is_macos}}
-# Headless git on the mac (KUB-140): file key, listed first so it wins over the
-# 1Password agent, which cannot prompt on the invisible screen.
-Host github.com github-swap
-  IdentityFile ~/.ssh/kuba.mac-agent
+# Headless git on the mac (KUB-140): file keys only. ssh offers agent-held keys
+# before file keys, and the 1Password agent cannot prompt on the invisible
+# screen, so no agent-held identity may appear for github hosts here.
+Host github.com
+  IdentityFile ~/.ssh/kuba.mac-agent-personal
   IdentitiesOnly yes
 
 {{/if}}
 Host github-swap
   HostName github.com
   User git
+{{#if is_macos}}
+  IdentityFile ~/.ssh/kuba.mac-agent
+{{else}}
   IdentityFile ~/.ssh/kuba.swap.pub
+{{/if}}
   IdentitiesOnly yes
   ControlMaster no
   ControlPath none
