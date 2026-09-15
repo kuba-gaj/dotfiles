@@ -12,6 +12,14 @@ Host mac
   IdentitiesOnly yes
 
 {{/if}}
+{{#if is_macos}}
+# Headless git on the mac (KUB-140): file key, listed first so it wins over the
+# 1Password agent, which cannot prompt on the invisible screen.
+Host github.com github-swap
+  IdentityFile ~/.ssh/kuba.mac-agent
+  IdentitiesOnly yes
+
+{{/if}}
 Host github-swap
   HostName github.com
   User git
