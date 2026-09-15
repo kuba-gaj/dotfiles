@@ -89,8 +89,10 @@ mac lid closed, on AC, on WiFi. Requires (owner tickets):
 
 ## Lean boot (M2)
 
-Kept on the mac: 1Password (+ssh-agent), agentgateway, SoundID, Spotify (remote play; audio
-interface hangs off the mac), Karabiner, corp (JumpCloud, SentinelOne), git maintenance.
+Kept on the mac: 1Password (+ssh-agent), agentgateway, Karabiner, corp (JumpCloud, SentinelOne,
+WARP), git maintenance. Audio (Spotify, SoundID, Roland interface) moved to omarchy; SoundID and
+Roland launchd plists parked in `~/.disabled-launchagents/` on the mac (vendor-installed, not
+repo-managed).
 Removed: launchd `com.user.{tmux,colima,borders}`, `homebrew.mxcl.borders`, llm-wiki,
 raindrop, vexp, Pearcleaner autoupdate (plists parked in `config/.disabled/launchagents/`);
 login items AeroSpace, Raycast, Amphetamine, a-bar, MiddleClick, Menuwhere.
