@@ -48,9 +48,12 @@ No launchd unit. Herdr handles it:
 - **Never start a server by hand** (`nohup herdr server`) — herdr flags it as "may not survive
   SSH connection loss" and offers to restart it, killing panes.
 
-**Reboot story**: FileVault pre-boot login → user login (launchd user agents: 1Password,
-agentgateway, SoundID) → Linux bridge connects → server starts. Manual login is the accepted
-cost; no auto-login on a corp mac.
+**Reboot story**: FileVault pre-boot login → user login (login items: 1Password, Karabiner, WARP;
+launchd: agentgateway) → Linux bridge connects → server starts. Manual login is the accepted
+cost; no auto-login on a corp mac. Session restore is off (`defaults write com.apple.loginwindow
+TALLogoutSavesState -bool false`) — otherwise every app open at shutdown relaunches, ignoring
+Login Items (first M2 reboot brought back Obsidian, zen, Spotify, SoundID…). Expect the sidebar
+to show **Attention** after a mac reboot; see runbook.
 
 ## Agent topologies
 
@@ -74,7 +77,7 @@ mac lid closed, on AC, on WiFi. Requires (owner tickets):
 
 | symptom | fix |
 |---|---|
-| sidebar **Attention** | needs an interactive step (host key, auth, incompatible server). Run `herdr --remote mac` in a terminal, answer prompts, restart the Linux client. |
+| sidebar **Attention** | first try `herdr machine disable <id> && herdr machine enable <id>` (id from `herdr machine list`) — clears stale Attention after a mac reboot or a transient auth failure, no prompts. If it comes back: a real interactive step (host key, auth, incompatible server) — run `herdr --remote mac` in a terminal, answer prompts, restart the Linux client. |
 | sidebar dimmed / Reconnecting | normal after sleep/network blip; bounded backoff. Check `ssh mac uptime`, then `hm status server`. |
 | `ssh mac` connection refused / timeout | mac asleep or off Wi-Fi; `ping 10.10.40.90`. If the lease changed, check OPNsense static mapping for `5c:9b:a6:86:f6:62`. |
 | auth fails from Linux | 1P agent locked on Linux — unlock, `ssh-add -l`. Background bridge cannot answer prompts. |
