@@ -6,7 +6,7 @@
 # holds 6 and macOS sshd cuts off after MaxAuthTries.
 Host mac
   HostName {{mac_host}}
-  AddressFamily inet # mDNS returns IPv6 link-local first
+  AddressFamily inet
   User {{mac_user}}
   IdentityFile ~/.ssh/kuba.dev.pub
   IdentitiesOnly yes

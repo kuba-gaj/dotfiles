@@ -18,9 +18,11 @@ zsh: hm <herdr args> ───────────────────�
   alias `mac`, remote session `default`. Stored in
   `~/.local/state/herdr/client/endpoints.json`. Re-add: `herdr machine add mac --label kubas-mac`
   (interactive terminal — it may ask to install/restart a server).
-- **SSH alias `mac`**: dotter template `config/custom/ssh/config`, `mac_host = "kubasmac.local"`
-  in gitignored `.dotter/local.toml`. mDNS (`LocalHostName KubasMac`) follows the mac between
-  WiFi and dock ethernet; `AddressFamily inet` because avahi returns IPv6 link-local first.
+- **SSH alias `mac`**: dotter template `config/custom/ssh/config`, `mac_host = "10.10.40.90"`
+  in gitignored `.dotter/local.toml` — OPNsense static lease for the mac's Wi-Fi MAC
+  (`5c:9b:a6:86:f6:62`). mDNS (`kubasmac.local`) was tried (KUB-136) and dropped: the dock
+  ethernet MAC gets one lease whichever machine holds the dock, so after a dock switch the
+  mac's stale `KubasMac.local → dock IP` record points at the Linux box for ~2 min (KUB-139).
   Key pinned to `kuba.dev.pub` (1P agent holds 6 keys, macOS sshd cuts off at MaxAuthTries).
 - **Sockets are per machine.** Local `herdr …` and the `herdr_*` MCP tools only see the Linux
   server. For the mac: `hm pane list`, `hm agent prompt <name> "…"`, `hm pane split w8:p4
@@ -74,7 +76,7 @@ mac lid closed, on AC, on WiFi. Requires (owner tickets):
 |---|---|
 | sidebar **Attention** | needs an interactive step (host key, auth, incompatible server). Run `herdr --remote mac` in a terminal, answer prompts, restart the Linux client. |
 | sidebar dimmed / Reconnecting | normal after sleep/network blip; bounded backoff. Check `ssh mac uptime`, then `hm status server`. |
-| `ssh mac` fails, `kubasmac.local` unresolved | `avahi-resolve -4 -n kubasmac.local`; mac asleep or off WiFi. |
+| `ssh mac` connection refused / timeout | mac asleep or off Wi-Fi; `ping 10.10.40.90`. If the lease changed, check OPNsense static mapping for `5c:9b:a6:86:f6:62`. |
 | auth fails from Linux | 1P agent locked on Linux — unlock, `ssh-add -l`. Background bridge cannot answer prompts. |
 | mac-side git/`op` hangs | something reached the 1P desktop agent (prompt on the invisible screen). Git hosts must resolve to a file key (`ssh -G git@github.com`); `op` needs `OP_SERVICE_ACCOUNT_TOKEN` (login zsh). Wrap probes in `perl -e 'alarm 10; exec @ARGV' --`. |
 | version skew after `brew upgrade herdr` | client/server negotiate; don't stop a running server just because versions differ. Update the server explicitly when you need new server features. |
