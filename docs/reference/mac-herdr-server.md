@@ -50,10 +50,13 @@ No launchd unit. Herdr handles it:
 
 **Reboot story**: FileVault pre-boot login → user login (login items: 1Password, Karabiner, WARP;
 launchd: agentgateway) → Linux bridge connects → server starts. Manual login is the accepted
-cost; no auto-login on a corp mac. Session restore is off (`defaults write com.apple.loginwindow
-TALLogoutSavesState -bool false`) — otherwise every app open at shutdown relaunches, ignoring
-Login Items (first M2 reboot brought back Obsidian, zen, Spotify, SoundID…). Expect the sidebar
-to show **Attention** after a mac reboot; see runbook.
+cost; no auto-login on a corp mac. Session restore is off — both the global **and** the per-host
+default (`defaults write com.apple.loginwindow TALLogoutSavesState -bool false` and the same with
+`-currentHost`); otherwise every app open at shutdown relaunches, ignoring Login Items (first M2
+reboot brought back Obsidian, zen, Spotify, SoundID…). Spotify additionally autostarts from its
+own pref: `app.autostart-mode="off"` in `~/Library/Application Support/Spotify/prefs`. The sidebar
+shows **Attention** after every mac reboot (bridge stops retrying while the host is down); see
+runbook.
 
 ## Agent topologies
 
@@ -98,7 +101,9 @@ Roland launchd plists parked in `~/.disabled-launchagents/` on the mac (vendor-i
 repo-managed).
 Removed: launchd `com.user.{tmux,colima,borders}`, `homebrew.mxcl.borders`, llm-wiki,
 raindrop, vexp, Pearcleaner autoupdate (plists parked in `config/.disabled/launchagents/`);
-login items AeroSpace, Raycast, Amphetamine, a-bar, MiddleClick, Menuwhere.
-`mac-desktop` (`local/bin`) brings the tiling + utility set back for a laptop day;
-`colima start` on demand. Baseline before pruning: 14 G used / 1 G unused, 736 procs (KUB-142).
+login items AeroSpace, Amphetamine, a-bar, MiddleClick, Menuwhere (Raycast kept); Allow in
+Background off for Logi Options+/Logitech Inc.; O+Connect agents `launchctl disable`d (gui +
+system domain). `mac-desktop` (`local/bin`) brings the tiling + utility set back for a laptop day;
+`colima start` on demand. Baseline 736 procs / 14 G used (KUB-142) → **601 procs** after
+M2 (memory is noisy on macOS; process count is the honest metric).
 - Remote access from outside home: parked (Tailscale vs Cloudflare WARP tunnel).
