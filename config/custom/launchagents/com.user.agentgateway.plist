@@ -6,12 +6,11 @@
 	<string>com.user.agentgateway</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/opt/homebrew/bin/op</string>
-		<string>run</string>
-		<string>--account</string>
-		<string>my.1password.com</string>
-		<string>--env-file={{home_dir}}/.claude/secrets.env</string>
-		<string>--</string>
+		<!-- login zsh sources .zshenv.priv → OP_SERVICE_ACCOUNT_TOKEN, so op run works headless (KUB-140) -->
+		<string>/bin/zsh</string>
+		<string>-lc</string>
+		<string>exec /opt/homebrew/bin/op run --env-file="$HOME/.claude/secrets.env" -- "$@"</string>
+		<string>agentgateway</string>
 		<string>{{home_dir}}/.local/bin/agentgateway</string>
 		<string>-f</string>
 		<string>{{home_dir}}/.config/agentgateway/config.yaml</string>
