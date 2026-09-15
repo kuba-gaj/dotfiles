@@ -25,6 +25,13 @@ zsh: hm <herdr args> ───────────────────�
 - **Sockets are per machine.** Local `herdr …` and the `herdr_*` MCP tools only see the Linux
   server. For the mac: `hm pane list`, `hm agent prompt <name> "…"`, `hm pane split w8:p4
   --direction down`. IDs (`w8:p4`, agent names) are scoped to the mac server.
+- **Headless auth on the mac (KUB-140).** The 1P desktop agent cannot prompt on the
+  invisible screen, so nothing that runs over `ssh mac` may depend on it. Git: file keys
+  only — `~/.ssh/kuba.mac-agent` (swap SSO, `Host github-swap`) and
+  `~/.ssh/kuba.mac-agent-personal` (punk-dev-robot, `Host github.com`), `IdentitiesOnly yes`
+  in the `{{#if is_macos}}` part of the ssh template; ssh offers agent keys *before* file
+  keys, so no agent identity may be listed for those hosts. `op`: `OP_SERVICE_ACCOUNT_TOKEN`
+  in `.zshenv.priv`; the agentgateway plist runs `zsh -lc 'exec op run …'` to pick it up.
 
 ## Server lifecycle (verified KUB-135)
 
@@ -69,14 +76,12 @@ mac lid closed, on AC, on WiFi. Requires (owner tickets):
 | sidebar dimmed / Reconnecting | normal after sleep/network blip; bounded backoff. Check `ssh mac uptime`, then `hm status server`. |
 | `ssh mac` fails, `kubasmac.local` unresolved | `avahi-resolve -4 -n kubasmac.local`; mac asleep or off WiFi. |
 | auth fails from Linux | 1P agent locked on Linux — unlock, `ssh-add -l`. Background bridge cannot answer prompts. |
-| mac-side git/`op` hangs | 1P desktop prompt on the invisible mac screen. See KUB-140 (service account for `op run`, file key for git). |
+| mac-side git/`op` hangs | something reached the 1P desktop agent (prompt on the invisible screen). Git hosts must resolve to a file key (`ssh -G git@github.com`); `op` needs `OP_SERVICE_ACCOUNT_TOKEN` (login zsh). Wrap probes in `perl -e 'alarm 10; exec @ARGV' --`. |
 | version skew after `brew upgrade herdr` | client/server negotiate; don't stop a running server just because versions differ. Update the server explicitly when you need new server features. |
 
 ## Open
 
 - KUB-139 reconnect matrix (owner cases: dock switch, lid, mac TUI, Linux reboot).
-- KUB-140 1P headless auth: **blocking** — `git pull` on the mac over ssh fails
-  (`communication with agent failed`); file key + service account pending.
 - KUB-143 SMAppService "Open at Login" items (Ghostty, Granola, Wispr, macshot, PortalBox,
   Logi, Spotify helper) — System Settings only. KUB-146 before/after measurement.
 
